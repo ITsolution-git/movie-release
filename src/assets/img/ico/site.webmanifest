@@ -1,6 +1,6 @@
 {
-    "name": "Movies Directory",
-    "short_name": "Movies Directory",
+    "name": "Current Movie Releases",
+    "short_name": "Current Movie Releases",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

@@ -7,7 +7,7 @@ module.exports = {
   root: 'public/dist/',
   plugins: [
     new SWPrecacheWebpackPlugin({
-      cacheId: 'moviesdirectory',
+      cacheId: 'cmr',
       filename: 'service-worker.js',
       staticFileGlobs: [
         'public/dist/index.html',

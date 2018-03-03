@@ -1,9 +1,9 @@
 {
-  "short_name": "MD",
-  "name": "Movies Directory",
+  "short_name": "CMR",
+  "name": "Current Movie Releases",
   "start_url": "/",
-  "theme_color": "#03182a",
-  "background_color": "#03182a",
+  "theme_color": "#000000",
+  "background_color": "#1f1f1f",
   "display": "standalone",
   "orientation": "portrait",
   "icons": [{
