@@ -1,0 +1,32 @@
+<mat-drawer-container class="account-sidebar-container">
+  <mat-drawer mode="side" opened="true">
+    <ul id="account-nav">
+      <li>
+        <button mat-button routerLink="/my-account/details" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+          <mat-icon>account_box</mat-icon> Account</button>
+      </li>
+      <li>
+        <button mat-button routerLink="/my-account/favorites" routerLinkActive="active">
+          <mat-icon>favorite</mat-icon> Favorites</button>
+      </li>
+      <!-- <li>
+        <button mat-button routerLink="/my-account/reviews">Reviews</button>
+      </li> -->
+      <li>
+        <button mat-button routerLink="/my-account/ratings" routerLinkActive="active">
+          <mat-icon>start</mat-icon> Ratings</button>
+      </li>
+      <li>
+        <!-- Admin -->
+        <button mat-button color="primary" class="admin" routerLink="/admin" *ngIf="userRole === 'admin' || userRole === 'editor'">
+          <mat-icon>vpn_key</mat-icon> Admin Area</button>
+      </li>
+      <!-- <li>
+        <button mat-button routerLink="/my-account/settings">Settings</button>
+      </li> -->
+    </ul>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

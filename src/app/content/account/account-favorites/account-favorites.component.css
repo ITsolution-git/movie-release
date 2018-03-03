@@ -1,0 +1,91 @@
+.loader {
+  margin: 1rem 0;
+}
+
+.tab-content {
+  background: #fff;
+  padding: 1.2rem 1rem;
+}
+
+/* Results List */
+
+.fav-card {
+  position: relative;
+  max-height: 278px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  background: #000;
+}
+
+.fav-card img {
+  width: 100%;
+}
+
+.fav-info {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  max-width: 165px;
+  bottom: 0;
+  padding: 0.4rem 10px;
+  text-align: center;
+  background: #fff;
+  color: #333;
+}
+
+.fav-info h3 {
+  font-size: 1rem;
+  padding: 0 0 0.3rem 0;
+  border-bottom: 1px solid #eee;
+  margin: 0;
+}
+
+h3 span.year {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.fav-info-sub {
+  margin-top: 0.3rem;
+}
+
+.genre,
+.fav-rating {
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.fav-rating mat-icon {
+  font-size: 1rem;
+  width: auto;
+  height: auto;
+  top: 2px;
+  position: relative;
+  margin-right: 0.3rem;
+  color: gold;
+  text-shadow: 1px 1px 0px #777;
+}
+
+.fav-card:hover .fav-info,
+.fav-card:hover .remove-favorite {
+  opacity: 1;
+}
+
+.remove-favorite {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  background: #c62828;
+  padding: 0.4rem 0rem 0rem 0rem;
+}
+
+.remove-favorite mat-icon {
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+}

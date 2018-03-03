@@ -1,0 +1,45 @@
+.loader {
+  margin: 1rem 0;
+}
+
+#account-header {
+  margin-bottom: 1rem;
+}
+
+#account-header h2 {
+  margin: 5px 0 0;
+}
+
+#account-left {
+  margin-right: 2rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+img.user-img {
+  width: 100%;
+  margin-bottom: 1rem;
+  box-shadow: 1px 1px 6px 1px #ccc;
+}
+
+.error-message {
+  background: rgba(241, 0, 0, 0.2);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  color: #b92e2e;
+  position: absolute;
+  right: 6rem;
+  top: 0;
+}
+
+.success-message {
+  background: rgba(48, 241, 0, 0.2);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  color: #11610F;
+  position: absolute;
+  right: 6rem;
+  top: 0;
+}

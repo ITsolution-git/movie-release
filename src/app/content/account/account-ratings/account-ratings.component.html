@@ -1,0 +1,89 @@
+<mat-tab-group mat-stretch-tabs="true">
+  <!-- Rated Movies -->
+  <mat-tab label="Rated Movies">
+    <div *ngIf="!loading" class="tab-content">
+      <mat-table #ratedMovies [dataSource]="movieRatingsSource" matSort>
+        <!-- Poster Column -->
+        <ng-container matColumnDef="movieImg">
+          <mat-header-cell *matHeaderCellDef> Poster </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(element?.title) + '/' + element?.id]">
+              <img *ngIf="element?.poster; else defaultMovieImage" class="movie-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.poster]"
+                [alt]="[element?.title]" [title]="[element?.title]">
+            </a>
+            <ng-template #defaultMovieImage>
+              <a [routerLink]="['/movies/' + this.as.urlOptimizeText(element?.title) + '/' + element?.id]">
+                <img class="movie-img" src="assets/img/default-movie-poster.png" [alt]="[element?.title]" [title]="[element?.title]">
+              </a>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="movieTitle">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Movie Title </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(element?.title) + '/' + element?.id]">{{ element?.title }}</a>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Rating Column -->
+        <ng-container matColumnDef="movieRating">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Your Rating </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <div>
+              <!-- {{ element.rating }} -->
+              <span>
+                <mat-icon (click)="rateMovie(1, element.id, element.title, element.poster)" *ngIf="element.rating < 0.25">star_border</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating >= 0.25 && element.rating  < 0.75}" (click)="rateMovie(1, element.id, element.title, element.poster)"
+                  *ngIf="element.rating > 0.25 && element.rating  < 0.75">star_half</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 0.75}" (click)="rateMovie(1, element.id, element.title, element.poster)"
+                  *ngIf="!(element.rating  < 0.75)">star</mat-icon>
+                <mat-icon (click)="rateMovie(2, element.id, element.title, element.poster)" *ngIf="element.rating < 1.25">star_border</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 1.25 && element.rating  < 1.75}" (click)="rateMovie(2, element.id, element.title, element.poster)"
+                  *ngIf="element.rating >= 1.25 && element.rating  < 1.75">star_half</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 1.75}" (click)="rateMovie(2, element.id, element.title, element.poster)"
+                  *ngIf="!(element.rating  < 1.75)">star</mat-icon>
+                <mat-icon (click)="rateMovie(3, element.id, element.title, element.poster)" *ngIf="element.rating < 2.25">star_border</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 2.25 && element.rating  < 2.75}" (click)="rateMovie(3, element.id, element.title, element.poster)"
+                  *ngIf="element.rating >= 2.25 && element.rating  < 2.75">star_half</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 2.75}" (click)="rateMovie(3, element.id, element.title, element.poster)"
+                  *ngIf="!(element.rating  < 2.75)">star</mat-icon>
+                <mat-icon (click)="rateMovie(4, element.id, element.title, element.poster)" *ngIf="element.rating < 3.25">star_border</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 3.25 && element.rating  < 3.75}" (click)="rateMovie(4, element.id, element.title, element.poster)"
+                  *ngIf="element.rating >= 3.25 && element.rating  < 3.75">star_half</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 3.75}" (click)="rateMovie(4, element.id, element.title, element.poster)"
+                  *ngIf="!(element.rating  < 3.75)">star</mat-icon>
+                <mat-icon (click)="rateMovie(5, element.id, element.title, element.poster)" *ngIf="element.rating < 4.25">star_border</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 4.25 && element.rating  < 4.75}" (click)="rateMovie(5, element.id, element.title, element.poster)"
+                  *ngIf="element.rating >= 4.25 && element.rating  < 4.75">star_half</mat-icon>
+                <mat-icon [ngClass]="{'active' : element.rating  >= 4.75}" (click)="rateMovie(5, element.id, element.title, element.poster)"
+                  *ngIf="!(element.rating  < 4.75)">star</mat-icon>
+              </span>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Remove Rating Column -->
+        <ng-container matColumnDef="removeMovieRating">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Remove</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <mat-icon (click)="removeMovieRating(element.id)">close</mat-icon>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="movieRatingsColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: movieRatingsColumns;"></mat-row>
+      </mat-table>
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="movieCreditsCast?.length"></mat-paginator> -->
+      <!-- No Results Found -->
+      <div *ngIf="movieRatingsSource?.data.length < 1" class="no-results">
+        <p fxFlex fxLayoutAlign="center center">No movies rated yet!</p>
+      </div>
+    </div>
+  </mat-tab>
+
+  <!-- Loader -->
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</mat-tab-group>

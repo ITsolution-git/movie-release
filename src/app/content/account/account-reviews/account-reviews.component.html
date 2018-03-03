@@ -1,0 +1,6 @@
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<div *ngIf="!loading && reviews">
+  Reviews: {{ reviews }}
+</div>

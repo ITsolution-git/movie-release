@@ -1,0 +1,68 @@
+<div id="page-header" fxLayout="row">
+  <div id="header-left" fxFlex>
+    <!-- Page Title -->
+    <h1 *ngIf="genreType === 'movies'">{{ pageTitle }} Movies</h1>
+
+    <!-- Results Counter -->
+    <div *ngIf="moviesList" id="results-counter">Results:
+      <span *ngIf="currentPageIndex === totalPages">{{ totalResults }}</span>
+      <span *ngIf="currentPageIndex !== totalPages">{{ currentPageIndex * 20 }}</span> / {{ totalResults }}
+    </div>
+  </div>
+  <div id="header-right">
+    <!-- Movie Genres Menu -->
+    <button mat-button [matMenuTriggerFor]="genres">
+      <strong>Genres</strong>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #genres="matMenu" [overlapTrigger]="false">
+      <span *ngIf="genreType === 'movies'">
+        <a mat-menu-item *ngFor="let genre of movieGenresList" class="genre-btn" (click)="goToMovieGenresPage(genre.name)">{{ genre.name }}</a>
+      </span>
+    </mat-menu>
+  </div>
+</div>
+
+<div id="page-content">
+  <!-- Movies List -->
+  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="result-list" *ngIf="!loading && moviesList">
+    <mat-card *ngFor="let movie of moviesList" class="result-card">
+      <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+        <!-- Movie Poster -->
+        <div>
+          <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
+            class="result-img">
+          <ng-template #defaultMovieImage>
+            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="result-img">
+          </ng-template>
+        </div>
+        <!-- Movie Info -->
+        <div class="result-info">
+          <h3>{{ movie.title }}
+            <span class="year">({{ movie.release_date | date: 'y' }})</span>
+          </h3>
+          <div class="result-info-sub" fxLayout="row" fxLayoutAlign="center center">
+            <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
+            <span class="result-rating">
+              <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+          </div>
+        </div>
+      </a>
+    </mat-card>
+    <!-- More Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+
+    <!-- Load More Button -->
+    <div id="load-more" *ngIf="!loading && currentPageIndex !== totalPages">
+      <button mat-raised-button color="primary" (click)="loadMoreResults(currentPageIndex + 1)">LOAD MORE...</button>
+    </div>
+
+  </div>
+
+  <!-- Loader -->
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</div>

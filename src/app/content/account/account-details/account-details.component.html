@@ -1,0 +1,64 @@
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<div id="user-account" *ngIf="!loading && userDetails" fxLayout="column">
+  <div id="account-header" fxLayout="row">
+    <div fxFlex>
+      <h2>Welcome
+        <span *ngIf="userDetails?.displayName"> {{ userDetails.displayName }}!</span>
+        <span *ngIf="!userDetails?.displayName && userDetails.username"> {{ userDetails.username }}!</span>
+        <span *ngIf="!userDetails?.displayName && !userDetails.username">!</span>
+      </h2>
+    </div>
+    
+    <!-- Messages -->
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+
+    <!-- Save Button -->
+    <button mat-raised-button color="primary" (click)="updateUserInfo(email.value, username.value, displayName.value, phone.value, address.value, gender.value)">Save</button>
+  </div>
+  <!-- Username -->
+
+  <div fxLayout="row">
+    <!-- Account Left -->
+    <div id="account-left" fxFlex="30">
+      <!-- User Image -->
+      <img *ngIf="userDetails?.photoURL || this.aus.authState.photoURL" [src]="userDetails?.photoURL" [alt]="userDetails?.displayName"
+        class="user-img">
+    </div>
+    <!-- Account Right -->
+    <div id="account-right" fxFlex="70">
+      <form fxLayout="column" fxLayoutAlign="center center">
+        <!-- Name -->
+        <mat-form-field>
+          <input matInput type="text" name="displayName" [value]="userDetails.displayName || ''" placeholder="Name" #displayName>
+        </mat-form-field>
+        <!-- Username -->
+        <mat-form-field>
+          <input matInput type="text" name="username" [value]="userDetails.username || ''" placeholder="Username" #username>
+        </mat-form-field>
+        <!-- Email -->
+        <mat-form-field>
+          <input matInput type="text" name="email" [value]="userDetails.email" placeholder="Email" #email>
+        </mat-form-field>
+        <!-- Gender -->
+        <mat-form-field class="select-container">
+          <mat-select placeholder="Gender" [value]="userDetails.gender" #gender>
+            <mat-option value="female">female</mat-option>
+            <mat-option value="male">male</mat-option>
+            <mat-option value="other">other</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- Phone -->
+        <mat-form-field>
+          <input matInput type="text" name="phone" [value]="userDetails.phone || ''" placeholder="Phone" #phone>
+        </mat-form-field>
+        <!-- Address -->
+        <mat-form-field>
+          <input matInput type="text" name="address" [value]="userDetails.address || ''" placeholder="Address" #address>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</div>

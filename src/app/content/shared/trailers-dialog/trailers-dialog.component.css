@@ -1,0 +1,112 @@
+.dialog-container {
+  height: 100%;
+}
+
+#trailer {
+  overflow: hidden;
+}
+
+iframe {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  /* height: 100px; */
+}
+
+#trailer,
+#trailer-list {
+  background: #000;
+  position: relative;
+  height: 100%;
+  ;
+}
+
+#trailer-list img {
+  width: 100%;
+}
+
+.trailer-thumb {
+  position: relative;
+  cursor: pointer;
+  opacity: 0.95;
+}
+
+.trailer-thumb:hover {
+  opacity: 1;
+}
+
+.trailer-thumb>mat-icon {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  left: 50%;
+  top: 25%;
+  transform: translate(-60%);
+  font-size: 3rem;
+}
+
+.close-dialog {
+  z-index: 1;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-dialog:hover {
+  opacity: 1;
+}
+
+/* Row View */
+
+#trailer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#toggle-playlist {
+  position: fixed;
+  top: 12px;
+  background: #222;
+  padding: 0.5rem 0.5rem 0.3rem;
+  cursor: pointer;
+}
+
+#toggle-playlist mat-icon {
+  color: #fff;
+}
+
+#trailer-list.open {
+  right: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+#trailer-list.open>#toggle-playlist {
+  right: 20%;
+}
+
+#trailer-list.closed {
+  right: -20%;
+}
+
+#trailer-list.closed>#toggle-playlist {
+  right: 0;
+}
+
+@media screen and (max-width: 600px) {
+  #trailer-list.open>#toggle-playlist {
+    right: 50%;
+  }
+  #trailer-list.closed>#toggle-playlist {
+    right: 0;
+  }
+  #trailer-list.closed {
+    right: -50%;
+  }
+}

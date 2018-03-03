@@ -1,0 +1,61 @@
+<div class="logo-wrapper">
+  <span id="logo" routerLink="/">movies.directory</span>
+</div>
+<nav>
+  <ul>
+    <li>
+      <button mat-raised-button routerLink="/admin" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon> Dashboard
+      </button>
+    </li>
+    <li routerLinkActive="active">
+      <button mat-raised-button routerLink="/admin/articles" routerLinkActive="active">
+        <mat-icon>description</mat-icon>Articles
+      </button>
+      <ul class="sub-menu">
+        <li>
+          <button mat-raised-button routerLink="/admin/articles/add" routerLinkActive="active" class="sub-item">
+            <mat-icon>add</mat-icon> Add Article
+          </button>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button mat-raised-button routerLink="/admin/categories" routerLinkActive="active">
+        <mat-icon>group_work</mat-icon>Categories
+      </button>
+    </li>
+    <li>
+      <button mat-raised-button routerLink="/admin/tags" routerLinkActive="active">
+        <mat-icon>dns</mat-icon> Tags
+      </button>
+    </li>
+    <li routerLinkActive="active">
+      <button mat-raised-button routerLink="/admin/users" routerLinkActive="active">
+        <mat-icon>people</mat-icon> Users
+      </button>
+      <ul class="sub-menu">
+        <li>
+          <button mat-raised-button routerLink="/admin/users/add" routerLinkActive="active" class="sub-item">
+            <mat-icon>add</mat-icon> Add User
+          </button>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button mat-raised-button routerLink="/admin/settings" routerLinkActive="active">
+        <mat-icon>settings</mat-icon> Settings
+      </button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="this.as.logout()" routerLinkActive="active">
+        <mat-icon>exit_to_app</mat-icon> Logout
+      </button>
+    </li>
+    <li>
+      <button mat-raised-button (click)="sidebarToggle()">
+        <mat-icon>chevron_left</mat-icon> Collapse Sidebar
+      </button>
+    </li>
+  </ul>
+</nav>

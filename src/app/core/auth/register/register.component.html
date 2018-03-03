@@ -1,0 +1,26 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-card fxLayoutAlign="center center">
+    <form>
+      <!--Email-->
+      <mat-form-field>
+        <input matInput name="email" type="text" placeholder="Email" #email required/>
+      </mat-form-field>
+      <!--Password-->
+      <mat-form-field>
+        <input matInput name="password" type="password" placeholder="Password" #password required autocomplete/>
+      </mat-form-field>
+      <!--Password Confirm-->
+      <mat-form-field>
+        <input matInput name="passwordConfirm" type="password" placeholder="Confirm Password" #passwordConfirm required autocomplete/>
+      </mat-form-field>
+      <!--Error/Success Messages-->
+      <div *ngIf="this.as.authError" class="error">{{ this.as.authError }}</div>
+      <div *ngIf="this.as.authMessage" class="message">{{ this.as.authMessage }}</div>
+    </form>
+
+    <button mat-raised-button color="primary" (click)="this.as.emailRegister(email.value, password.value, passwordConfirm.value)">Register</button>
+
+    <a routerLink="/auth/login">Login</a>
+    <a routerLink="/auth/forgot-password">Forgot Password?</a>
+  </mat-card>
+</div>

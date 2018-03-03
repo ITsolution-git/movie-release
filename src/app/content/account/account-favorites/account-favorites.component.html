@@ -1,0 +1,40 @@
+<mat-tab-group (selectChange)="onFavTabChange($event)" [selectedIndex]="currentFavTab" mat-stretch-tabs="true" id="favorites-tab-group">
+  <!-- Favorite Movies -->
+  <mat-tab label="Favorite Movies">
+    <div *ngIf="!loading" class="tab-content">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="favorite-movies-list">
+        <mat-card *ngFor="let movie of favoriteMovies" class="fav-card">
+          <!-- Remove Button -->
+          <span class="remove-favorite" (click)="removeFromFavorites('movie', movie.id)">
+            <mat-icon>close</mat-icon>
+          </span>
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+            <div>
+              <img *ngIf="movie.poster; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster]" [alt]="movie.title"
+                class="fav-img">
+              <ng-template #defaultMovieImage>
+                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+              </ng-template>
+            </div>
+            <div class="fav-info">
+              <h3>{{ movie.title }}</h3>
+              <div class="fav-info-sub" fxLayout="row" fxLayoutAlign="center center">
+                <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
+                <span class="fav-rating">
+                  <mat-icon>star</mat-icon>{{ movie.rating / 2 }}</span>
+              </div>
+            </div>
+          </a>
+        </mat-card>
+      </div>
+      <div *ngIf="favoriteMovies?.length < 1">
+        <p fxFlex fxLayoutAlign="center center">No favorite movies yet!</p>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+<!-- Loader -->
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

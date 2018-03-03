@@ -1,0 +1,52 @@
+mat-drawer-container {
+  /* height: 100%; */
+  min-height: 450px;
+  padding-right: 5%;
+}
+
+/* Nav */
+
+mat-drawer {
+  border-right: 1px solid #ddd;
+}
+
+mat-drawer-content {
+  padding: 1rem 0 3rem 3rem;
+}
+
+mat-drawer mat-list {
+  width: 100%;
+}
+
+#account-nav {
+  padding: 0;
+}
+
+#account-nav li,
+#account-nav li button {
+  list-style: none;
+  width: 100%;
+  text-align: left;
+}
+
+#account-nav li button {
+  padding: 0.3rem 1.5rem;
+}
+
+#account-nav li mat-icon {
+  font-size: 1.1rem;
+  top: 2px;
+  position: relative;
+}
+
+button.active,
+button.active strong {
+  background: #c62828;
+  color: #fff !important;
+  border-radius: 2px;
+}
+
+button.active:hover {
+  background: #c62828 !important;
+  color: #fff !important;
+}

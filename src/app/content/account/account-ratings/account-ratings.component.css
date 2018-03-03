@@ -1,0 +1,83 @@
+.loader {
+  margin: 1rem 0;
+}
+
+.tab-content {
+  background: #fff;
+}
+
+.no-results {
+  padding: 1.2rem 1rem;
+}
+
+/* Table Columns */
+
+.mat-cell,
+.mat-header-cell {
+  text-align: center;
+}
+
+.mat-row:hover {
+  background: #fafafa;
+}
+
+/* Poster */
+
+.mat-column-movieImg,
+.mat-column-tvImg {
+  max-width: 80px;
+  text-align: left;
+}
+
+/* Title */
+
+.mat-column-movieTitle,
+.mat-column-tvTitle {
+  text-align: left;
+}
+
+.mat-column-movieTitle a,
+.mat-column-tvTitle a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #333;
+}
+
+.mat-column-movieTitle a:hover,
+.mat-column-tvTitle a:hover {
+  text-decoration: underline;
+}
+
+/* Rating */
+
+.mat-column-movieRating,
+.mat-column-tvRating {
+  max-width: 150px;
+}
+
+.mat-column-movieRating mat-icon,
+.mat-column-tvRating mat-icon {
+  cursor: pointer;
+}
+
+.mat-column-movieRating mat-icon.active,
+.mat-column-tvRating mat-icon.active {
+  color: #f1c40f;
+}
+
+/* Remove */
+
+.mat-column-removeMovieRating,
+.mat-column-removeTvRating {
+  max-width: 60px;
+}
+
+.mat-column-removeMovieRating mat-icon,
+.mat-column-removeTvRating mat-icon {
+  cursor: pointer;
+}
+
+.mat-column-removeMovieRating mat-icon:hover,
+.mat-column-removeTvRating mat-icon:hover {
+  color: #c62828;
+}

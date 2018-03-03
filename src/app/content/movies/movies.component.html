@@ -1,0 +1,213 @@
+<div id="page-header" fxLayout="row">
+  <div id="header-left" fxFlex>
+    <!-- Page Title -->
+    <h1>{{ pageTitle }}</h1>
+
+    <!-- Upcoming Results Counter -->
+    <div *ngIf="pageKey === 'upcoming'" id="results-counter">Results:
+      <span *ngIf="upcomingMoviesCurrentIndex === upcomingMoviesTotalPages">{{ upcomingMoviesTotalResults }}</span>
+      <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 20 }}</span> / {{ upcomingMoviesTotalResults }}
+    </div>
+
+    <!-- Now Playing Results Counter -->
+    <div *ngIf="pageKey === 'now-playing'" id="results-counter">Results:
+      <span *ngIf="nowPlayingMoviesCurrentIndex === nowPlayingMoviesTotalPages">{{ nowPlayingMoviesTotalResults }}</span>
+      <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 20 }}</span> / {{ nowPlayingMoviesTotalResults }}
+    </div>
+
+    <!-- Popular Results Counter -->
+    <div *ngIf="pageKey === 'most-popular'" id="results-counter">Results:
+      <span *ngIf="popularMoviesCurrentIndex === popularMoviesTotalPages">{{ popularMoviesTotalResults }}</span>
+      <span *ngIf="popularMoviesCurrentIndex !== popularMoviesTotalPages">{{ popularMoviesCurrentIndex * 20 }}</span> / {{ popularMoviesTotalResults }}
+    </div>
+
+    <!-- Top Rated Results Counter -->
+    <div *ngIf="pageKey === 'top-rated'" id="results-counter">Results:
+      <span *ngIf="topRatedMoviesCurrentIndex === topRatedMoviesTotalPages">{{ topRatedMoviesTotalResults }}</span>
+      <span *ngIf="topRatedMoviesCurrentIndex !== topRatedMoviesTotalPages">{{ topRatedMoviesCurrentIndex * 20 }}</span> / {{ topRatedMoviesTotalResults }}
+    </div>
+  </div>
+</div>
+
+<!-- Movie Tabs Container -->
+<mat-tab-group (selectChange)="onMovieTabChange($event)" [selectedIndex]="currentMovieTab" mat-stretch-tabs="true" id="movies-tab-group">
+  <!-- Upcoming Movies Tab-->
+  <mat-tab label="Upcoming">
+    <!-- Tab Label -->
+    <ng-template mat-tab-label>
+      <h2 (click)="goToMoviesPage('upcoming')" class="tab-heading">Upcoming</h2>
+    </ng-template>
+    <!-- Movies List -->
+    <div *ngIf="!loading" class="upcoming-movies-tab-content">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
+        <mat-card *ngFor="let movie of upcomingMovies" class="movie-card">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+            <div>
+              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
+                class="movie-img">
+              <ng-template #defaultMovieImage>
+                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+              </ng-template>
+            </div>
+            <div class="movie-info">
+              <h3>{{ movie.title }}</h3>
+              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="center center">
+                <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
+                <span class="movie-rating">
+                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+              </div>
+            </div>
+          </a>
+        </mat-card>
+      </div>
+    </div>
+    <!-- Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <!-- More Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <!-- Load More Button -->
+    <div id="load-more" *ngIf="!loading && upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">
+      <button mat-raised-button color="primary" (click)="loadMoreResults(upcomingMoviesCurrentIndex + 1)">LOAD MORE...</button>
+    </div>
+  </mat-tab>
+
+  <!-- Now Playing Movies -->
+  <mat-tab label="Now Playing">
+    <!-- Tab Label -->
+    <ng-template mat-tab-label>
+      <h2 (click)="goToMoviesPage('now-playing')" class="tab-heading">Now Playing</h2>
+    </ng-template>
+    <!-- Movies List -->
+    <div *ngIf="!loading" class="now-playing-movies-tab-content">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
+        <mat-card *ngFor="let movie of nowPlayingMovies" class="movie-card">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+            <div>
+              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
+                class="movie-img">
+              <ng-template #defaultMovieImage>
+                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+              </ng-template>
+            </div>
+            <div class="movie-info">
+              <h3>{{ movie.title }}</h3>
+              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="center center">
+                <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
+                <span class="movie-rating">
+                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+              </div>
+            </div>
+          </a>
+        </mat-card>
+      </div>
+    </div>
+    <!-- Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <!-- More Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <!-- Load More Button -->
+    <div id="load-more" *ngIf="!loading && nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">
+      <button mat-raised-button color="primary" (click)="loadMoreResults(nowPlayingMoviesCurrentIndex + 1)">LOAD MORE...</button>
+    </div>
+  </mat-tab>
+
+  <!-- Most Popular Movies -->
+  <mat-tab label="Most Popular">
+    <!-- Tab Label -->
+    <ng-template mat-tab-label>
+      <h2 (click)="goToMoviesPage('most-popular')" class="tab-heading">Most Popular</h2>
+    </ng-template>
+    <!-- Movies List -->
+    <div *ngIf="!loading" class="popular-movies-tab-content">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
+        <mat-card *ngFor="let movie of popularMovies" class="movie-card">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+            <div>
+              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
+                class="movie-img">
+              <ng-template #defaultMovieImage>
+                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+              </ng-template>
+            </div>
+            <div class="movie-info">
+              <h3>{{ movie.title }}
+                <span class="year">({{ movie.release_date | date: 'y' }})</span>
+              </h3>
+              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="center center">
+                <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
+                <span class="movie-rating">
+                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+              </div>
+            </div>
+          </a>
+        </mat-card>
+      </div>
+    </div>
+    <!-- Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <!-- More Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <!-- Load More Button -->
+    <div id="load-more" *ngIf="!loading && popularMoviesCurrentIndex !== popularMoviesTotalPages">
+      <button mat-raised-button color="primary" (click)="loadMoreResults(popularMoviesCurrentIndex + 1)">LOAD MORE...</button>
+    </div>
+  </mat-tab>
+
+  <!-- Top Rated Movies -->
+  <mat-tab label="Top Rated">
+    <!-- Tab Label -->
+    <ng-template mat-tab-label>
+      <h2 (click)="goToMoviesPage('top-rated')" class="tab-heading">Top Rated</h2>
+    </ng-template>
+    <!-- Movies List -->
+    <div *ngIf="!loading" class="top-rated-movies-tab-content">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
+        <mat-card *ngFor="let movie of topRatedMovies" class="movie-card">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+            <div>
+              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
+                class="movie-img">
+              <ng-template #defaultMovieImage>
+                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+              </ng-template>
+            </div>
+            <div class="movie-info">
+              <h3>{{ movie.title }}
+                <span class="year">({{ movie.release_date | date: 'y' }})</span>
+              </h3>
+              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="center center">
+                <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
+                <span class="movie-rating">
+                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+              </div>
+            </div>
+          </a>
+        </mat-card>
+      </div>
+    </div>
+    <!-- Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <!-- More Loader -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <!-- Load More Button -->
+    <div id="load-more" *ngIf="!loading && topRatedMoviesCurrentIndex !== topRatedMoviesTotalPages">
+      <button mat-raised-button color="primary" (click)="loadMoreResults(topRatedMoviesCurrentIndex + 1)">LOAD MORE...</button>
+    </div>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,13 @@
+<section id="search-form" fxLayout="row">
+  <!-- Search Inputs Container -->
+  <div class="input-container" fxFlex="100">
+    <!-- Search Inputs -->
+    <input type="text" name="keyword" [(ngModel)]="keyword" placeholder="Search for Movies"
+      (keyup.enter)="goToSearchPage(keyword)">
+    <!-- Search button -->
+    <button mat-raised-button color="primary" (click)="goToSearchPage(keyword)" class="search-btn">
+      <mat-icon>search</mat-icon>
+      <span>SEARCH</span>
+    </button>
+  </div>
+</section>

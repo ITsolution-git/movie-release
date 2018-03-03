@@ -1,0 +1,404 @@
+.loader {
+  margin: 1rem 0;
+}
+
+#movie-details {
+  overflow: hidden;
+  padding: 2rem 5%;
+}
+
+#main-right,
+#main-left {
+  z-index: 1;
+}
+
+#main-right {
+  position: relative;
+  padding-left: 2rem;
+}
+
+/* Movie Title */
+
+#title h1 {
+  margin: 0;
+  padding-right: 8rem;
+  font-size: 2.2rem;
+}
+
+#tagline h2 {
+  padding-right: 8rem;
+}
+
+#tagline h2 {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+#genre-runtime {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.genre-link {
+  color: #4c85bf;
+}
+
+#duration,
+#year {
+  margin-left: 0.3rem;
+}
+
+.more-info-btn {
+  margin: 1rem 0;
+  border: 1px solid #333;
+  border-radius: 2px;
+}
+
+.more-info-btn mat-icon {
+  position: relative;
+  top: 7px;
+}
+
+/* Movie Poster */
+
+.movie-poster {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Background Image */
+
+#bg-img {
+  position: fixed;
+  width: 100%;
+  z-index: 0;
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+}
+
+/* Rating */
+
+#rating {
+  margin: 1.5rem 0;
+  /* border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd; */
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#rating-result {
+  padding: 0.5rem;
+  border-right: 1px solid #405266;
+}
+
+#rating-result mat-icon {
+  font-size: 2rem;
+}
+
+.rating {
+  padding: 0.5rem 1rem;
+  align-items: center;
+}
+
+.rating mat-icon {
+  color: #aeaeae;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+#rate-text {
+  align-self: center;
+  margin-right: 1rem;
+}
+
+#rating mat-icon.active {
+  color: #f1c40f;
+}
+
+#average-rating {
+  font-size: 1.2rem;
+}
+
+#average-rating>span,
+#total-votes {
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* User Actions */
+
+#user-actions mat-icon {
+  margin-right: 0.5rem;
+}
+
+.top-user-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.top-user-actions button {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  border: 2px solid #c62828;
+}
+
+.top-user-actions button:hover,
+.top-user-actions button.active {
+  background: #c62828;
+}
+
+.top-user-actions button:hover mat-icon {
+  color: #fff;
+}
+
+.top-user-actions button mat-icon {
+  color: #c62828;
+  margin: 0 !important;
+  font-size: 1rem;
+  line-height: 1.3rem;
+}
+
+.top-user-actions button.active {
+  background: #c62828;
+}
+
+.top-user-actions button.active mat-icon {
+  color: #fff;
+}
+
+/* Share Icons */
+
+#share-icons:before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: -8px;
+  right: 9px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid black;
+}
+
+#share-icons {
+  position: absolute;
+  width: 90px;
+  padding: 0.25rem 0.5rem 0.1rem;
+  bottom: -55px;
+  left: -19px;
+  background: #000;
+  opacity: 0.95;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px 1px #222;
+  z-index: 2;
+}
+
+#share-icons svg {
+  cursor: pointer;
+}
+
+/* Tabs */
+
+#movie-tab-group {
+  margin: 1.5rem 0;
+}
+
+.tab-title {
+  align-self: center;
+}
+
+.tab-title h3 {
+  margin-bottom: -4px;
+}
+
+.tab-title>span {
+  align-self: flex-end;
+  margin-left: 0.5rem;
+}
+
+/* Cast & Crew */
+
+.cast-crew-table {
+  margin-top: -1.25em;
+}
+
+img.person-img {
+  max-width: 28px;
+  margin-top: 3px;
+}
+
+mat-row:hover {
+  background: #fafafa;
+}
+
+.mat-column-actorImg,
+.mat-column-crewImg {
+  max-width: 70px;
+}
+
+/* Reviews */
+
+.review-author {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
+.review-content {
+  font-size: 1rem;
+  border-left: 4px solid #ddd;
+  padding-left: 1.5rem;
+}
+
+.add-review-btn {
+  margin: 1rem 0;
+}
+
+/* Release Dates */
+
+.release-dates {
+  padding: 1rem 0;
+}
+
+/* Cards */
+
+.person-card,
+.movie-card {
+  position: relative;
+  max-height: 278px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  cursor: pointer;
+  background: #000;
+}
+
+.person-card img,
+.movie-card img {
+  width: 100%;
+}
+
+.person-name,
+.movie-info {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  max-width: 165px;
+  bottom: 0;
+  padding: 0.4rem 10px;
+  text-align: center;
+  background: #fff;
+  color: #333;
+}
+
+.movie-info h3 {
+  font-size: 1rem;
+  padding: 0 0 0.3rem 0;
+  border-bottom: 1px solid #eee;
+  margin: 0;
+}
+
+h3 span.year {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.movie-info-sub {
+  margin-top: 0.3rem;
+}
+
+.genre,
+.movie-rating {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.movie-rating mat-icon {
+  font-size: 1rem;
+  width: auto;
+  height: auto;
+  top: 2px;
+  position: relative;
+  margin-right: 0.3rem;
+  color: gold;
+  text-shadow: 1px 1px 0px #777;
+}
+
+.person-card:hover .person-name,
+.movie-card:hover .movie-info {
+  opacity: 1;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+  #bg-img {
+    position: fixed;
+    width: auto;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.06;
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  #title h1,
+  #tagline h2,
+  #genre-runtime {
+    padding-right: 4rem;
+  }
+  .top-user-actions button {
+    margin: 0.5rem 0;
+  }
+  #share-icons {
+    bottom: -45px;
+    left: -67px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #genres {
+    width: 100%;
+    margin-bottom: 0.3rem;
+  }
+  #duration {
+    margin-left: 0;
+  }
+  #user-actions button {
+    margin: 0.5rem;
+  }
+  .watch-trailer {
+    padding: 0.5rem;
+  }
+  #main-right {
+    padding-left: 0;
+  }
+  .rating {
+    padding: 0.5rem 0rem 0.5rem 0.8rem;
+  }
+  .rating mat-icon {
+    font-size: 1.5rem;
+    width: 18px;
+    height: 18px;
+  }
+  #rate-text {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+  #share-icons {
+    bottom: -47px;
+    left: -60px;
+  }
+  .recommendations-tab-content,
+  .similar-movies-tab-content {
+    padding: 0.1rem;
+  }
+  .movie-card {
+    margin: 0.05rem 0;
+  }
+}
