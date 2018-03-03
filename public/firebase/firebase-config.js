@@ -3,35 +3,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const admin = require("firebase-admin");
 const path = require("path");
 // Firebase Service Account Configuration
-const serviceAccountPath = 'rock-extension-140016-firebase-adminsdk-2asfm-ffb6cb4019.json';
+const serviceAccountPath = 'current-movie-releases-firebase-adminsdk-xlpoy-fadf799c6c.json';
 admin.initializeApp({
     credential: admin.credential.cert(path.join(__dirname, serviceAccountPath)),
-    databaseURL: 'https://rock-extension-140016.firebaseio.com'
+    databaseURL: 'https://current-movie-releases.firebaseio.com'
 });
 exports.AD = admin;
 exports.DB_LISTS = {
     API_CONFIG: '/api_config',
-    CELEBS: '/celebs',
-    CELEBS_QUERIES: '/celebs_queries',
-    CELEBS_RESULTS: '/celebs_results',
-    COMPANIES: '/companies',
     MOVIE_GENRES: '/movie_genres',
     MOVIES: '/movies',
     MOVIES_QUERIES: '/movies_queries',
     MOVIES_RESULTS: '/movies_results',
-    PAGES: '/pages',
-    PROFILES: '/profiles',
-    SETTINGS: '/settings',
-    TV_GENRES: '/tv_genres',
-    TV_SHOWS: '/tv_shows',
-    TV_SHOWS_QUERIES: '/tv_shows_queries',
-    TV_SHOWS_RESULTS: '/tv_shows_results',
     UPLOADS: '/uploads',
-    USERS: '/users',
-    ARTICLES: '/articles',
-    PAGE_TYPES: '/page_types',
-    TAGS: '/tags',
-    DIRECTORS: '/directors',
+    USERS: '/users'
 };
 exports.loadList = (name, setup = null) => {
     return new Promise((resolve, reject) => {

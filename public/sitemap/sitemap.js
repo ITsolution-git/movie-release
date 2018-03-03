@@ -22,82 +22,6 @@ exports.tryGenerateMoviesSitemap = (req, res) => {
         generateSitemap(resp, 'movies');
     });
 };
-const getTvShowsList = (setup = null) => {
-    return new Promise((resolve, reject) => {
-        firebase_config_1.loadList(firebase_config_1.DB_LISTS.TV_SHOWS, setup)
-            .then(data => {
-            let tvShowsList = [];
-            for (let index = 0; index < data.length; index++) {
-                const element = data[index].url;
-                tvShowsList = tvShowsList.concat(element);
-            }
-            resolve(tvShowsList);
-        });
-    });
-};
-exports.tryGenerateTvShowsSitemap = (req, res) => {
-    getTvShowsList()
-        .then((resp) => {
-        generateSitemap(resp, 'tv-shows');
-    });
-};
-const getCelebsList = (setup = null) => {
-    return new Promise((resolve, reject) => {
-        firebase_config_1.loadList(firebase_config_1.DB_LISTS.CELEBS, setup)
-            .then(data => {
-            let celebsList = [];
-            for (let index = 0; index < data.length; index++) {
-                const element = data[index].url;
-                celebsList = celebsList.concat(element);
-            }
-            resolve(celebsList);
-        });
-    });
-};
-exports.tryGenerateCelebsSitemap = (req, res) => {
-    getCelebsList()
-        .then((resp) => {
-        generateSitemap(resp, 'celebs');
-    });
-};
-const getProfilesList = (setup = null) => {
-    return new Promise((resolve, reject) => {
-        firebase_config_1.loadList(firebase_config_1.DB_LISTS.PROFILES, setup)
-            .then(data => {
-            let profilesList = [];
-            for (let index = 0; index < data.length; index++) {
-                const element = data[index].url;
-                profilesList = profilesList.concat(element);
-            }
-            resolve(profilesList);
-        });
-    });
-};
-exports.tryGenerateProfilesSitemap = (req, res) => {
-    getProfilesList()
-        .then((resp) => {
-        generateSitemap(resp, 'profiles');
-    });
-};
-const getPagesList = (setup = null) => {
-    return new Promise((resolve, reject) => {
-        firebase_config_1.loadList(firebase_config_1.DB_LISTS.PAGES, setup)
-            .then(data => {
-            let pagesList = [];
-            for (let index = 0; index < data.length; index++) {
-                const element = data[index].url;
-                pagesList = pagesList.concat(element);
-            }
-            resolve(pagesList);
-        });
-    });
-};
-exports.tryGeneratePagesSitemap = (req, res) => {
-    getPagesList()
-        .then((resp) => {
-        generateSitemap(resp, 'pages');
-    });
-};
 const getMovieGenresList = (setup = null) => {
     return new Promise((resolve, reject) => {
         firebase_config_1.loadList(firebase_config_1.DB_LISTS.MOVIE_GENRES, setup)
@@ -115,44 +39,6 @@ exports.tryGenerateMovieGenresSitemap = (req, res) => {
     getMovieGenresList()
         .then((resp) => {
         generateSitemap(resp, 'movie-genres');
-    });
-};
-const getTvShowGenresList = (setup = null) => {
-    return new Promise((resolve, reject) => {
-        firebase_config_1.loadList(firebase_config_1.DB_LISTS.TV_GENRES, setup)
-            .then(data => {
-            let tvShowGenresList = [];
-            for (let index = 0; index < data.length; index++) {
-                const element = data[index].url;
-                tvShowGenresList = tvShowGenresList.concat(element);
-            }
-            resolve(tvShowGenresList);
-        });
-    });
-};
-exports.tryGenerateTvShowGenresSitemap = (req, res) => {
-    getTvShowGenresList()
-        .then((resp) => {
-        generateSitemap(resp, 'tv-show-genres');
-    });
-};
-const getCompaniesList = (setup = null) => {
-    return new Promise((resolve, reject) => {
-        firebase_config_1.loadList(firebase_config_1.DB_LISTS.COMPANIES, setup)
-            .then(data => {
-            let companiesList = [];
-            for (let index = 0; index < data.length; index++) {
-                const element = data[index].url;
-                companiesList = companiesList.concat(element);
-            }
-            resolve(companiesList);
-        });
-    });
-};
-exports.tryGenerateCompaniesSitemap = (req, res) => {
-    getCompaniesList()
-        .then((resp) => {
-        generateSitemap(resp, 'companies');
     });
 };
 const generateSitemap = (data, type) => {

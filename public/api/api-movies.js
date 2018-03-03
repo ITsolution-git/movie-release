@@ -2,41 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const https = require("https");
 const constants_1 = require("../constants");
-// Movies API Calls
-// Discover movies
-// const getAdvancedSearchMovies = (): Promise<any> => {
-// tslint:disable-next-line:max-line-length
-//     const url = 'https://api.themoviedb.org/3/discover/movie?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&region=US&sort_by=revenue.asc&certification_country=US&certification=US&certification.lte=US&include_adult=false&include_video=false&page=1&primary_release_year=2000&primary_release_date.gte=1999&primary_release_date.lte=2005&release_date.gte=1999&release_date.lte=2005&vote_count.gte=1&vote_count.lte=100000&vote_average.gte=1&vote_average.lte=5&with_cast=Ice%20Cube&with_crew=crew&with_companies=Sony&with_genres=action&with_keywords=police&with_people=Will%20Smith&year=2000&without_genres=horror&with_runtime.gte=60&with_runtime.lte=180&with_release_type=release_type&with_original_language=en-US&without_keywords=sex';
-//     return new Promise<any>((resolve, reject) => {
-//         https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'discover/movie' + TMDB_API_KEY + TMDB_API_LANG + '&page=1', (resp) => {
-//             let data = '';
-//             // A chunk of data has been recieved.
-//             resp.on('data', (chunk) => {
-//                 // console.log(chunk);
-//                 data += chunk;
-//             });
-//             // The whole response has been received. Print out the result.
-//             resp.on('end', () => {
-//                 const result_obj = JSON.parse(data);
-//                 // console.log(result_obj);
-//                 resolve(result_obj);
-//             });
-//         }).on('error', (err) => {
-//             console.log('Error: ' + err.message);
-//             reject(err);
-//         });
-//     });
-// };
-// export const tryGetAdvancedSearchMovies = (req, res) => {
-//     const sort = req.params['sort'];
-//     getAdvancedSearchMovies()
-//         .then((result) => {
-//             res.send(result);
-//         })
-//         .catch((error) => {
-//             console.log(error);
-//         });
-// };
 // Get the list of movies by search keyword (paginated) OK
 const getMoviesListByKeyword = (keyword, pageIndex) => {
     // tslint:disable-next-line:max-line-length

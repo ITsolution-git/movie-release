@@ -1,6 +1,6 @@
 {
-  "name": "ppa-server",
-  "description": "Server side app for Photography Portfolio App",
+  "name": "cmr-server",
+  "description": "Server side app for current Movie Releases",
   "dependencies": {
     "@types/body-parser": "^1.16.8",
     "body-parser": "1.18.2",
