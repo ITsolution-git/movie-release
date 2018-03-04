@@ -70,10 +70,10 @@ export class GenresComponent implements OnInit {
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle(this.pageTitle + ' ' + (this.genreType.replace('-', ' ')).toLowerCase().split(' ')
       .map(x => x[0].toUpperCase() + x.slice(1))
-      .join(' ') + ' - ' + APP_SEO_NAME);
+      .join(' ') + ' | ' + APP_SEO_NAME);
     this.meta.addTags([
       { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.pageKey) },
-      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.pageKey) + ' - ' + APP_SEO_NAME }
+      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.pageKey) + ' ' + APP_SEO_NAME }
     ]);
   }
 

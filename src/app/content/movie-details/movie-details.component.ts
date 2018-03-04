@@ -184,11 +184,11 @@ export class MovieDetailsComponent implements OnInit {
   setSEOMetaTags(): void {
     // Set SEO Title, Keywords and Description Meta tags
     // tslint:disable-next-line:max-line-length
-    this.title.setTitle(this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie - ' + APP_SEO_NAME);
+    this.title.setTitle(this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie | ' + APP_SEO_NAME);
     this.meta.addTags([
-      { name: 'keywords', content: this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0] },
+      { name: 'keywords', content: this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0].name },
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie. ' + this.movieDetails.overview + ' - ' + APP_SEO_NAME }
+      { name: 'description', content: this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie. ' + this.movieDetails.overview + ' ' + APP_SEO_NAME }
     ]);
   }
 

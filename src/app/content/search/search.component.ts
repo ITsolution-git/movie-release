@@ -63,10 +63,10 @@ export class SearchComponent implements OnInit {
 
   setSEOMetaTags(): void {
     // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(this.pageTitle + ' - ' + this.as.seoOptimizeText(this.searchType) + ' - ' + APP_SEO_NAME + ' search');
+    this.title.setTitle(this.pageTitle + ' - ' + this.as.seoOptimizeText(this.searchType) + ' | ' + APP_SEO_NAME + ' search');
     this.meta.addTags([
       { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.searchType) + ', search page' },
-      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.searchType) + ' - ' + APP_SEO_NAME }
+      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.searchType) + ' ' + APP_SEO_NAME }
     ]);
   }
 
