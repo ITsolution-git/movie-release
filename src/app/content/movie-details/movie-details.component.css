@@ -278,6 +278,7 @@ mat-row:hover {
 
 .person-card img,
 .movie-card img {
+  max-width: 100%;
   width: 100%;
 }
 
@@ -290,14 +291,15 @@ mat-row:hover {
   bottom: 0;
   padding: 0.4rem 10px;
   text-align: center;
-  background: #fff;
-  color: #333;
+  background: #000;
+  color: #FFF;
 }
 
 .movie-info h3 {
-  font-size: 1rem;
+  font-size: 0.8125rem;
+  font-weight: normal;
   padding: 0 0 0.3rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #111;
   margin: 0;
 }
 
