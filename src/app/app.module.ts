@@ -36,6 +36,7 @@ import { ApiService } from './services/api/api.service';
 import { SitemapService } from './services/sitemap/sitemap.service';
 import { FirebaseService } from './services/firebase/firebase.service';
 import { ResponsiveService } from './services/responsive.service';
+import { SeoService } from './services/seo/seo.service';
 // Components
 import { PublicComponent } from './core/public/public.component';
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { FooterComponent } from './content/shared/footer/footer.component';
 import { PageNotFoundComponent } from './content/page-not-found/page-not-found.component';
 import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu.component';
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
+
 
 @NgModule({
   declarations: [
@@ -82,6 +84,7 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
   ],
   providers: [
     AppService,
+    // SeoService,
     ApiService,
     SitemapService,
     FirebaseService,
