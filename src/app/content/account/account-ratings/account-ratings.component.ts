@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 // AngularFire
 import { AngularFireAuth } from 'angularfire2/auth';
 import {
@@ -49,12 +49,15 @@ export class AccountRatingsComponent implements OnInit {
 
   constructor(
     public title: Title,
+    public meta: Meta,
     private afDb: AngularFireDatabase,
     private afAuth: AngularFireAuth,
     private as: AppService
   ) {
-    // Set SEO Title
+    // Set SEO Title & remove Description & Keywords (This Page Does Not Need to be Indexed)
     this.title.setTitle('My Ratings - ' + APP_SEO_NAME);
+    this.meta.removeTag('name = "description"');
+    this.meta.removeTag('name = "keywords"');
 
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;

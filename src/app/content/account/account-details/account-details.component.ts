@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 // Firebase
 import * as firebase from 'firebase/app';
 // AngularFire
@@ -33,13 +33,15 @@ export class AccountDetailsComponent {
 
   constructor(
     public title: Title,
+    public meta: Meta,
     public afAuth: AngularFireAuth,
     private afDb: AngularFireDatabase,
     private aus: AuthService
   ) {
-    // Set SEO Title
+    // Set SEO Title & remove Description & Keywords (This Page Does Not Need to be Indexed)
     this.title.setTitle('Account Details - ' + APP_SEO_NAME);
-
+    this.meta.removeTag('name = "description"');
+    this.meta.removeTag('name = "keywords"');
     this.afAuth.authState.subscribe(res => {
       this.userRef = afDb.list(DB_COL.USERS + '/');
       this.userObsRef = afDb.object(DB_COL.USERS + '/' + res.uid).valueChanges();

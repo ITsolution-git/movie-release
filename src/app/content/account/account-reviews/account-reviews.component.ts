@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 // Constants
 import { APP_SEO_NAME } from '../../../constants';
 @Component({
@@ -13,10 +13,14 @@ export class AccountReviewsComponent implements OnInit {
   loading = false;
 
   constructor(
-    public title: Title
+    public title: Title,
+    public meta: Meta
   ) {
-    // Set SEO Title
+    // Set SEO Title & remove Description & Keywords (This Page Does Not Need to be Indexed)
     this.title.setTitle('My Reviews - ' + APP_SEO_NAME);
+    this.meta.removeTag('name = "description"');
+    this.meta.removeTag('name = "keywords"');
+
     this.getUserReviews();
   }
 

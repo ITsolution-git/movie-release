@@ -18,10 +18,12 @@ export class LoginComponent {
   ) {
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle('Login - ' + APP_SEO_NAME);
-    this.meta.addTags([
-      { name: 'keywords', content: 'login, movies, movie, film' },
+    this.meta.updateTag(
       { name: 'description', content: 'Sign in to current movie releases to keep track of your favorite movies!' + APP_SEO_NAME }
-    ]);
+    );
+    this.meta.updateTag(
+      { name: 'keywords', content: 'login, movies, movie, film' },
+    );
     this.as.resetMessages();
   }
 

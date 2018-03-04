@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 // AngularFire
 import { AngularFireAuth } from 'angularfire2/auth';
 import {
@@ -37,12 +37,15 @@ export class AccountFavoritesComponent implements OnInit {
 
   constructor(
     public title: Title,
+    public meta: Meta,
     private afDb: AngularFireDatabase,
     private afAuth: AngularFireAuth,
     private as: AppService
   ) {
-    // Set SEO Title
+    // Set SEO Title & remove Description & Keywords (This Page Does Not Need to be Indexed)
     this.title.setTitle('Favorite Movies and TV Shows - ' + APP_SEO_NAME);
+    this.meta.removeTag('name = "description"');
+    this.meta.removeTag('name = "keywords"');
 
     this.resetTab(0);
     // Initialize Constants

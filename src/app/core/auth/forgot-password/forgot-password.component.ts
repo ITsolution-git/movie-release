@@ -19,11 +19,16 @@ export class ForgotPasswordComponent implements OnInit {
   ) {
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle('Forgot Password - ' + APP_SEO_NAME);
-    this.meta.addTags([
-      { name: 'keywords', content: 'forgot password, movies, movie, film' },
+    this.meta.updateTag(
       // tslint:disable-next-line:max-line-length
-      { name: 'description', content: 'Forgot your current movie releases password? No problem, we can help you to reset your password!' + APP_SEO_NAME }
-    ]);
+      {
+        name: 'description',
+        content: 'Forgot your current movie releases password? No problem, we can help you to reset your password!' + APP_SEO_NAME
+      }
+    );
+    this.meta.updateTag(
+      { name: 'keywords', content: 'forgot password, movies, movie, film' },
+    );
     this.as.resetMessages();
   }
 

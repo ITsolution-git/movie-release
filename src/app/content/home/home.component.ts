@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+
 // Services
 import { AppService } from '../../services/app.service';
 import { ApiService } from '../../services/api/api.service';
@@ -34,11 +35,16 @@ export class HomeComponent {
   ) {
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle(APP_SEO_NAME + ' - Movies, TV Shows, Celebrities, Cinema Tickets.');
-    this.meta.addTags([
+    this.meta
+      .updateTag(
+        {
+          name: 'description',
+          content: APP_SEO_NAME + ' the best source for Movie, TV Show, Celebrity content, Cinema Tickets and more! - ' + APP_SEO_NAME
+        }
+      );
+    this.meta.updateTag(
       { name: 'keywords', content: 'movies, tv shows, celebrities, production companies, cinema tickets,  actors, actresses' },
-      // tslint:disable-next-line:max-line-length
-      { name: 'description', content: APP_SEO_NAME + ' the best source for Movie, TV Show, Celebrity content, Cinema Tickets and more! - ' + APP_SEO_NAME }
-    ]);
+    );
 
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;

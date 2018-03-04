@@ -19,10 +19,18 @@ export class RegisterComponent {
   ) {
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle('Register - ' + APP_SEO_NAME);
-    this.meta.addTags([
-      { name: 'keywords', content: 'register, movies, movie, film' },
-      { name: 'description', content: 'Register on current movie releases to keep track of your favorite movies and TV Shows!' + APP_SEO_NAME }
-    ]);
+    this.meta.updateTag(
+      {
+        name: 'description',
+        content: 'Register on current movie releases to keep track of your favorite movies and TV Shows!' + APP_SEO_NAME
+      }
+    );
+    this.meta.updateTag(
+      {
+        name: 'keywords',
+        content: 'register, movies, movie, film'
+      },
+    );
     this.as.resetMessages();
   }
 

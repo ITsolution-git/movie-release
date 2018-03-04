@@ -71,10 +71,12 @@ export class GenresComponent implements OnInit {
     this.title.setTitle(this.pageTitle + ' ' + (this.genreType.replace('-', ' ')).toLowerCase().split(' ')
       .map(x => x[0].toUpperCase() + x.slice(1))
       .join(' ') + ' - ' + APP_SEO_NAME);
-    this.meta.addTags([
-      { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.pageKey) },
+    this.meta.updateTag(
       { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.pageKey) + ' - ' + APP_SEO_NAME }
-    ]);
+    );
+    this.meta.updateTag(
+      { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.pageKey) },
+    );
   }
 
   // Movies Functions
