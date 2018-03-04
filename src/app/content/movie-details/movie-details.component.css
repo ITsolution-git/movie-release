@@ -316,7 +316,7 @@ h3 span.year {
 .movie-rating {
   width: 100%;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.625rem;
 }
 
 .movie-rating mat-icon {

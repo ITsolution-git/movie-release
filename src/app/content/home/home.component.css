@@ -7,11 +7,6 @@
     margin: 1rem 0;
 }
 
-.movie-directory{
-    width: 70%;
-    margin: auto;
-}
-
 .movie-card {
     position: relative;
     max-height: 278px;
@@ -22,6 +17,12 @@
     overflow: hidden;
     background: #000;
     border: 1px solid #111;
+    box-shadow: none !important;
+}
+.movie-card:hover {
+    box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
+    -moz-box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
+    -webkit-box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
 }
 
 .movie-card img {
@@ -60,7 +61,7 @@ h3 span.year {
 .movie-rating {
     width: 100%;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.625rem;
 }
 
 .movie-rating mat-icon {

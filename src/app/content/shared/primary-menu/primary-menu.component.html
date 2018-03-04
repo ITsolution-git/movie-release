@@ -21,7 +21,8 @@
       <a mat-menu-item *ngFor="let genre of movieGenresList" class="genre-btn" (click)="goToMovieGenresPage(genre.name)">{{ genre.name }}</a>
     </mat-menu>
   </nav>
-
+  <!-- Main Search -->
+  <app-search-form class="main-search"></app-search-form>
   <!-- Account Menu -->
   <nav id="account-menu">
     <!-- Login -->
@@ -33,7 +34,7 @@
     </a>
     <!-- My Account -->
     <button mat-raised-button color="primary" class="account-button" [matMenuTriggerFor]="account" *ngIf="this.aus.isLoggedIn === true">
-      <img [src]="user?.photoURL || this.aus.authState.photoURL || userDetails?.photoURL" [alt]="this.aus.authState.displayName">
+      <mat-icon>face</mat-icon>
       <span class="account-name">{{ this.user?.displayName || this.aus.authState.displayName }}</span>
     </button>
     <mat-menu #account="matMenu" [overlapTrigger]="false">

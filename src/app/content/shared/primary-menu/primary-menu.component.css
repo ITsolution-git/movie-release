@@ -64,6 +64,12 @@
     position: relative;
     top: 5px;
   }
+
+  .main-search{
+    width: 50%;
+    display: block;
+    margin: auto;
+}
   
   @media screen and (max-width: 959px) {
     .nav-container {

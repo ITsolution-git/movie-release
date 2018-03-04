@@ -11,11 +11,10 @@ body {
   background: #1f1f1f;
   color: #EEE;
 }
-/*NG Content*/
-.now-playing-movies-tab-content{
-  width: 80%;
-  margin: auto;
-
+/*Main Movie Directory*/
+.movie-directory{
+  width: 70%;
+  margin: 1.25rem auto;
 }
 /* Dialogs */
 .full-screen-dialog,
