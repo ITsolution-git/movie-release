@@ -8,10 +8,16 @@ body {
   font-family: 'Roboto', sans-serif;
   height: 100%;
   width: 100%;
+  background: #1f1f1f;
+  color: #EEE;
 }
+/*NG Content*/
+.now-playing-movies-tab-content{
+  width: 80%;
+  margin: auto;
 
+}
 /* Dialogs */
-
 .full-screen-dialog,
 .full-screen-dialog .mat-dialog-container {
   background: #000;
