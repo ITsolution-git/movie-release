@@ -34,7 +34,7 @@
     </a>
     <!-- My Account -->
     <button mat-raised-button color="primary" class="account-button" [matMenuTriggerFor]="account" *ngIf="this.aus.isLoggedIn === true">
-      <mat-icon>face</mat-icon>
+      <mat-icon>perm_identity</mat-icon>
       <span class="account-name">{{ this.user?.displayName || this.aus.authState.displayName }}</span>
     </button>
     <mat-menu #account="matMenu" [overlapTrigger]="false">
