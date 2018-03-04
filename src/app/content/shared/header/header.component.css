@@ -1,7 +1,9 @@
 header {
     width: 90%;
-    padding: 1rem 5% 0;
+    padding: 0 5% 0;
     margin: auto;
+    background:#222;
+    border-color:#080808;
 }
 
 #header-container {
