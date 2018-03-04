@@ -7,6 +7,11 @@
     margin: 1rem 0;
 }
 
+.movie-directory{
+    width: 80%;
+    margin: auto;
+}
+
 .movie-card {
     position: relative;
     max-height: 278px;
