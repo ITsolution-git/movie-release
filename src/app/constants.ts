@@ -1,5 +1,5 @@
 // App
-export const APP_SEO_NAME = 'current Movie Releases';
+export const APP_SEO_NAME = 'Current Movie Releases';
 export const APP_BASE_URL = 'https://www.currentmoviereleases.com';
 export const DEFAULT_USER_IMG = '/assets/img/default-user.png';
 export const DEFAULT_POSTER_IMG = '';
@@ -37,7 +37,7 @@ export const YT_BASE_URL = 'https://www.youtube.com/embed/';
 export const YT_VIDEO_OPTIONS = {
     NO_SUGGESTED_VIDEOS: '?rel=0',
     AUTOPLAY: '&autoplay=1',
-    COLOR_WHITE: '&color=white',
+    COLOR_WHITE: '&color=black',
     NO_WIDEO_ANNOTAIONS: '&iv_load_policy=3',
     NO_YT_LOGO: '&modestbranding=1',
     CUSTOM_PLAYLIST: '&playlist=',

@@ -6,12 +6,11 @@
 export const environment = {
     production: false,
     firebase: {
-      apiKey: "AIzaSyAAlcu5uCbvKZvXJ1NGMBPC2lu6qiLXehE",
-      authDomain: "rock-extension-140016.firebaseapp.com",
-      databaseURL: "https://rock-extension-140016.firebaseio.com",
-      projectId: "rock-extension-140016",
-      storageBucket: "rock-extension-140016.appspot.com",
-      messagingSenderId: "239916146847"
+      apiKey: "AIzaSyBdditGKcqxYFcYN7vtVBMCNo8OhtGGHr4",
+      authDomain: "current-movie-releases.firebaseapp.com",
+      databaseURL: "https://current-movie-releases.firebaseio.com",
+      projectId: "current-movie-releases",
+      storageBucket: "current-movie-releases.appspot.com",
+      messagingSenderId: "828894124501"
     }
   };
-  
