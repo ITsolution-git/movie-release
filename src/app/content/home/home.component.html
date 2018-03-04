@@ -1,4 +1,4 @@
-<div *ngIf="!loading" class="now-playing-movies-tab-content movie-directory">
+<div *ngIf="!loading" class="now-playing-movies-tab-content">
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
     <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card">
       <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">

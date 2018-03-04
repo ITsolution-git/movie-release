@@ -11,16 +11,21 @@ body {
   background: #1f1f1f;
   color: #EEE;
 }
-/*Main Movie Directory*/
-.movie-directory{
-  width: 70%;
-  margin: 1.25rem auto;
+/*HOST*/
+app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app-page-not-found, app-shared {
+  width: 80%;
+  margin: 2rem auto;
+  display: block;
 }
 /* Dialogs */
 .full-screen-dialog,
 .full-screen-dialog .mat-dialog-container {
   background: #000;
   padding: 0;
+}
+/*Labels*/
+.mat-tab-label, .mat-tab-link{
+  color: #FFF;
 }
 
 .login-dialog,
