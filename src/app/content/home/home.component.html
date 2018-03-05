@@ -1,8 +1,18 @@
 <div *ngIf="!loading" class="now-playing-movies-tab-content">
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
     <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card">
+      <div class="movie_data">
+        <div class="release-date">
+          <!-- Need to get release date here -->
+        </div>
+        <div class="favorite">
+          <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
+            <mat-icon class="mat-icon material-icons">favorite</mat-icon>
+          </button>
+        </div>
+      </div>
       <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
-        <div>
+        <div class="movie-thumbnail">
           <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
             class="movie-img">
           <ng-template #defaultMovieImage>

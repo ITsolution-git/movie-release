@@ -30,6 +30,7 @@
   font-size: 1rem;
   margin: 0;
   line-height: 3rem;
+  color: #FFF;
 }
 
 .movie-card {
@@ -43,12 +44,10 @@
   background: #000;
   border: 1px solid #111;
 }
-
 .movie-card img {
   max-width: 100%;
   width: 100%;
 }
-
 .movie-info {
   position: absolute;
   opacity: 0;
@@ -60,7 +59,12 @@
   background: #000;
   color: #FFF;
 }
-
+/*Movie Data for Movie Cards - release date and favorite button*/
+.movie_data{
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
 .movie-info h3 {
   font-size: 0.8125rem;
   font-weight: normal;

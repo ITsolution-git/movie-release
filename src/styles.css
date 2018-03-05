@@ -13,7 +13,7 @@ body {
 }
 /*HOST*/
 app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app-page-not-found, app-shared {
-  width: 80%;
+  width: 90%;
   margin: 2rem auto;
   display: block;
 }
