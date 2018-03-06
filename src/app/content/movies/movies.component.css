@@ -30,41 +30,58 @@
   font-size: 1rem;
   margin: 0;
   line-height: 3rem;
+  color: #FFF;
 }
 
 .movie-card {
   position: relative;
   max-height: 278px;
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   padding: 0;
   cursor: pointer;
   overflow: hidden;
   background: #000;
   border: 1px solid #111;
 }
-
 .movie-card img {
   max-width: 100%;
   width: 100%;
 }
-
+/*Movie Data for Movie Cards - release date and favorite button*/
+.movie-data{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+.movie-data .release-date{
+  color: #FFF;
+}
+.movie-data .release-date h3{
+  margin: 0;
+  padding: 2% 5%;
+  font-size: 75%;
+  font-weight: normal;
+  background: #000;
+  text-align: center;
+  color: #999;
+}
 .movie-info {
   position: absolute;
   opacity: 0;
   width: 100%;
   max-width: 165px;
   bottom: 0;
-  padding: 0.4rem 10px;
+  padding: 0 10px;
   text-align: center;
   background: #000;
   color: #FFF;
 }
-
 .movie-info h3 {
   font-size: 0.8125rem;
   font-weight: normal;
-  padding: 0 0 0.3rem 0;
+  padding: 0.3rem 0 0.3rem 0;
   border-bottom: 1px solid #111;
   margin: 0;
 }
@@ -75,13 +92,19 @@ h3 span.year {
 }
 
 .movie-info-sub {
-  margin-top: 0.3rem;
+  border-bottom: 1px solid #111;
+}
+.movie-info-sub button.favorite.mat-icon-button{
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
 }
 
 .movie-rating {
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-size: 0.625rem;
+  padding-top: 8px;
 }
 
 .movie-rating mat-icon {
@@ -95,9 +118,12 @@ h3 span.year {
   text-shadow: 1px 1px 0px #777;
 }
 
-.movie-card:hover .movie-info {
+.movie-card:hover .movie-info, .movie-card:hover .movie-data{
   opacity: 1;
-  transition: background 0.3s ease-in-out;
+  -webkit-transition: -webkit-opacity .3s ease-in-out;
+  transition: -webkit-opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out, -webkit-opacity .3s ease-in-out;
 }
 
 @media screen and (max-width: 600px) {
@@ -111,6 +137,6 @@ h3 span.year {
     padding: 0.1rem;
   }
   .movie-card {
-    margin: 0.05rem 0;
+    margin: 0.05rem 0 0 0;
   }
 }
