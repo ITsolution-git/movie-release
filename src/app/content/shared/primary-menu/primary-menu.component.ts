@@ -31,9 +31,4 @@ export class PrimaryMenuComponent implements OnInit {
       this.movieGenresList = res['genres'];
     });
   }
-
-  goToMovieGenresPage(genre: string): void {
-    const seoURL = this.as.urlOptimizeText(genre);
-    this.router.navigate(['/movies/genre/' + seoURL]);
-  }
 }
