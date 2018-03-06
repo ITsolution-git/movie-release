@@ -80,7 +80,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((userData) => {
         this.updateUserData(userData);
-        // this.router.navigate(['/']);
+        this.router.navigate(['/my-account/details']);
       })
       .catch((err) => {
         this.resetMessages();
