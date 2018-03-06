@@ -19,10 +19,15 @@ export class HomeComponent {
 
   screenSize: number;
 
-  nowPlayingMovies: any[];
-  nowPlayingMoviesCurrentIndex: number;
-  nowPlayingMoviesTotalResults: number;
-  nowPlayingMoviesTotalPages: number;
+  timelineMovies: any[];
+  timelineMoviesCurrentIndex: number;
+  timelineMoviesTotalResults: number;
+  timelineMoviesTotalPages: number;
+
+  // nowPlayingMovies: any[];
+  // nowPlayingMoviesCurrentIndex: number;
+  // nowPlayingMoviesTotalResults: number;
+  // nowPlayingMoviesTotalPages: number;
 
   loading = false;
   loadingMore = false;
@@ -54,14 +59,24 @@ export class HomeComponent {
     this.as.scrollToTop();
 
     // Calls the function that gets the list of movies and tv shows for the sliders
-    if (!this.apis.moviesNowPlaying.length) {
-      this.getNowPlayingMovies(1);
+    if (!this.apis.homeMovies.length) {
+      this.getMoviesForHomepage(1);
     } else {
-      this.nowPlayingMovies = this.apis.moviesNowPlaying;
-      this.nowPlayingMoviesCurrentIndex = this.apis.moviesNowPlayingLastIndex;
-      this.nowPlayingMoviesTotalPages = this.apis.moviesNowPlayingTotalPages;
-      this.nowPlayingMoviesTotalResults = this.apis.moviesNowPlayingTotalResults;
+      this.timelineMovies = this.apis.homeMovies;
+      this.timelineMoviesCurrentIndex = this.apis.homeMoviesLastIndex;
+      this.timelineMoviesTotalPages = this.apis.homeMoviesTotalPages;
+      this.timelineMoviesTotalResults = this.apis.homeMoviesTotalResults;
     }
+
+    // if (!this.apis.moviesNowPlaying.length) {
+    //   this.getNowPlayingMovies(1);
+    // } else {
+    //   this.nowPlayingMovies = this.apis.moviesNowPlaying;
+    //   this.nowPlayingMoviesCurrentIndex = this.apis.moviesNowPlayingLastIndex;
+    //   this.nowPlayingMoviesTotalPages = this.apis.moviesNowPlayingTotalPages;
+    //   this.nowPlayingMoviesTotalResults = this.apis.moviesNowPlayingTotalResults;
+    // }
+
   }
 
   onResize(event?): void {
@@ -73,32 +88,59 @@ export class HomeComponent {
     }
   }
 
-  // Get now playing movies from service
-  getNowPlayingMovies(pageIndex: number): void {
+  // Get movies for homepage from service
+  getMoviesForHomepage(pageIndex: number): void {
     this.loading = true;
-    this.apis.getNowPlayingMovies(pageIndex).subscribe((res) => {
-      this.nowPlayingMovies = res['results'];
-      this.nowPlayingMoviesCurrentIndex = res['page'];
-      this.nowPlayingMoviesTotalPages = res['total_pages'];
-      this.nowPlayingMoviesTotalResults = res['total_results'];
-      if (this.nowPlayingMovies) {
-        this.loading = false;
-      }
-      // console.log(this.nowPlayingMovies);
-    });
+    this.apis.getMoviesForHomepage(pageIndex)
+      .subscribe((res) => {
+        this.timelineMovies = res['results'];
+        this.timelineMoviesCurrentIndex = res['page'];
+        this.timelineMoviesTotalPages = res['total_pages'];
+        this.timelineMoviesTotalResults = res['total_results'];
+        if (this.timelineMovies) {
+          this.loading = false;
+        }
+        console.log(this.timelineMovies);
+      });
   }
+
+  // Get now playing movies from service
+  // getNowPlayingMovies(pageIndex: number): void {
+  //   this.loading = true;
+  //   this.apis.getNowPlayingMovies(pageIndex).subscribe((res) => {
+  //     this.nowPlayingMovies = res['results'];
+  //     this.nowPlayingMoviesCurrentIndex = res['page'];
+  //     this.nowPlayingMoviesTotalPages = res['total_pages'];
+  //     this.nowPlayingMoviesTotalResults = res['total_results'];
+  //     if (this.nowPlayingMovies) {
+  //       this.loading = false;
+  //     }
+  //     // console.log(this.nowPlayingMovies);
+  //   });
+  // }
 
   loadMoreResults(pageIndex: number): void {
     this.loadingMore = true;
-    this.apis.getNowPlayingMovies(pageIndex)
+
+    this.apis.getMoviesForHomepage(pageIndex)
       .subscribe((res) => {
-        this.nowPlayingMoviesCurrentIndex = res['page'];
-        this.nowPlayingMovies = this.nowPlayingMovies.concat(res['results']);
-        if (this.nowPlayingMovies) {
+        this.timelineMoviesCurrentIndex = res['page'];
+        this.timelineMovies = this.timelineMovies.concat(res['results']);
+        if (this.timelineMovies) {
           this.loadingMore = false;
         }
-        // console.log(this.tvShowsList);
+        console.log(this.timelineMovies);
       });
+
+    // this.apis.getNowPlayingMovies(pageIndex)
+    //   .subscribe((res) => {
+    //     this.nowPlayingMoviesCurrentIndex = res['page'];
+    //     this.nowPlayingMovies = this.nowPlayingMovies.concat(res['results']);
+    //     if (this.nowPlayingMovies) {
+    //       this.loadingMore = false;
+    //     }
+    //     // console.log(this.nowPlayingMovies);
+    //   });
   }
 
 }

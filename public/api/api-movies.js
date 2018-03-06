@@ -2,6 +2,41 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const https = require("https");
 const constants_1 = require("../constants");
+// Get Movies for Homepage (Diccover)
+const getMoviesForHomepage = (pageIndex) => {
+    // tslint:disable-next-line:max-line-length
+    // const url = 'https://api.themoviedb.org/3/discover/movie?api_key=a3dbd5ed599caf75f52b2c5e84bd4af3&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1';
+    return new Promise((resolve, reject) => {
+        // tslint:disable-next-line:max-line-length
+        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'discover/movie' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&sort_by=release_date.desc&include_adult=false&include_video=false&page=' + pageIndex, (resp) => {
+            let data = '';
+            // A chunk of data has been recieved.
+            resp.on('data', (chunk) => {
+                // console.log(chunk);
+                data += chunk;
+            });
+            // The whole response has been received. Print out the result.
+            resp.on('end', () => {
+                const result_obj = JSON.parse(data);
+                // console.log(result_obj);
+                resolve(result_obj);
+            });
+        }).on('error', (err) => {
+            console.log('Error: ' + err.message);
+            reject(err);
+        });
+    });
+};
+exports.tryGetMoviesForHomepage = (req, res) => {
+    const pageIndex = req.params['pageIndex'];
+    getMoviesForHomepage(pageIndex)
+        .then((result) => {
+        res.send(result);
+    })
+        .catch((error) => {
+        console.log(error);
+    });
+};
 // Get the list of movies by search keyword (paginated) OK
 const getMoviesListByKeyword = (keyword, pageIndex) => {
     // tslint:disable-next-line:max-line-length

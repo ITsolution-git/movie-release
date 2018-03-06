@@ -16,6 +16,7 @@ import {
     tryGetMovieGenresList
 } from './api/api-general';
 import {
+    tryGetMoviesForHomepage,
     tryGetAlternativeTitlesById,
     tryGetLatestMovies,
     tryGetMovieCreditsById,
@@ -82,6 +83,7 @@ app.get('/get-api-config', tryGetAPIConfig);
 app.get('/get-movie-genres', tryGetMovieGenresList);
 // Movie Endpoints
 // app.get('/advanced-movie-search/::', tryGetAdvancedSearchMovies);
+app.get('/get-movies-for-homepage/:pageIndex', tryGetMoviesForHomepage);
 app.get('/get-movies-by-keyword/:keyword/:pageIndex', tryGetMoviesListByKeyword);
 app.get('/get-movies-by-genre/:id/:pageIndex', tryGetMoviesListByGenreId);
 app.get('/get-movies-popular/:pageIndex', tryGetPopularMovies);

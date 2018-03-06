@@ -6,6 +6,42 @@ import {
     TMDB_API_LANG
 } from '../constants';
 
+// Get Movies for Homepage (Diccover)
+const getMoviesForHomepage = (pageIndex: number): Promise<any> => {
+    // tslint:disable-next-line:max-line-length
+    // const url = 'https://api.themoviedb.org/3/discover/movie?api_key=a3dbd5ed599caf75f52b2c5e84bd4af3&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1';
+    return new Promise<any>((resolve, reject) => {
+        // tslint:disable-next-line:max-line-length
+        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'discover/movie' + TMDB_API_KEY + TMDB_API_LANG + '&sort_by=release_date.desc&include_adult=false&include_video=false&page=' + pageIndex, (resp) => {
+            let data = '';
+            // A chunk of data has been recieved.
+            resp.on('data', (chunk) => {
+                // console.log(chunk);
+                data += chunk;
+            });
+            // The whole response has been received. Print out the result.
+            resp.on('end', () => {
+                const result_obj = JSON.parse(data);
+                // console.log(result_obj);
+                resolve(result_obj);
+            });
+        }).on('error', (err) => {
+            console.log('Error: ' + err.message);
+            reject(err);
+        });
+    });
+}
+export const tryGetMoviesForHomepage = (req, res) => {
+    const pageIndex = req.params['pageIndex'];
+    getMoviesForHomepage(pageIndex)
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
 // Get the list of movies by search keyword (paginated) OK
 const getMoviesListByKeyword = (keyword: string, pageIndex: number): Promise<any> => {
     // tslint:disable-next-line:max-line-length

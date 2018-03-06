@@ -18,6 +18,11 @@ export class ApiService {
   // Movie Properties
   moviesList: any;
   moviesLatest: any;
+  // homepage movies
+  homeMovies: any[] = [];
+  homeMoviesLastIndex: number;
+  homeMoviesTotalPages: number;
+  homeMoviesTotalResults: number;
   // popular movies
   moviesPopular: any[] = [];
   moviesPopularLastIndex: number;
@@ -198,28 +203,35 @@ export class ApiService {
     } else if (!id && !keyword && pageIndex) {
       this.http.get(endpoint + '/' + pageIndex)
         .subscribe((res) => {
-          if (endpoint === 'get-movies-popular'/* && !this.moviesPopular*/) {
+          if (endpoint === 'get-movies-for-homepage') {
+            this.homeMovies = this.homeMovies.concat(res['results']);
+            this.homeMoviesLastIndex = res['page'];
+            this.homeMoviesTotalPages = res['total_pages'];
+            this.homeMoviesTotalResults = res['total_results'];
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
+            console.log('API HOMEPAGE MOVIES (' + pageIndex + '): ', res);
+          } else if (endpoint === 'get-movies-popular') {
             this.moviesPopular = this.moviesPopular.concat(res['results']);
             this.moviesPopularLastIndex = res['page'];
             this.moviesPopularTotalPages = res['total_pages'];
             this.moviesPopularTotalResults = res['total_results'];
             this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
             console.log('API POPULAR MOVIES (' + pageIndex + '): ', res);
-          } else if (endpoint === 'get-movies-top-rated'/*  && !this.moviesTopRated*/) {
+          } else if (endpoint === 'get-movies-top-rated') {
             this.moviesTopRated = this.moviesTopRated.concat(res['results']);
             this.moviesTopRatedLastIndex = res['page'];
             this.moviesTopRatedTotalPages = res['total_pages'];
             this.moviesTopRatedTotalResults = res['total_results'];
             this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
             console.log('API TOP RATED MOVIES (' + pageIndex + '): ', res);
-          } else if (endpoint === 'get-movies-upcoming' /* && !this.moviesUpcoming*/) {
+          } else if (endpoint === 'get-movies-upcoming') {
             this.moviesUpcoming = this.moviesUpcoming.concat(res['results']);
             this.moviesUpcomingLastIndex = res['page'];
             this.moviesUpcomingTotalPages = res['total_pages'];
             this.moviesUpcomingTotalResults = res['total_results'];
             this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
             console.log('API UPCOMING MOVIES (' + pageIndex + '): ', res);
-          } else if (endpoint === 'get-movies-now-playing'/* && !this.moviesNowPlaying*/) {
+          } else if (endpoint === 'get-movies-now-playing') {
             this.moviesNowPlaying = this.moviesNowPlaying.concat(res['results']);
             this.moviesNowPlayingLastIndex = res['page'];
             this.moviesNowPlayingTotalPages = res['total_pages'];
@@ -252,6 +264,9 @@ export class ApiService {
   }
 
   // Movie API Calls
+  getMoviesForHomepage(pageIndex: number): Observable<any[]> {
+    return this.callAPI('get-movies-for-homepage', null, null, null, pageIndex);
+  }
   searchMovieByKeyword(keyword: string, pageIndex: number): Observable<any[]> {
     return this.callAPI('get-movies-by-keyword', null, null, keyword, pageIndex);
   }

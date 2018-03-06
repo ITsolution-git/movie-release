@@ -1,6 +1,6 @@
-<div *ngIf="!loading" class="now-playing-movies-tab-content">
+<div *ngIf="!loading" class="timeline-movies-content">
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
-    <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card">
+    <mat-card *ngFor="let movie of timelineMovies; let i = index" class="movie-card">
       <div class="movie-data">
         <div class="release-date">
             <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
@@ -39,6 +39,6 @@
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
 <!-- Load More Button -->
-<div id="load-more" *ngIf="!loading && nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">
-  <button mat-raised-button color="primary" (click)="loadMoreResults(nowPlayingMoviesCurrentIndex + 1)">LOAD MORE...</button>
+<div id="load-more" *ngIf="!loading && timelineMoviesCurrentIndex !== timelineMoviesTotalPages">
+  <button mat-raised-button color="primary" (click)="loadMoreResults(timelineMoviesCurrentIndex + 1)">LOAD MORE...</button>
 </div>
