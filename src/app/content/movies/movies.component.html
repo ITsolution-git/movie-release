@@ -175,6 +175,11 @@
     <div *ngIf="!loading" class="top-rated-movies-tab-content">
       <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
         <mat-card *ngFor="let movie of topRatedMovies" class="movie-card">
+          <div class="movie-data">
+            <div class="release-date">
+                <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
+            </div>
+          </div>
           <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
             <div>
               <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
