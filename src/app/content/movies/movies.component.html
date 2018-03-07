@@ -39,28 +39,35 @@
     </ng-template>
     <!-- Movies List -->
     <div *ngIf="!loading" class="upcoming-movies-tab-content">
-      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
-        <mat-card *ngFor="let movie of upcomingMovies" class="movie-card">
-          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
-            <div>
-              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-                class="movie-img">
-              <ng-template #defaultMovieImage>
-                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-              </ng-template>
-            </div>
-            <div class="movie-info">
-              <h3>{{ movie.title }}</h3>
-              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="center center">
-                <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
-                <span class="movie-rating">
-                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+        <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
+          <mat-card *ngFor="let movie of upcomingMovies" class="movie-card">
+            <div class="movie-data">
+              <div class="release-date">
+                  <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
               </div>
             </div>
-          </a>
-        </mat-card>
+            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+              <div class="movie-thumbnail">
+                <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
+                <ng-template #defaultMovieImage>
+                  <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+                </ng-template>
+              </div>
+              <div class="movie-info">
+                <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="space-evenly stretch">
+                  <span class="movie-rating"><mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+                  <div class="favorite">
+                      <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
+                        <mat-icon class="mat-icon material-icons">favorite</mat-icon>
+                      </button>
+                    </div>
+                </div>
+                <h2>{{ movie.title }}</h2>
+              </div>
+            </a>
+          </mat-card>
+        </div>
       </div>
-    </div>
     <!-- Loader -->
     <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
