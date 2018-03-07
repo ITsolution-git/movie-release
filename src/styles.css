@@ -138,7 +138,20 @@ h3 span.year {
   transition: opacity .3s ease-in-out;
   transition: opacity .3s ease-in-out, -webkit-opacity .3s ease-in-out;
 }
-
+@media screen and (max-width: 600px) {
+  #page-header h1 {
+      font-size: 1.4rem;
+  }
+  .tab-heading {
+      text-transform: lowercase;
+  }
+  .movies-list {
+      padding: 0.1rem;
+  }
+  .movie-card {
+      margin: 0.05rem 0 0 0;
+  }
+}
 /* User Actions */
 .favorite  button {
 }
