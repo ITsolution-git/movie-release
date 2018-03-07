@@ -29,6 +29,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialog.component';
 import { AuthDialogComponent } from './shared/auth-dialog/auth-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
+import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
 
 @NgModule({
   imports: [
@@ -58,7 +59,8 @@ import { GenresListComponent } from './genres-list/genres-list.component';
     MovieDetailsComponent,
     TrailersDialogComponent,
     AuthDialogComponent,
-    GenresListComponent
+    GenresListComponent,
+    MainMoviesDirectoryComponent
   ],
   entryComponents: [
     TrailersDialogComponent,

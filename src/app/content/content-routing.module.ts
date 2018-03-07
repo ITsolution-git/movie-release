@@ -12,11 +12,13 @@ import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { GenresComponent } from './genres/genres.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
+import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
 
 // Content Routes
 const contentRoutes = [
   { path: '', component: HomeComponent },
   { path: 'search/movies/:keyword', component: SearchComponent },
+  { path: 'movies', component: MainMoviesDirectoryComponent },
   { path: 'movies/genres', component: GenresListComponent },
   { path: 'movies/genre/:genre', component: GenresComponent },
   { path: 'movies/most-popular', component: MoviesComponent },

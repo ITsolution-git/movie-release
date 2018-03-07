@@ -1,5 +1,7 @@
+:host,
 .loader {
-    margin: 1rem 0;
+    height: 100%;
+    display: block;
 }
 
 #load-more {
@@ -19,6 +21,7 @@
     border: 1px solid #111;
     box-shadow: none !important;
 }
+
 .movie-card:hover {
     box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
     -moz-box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
@@ -28,17 +31,21 @@
 .movie-card img {
     width: 100%;
 }
+
 /*Movie Data for Movie Cards - release date and favorite button*/
-.movie-data{
+
+.movie-data {
     width: 100%;
     position: absolute;
     top: 0;
     opacity: 0;
 }
-.movie-data .release-date{
+
+.movie-data .release-date {
     color: #FFF;
 }
-.movie-data .release-date h3{
+
+.movie-data .release-date h3 {
     margin: 0;
     padding: 2% 5%;
     font-size: 75%;
@@ -47,6 +54,7 @@
     text-align: center;
     color: #999;
 }
+
 .movie-info {
     position: absolute;
     opacity: 0;
@@ -75,7 +83,8 @@ h3 span.year {
 .movie-info-sub {
     border-bottom: 1px solid #111;
 }
-.movie-info-sub button.favorite.mat-icon-button{
+
+.movie-info-sub button.favorite.mat-icon-button {
     width: 35px;
     height: 35px;
     line-height: 35px;
@@ -99,7 +108,8 @@ h3 span.year {
     text-shadow: 1px 1px 0px #777;
 }
 
-.movie-card:hover .movie-info, .movie-card:hover .movie-data{
+.movie-card:hover .movie-info,
+.movie-card:hover .movie-data {
     opacity: 1;
     -webkit-transition: -webkit-opacity .3s ease-in-out;
     transition: -webkit-opacity .3s ease-in-out;
@@ -108,24 +118,24 @@ h3 span.year {
 }
 
 /* User Actions */
-  .favorite  button {
-  }
-  
-  .favorite button:hover mat-icon {
+
+.favorite button {}
+
+.favorite button:hover mat-icon {
     color: #fff;
-  }
-  
-  .favorite button mat-icon {
+}
+
+.favorite button mat-icon {
     color: #c62828;
-  }
-  
-  .favorite button.active {
+}
+
+.favorite button.active {
     background: #c62828;
-  }
-  
-  .favorite button.active mat-icon {
+}
+
+.favorite button.active mat-icon {
     color: #fff;
-  }
+}
 
 @media screen and (max-width: 600px) {
     #page-header h1 {

@@ -19,10 +19,10 @@ export class ApiService {
   moviesList: any;
   moviesLatest: any;
   // homepage movies
-  homeMovies: any[] = [];
-  homeMoviesLastIndex: number;
-  homeMoviesTotalPages: number;
-  homeMoviesTotalResults: number;
+  mainDirectoryMovies: any[] = [];
+  mainDirectoryMoviesLastIndex: number;
+  mainDirectoryMoviesTotalPages: number;
+  mainDirectoryMoviesTotalResults: number;
   // popular movies
   moviesPopular: any[] = [];
   moviesPopularLastIndex: number;
@@ -203,11 +203,11 @@ export class ApiService {
     } else if (!id && !keyword && pageIndex) {
       this.http.get(endpoint + '/' + pageIndex)
         .subscribe((res) => {
-          if (endpoint === 'get-movies-for-homepage') {
-            this.homeMovies = this.homeMovies.concat(res['results']);
-            this.homeMoviesLastIndex = res['page'];
-            this.homeMoviesTotalPages = res['total_pages'];
-            this.homeMoviesTotalResults = res['total_results'];
+          if (endpoint === 'get-movies-for-main-directory') {
+            this.mainDirectoryMovies = this.mainDirectoryMovies.concat(res['results']);
+            this.mainDirectoryMoviesLastIndex = res['page'];
+            this.mainDirectoryMoviesTotalPages = res['total_pages'];
+            this.mainDirectoryMoviesTotalResults = res['total_results'];
             this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
             console.log('API HOMEPAGE MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-popular') {
@@ -264,8 +264,8 @@ export class ApiService {
   }
 
   // Movie API Calls
-  getMoviesForHomepage(pageIndex: number): Observable<any[]> {
-    return this.callAPI('get-movies-for-homepage', null, null, null, pageIndex);
+  getMoviesForMainDirectory(pageIndex: number): Observable<any[]> {
+    return this.callAPI('get-movies-for-main-directory', null, null, null, pageIndex);
   }
   searchMovieByKeyword(keyword: string, pageIndex: number): Observable<any[]> {
     return this.callAPI('get-movies-by-keyword', null, null, keyword, pageIndex);
