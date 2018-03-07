@@ -62,7 +62,8 @@ app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app
 }
 /*Movie Data for Movie Cards - release date and favorite button*/
 mat-card{
-  padding: 0;
+  padding: 0 !important;
+  border-radius: 0 !important;
 }
 .movie-data{
   width: 100%;
