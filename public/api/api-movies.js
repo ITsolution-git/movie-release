@@ -214,7 +214,7 @@ exports.tryGetMovieReviewById = (req, res) => {
 const getPopularMovies = (pageIndex) => {
     // const url = 'https://api.themoviedb.org/3/movie/popular?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise((resolve, reject) => {
-        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'movie/popular' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&page=' + pageIndex, (resp) => {
+        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'movie/popular' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
@@ -279,7 +279,7 @@ exports.tryGetLatestMovies = (req, res) => {
 const getTopRatedMovies = (pageIndex) => {
     // const url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise((resolve, reject) => {
-        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'movie/top_rated' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&page=' + pageIndex, (resp) => {
+        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'movie/top_rated' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
@@ -312,7 +312,7 @@ exports.tryGetTopRatedMovies = (req, res) => {
 const getUpcomingMovies = (pageIndex) => {
     // const url = 'https://api.themoviedb.org/3/movie/upcoming?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise((resolve, reject) => {
-        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'movie/upcoming' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&page=' + pageIndex, (resp) => {
+        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'movie/upcoming' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
@@ -345,7 +345,7 @@ exports.tryGetUpcomingMovies = (req, res) => {
 const getNowPlayingMovies = (pageIndex) => {
     // const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise((resolve, reject) => {
-        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'movie/now_playing' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&page=' + pageIndex, (resp) => {
+        https.get(constants_1.TMDB_API_URL_ROOT + constants_1.TMDB_API_VER + 'movie/now_playing' + constants_1.TMDB_API_KEY + constants_1.TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
