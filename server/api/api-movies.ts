@@ -224,7 +224,7 @@ export const tryGetMovieReviewById = (req, res) => {
 const getPopularMovies = (pageIndex: number): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/movie/popular?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise<any>((resolve, reject) => {
-        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/popular' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex, (resp) => {
+        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/popular' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
@@ -291,7 +291,7 @@ export const tryGetLatestMovies = (req, res) => {
 const getTopRatedMovies = (pageIndex: number): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise<any>((resolve, reject) => {
-        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/top_rated' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex, (resp) => {
+        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/top_rated' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
@@ -359,7 +359,7 @@ export const tryGetUpcomingMovies = (req, res) => {
 const getNowPlayingMovies = (pageIndex): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise<any>((resolve, reject) => {
-        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/now_playing' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex, (resp) => {
+        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/now_playing' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
