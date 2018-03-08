@@ -28,6 +28,7 @@ import { AddArticleComponent } from './add-article/add-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { DeleteArticleDialogComponent } from './delete-article-dialog/delete-article-dialog.component';
+import { SelectMovieDialogComponent } from './select-movie-dialog/select-movie-dialog.component';
 
 @NgModule({
   imports: [
@@ -52,10 +53,12 @@ import { DeleteArticleDialogComponent } from './delete-article-dialog/delete-art
     AddArticleComponent,
     EditArticleComponent,
     ArticlesListComponent,
-    DeleteArticleDialogComponent
+    DeleteArticleDialogComponent,
+    SelectMovieDialogComponent
   ],
   entryComponents: [
-    DeleteArticleDialogComponent
+    DeleteArticleDialogComponent,
+    SelectMovieDialogComponent
   ]
 })
 export class ArticlesModule { }

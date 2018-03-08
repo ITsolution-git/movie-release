@@ -2,7 +2,7 @@
   <!-- Page Title -->
   <h2 fxFlex>Movie Articles</h2>
   <!-- Add New Article Button -->
-  <button class="add-btn" mat-raised-button color="primary" (click)="addNewArticle()">
+  <button class="add-btn" mat-raised-button color="primary" (click)="openSelectMovieDialog()">
     <mat-icon>add</mat-icon> Add New
   </button>
 </div>
@@ -79,9 +79,11 @@
     <mat-header-row *matHeaderRowDef="displayedAdminColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedAdminColumns;"></mat-row>
   </mat-table>
+  <!-- No Results -->
+  <div *ngIf="articlesList?.length < 1" fxFlex fxLayoutAlign="center center" class="no-results">No Articles found!</div>
+
   <!-- Paginator -->
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator>
-  <div *ngIf="publicArticlesDataSource.length < 1">NO ARTICLES FOUND</div>
 </div>
 
 <!-- Loader -->

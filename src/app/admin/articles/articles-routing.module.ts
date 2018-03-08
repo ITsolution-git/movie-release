@@ -11,7 +11,7 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 const articlesRoutes = [
   { path: '', component: ArticlesListComponent },
   { path: 'edit-article/:id', component: EditArticleComponent },
-  { path: 'add-article', component: AddArticleComponent },
+  { path: 'add-article/:id', component: AddArticleComponent },
 ]
 
 @NgModule({
