@@ -1,0 +1,21 @@
+.loader {
+    height: 100%;
+}
+
+.page-header {
+    padding: 0 1rem;
+    box-shadow: 0px 0px 3px 1px #ddd;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
+.page-header h2 mat-icon {
+    top: 4px;
+    position: relative;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+ckeditor {
+    margin-bottom: 2rem;
+}

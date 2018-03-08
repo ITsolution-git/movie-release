@@ -1,0 +1,31 @@
+:host {
+    display: block !important;
+}
+
+.page-header {
+    padding: 0 1rem;
+    box-shadow: 0px 0px 3px 1px #ddd;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
+.mat-column-date,
+.mat-column-status {
+    max-width: 90px;
+}
+
+.mat-column-article-owner {
+    max-width: 200px;
+}
+
+.mat-column-user-actions {
+    max-width: 40px;
+}
+
+.more {
+    cursor: pointer;
+}
+
+.page-content {
+    margin-bottom: 2rem;
+}
