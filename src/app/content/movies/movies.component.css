@@ -1,0 +1,9 @@
+/* Tab Headings */
+
+.tab-heading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 3rem;
+}
