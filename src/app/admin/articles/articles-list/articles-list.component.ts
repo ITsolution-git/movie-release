@@ -63,7 +63,8 @@ export class ArticlesListComponent implements OnInit {
     afDb: AngularFireDatabase,
     private router: Router,
     public dialog: MatDialog,
-    private apis: ApiService
+    private apis: ApiService,
+    public ars: ArticlesService
   ) {
     // initializes articles db collection
     this.publicArticlesObs = afDb.list(DB_COL.ARTICLES).valueChanges();
@@ -106,10 +107,6 @@ export class ArticlesListComponent implements OnInit {
     this.publicArticlesDataSource.filter = filterValue;
   }
 
-  addNewArticle() {
-    this.router.navigate(['admin/articles/add-article/']);
-  }
-
   goToArticleEditPage(key: string) {
     // console.log(key);
     this.router.navigate(['admin/articles/edit-article/' + key]);
@@ -120,21 +117,6 @@ export class ArticlesListComponent implements OnInit {
     this.publicArticlesRef.update((key.toString()), {
       article_status: status
     });
-  }
-
-  // Open Select Movie Dialog Box
-  openSelectMovieDialog(): void {
-    let dialogRef = this.dialog.open(SelectMovieDialogComponent, {
-      panelClass: 'select-movie-dialog',
-      height: '90%',
-      width: '90%',
-      maxWidth: '90%',
-      maxHeight: '90%'
-    });
-    dialogRef.afterClosed()
-      .subscribe(() => {
-        dialogRef = null;
-      });
   }
 
 }

@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
+// Material
+import { MatDialog } from '@angular/material';
 
 // AngularFire
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
-
 // RxJS
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-
 // Constants
 import { DB_COL } from '../../constants';
-
 // Services
 import { ApiService } from '../../services/api/api.service';
+// Components
+import { SelectMovieDialogComponent } from '../articles/select-movie-dialog/select-movie-dialog.component';
 
 @Injectable()
 export class ArticlesService {
@@ -31,7 +32,8 @@ export class ArticlesService {
   constructor(
     private afDb: AngularFireDatabase,
     private apis: ApiService,
-    private as: ApiService
+    private as: ApiService,
+    public dialog: MatDialog
   ) {
     // Initialize Articles DB Collection
     this.articlesRef = this.afDb.list(DB_COL.ARTICLES_PUBLIC).valueChanges();
@@ -61,4 +63,17 @@ export class ArticlesService {
       });
   }
 
+  openSelectMovieDialog(): void {
+    let dialogRef = this.dialog.open(SelectMovieDialogComponent, {
+      panelClass: 'select-movie-dialog',
+      height: '90%',
+      width: '90%',
+      maxWidth: '90%',
+      maxHeight: '90%'
+    });
+    dialogRef.afterClosed()
+      .subscribe(() => {
+        dialogRef = null;
+      });
+  }
 }

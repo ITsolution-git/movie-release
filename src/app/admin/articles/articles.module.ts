@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 // Material
 import {
   MatTableModule,
@@ -16,19 +15,15 @@ import {
   MatMenuModule,
   MatDialogModule
 } from '@angular/material';
-
 // WYSIWYG Editor
 import { CKEditorModule } from 'ng2-ckeditor';
-
 // Routing Module
 import { ArticlesRoutingModule } from "./articles-routing.module";
-
 // Components
 import { AddArticleComponent } from './add-article/add-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { DeleteArticleDialogComponent } from './delete-article-dialog/delete-article-dialog.component';
-import { SelectMovieDialogComponent } from './select-movie-dialog/select-movie-dialog.component';
 
 @NgModule({
   imports: [
@@ -54,11 +49,9 @@ import { SelectMovieDialogComponent } from './select-movie-dialog/select-movie-d
     EditArticleComponent,
     ArticlesListComponent,
     DeleteArticleDialogComponent,
-    SelectMovieDialogComponent
   ],
   entryComponents: [
     DeleteArticleDialogComponent,
-    SelectMovieDialogComponent
   ]
 })
 export class ArticlesModule { }

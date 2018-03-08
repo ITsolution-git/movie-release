@@ -14,7 +14,7 @@
       </button>
       <ul class="sub-menu">
         <li>
-          <button mat-raised-button routerLink="/admin/articles/add" routerLinkActive="active" class="sub-item">
+          <button mat-raised-button routerLinkActive="active" class="sub-item" (click)="this.ars.openSelectMovieDialog()">
             <mat-icon>add</mat-icon> Add Article
           </button>
         </li>
