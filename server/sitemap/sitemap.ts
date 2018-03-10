@@ -48,7 +48,7 @@ const generateSitemap = (data: Array<any>, type: string) => {
     const root_path = APP_ROOT_URL;
     // Generate XML sitemap
     const priority = 0.5;
-    const freq = 'monthly';
+    const freq = 'weekly';
     let xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
     for (let index in urls) {
         if (urls) {
