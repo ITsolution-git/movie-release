@@ -5,17 +5,34 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   height: 100%;
   width: 100%;
   background: #1f1f1f;
   color: #EEE;
 }
+*{
+  -o-transition: .5s;
+  -ms-transition: .5s;
+  -moz-transition: .5s;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+a{
+  color: #FFF;
+}
+a:hover{
+  color: #c62828
+}
 /*HOST*/
-app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app-page-not-found, app-shared {
+app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app-page-not-found, app-shared, footer#colophon {
   width: 90%;
   margin: 2rem auto;
   display: block;
+}
+/*Movie Details*/
+app-movie-details{
+  background: transparent;
 }
 /* Dialogs */
 .full-screen-dialog,
@@ -23,31 +40,98 @@ app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app
   background: #000;
   padding: 0;
 }
-.favirite{
-  background: #FFF;
+/*Header*/
+header .mat-toolbar.mat-primary {
+  padding: 0 5% 0;
+  margin: auto;
+  background:#222;
+  border-color:#080808;
+  -webkit-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+#header-container {
+  position: relative;
+}
+
+#logo,
+#menu {
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+#logo h1 {
+  line-height: 4rem;
+  outline: none;
+  cursor: pointer;
+}
+
+#mobile-menu-toggler {
+  position: absolute;
+  top: 17px;
+  right: 0;
+  z-index: 1;
+  cursor: pointer;
+  z-index: 3;
+}
+
+#mobile-menu-toggler mat-icon {
+  font-size: 2rem;
+}
+.mat-toolbar {
+  background: transparent;
+}
+/*Content*/
+h2, mat-cell a{
+  color: #999;
+  font-weight: normal;
+}
+.section:nth-of-type(2){
+  border-top: 1px solid #111;
+  margin-top: 50px;
+}
+.section:nth-of-type(2) .section-title{
+  border-top: 1px solid #4444449e;
+  margin-top: 0;
+  padding-top: 19px;
+}
+.results-counter{
+  color: #999;
+  margin: 0 0 20px 0;
+  text-align: right;
+  padding-top: 29px;
+}
+.section:nth-of-type(2) .results-counter{
+  border-top: 1px solid #4444449e;
+}
+.results-counter .view_all{
+  margin-left: 10px;
+  display: inline-block;
+}
+.view_all a{
+  text-decoration: none;
 }
 /*Labels*/
-.mat-tab-label, .mat-tab-link{
-  color: #FFF;
+.mat-tab-label, .mat-tab-link, .tab-heading, .mat-form-field-label{
+  color: #FFF !important;
+  font-weight: normal;
 }
-.loader {
-  margin: 1rem 0;
-}
-
-#load-more {
+/*Loader*/
+.loader, #load-more {
   text-align: center;
   margin: 1rem 0;
+  width: 100%;
+  display: block
 }
-
 .movie-card {
   position: relative;
-  max-height: 278px;
-  margin-top: 0.5rem;
-  margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
   padding: 0;
   cursor: pointer;
   overflow: hidden;
-  background: #000;
+  background: #000 !important;
   border: 1px solid #111;
   box-shadow: none !important;
 }
@@ -59,17 +143,26 @@ app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app
 
 .movie-card img {
   width: 100%;
+  max-width: 250px;
+  min-width: 250px;
+  min-height: 375px;
+  display: block;
 }
 /*Movie Data for Movie Cards - release date and favorite button*/
 mat-card{
   padding: 0 !important;
   border-radius: 0 !important;
+  display: block;
 }
 .movie-data{
   width: 100%;
   position: absolute;
   top: 0;
   opacity: 0;
+}
+mat-card a{
+  text-decoration: none;
+  display: block;
 }
 .movie-data .release-date{
   color: #FFF;
@@ -87,27 +180,37 @@ mat-card{
   position: absolute;
   opacity: 0;
   width: 100%;
-  max-width: 165px;
-  bottom: 0;
-  padding: 0 10px;
+  bottom: 25px;
   text-align: center;
   background: #000;
   color: #FFF;
 }
-
-.movie-info h2 {
-  font-size: 0.8125rem;
+.movie-info-sub{
+  border-bottom: 1px solid #111;
+  display: inline-flex;
+  width: 100%;
+  padding: 0 2%;
+}
+.movie-card a h2 {
   font-weight: normal;
   padding: 0.3rem 0 0.3rem 0;
-  border-bottom: 1px solid #111;
   margin: 0;
+  text-align: center;
+  font-size: 0.8em;
+  max-height: 35px;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-
+.movie-card:hover .movie-card a h2{
+  color: #FFF;
+}
 h3 span.year {
   font-size: 1rem;
   font-weight: normal;
 }
-
 .movie-info-sub {
   border-bottom: 1px solid #111;
 }
@@ -116,14 +219,12 @@ h3 span.year {
   height: 35px;
   line-height: 35px;
 }
-
 .movie-rating {
   width: 100%;
   text-align: left;
   font-size: 0.625rem;
   padding-top: 8px;
 }
-
 .movie-rating mat-icon {
   font-size: 1rem;
   width: auto;
@@ -137,15 +238,8 @@ h3 span.year {
 
 .movie-card:hover .movie-info, .movie-card:hover .movie-data{
   opacity: 1;
-  -webkit-transition: -webkit-opacity .3s ease-in-out;
-  transition: -webkit-opacity .3s ease-in-out;
-  transition: opacity .3s ease-in-out;
-  transition: opacity .3s ease-in-out, -webkit-opacity .3s ease-in-out;
 }
 /* User Actions */
-.favorite  button {
-}
-
 .favorite button:hover mat-icon {
   color: #fff;
 }
@@ -160,6 +254,78 @@ h3 span.year {
 
 .favorite button.active mat-icon {
   color: #fff;
+}
+app-footer{
+  background-color: #2A2A2A;
+  box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
+  -moz-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
+  -webkit-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
+  color: #939393;
+  border: 0;
+  font-size: 0.9em;
+  display: block;
+}
+app-footer footer#colophon{
+  margin-bottom: 0;
+}
+footer#colophon .widget-title{
+  color: #DDD;
+  font-size: 1rem;
+  margin-bottom: 1.5em;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+footer#colophon .footer-inner{
+  display: block;
+  min-height: 250px;
+  padding: 30px 0px;
+  border-bottom: 1px solid #111;
+}
+#sitemap {
+  margin: auto;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  font-size: 11px;
+  display: inline-block;
+  width: 100%;
+}
+#sitemap ul{
+  margin: 0;
+  padding: 0;
+}
+#sitemap ul li{
+  display: inline-block;
+  list-style: none;
+}
+#sitemap ul li a{
+  display: block;
+  position: relative;
+  display: block;
+  padding: 10px 20px;
+  line-height: 2.5em;
+  text-decoration: none;
+  color: #CCC;
+}
+#sitemap ul li a:hover{
+  background: #44444469;
+  color: #FFF;
+}
+#credits, #disclaimer {
+  padding: 15px 0px;
+  color: #666;
+  font-size: 0.8em;
+}
+#disclaimer{
+  border-bottom: 1px solid #444;
+}
+.scrolltotop{
+  cursor: pointer;
+  background: #00000059;
+  border: none;
+  color: #FFF;
+}
+.scrolltotop .mat-icon{
+  padding: 15% 5%;
 }
 /*Login*/
 .login-dialog,
@@ -192,5 +358,18 @@ h3 span.year {
   }
   .movie-card {
       margin: 0.05rem 0 0 0;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  #logo {
+      width: 100%;
+  }
+  #menu {
+      height: auto !important;
+  }
+  #mobile-menu-toggler {
+      right: 2.5%;
+      top: 0.9rem;
   }
 }

@@ -1,13 +1,41 @@
-<footer>
-  <div class="footer-inner">
-    <div class="footer-widget">
-      <p></p>
+<footer id="colophon">
+  <button class="scrolltotop" (click)="this.as.scrollToTop()"><mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_up</mat-icon></button>
+  <div class="footer-inner" fxlayout="row" fxlayout.sm="column" fxlayout.xs="column">
+    <div class="footer-widget" fxFlex="33">
+      <h3 class="widget-title">About Current Movie Releases</h3>
+      <p>Here is the first Widget </p>
     </div>
-    <div class="footer-widget">
-      <p></p>
+    <div class="footer-widget" fxFlex="33">
+      <h3 class="widget-title">Top actors by released movies count</h3>
+      <p>Here is the second Widget </p>
     </div>
-    <div class="footer-widget">
-      <p></p>
+    <div class="footer-widget" fxFlex="33">
+      <h3 class="widget-title">Movies by Genre</h3>
+      <p>Here is the third Widget </p>
     </div>
+  </div>
+  <div id="sitemap" fxlayout="row" fxlayout.sm="row" fxlayout.xs="row">
+    <ul id="menu-footer-menu" class="nav navbar-nav">
+      <li id="menu-item-2724"><a href="/">Home</a></li>
+      <li id="menu-item-4565"><a href="/latest-movies/">Latest Movies</a></li>
+      <li id="menu-item-4564"><a href="/upcoming-movies/">Upcoming Movies</a></li>
+      <li id="menu-item-133"><a href="/movies/">Movies</a></li>
+      <li id="menu-item-81"><a href="/actors/">Actors</a></li>
+      <li id="menu-item-82"><a href="/genre/">Genres</a></li>
+      <li id="menu-item-83"><a href="/collection/">Collections</a></li>
+      <li id="menu-item-97"><a href="/topics/blog/">Blog Posts</a></li>
+      <li id="menu-item-86"><a href="https://www.facebook.com/currentmoviereleases">Facebook</a></li>
+      <li id="menu-item-85"><a href="https://twitter.com/CmovieR">Twitter</a></li>
+      <li id="menu-item-88"><a href="https://plus.google.com/+Currentmoviereleases">Google+</a></li>
+      <li id="menu-item-4288"><a href="https://www.pinterest.com/currentmoviereleases/">Pinterest</a></li>
+      <li id="menu-item-87"><a href="/feed/">RSS Feed</a></li>
+    </ul>
+  </div>
+  <div id="disclaimer" fxlayout="row" fxlayout.sm="row" fxlayout.xs="row">
+    <p>The dates on this website are shown in UTC+2 timezone. The release dates are based on theatrical dates in the  United States of America. Movie tickets available trough Fandango. Movie ratings are calculated with data pulled from TMDB plus our userratings combined. <br>
+    For more information please visit our development page.</p>
+  </div>
+  <div id="credits" fxlayout="row" fxlayout.sm="row" fxlayout.xs="row">
+    <div class="site-description">Latest Movies and Upcoming Movies | Current Movie Releases © 2011 - 2018</div>
   </div>
 </footer>
