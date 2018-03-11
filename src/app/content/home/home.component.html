@@ -21,9 +21,9 @@
         </div>
         <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
           <div class="movie-thumbnail">
-            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title" class="movie-img">
+            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title + ' movie'" [title]="movie.title + ' movie'" class="movie-img">
             <ng-template #defaultMovieImage>
-              <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+              <img src="assets/img/default-movie-poster.png" [alt]="movie.title + ' movie'" [title]="movie.title + ' movie'" class="movie-img">
             </ng-template>
           </div>
           <div class="movie-info">
@@ -50,7 +50,7 @@
       <span>Results:</span>
       <span *ngIf="upcomingMoviesCurrentIndex === upcomingMoviesTotalPages">{{ upcomingMoviesTotalResults }}</span>
       <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 20 }}</span> / {{ upcomingMoviesTotalResults }}
-      <span class="view_all"><a href="/movies/now-playing/">View All Upcoming Movies</a></span>
+      <span class="view_all"><a href="/movies/upcoming/">View All Upcoming Movies</a></span>
     </div>
   </div>
   <!-- Upcoming Movies -->
@@ -64,9 +64,9 @@
         </div>
         <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
           <div class="movie-thumbnail">
-            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title" class="movie-img">
+            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title + ' movie'" [title]="movie.title + ' movie'" class="movie-img">
             <ng-template #defaultMovieImage>
-              <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+              <img src="assets/img/default-movie-poster.png" [alt]="movie.title + ' movie'" [title]="movie.title + ' movie'" class="movie-img">
             </ng-template>
           </div>
           <div class="movie-info">

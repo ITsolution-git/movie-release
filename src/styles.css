@@ -49,24 +49,20 @@ header .mat-toolbar.mat-primary {
   -webkit-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
   box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 }
-
 #header-container {
   position: relative;
 }
-
 #logo,
 #menu {
   padding: 0;
   position: relative;
   z-index: 1;
 }
-
 #logo h1 {
   line-height: 4rem;
   outline: none;
   cursor: pointer;
 }
-
 #mobile-menu-toggler {
   position: absolute;
   top: 17px;
@@ -75,7 +71,6 @@ header .mat-toolbar.mat-primary {
   cursor: pointer;
   z-index: 3;
 }
-
 #mobile-menu-toggler mat-icon {
   font-size: 2rem;
 }
@@ -131,9 +126,7 @@ h2, mat-cell a{
   padding: 0;
   cursor: pointer;
   overflow: hidden;
-  background: #000 !important;
-  border: 1px solid #111;
-  box-shadow: none !important;
+  background: black !important;
 }
 .movie-card:hover {
   box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
@@ -153,6 +146,7 @@ mat-card{
   padding: 0 !important;
   border-radius: 0 !important;
   display: block;
+  border: 0;
 }
 .movie-data{
   width: 100%;
@@ -203,9 +197,11 @@ mat-card a{
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  background: #1f1f1f;
 }
-.movie-card:hover .movie-card a h2{
+mat-card:hover a h2{
   color: #FFF;
+  background: #000;
 }
 h3 span.year {
   font-size: 1rem;
