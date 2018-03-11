@@ -1,5 +1,21 @@
+<!-- JUMBOTRON-->
+<div class="jumbotron" id="jumbotron">
+  <div class="container">
+    <h1 class="page-title entry-title">Always find what to watch!</h1>
+    <h2 class="page-description">Welcome to the best selection of recently released <a>Action</a>, <a>Adventure</a>, <a>Drama</a>, <a>Crime</a>, <a>Comedy</a>, <a>Documentary</a>, <a>Horror</a>, <a>Romance</a>, <a>Science Fiction</a> and <a>Western movies</a>.</h2>
+    <div class="advanced_filters"></div>
+    <div class="page-taxonomy-list"></div>
+    <div id="breadcrumbs">
+      <span xmlns:v="http://rdf.data-vocabulary.org/#">
+        <span>Feel free to browse our vide selection of the current releases, and find out what is playing near you right now. <a href="#now-playing">Now Playing Movies</a></span>
+        <span><a href="#upcoming">Upcoming Movies</a></span>
+      </span>
+    </div>
+  </div>
+</div>
+
 <div *ngIf="!loading" class="timeline-movies-content">
-  <section class="section">
+  <section id="now-playing" class="section">
   <div fxlayout="row">
     <h2 fxFlex="66" class="section-title">Now Playing Movies - Latest Released Movies</h2>
     <!-- Now Playing Results Counter -->
@@ -42,7 +58,7 @@
     </div>
   </div>
   </section>
-  <section class="section">
+  <section id="upcoming" class="section">
   <div fxlayout="row">
     <h2 fxFlex="66" class="section-title">Upcoming Movies</h2>
     <!-- Upcoming Results Counter -->

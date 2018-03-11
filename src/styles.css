@@ -28,10 +28,50 @@ p, i, em{
   font-weight: normal;
 }
 /*HOST*/
-app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app-page-not-found, app-shared, footer#colophon {
+app-public{
+  display: block;
+  margin-top: 90px;
+}
+.home app-public{
+  margin-top: 0;
+}
+app-header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+app-movies, app-home .timeline-movies-content, app-genres, app-movie-details, app-search, app-page-not-found, app-shared, footer#colophon {
   margin: 2rem auto;
   display: block;
   padding: 0 5%;
+}
+/*Jumbotron*/
+#jumbotron {
+  background-color: #2A2A2A;
+  box-shadow: rgb(0, 0, 0) 0px -10px 10px -5px inset;
+  -moz-box-shadow: rgb(17, 17, 17) 0px -10px 10px -5px inset;
+  -webkit-box-shadow: rgb(0, 0, 0) 0px -10px 10px -5px inset;
+  background-image: url(/assets/img/background.png);
+  background-size: 100%;
+  padding: 20% 15%;
+  text-align: center;
+  position: relative;
+}
+#jumbotron h2{
+  color: #FFF;
+  font-weight: normal;
+}
+#jumbotron a{
+  text-decoration: none;
+}
+#jumbotron #breadcrumbs{
+  position: absolute;
+  bottom: 6%;
+  text-align: center;
+  width: 100%;
+  display: block;
+  left: 0;
 }
 /*Movie Details*/
 app-movie-details{
@@ -47,7 +87,7 @@ app-movie-details{
 header .mat-toolbar.mat-primary {
   padding: 0 5% 0;
   margin: auto;
-  background:#222;
+  background:#222222c7;
   border-color:#080808;
   -webkit-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
   box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
