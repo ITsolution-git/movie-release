@@ -28,13 +28,6 @@ p, i, em{
   font-weight: normal;
 }
 /*HOST*/
-app-public{
-  display: block;
-  margin-top: 90px;
-}
-.home app-public{
-  margin-top: 0;
-}
 app-header{
   position: fixed;
   top: 0;
@@ -42,9 +35,12 @@ app-header{
   z-index: 9;
 }
 app-movies, app-home .timeline-movies-content, app-genres, app-movie-details, app-search, app-page-not-found, app-shared, footer#colophon {
-  margin: 2rem auto;
+  margin: 90px auto;
   display: block;
   padding: 0 5%;
+}
+.home app-public{
+  margin-top: 0;
 }
 /*Jumbotron*/
 #jumbotron {
