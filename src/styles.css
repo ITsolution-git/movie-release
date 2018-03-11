@@ -52,7 +52,7 @@ app-movies, app-home .timeline-movies-content, app-genres, app-movie-details, ap
   box-shadow: rgb(0, 0, 0) 0px -10px 10px -5px inset;
   -moz-box-shadow: rgb(17, 17, 17) 0px -10px 10px -5px inset;
   -webkit-box-shadow: rgb(0, 0, 0) 0px -10px 10px -5px inset;
-  background-image: url(assets/img/background.png);
+  background-image: url("assets/img/background.png");
   background-size: 100%;
   padding: 20% 15%;
   text-align: center;
