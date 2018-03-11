@@ -145,7 +145,7 @@ h2, mat-cell a{
   width: 100%;
   max-width: 250px;
   min-width: 250px;
-  min-height: 375px;
+  min-height: 390px;
   display: block;
 }
 /*Movie Data for Movie Cards - release date and favorite button*/
@@ -180,7 +180,7 @@ mat-card a{
   position: absolute;
   opacity: 0;
   width: 100%;
-  bottom: 25px;
+  bottom: 24px;
   text-align: center;
   background: #000;
   color: #FFF;
@@ -189,7 +189,7 @@ mat-card a{
   border-bottom: 1px solid #111;
   display: inline-flex;
   width: 100%;
-  padding: 0 2%;
+  padding: 0 5%;
 }
 .movie-card a h2 {
   font-weight: normal;
