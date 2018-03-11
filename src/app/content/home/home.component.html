@@ -21,9 +21,9 @@
         </div>
         <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
           <div class="movie-thumbnail">
-            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title + ' movie'" [title]="movie.title + ' movie'" class="movie-img">
+            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'" class="movie-img">
             <ng-template #defaultMovieImage>
-              <img src="assets/img/default-movie-poster.png" [alt]="movie.title + ' movie'" [title]="movie.title + ' movie'" class="movie-img">
+              <img src="assets/img/default-movie-poster.png" [alt]="movie.title + ' Current Movie Releases'" [title]="movie.title + ' Current Movie Releases'" class="movie-img">
             </ng-template>
           </div>
           <div class="movie-info">
@@ -64,9 +64,9 @@
         </div>
         <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
           <div class="movie-thumbnail">
-            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title + ' movie'" [title]="movie.title + ' movie'" class="movie-img">
+            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'" class="movie-img">
             <ng-template #defaultMovieImage>
-              <img src="assets/img/default-movie-poster.png" [alt]="movie.title + ' movie'" [title]="movie.title + ' movie'" class="movie-img">
+              <img src="assets/img/default-movie-poster.png" [alt]="movie.title + ' Current Movie Releases'" [title]="movie.title + ' Current Movie Releases'" class="movie-img">
             </ng-template>
           </div>
           <div class="movie-info">

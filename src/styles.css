@@ -24,11 +24,14 @@ a{
 a:hover{
   color: #c62828
 }
+p, i, em{
+  font-weight: normal;
+}
 /*HOST*/
 app-movies, app-home, app-genres, app-movie-details, app-movies, app-search, app-page-not-found, app-shared, footer#colophon {
-  width: 90%;
   margin: 2rem auto;
   display: block;
+  padding: 0 5%;
 }
 /*Movie Details*/
 app-movie-details{
@@ -258,7 +261,7 @@ app-footer{
   -webkit-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
   color: #939393;
   border: 0;
-  font-size: 0.9em;
+  font-size: 0.8em;
   display: block;
 }
 app-footer footer#colophon{
@@ -277,10 +280,13 @@ footer#colophon .footer-inner{
   padding: 30px 0px;
   border-bottom: 1px solid #111;
 }
+footer#colophon .footer-inner .footer-widget{
+  margin: 0 3%;
+}
 #sitemap {
   margin: auto;
-  border-top: 1px solid #444;
-  border-bottom: 1px solid #444;
+  border-top: 1px solid #4444449e;
+  border-bottom: 1px solid #4444449e;
   font-size: 11px;
   display: inline-block;
   width: 100%;
@@ -312,7 +318,7 @@ footer#colophon .footer-inner{
   font-size: 0.8em;
 }
 #disclaimer{
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #4444449e;
 }
 .scrolltotop{
   cursor: pointer;
