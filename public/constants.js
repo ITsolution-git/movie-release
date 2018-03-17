@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // CORE
 exports.APP_ROOT_URL = 'https://currentmoviereleases.com/';
+exports.APP_URL = 'www.currentmoviereleases.com';
+exports.RENDER_URL = 'https://render-tron.appspot.com/render';
+exports.CACHE_CONTROL_VALUE = 'public, max-age=300, s-maxage=600';
 // TMDB
 exports.TMDB_API_URL_ROOT = 'https://api.themoviedb.org/';
 exports.TMDB_API_VER = '3/';
