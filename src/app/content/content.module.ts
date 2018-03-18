@@ -50,7 +50,8 @@ import { SidenavComponent } from './shared/sidenav/sidenav.component';
     MatMenuModule,
     FlexLayoutModule,
     ContentRoutingModule,
-    AuthModule
+    AuthModule,
+    SidenavComponent
   ],
   declarations: [
     HomeComponent,
