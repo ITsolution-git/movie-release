@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
+import {HttpModule} from '@angular/http';
 // Material Modules
 import {
   MatInputModule,
@@ -17,7 +18,19 @@ import {
   MatTabsModule,
   MatOptionModule,
   MatSelectModule,
-  MatSidenav
+  MatSidenav,
+  MatSidenavModule,
+  MatButtonToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatStepperModule,
+  MatTableModule,
+  MatSliderModule,
+  MatProgressBarModule,
+  MatRadioModule,
+  MatRippleModule,
 } from '@angular/material';
 // Toastr
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
