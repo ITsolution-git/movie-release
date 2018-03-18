@@ -84,7 +84,6 @@ import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.componen
     MatIconModule,
     ToastModule.forRoot(),
     AppRoutingModule,
-    SidenavComponent,
   ],
   providers: [
     AppService,
