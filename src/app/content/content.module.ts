@@ -51,7 +51,6 @@ import { SidenavComponent } from './shared/sidenav/sidenav.component';
     FlexLayoutModule,
     ContentRoutingModule,
     AuthModule,
-    SidenavComponent
   ],
   declarations: [
     HomeComponent,
