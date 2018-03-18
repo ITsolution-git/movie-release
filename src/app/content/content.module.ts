@@ -30,6 +30,7 @@ import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialo
 import { AuthDialogComponent } from './shared/auth-dialog/auth-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
+import { SidenavComponent } from './shared/sidenav/sidenav.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movie
     TrailersDialogComponent,
     AuthDialogComponent,
     GenresListComponent,
-    MainMoviesDirectoryComponent
+    MainMoviesDirectoryComponent,
+    SidenavComponent
   ],
   entryComponents: [
     TrailersDialogComponent,
