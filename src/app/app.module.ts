@@ -16,7 +16,8 @@ import {
   MatProgressSpinnerModule,
   MatTabsModule,
   MatOptionModule,
-  MatSelectModule
+  MatSelectModule,
+  MatSidenav
 } from '@angular/material';
 // Toastr
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -45,6 +46,7 @@ import { FooterComponent } from './content/shared/footer/footer.component';
 import { PageNotFoundComponent } from './content/page-not-found/page-not-found.component';
 import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu.component';
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
+import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
 
 
 @NgModule({
@@ -55,7 +57,8 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
     FooterComponent,
     PageNotFoundComponent,
     PrimaryMenuComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,7 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
     MatIconModule,
     ToastModule.forRoot(),
     AppRoutingModule,
+    SidenavComponent,
   ],
   providers: [
     AppService,
