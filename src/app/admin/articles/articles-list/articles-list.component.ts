@@ -43,17 +43,11 @@ export class ArticlesListComponent implements OnInit {
   publicArticlesDataSource: MatTableDataSource<any> | null;
   publicArticlesObs: Observable<{}[]>;
   publicArticlesRef: any;
-  // draftArticlesDataSource: MatTableDataSource<any> | null;
-  // draftArticlesObs: Observable<{}[]>;
 
   @ViewChild(MatPaginator) publicPaginator: MatPaginator;
   @ViewChild(MatSort) publicSort: MatSort;
 
-  @ViewChild(MatPaginator) draftPaginator: MatPaginator;
-  @ViewChild(MatSort) draftSort: MatSort;
-
   loadingPublic = false;
-  loadingDraft = false;
 
   // @ViewChild(MatPaginator) editorPaginator: MatPaginator;
   // @ViewChild(MatSort) editorSort: MatSort;
@@ -69,9 +63,7 @@ export class ArticlesListComponent implements OnInit {
     // initializes articles db collection
     this.publicArticlesObs = afDb.list(DB_COL.ARTICLES).valueChanges();
     this.publicArticlesRef = afDb.list(DB_COL.ARTICLES);
-    // this.draftArticlesObs = afDb.list(DB_COL.ARTICLES_DRAFT).valueChanges();
     this.getPublicArticles();
-    // this.getDraftArticles();
   }
 
   ngOnInit(): void { }
@@ -88,18 +80,6 @@ export class ArticlesListComponent implements OnInit {
         this.loadingPublic = false;
       });
   }
-
-  // getDraftArticles() {
-  //   this.loadingDraft = true;
-  //   this.draftArticlesObs
-  //     .subscribe(res => {
-  //       // console.log('DRAFT ARTICLES: ', res);
-  //       this.draftArticlesDataSource = new MatTableDataSource(res);
-  //       this.draftArticlesDataSource.sort = this.draftSort;
-  //       this.draftArticlesDataSource.paginator = this.draftPaginator;
-  //       this.loadingDraft = false;
-  //     });
-  // }
 
   applyPublicFilter(filterValue: string): void {
     filterValue = filterValue.trim();

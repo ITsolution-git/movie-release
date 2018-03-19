@@ -31,8 +31,8 @@ export class DeleteArticleDialogComponent implements OnInit {
     console.log(this.articleID);
     this.afDb.object(`${DB_COL.ARTICLES}/${this.articleID}`).remove()
       .then(() => {
-        // this.toastr.success('Successfully Deleted Page!');
-        console.log('Successfully Deleted Page!');
+        // this.toastr.success('Successfully Deleted Article!');
+        console.log('Successfully Deleted Article!');
         this.dialogRef.close({ deleted: true });
         this.router.navigate(['admin/articles']);
       }).catch(error => {

@@ -10,8 +10,6 @@ export const DEFAULT_USER_ROLE = 'subscriber';
 export const DB_COL = {
     API_CONFIG: '/api_config',
     ARTICLES: '/articles',
-    ARTICLES_DRAFT: '/articles_draft',
-    ARTICLES_PUBLIC: '/articles_public',
     MOVIE_GENRES: '/movie_genres',
     MOVIE_RATINGS: '/movie_ratings',
     MOVIES: '/movies',
@@ -53,9 +51,9 @@ export const YT_THUMB_SIZES = {
 
 // CK Editor
 export const ckEditorConfig: {} = {
-    "uiColor": "#dddddd",
-    "toolbarGroups": [
-        { name: "document", "groups": ["mode"] },
+    'uiColor': '#dddddd',
+    'toolbarGroups': [
+        { name: 'document', 'groups': ['mode'] },
         { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
         { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
         { name: 'links' },
@@ -65,5 +63,5 @@ export const ckEditorConfig: {} = {
         { name: 'tools' },
         { name: 'others' }
     ],
-    "removeButtons": "Print,NewPage,Preview,Save,Language,Flash,Smiley,Iframe"
-}
+    'removeButtons': 'Print,NewPage,Preview,Save,Language,Flash,Smiley,Iframe'
+};
