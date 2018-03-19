@@ -29,13 +29,6 @@
   <!-- Now Playng Movies -->
   <div *ngIf="!loading" class="now-playing-movies-container">
     <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
-<<<<<<< HEAD
-      <mat-card *ngFor="let movie of upcomingMovies" class="movie-card">
-        <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
-          <div>
-            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-              class="movie-img">
-=======
       <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card">
         <div class="movie-data">
           <div class="release-date">
@@ -45,7 +38,6 @@
         <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
           <div class="movie-thumbnail">
             <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'" class="movie-img">
->>>>>>> master
             <ng-template #defaultMovieImage>
               <img src="assets/img/default-movie-poster.png" [alt]="movie.title + ' Current Movie Releases'" [title]="movie.title + ' Current Movie Releases'" class="movie-img">
             </ng-template>
