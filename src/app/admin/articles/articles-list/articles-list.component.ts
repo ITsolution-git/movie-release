@@ -78,7 +78,7 @@ export class ArticlesListComponent implements OnInit {
       this.userRole = 'admin';
       // console.log('GET ALL ARTICLES!');
       this.loading = true;
-      this.articlesObs
+      this.afDb.list(DB_COL.ARTICLES, ref => ref.orderByChild('article_date_reverse')).valueChanges()
         .subscribe(art => {
           this.articlesList = art;
           this.articlesDataSource = new MatTableDataSource(art);

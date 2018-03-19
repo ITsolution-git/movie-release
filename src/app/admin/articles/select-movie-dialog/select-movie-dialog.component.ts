@@ -81,7 +81,8 @@ export class SelectMovieDialogComponent implements OnInit {
       article_owner_id: uid,
       article_owner_name: email,
       article_status: 'draft',
-      article_date: Date.now()
+      article_date: Date.now(),
+      article_date_reverse: -(Date.now())
     }).then(res => {
       this.articlesRef.update(res.key, {
         article_key: res.key,
