@@ -12,7 +12,7 @@ const articlesRoutes = [
   { path: '', component: ArticlesListComponent },
   { path: 'edit-article/:id', component: EditArticleComponent },
   { path: 'add-article/:id', component: AddArticleComponent },
-]
+];
 
 @NgModule({
   imports: [

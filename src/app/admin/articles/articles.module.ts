@@ -51,7 +51,7 @@ import { DeleteArticleDialogComponent } from './delete-article-dialog/delete-art
     DeleteArticleDialogComponent,
   ],
   entryComponents: [
-    DeleteArticleDialogComponent,
+    DeleteArticleDialogComponent
   ]
 })
 export class ArticlesModule { }
