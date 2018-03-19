@@ -8,12 +8,11 @@
 }
 
 #search-header {
-  width: 90%;
   margin: auto;
   margin-bottom: 1rem;
 }
 
-#search-header h1 {
+#search-header h2 {
   margin: 0 0 0.5rem;
 }
 

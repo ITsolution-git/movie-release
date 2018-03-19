@@ -49,7 +49,7 @@ export class MoviesComponent implements OnInit {
     public title: Title,
     private router: Router,
     private ar: ActivatedRoute,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService
   ) {
     // Initialize Constants
@@ -200,7 +200,7 @@ export class MoviesComponent implements OnInit {
 
   onMovieTabChange($event): void {
     this.currentMovieTab = $event.index;
-    console.log(this.currentMovieTab);
+    // console.log(this.currentMovieTab);
     if (this.currentMovieTab === 2 && !this.popularMovies) {
       this.loading = true;
       this.getPopularMovies(1);
@@ -235,7 +235,7 @@ export class MoviesComponent implements OnInit {
           if (this.upcomingMovies) {
             this.loadingMore = false;
           }
-          // console.log(this.moviesList);
+          // console.log(this.upcomingMovies);
         });
     } else if (this.pageKey === 'now-playing') {
       this.apis.getNowPlayingMovies(pageIndex)
@@ -245,7 +245,7 @@ export class MoviesComponent implements OnInit {
           if (this.nowPlayingMovies) {
             this.loadingMore = false;
           }
-          // console.log(this.tvShowsList);
+          // console.log(this.nowPlayingMovies);
         });
     } else if (this.pageKey === 'most-popular') {
       this.apis.getPopularMovies(pageIndex)
@@ -255,7 +255,7 @@ export class MoviesComponent implements OnInit {
           if (this.popularMovies) {
             this.loadingMore = false;
           }
-          // console.log(this.personsList);
+          // console.log(this.popularMovies);
         });
     } else if (this.pageKey === 'top-rated') {
       this.apis.getTopRatedMovies(pageIndex)
@@ -265,7 +265,7 @@ export class MoviesComponent implements OnInit {
           if (this.topRatedMovies) {
             this.loadingMore = false;
           }
-          // console.log(this.personsList);
+          // console.log(this.topRatedMovies);
         });
     }
   }

@@ -1,7 +1,7 @@
 <div id="page-header" fxLayout="row">
   <div id="header-left" fxFlex>
     <!-- Page Title -->
-    <h1>{{ pageTitle }}</h1>
+    <h2>{{ pageTitle }}</h2>
 
     <!-- Upcoming Results Counter -->
     <div *ngIf="pageKey === 'upcoming'" id="results-counter">Results:
@@ -35,7 +35,7 @@
   <mat-tab label="Upcoming">
     <!-- Tab Label -->
     <ng-template mat-tab-label>
-      <h2 (click)="goToMoviesPage('upcoming')" class="tab-heading">Upcoming</h2>
+      <h3 (click)="goToMoviesPage('upcoming')" class="tab-heading">Upcoming</h3>
     </ng-template>
     <!-- Movies List -->
     <div *ngIf="!loading" class="upcoming-movies-tab-content">
@@ -46,7 +46,7 @@
                   <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
               </div>
             </div>
-            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
               <div class="movie-thumbnail">
                 <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
                 <ng-template #defaultMovieImage>
@@ -86,7 +86,7 @@
   <mat-tab label="Now Playing">
     <!-- Tab Label -->
     <ng-template mat-tab-label>
-      <h2 (click)="goToMoviesPage('now-playing')" class="tab-heading">Now Playing</h2>
+      <h3 (click)="goToMoviesPage('now-playing')" class="tab-heading">Now Playing</h3>
     </ng-template>
     <!-- Movies List -->
     <div *ngIf="!loading" class="now-playing-movies-tab-content">
@@ -97,7 +97,7 @@
                 <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
             </div>
           </div>
-          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
             <div class="movie-thumbnail">
               <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
               <ng-template #defaultMovieImage>
@@ -137,7 +137,7 @@
   <mat-tab label="Most Popular">
     <!-- Tab Label -->
     <ng-template mat-tab-label>
-      <h2 (click)="goToMoviesPage('most-popular')" class="tab-heading">Most Popular</h2>
+      <h3 (click)="goToMoviesPage('most-popular')" class="tab-heading">Most Popular</h3>
     </ng-template>
     <!-- Movies List -->
     <div *ngIf="!loading" class="popular-movies-tab-content">
@@ -148,7 +148,7 @@
                 <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
             </div>
           </div>
-          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
             <div class="movie-thumbnail">
               <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
               <ng-template #defaultMovieImage>
@@ -188,7 +188,7 @@
   <mat-tab label="Top Rated">
     <!-- Tab Label -->
     <ng-template mat-tab-label>
-      <h2 (click)="goToMoviesPage('top-rated')" class="tab-heading">Top Rated</h2>
+      <h3 (click)="goToMoviesPage('top-rated')" class="tab-heading">Top Rated</h3>
     </ng-template>
     <!-- Movies List -->
     <div *ngIf="!loading" class="top-rated-movies-tab-content">
@@ -199,7 +199,7 @@
                 <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
             </div>
           </div>
-          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
             <div class="movie-thumbnail">
               <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
               <ng-template #defaultMovieImage>

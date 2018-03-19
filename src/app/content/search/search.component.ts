@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
     public meta: Meta,
     public title: Title,
     private router: Router,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService,
     private ar: ActivatedRoute
   ) {

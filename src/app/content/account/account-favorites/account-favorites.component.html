@@ -8,7 +8,7 @@
           <span class="remove-favorite" (click)="removeFromFavorites('movie', movie.id)">
             <mat-icon>close</mat-icon>
           </span>
-          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
             <div>
               <img *ngIf="movie.poster; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster]" [alt]="movie.title"
                 class="fav-img">

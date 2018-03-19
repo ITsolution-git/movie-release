@@ -12,6 +12,7 @@ export let AD = admin;
 export const DB_LISTS = {
     API_CONFIG: '/api_config',
     MOVIE_GENRES: '/movie_genres',
+    MOVIE_RATINGS: '/movie_ratings',
     MOVIES: '/movies',
     MOVIES_QUERIES: '/movies_queries',
     MOVIES_RESULTS: '/movies_results',

@@ -4,7 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { AppService } from '../../services/app.service';
 import { ApiService } from '../../services/api/api.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_300, APP_SEO_NAME } from '../../constants';
 
 @Component({
   selector: 'app-main-movies-directory',
@@ -14,7 +14,7 @@ import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
 export class MainMoviesDirectoryComponent implements OnInit {
 
   TMDB_IMAGES_BASE_URL: any;
-  IMG_185: any;
+  IMG_300: any;
 
   screenSize: number;
 
@@ -29,7 +29,7 @@ export class MainMoviesDirectoryComponent implements OnInit {
   constructor(
     public meta: Meta,
     public title: Title,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService
   ) {
     // Set SEO Title, Keywords and Description Meta tags
@@ -46,7 +46,7 @@ export class MainMoviesDirectoryComponent implements OnInit {
     );
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
-    this.IMG_185 = IMG_185;
+    this.IMG_300 = IMG_300;
     // Calls the function that gets the list of movies and tv shows for the sliders
 
     if (!this.apis.mainDirectoryMovies.length) {

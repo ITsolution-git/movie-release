@@ -1,5 +1,10 @@
 // CORE
 export const APP_ROOT_URL = 'https://currentmoviereleases.com/';
+// export const APP_URL = 'https://currentmoviereleases.com'; // PROD
+export const APP_URL = 'http://localhost:5001'; // DEV
+export const RENDER_URL = 'https://render-tron.appspot.com/render';
+export const CACHE_CONTROL_VALUE = 'public, max-age=300, s-maxage=600';
+
 // TMDB
 export const TMDB_API_URL_ROOT = 'https://api.themoviedb.org/';
 export const TMDB_API_VER = '3/';

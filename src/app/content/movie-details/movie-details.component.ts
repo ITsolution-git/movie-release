@@ -49,7 +49,8 @@ export class MovieDetailsComponent implements OnInit {
 
   routeParamsSubscription: Subscription;
   pageKey: string;
-  movieId: string;
+  movieTitleIdRef: AngularFireList<any>;
+  movieId: any;
   movieDetails: any;
   movieCreditsCast: ICastData[];
   movieCreditsCrew: ICrewData[];
@@ -107,18 +108,20 @@ export class MovieDetailsComponent implements OnInit {
 
   isFavorited = false;
   isShareOpen = false;
+  getMovieDetailsCounter = 0;
 
   constructor(
     public meta: Meta,
     public title: Title,
     private router: Router,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService,
     private ar: ActivatedRoute,
     public dialog: MatDialog,
     private afDb: AngularFireDatabase,
     private afAuth: AngularFireAuth
   ) {
+
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
     this.IMG_45 = IMG_45;
@@ -141,39 +144,45 @@ export class MovieDetailsComponent implements OnInit {
       this.movieLinks = undefined;
       this.movieTranslations = undefined;
       this.movieAltTitles = undefined;
+      this.movieId = undefined;
 
       // Get the movie title and ID from the URL
       this.routeParamsSubscription = this.ar.params
-        .subscribe(
-          params => {
-            this.pageKey = params['title'];
-            this.movieId = params['id'];
-            // console.log('MOVIE TITLE FROM ROUTE:', this.pageKey);
-            this.getMovieDetails().then(() => {
-              this.setSEOMetaTags();
-              this.getMovieKeywords();
-              this.getMovieImages();
-              this.getMovieTrailers();
-              this.getRecommemdedMovies();
-
-              // Initialize Firebase Ratings for this particular movie and Calculate the average rating based on TMDB + Firebase
-              this.movieRatingsObsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId).valueChanges();
-              this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId);
-              this.calculateNewAverageRating();
-            });
-          });
-
-      this.afAuth.authState.subscribe(userRes => {
-        if (userRes && userRes.uid) {
-          // Initialize User Favorites Collection
-          this.favMoviesRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/fav_movies');
-          this.favMoviesObsRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/fav_movies').valueChanges();
-          this.userMovieRatingsRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/movie_ratings');
-          this.currentUserRatingObsRef = this.afDb.object(DB_COL.MOVIE_RATINGS + '/' + this.movieId + '/' + userRes.uid).valueChanges();
-          this.checkIfMovieRatedByCurrentUser();
-          this.checkIfMovieFavorited();
-        }
-      });
+        .subscribe(params => {
+          this.pageKey = params['title'];
+          ++this.getMovieDetailsCounter;
+          if (this.getMovieDetailsCounter === 1) {
+            this.convertTitleToId(this.pageKey)
+              .then(() => {
+                this.getMovieDetails()
+                  .then(() => {
+                    this.setSEOMetaTags();
+                    this.getMovieKeywords();
+                    this.getMovieImages();
+                    this.getMovieTrailers();
+                    this.getRecommemdedMovies();
+                    // Initialize Firebase Ratings for this particular movie and Calculate the average rating based on TMDB + Firebase
+                    this.movieRatingsObsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId).valueChanges();
+                    this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId);
+                    this.calculateNewAverageRating();
+                  }).then(() => {
+                    this.getMovieDetailsCounter = 0;
+                  });
+                this.afAuth.authState.subscribe(userRes => {
+                  if (userRes && userRes.uid) {
+                    // Initialize User Favorites Collection
+                    this.favMoviesRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/fav_movies');
+                    this.favMoviesObsRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/fav_movies').valueChanges();
+                    this.userMovieRatingsRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/movie_ratings');
+                    // tslint:disable-next-line:max-line-length
+                    this.currentUserRatingObsRef = this.afDb.object(DB_COL.MOVIE_RATINGS + '/' + this.movieId + '/' + userRes.uid).valueChanges();
+                    this.checkIfMovieRatedByCurrentUser();
+                    this.checkIfMovieFavorited();
+                  }
+                });
+              });
+          }
+        });
     });
 
     this.Math = Math;
@@ -192,6 +201,18 @@ export class MovieDetailsComponent implements OnInit {
     this.meta.updateTag(
       { name: 'keywords', content: this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0] },
     );
+  }
+
+  convertTitleToId(title: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      const movie = this.afDb.list(DB_COL.MOVIES_RESULTS, ref => ref.orderByChild('slug').equalTo(title));
+      // console.log(movie);
+      movie.valueChanges().subscribe(res => {
+        // console.log('MOVIE ID: ', res[0]['id']);
+        this.movieId = (res[0]['id']).toString();
+        resolve(this.movieId);
+      });
+    });
   }
 
   calculateNewAverageRating() {
@@ -453,12 +474,7 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  // onPersonTabChange($event) {
-  //   this.currentPersonTab = $event.index;
-  //   // console.log(this.currentPersonTab);
-  // }
-
-  rateMovie(rating: number): void {
+  rateMovie(rating: string): void {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid) {
         // console.log('Rate Movie', rating);
@@ -479,7 +495,6 @@ export class MovieDetailsComponent implements OnInit {
       }
     });
   }
-
 
   // Add / Remove movie from Favorites
   toggleFavoriteMovie() {

@@ -2,15 +2,8 @@ import * as express from 'express';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
-
-import * as FBAdmin from 'firebase-admin';
-import {
-    AD as admin,
-    loadList,
-    loadObject,
-    loadValue,
-    DB_LISTS
-} from './firebase/firebase-config';
+import * as fs from 'fs';
+import fetch from 'node-fetch';
 import {
     tryGetAPIConfig,
     tryGetMovieGenresList
@@ -42,7 +35,7 @@ import {
     tryGenerateMovieGenresSitemap,
     tryGenerateMoviesSitemap
 } from './sitemap/sitemap';
-import { log } from 'util';
+import { processURL } from './ssr/bot-detect';
 
 const PORT = process.env.PORT || 5001;
 const app = express();
@@ -57,15 +50,11 @@ app.use(bodyParser.json());
 // Set Public Folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
-const init = () => {
-    console.log('Initialize');
-};
-
+// Listen to Specified Port
 app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
 });
 
-// API Endpoints
 // Sitemap Endpoints
 app.get('/sitemap-movies', (req, res) => {
     const sitemap = tryGenerateMoviesSitemap(req, res);
@@ -78,6 +67,7 @@ app.get('/sitemap-movie-genres', (req, res) => {
     res.send(sitemap);
 });
 
+// TMDB API Endpoints
 // General Endpoints
 app.get('/get-api-config', tryGetAPIConfig);
 app.get('/get-movie-genres', tryGetMovieGenresList);
@@ -104,7 +94,5 @@ app.get('/get-movie-release-dates/:id', tryGetMovieReleaseDatesById);
 app.get('/get-movie-alt-titles/:id', tryGetAlternativeTitlesById);
 app.get('/get-movie-external-links/:id', tryGetMovieExternalLinksById);
 app.get('/get-movie-images/:id', tryGetMovieImagesById);
-// All other endpoints redirect to App
-app.get('**', (req, res) => {
-    res.sendFile(path.join(__dirname, './dist/index.html'));
-});
+// All other endpoints will be processed by bot detector
+app.get('**', processURL);

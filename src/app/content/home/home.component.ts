@@ -4,7 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { AppService } from '../../services/app.service';
 import { ApiService } from '../../services/api/api.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_300, APP_SEO_NAME } from '../../constants';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
 export class HomeComponent {
 
   TMDB_IMAGES_BASE_URL: any;
-  IMG_185: any;
+  IMG_300: any;
 
   screenSize: number;
 
@@ -34,7 +34,7 @@ export class HomeComponent {
   constructor(
     public meta: Meta,
     public title: Title,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService
   ) {
     // Set SEO Title, Keywords and Description Meta tags
@@ -52,7 +52,7 @@ export class HomeComponent {
 
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
-    this.IMG_185 = IMG_185;
+    this.IMG_300 = IMG_300;
 
     // Scrolls to top of the page
     this.as.scrollToTop();
@@ -67,16 +67,19 @@ export class HomeComponent {
     //   this.timelineMoviesTotalResults = this.apis.homeMoviesTotalResults;
     // }
 
+    // Get Upcoming Movies from either the Service Variable or API
+    if (!this.apis.moviesUpcoming.length) {
+      this.getUpcomingMovies(1);
+    } else {
+      this.upcomingMovies = this.apis.moviesUpcoming;
+      this.upcomingMoviesCurrentIndex = this.apis.moviesUpcomingLastIndex;
+      this.upcomingMoviesTotalPages = this.apis.moviesUpcomingTotalPages;
+      this.upcomingMoviesTotalResults = this.apis.moviesUpcomingTotalResults;
+    }
+
+    // Get Now Playing Movies from either the Service Variable or API
     if (!this.apis.moviesNowPlaying.length) {
       this.getNowPlayingMovies(1);
-      if (!this.apis.moviesUpcoming.length) {
-        this.getUpcomingMovies(1);
-      } else {
-        this.upcomingMovies = this.apis.moviesUpcoming;
-        this.upcomingMoviesCurrentIndex = this.apis.moviesUpcomingLastIndex;
-        this.upcomingMoviesTotalPages = this.apis.moviesUpcomingTotalPages;
-        this.upcomingMoviesTotalResults = this.apis.moviesUpcomingTotalResults;
-      }
     } else {
       this.nowPlayingMovies = this.apis.moviesNowPlaying;
       this.nowPlayingMoviesCurrentIndex = this.apis.moviesNowPlayingLastIndex;
@@ -101,7 +104,7 @@ export class HomeComponent {
   //     });
   // }
 
-  // Get now playing movies from service
+  // Get now playing movies from API
   getNowPlayingMovies(pageIndex: number): void {
     this.loading = true;
     this.apis.getNowPlayingMovies(pageIndex)
@@ -116,7 +119,7 @@ export class HomeComponent {
         // console.log(this.nowPlayingMovies);
       });
   }
-  // Get upcoming movies from service
+  // Get upcoming movies from API
   getUpcomingMovies(pageIndex: number): void {
     this.loading = true;
     this.apis.getUpcomingMovies(pageIndex)
@@ -128,11 +131,11 @@ export class HomeComponent {
         if (this.upcomingMovies) {
           this.loading = false;
         }
-        console.log(this.upcomingMovies);
+        // console.log(this.upcomingMovies);
       });
   }
 
-  // Load more movies
+  // Load more movies from API
   loadMoreResults(pageIndex: number, src: string): void {
     this.loadingMore = true;
     if (src === 'upcoming') {
@@ -143,7 +146,7 @@ export class HomeComponent {
           if (this.upcomingMovies) {
             this.loadingMore = false;
           }
-          console.log(this.upcomingMovies);
+          // console.log(this.upcomingMovies);
         });
     } else if (src === 'now-playing') {
       this.apis.getNowPlayingMovies(pageIndex)
@@ -153,7 +156,7 @@ export class HomeComponent {
           if (this.nowPlayingMovies) {
             this.loadingMore = false;
           }
-          console.log(this.nowPlayingMovies);
+          // console.log(this.nowPlayingMovies);
         });
     }
   }

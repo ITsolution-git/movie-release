@@ -10,12 +10,7 @@ export class AppService {
   ) { }
 
   urlOptimizeText(text: string): string {
-    const urlText = (((text.replace(/\s+/g, '-')
-      .toLowerCase())
-      .replace(/'/g, ''))
-      .replace(/:/g, '')
-      .replace(/,/g, ''));
-    // .replace(/&/g, 'and');
+    const urlText = text.toLowerCase().replace(/[^a-zA-Z0-9-$@]+/gm, '-');
     return urlText;
   }
 

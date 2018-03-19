@@ -25,7 +25,7 @@ const contentRoutes = [
   { path: 'movies/top-rated', component: MoviesComponent },
   { path: 'movies/upcoming', component: MoviesComponent },
   { path: 'movies/now-playing', component: MoviesComponent },
-  { path: 'movies/:title/:id', component: MovieDetailsComponent },
+  { path: 'movies/:title', component: MovieDetailsComponent },
   { path: 'my-account', canActivate: [AuthGuard], loadChildren: './account/account.module#AccountModule' },
 ];
 
