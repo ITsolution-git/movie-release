@@ -69,7 +69,7 @@ export class AddArticleComponent implements OnInit {
         this.articleDetails = res;
         resolve(res);
       });
-    })
+    });
   }
 
   getMovieDetails(movieId: string): void {
@@ -77,13 +77,12 @@ export class AddArticleComponent implements OnInit {
       .subscribe(res => {
         this.movieDetails = res;
         this.isLooading = false;
-      })
+      });
   }
 
   saveArticle(title: string, ckeditorContent: string): void {
-    console.log(title, ckeditorContent);
+    // console.log(title, ckeditorContent);
     if (title) {
-
       this.articleRef.update({
         article_title: title,
         article_content: ckeditorContent,
@@ -99,7 +98,7 @@ export class AddArticleComponent implements OnInit {
           // this.toastr.error('Page Not Saved!');
           console.log('Page Not Saved!');
           console.log(error.message);
-        })
+        });
     } else {
       // this.toastr.error('Please Enter Page Title!');
       console.log('Please Enter Page Title!');
@@ -108,7 +107,7 @@ export class AddArticleComponent implements OnInit {
 
   // Go back to previous route
   public goBack(): void {
-    this.router.navigate(['admin/articles'])
+    this.router.navigate(['admin/articles']);
   }
 
   onReady($event: any): void { }

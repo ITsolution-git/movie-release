@@ -87,7 +87,6 @@ export class SearchComponent implements OnInit {
       });
   }
 
-
   loadMoreResults(pageIndex: number) {
     this.loadingMore = true;
     if (this.searchType === 'movies') {
