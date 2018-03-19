@@ -36,7 +36,7 @@ export class GenresComponent implements OnInit {
     public meta: Meta,
     public title: Title,
     private router: Router,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService,
     private ar: ActivatedRoute
   ) {
@@ -72,10 +72,10 @@ export class GenresComponent implements OnInit {
       .map(x => x[0].toUpperCase() + x.slice(1))
       .join(' ') + ' | ' + APP_SEO_NAME);
     this.meta.updateTag(
-      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.pageKey) + ' ' + APP_SEO_NAME }
+      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.genreType) + ' ' + APP_SEO_NAME }
     );
     this.meta.updateTag(
-      { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.pageKey) },
+      { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.genreType) },
     );
   }
 
