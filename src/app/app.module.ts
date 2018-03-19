@@ -27,7 +27,6 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { RolesGuardService } from './core/auth/roles-guard.service';
 // Modules
 import { CoreModule } from './core/core.module';
-// import { ContentModule } from './content/content.module';
 // Routing Modules
 import { AppRoutingModule } from './app-routing.module';
 // Services
@@ -75,7 +74,6 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
-    // ContentModule, // this makes the header to disappear
     MatToolbarModule,
     MatIconModule,
     ToastModule.forRoot(),
