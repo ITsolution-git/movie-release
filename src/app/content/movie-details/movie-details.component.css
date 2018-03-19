@@ -39,10 +39,6 @@
   font-size: 1rem;
 }
 
-.genre-link {
-  color: #4c85bf;
-}
-
 #duration,
 #year {
   margin-left: 0.3rem;
@@ -267,7 +263,6 @@ mat-row:hover {
 .person-card,
 .movie-card {
   position: relative;
-  max-height: 278px;
   margin-top: 0.5rem;
   margin-bottom: 0;
   padding: 0;
@@ -283,21 +278,13 @@ mat-row:hover {
 
 .person-name,
 .movie-info {
-  position: absolute;
-  opacity: 0;
-  width: 100%;
-  max-width: 165px;
   bottom: 0;
-  padding: 0 10px;
-  text-align: center;
-  background: #000;
-  color: #FFF;
 }
 
 .movie-info h3 {
   font-size: 0.8125rem;
   font-weight: normal;
-  padding: 0 0 0.3rem 0;
+  padding: 0.3rem 0 0.3rem 0;
   border-bottom: 1px solid #111;
   margin: 0;
 }
@@ -321,7 +308,7 @@ h3 span.year {
   width: 100%;
   text-align: left;
   font-size: 0.625rem;
-  padding-top: 8px;
+  padding: 5px;
 }
 
 .movie-rating mat-icon {

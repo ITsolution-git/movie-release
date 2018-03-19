@@ -4,7 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { AppService } from '../../services/app.service';
 import { ApiService } from '../../services/api/api.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_300, APP_SEO_NAME } from '../../constants';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
 export class HomeComponent {
 
   TMDB_IMAGES_BASE_URL: any;
-  IMG_185: any;
+  IMG_300: any;
 
   screenSize: number;
 
@@ -52,7 +52,7 @@ export class HomeComponent {
 
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
-    this.IMG_185 = IMG_185;
+    this.IMG_300 = IMG_300;
 
     // Scrolls to top of the page
     this.as.scrollToTop();
