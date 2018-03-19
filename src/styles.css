@@ -34,7 +34,7 @@ app-header{
   width: 100%;
   z-index: 9;
 }
-app-movies, app-genres, app-movie-details, app-search, app-page-not-found, app-shared, app-login {
+app-movies, app-genres, app-movie-details, app-search, app-page-not-found, app-shared, app-login, app-register, app-forgot-password {
   margin: 90px auto;
   display: block;
   padding: 0 5%;
@@ -50,6 +50,11 @@ app-home .timeline-movies-content{
 app-account{
   margin-top: 63px;
   display: block;
+}
+app-login mat-card, app-register mat-card, app-forgot-password mat-card{
+  background: transparent !important;
+  color: #FFF !important;
+  box-shadow: none !important;
 }
 /*Jumbotron*/
 #jumbotron {
