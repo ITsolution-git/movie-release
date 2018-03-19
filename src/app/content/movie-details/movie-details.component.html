@@ -196,12 +196,12 @@
               <ng-container matColumnDef="actorImg">
                 <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name) + '/' + element?.id]">
+                  <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">
                     <img *ngIf="element?.profile_path; else defaultCastImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
                       [alt]="[element?.name + ' alias ' + element?.character]" [title]="[element?.name + ' alias ' + element?.character]">
                   </a>
                   <ng-template #defaultCastImage>
-                    <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name) + '/' + element?.id]">
+                    <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">
                       <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' alias ' + element?.character]"
                         [title]="[element?.name + ' alias ' + element?.character]">
                     </a>
@@ -212,7 +212,7 @@
               <ng-container matColumnDef="actorName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Actor Name </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name) + '/' + element?.id]">{{ element?.name }}</a>
+                  <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">{{ element?.name }}</a>
                 </mat-cell>
               </ng-container>
               <!-- Character Column -->
@@ -349,7 +349,7 @@
     </div>
     <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="recommendations-tab-content" *ngIf="!isLoadingMovies">
       <mat-card *ngFor="let movie of recommendedMovies" class="movie-card">
-        <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+        <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
           <div>
             <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
               [title]="movie.title" class="movie-img">
@@ -380,7 +380,7 @@
     </div>
     <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="similar-movies-tab-content" *ngIf="!isLoadingMovies">
       <mat-card *ngFor="let movie of similarMovies" class="movie-card">
-        <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+        <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
           <div>
             <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
               [title]="movie.title" class="movie-img">

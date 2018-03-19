@@ -15,7 +15,7 @@ export const DB_COL = {
     MOVIES_QUERIES: '/movies_queries',
     MOVIES_RESULTS: '/movies_results',
     UPLOADS: '/uploads',
-    USERS: '/users',
+    USERS: '/users'
 };
 
 // TMDB Configs

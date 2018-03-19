@@ -49,7 +49,7 @@ export class MoviesComponent implements OnInit {
     public title: Title,
     private router: Router,
     private ar: ActivatedRoute,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService
   ) {
     // Initialize Constants

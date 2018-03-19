@@ -46,7 +46,7 @@
                   <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
               </div>
             </div>
-            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
               <div class="movie-thumbnail">
                 <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
                 <ng-template #defaultMovieImage>
@@ -97,7 +97,7 @@
                 <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
             </div>
           </div>
-          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
             <div class="movie-thumbnail">
               <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
               <ng-template #defaultMovieImage>
@@ -148,7 +148,7 @@
                 <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
             </div>
           </div>
-          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
             <div class="movie-thumbnail">
               <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
               <ng-template #defaultMovieImage>
@@ -199,7 +199,7 @@
                 <h3 class="year">Released Movie: <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span></h3>
             </div>
           </div>
-          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+          <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
             <div class="movie-thumbnail">
               <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="movie-img">
               <ng-template #defaultMovieImage>

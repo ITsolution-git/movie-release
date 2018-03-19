@@ -57,26 +57,29 @@ export class FirebaseService {
 
   // Store Queried Movies List in Database
   createMoviesQueryResultsObject(movies: Array<any>, callSource: string) {
+    console.log('SAVING ' + callSource + ' MOVIES TO DB: ', movies);
     const moviesObj = {};
+    // Create New Movie Results Object
     for (let i = 0; i < movies.length; i++) {
       const movieId = movies[i].id;
       // Movie Properties
       moviesObj[movieId] = {
-        adult: movies[i].adult,
-        backdrop_path: movies[i].backdrop_path,
-        genre_ids: movies[i].genre_ids,
-        id: movies[i].id,
-        original_language: movies[i].original_language,
-        original_title: movies[i].original_title,
-        overview: movies[i].overview,
-        popularity: movies[i].popularity,
-        poster_path: movies[i].poster_path,
+        adult: movies[i].adult || '',
+        backdrop_path: movies[i].backdrop_path || '',
+        genre_ids: movies[i].genre_ids || '',
+        id: movieId,
+        original_language: movies[i].original_language || '',
+        original_title: movies[i].original_title || '',
+        overview: movies[i].overview || '',
+        popularity: movies[i].popularity || '',
+        poster_path: movies[i].poster_path || '' || '',
         release_date: movies[i].release_date,
+        slug: this.as.urlOptimizeText(movies[i].title),
         title: movies[i].title,
-        url: 'movie/' + this.as.urlOptimizeText(movies[i].title) + '/' + movies[i].id,
-        video: movies[i].video,
-        vote_average: movies[i].vote_average,
-        vote_count: movies[i].vote_count
+        url: 'movies/' + this.as.urlOptimizeText(movies[i].title),
+        video: movies[i].video || '',
+        vote_average: movies[i].vote_average || '',
+        vote_count: movies[i].vote_count || ''
       };
     }
     // console.log(moviesObj);
@@ -112,11 +115,12 @@ export class FirebaseService {
       release_date: movie.release_date,
       revenue: movie.revenue || '',
       runtime: movie.runtime || '',
+      slug: this.as.urlOptimizeText(movie.title),
       spoken_languages: movie.spoken_languages || '',
       status: movie.status || '',
       tagline: movie.tagline || '',
       title: movie.title,
-      url: 'movie/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id,
+      url: 'movies/' + this.as.urlOptimizeText(movie.title),
       video: movie.video,
       vote_average: movie.vote_average,
       vote_count: movie.vote_count
@@ -138,5 +142,6 @@ export class FirebaseService {
     };
     this.moviesQueriesRef.push(queryObj);
   }
+
 
 }

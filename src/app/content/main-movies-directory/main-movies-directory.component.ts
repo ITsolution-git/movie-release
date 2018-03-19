@@ -29,7 +29,7 @@ export class MainMoviesDirectoryComponent implements OnInit {
   constructor(
     public meta: Meta,
     public title: Title,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService
   ) {
     // Set SEO Title, Keywords and Description Meta tags

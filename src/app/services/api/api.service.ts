@@ -180,7 +180,7 @@ export class ApiService {
         .subscribe((res) => {
           if (endpoint === 'get-movies-by-keyword') {
             this.moviesList = res;
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'search');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'SEARCHED');
             console.log('API MOVIES BY KEYWORD (' + pageIndex + '): ', this.moviesList);
           }
           resultSub.next(res);
@@ -190,9 +190,11 @@ export class ApiService {
         .subscribe((res) => {
           if (endpoint === 'get-movie-similar') {
             this.movieSimilars = res;
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'SIMILAR');
             console.log('API SIMILAR MOVIES (' + pageIndex + '): ', this.movieSimilars);
           } else if (endpoint === 'get-movie-recommendations') {
             this.movieRecommendations = res;
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'RECOMMENDED');
             console.log('API MOVIE RECOMMENDATIONS (' + pageIndex + '): ', this.movieRecommendations);
           } else if (endpoint === 'get-movie-reviews') {
             this.movieReviews = res;
@@ -208,35 +210,35 @@ export class ApiService {
             this.mainDirectoryMoviesLastIndex = res['page'];
             this.mainDirectoryMoviesTotalPages = res['total_pages'];
             this.mainDirectoryMoviesTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'MAIN DIRECTORY');
             console.log('API HOMEPAGE MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-popular') {
             this.moviesPopular = this.moviesPopular.concat(res['results']);
             this.moviesPopularLastIndex = res['page'];
             this.moviesPopularTotalPages = res['total_pages'];
             this.moviesPopularTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'POPULAR');
             console.log('API POPULAR MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-top-rated') {
             this.moviesTopRated = this.moviesTopRated.concat(res['results']);
             this.moviesTopRatedLastIndex = res['page'];
             this.moviesTopRatedTotalPages = res['total_pages'];
             this.moviesTopRatedTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'TOP RATED');
             console.log('API TOP RATED MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-upcoming') {
             this.moviesUpcoming = this.moviesUpcoming.concat(res['results']);
             this.moviesUpcomingLastIndex = res['page'];
             this.moviesUpcomingTotalPages = res['total_pages'];
             this.moviesUpcomingTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'UPCOMING');
             console.log('API UPCOMING MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-now-playing') {
             this.moviesNowPlaying = this.moviesNowPlaying.concat(res['results']);
             this.moviesNowPlayingLastIndex = res['page'];
             this.moviesNowPlayingTotalPages = res['total_pages'];
             this.moviesNowPlayingTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'page');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'NOW PLAYING');
             console.log('API NOW PLAYING MOVIES (' + pageIndex + '): ', res);
           }
           resultSub.next(res);
@@ -246,7 +248,7 @@ export class ApiService {
         .subscribe((res) => {
           if (endpoint === 'get-movies-by-genre') {
             this.moviesList = res['results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'filter-by-genre');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'GENRE FILTERED');
             console.log('API MOVIES BY GENRE (' + pageIndex + '): ', res);
           }
           resultSub.next(res);
