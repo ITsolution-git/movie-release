@@ -382,10 +382,11 @@ export class MovieDetailsComponent implements OnInit {
 
   getMovieArticles(movieId: number): void {
     const article = this.afDb.list(DB_COL.ARTICLES, ref => ref.orderByChild('article_movie_id').equalTo(movieId));
-    article.valueChanges().subscribe(res => {
-      console.log('ARTICLE: ', res);
-      this.movieArticles = res;
-    });
+    article.valueChanges()
+      .subscribe(res => {
+        // console.log('ARTICLE: ', res);
+        this.movieArticles = res;
+      });
   }
 
   toggleMoreInfo(): void {

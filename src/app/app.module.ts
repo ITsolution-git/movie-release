@@ -46,7 +46,6 @@ import { PageNotFoundComponent } from './content/page-not-found/page-not-found.c
 import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu.component';
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
 
-
 @NgModule({
   declarations: [
     PublicComponent,
