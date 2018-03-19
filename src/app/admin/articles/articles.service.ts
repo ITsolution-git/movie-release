@@ -36,7 +36,7 @@ export class ArticlesService {
     public dialog: MatDialog
   ) {
     // Initialize Articles DB Collection
-    this.articlesRef = this.afDb.list(DB_COL.ARTICLES_PUBLIC).valueChanges();
+    this.articlesRef = this.afDb.list(DB_COL.ARTICLES).valueChanges();
     // Get the List of Articles
     this.getArticles();
   }
