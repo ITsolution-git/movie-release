@@ -18,7 +18,7 @@ import {
 // WYSIWYG Editor
 import { CKEditorModule } from 'ng2-ckeditor';
 // Routing Module
-import { ArticlesRoutingModule } from "./articles-routing.module";
+import { ArticlesRoutingModule } from './articles-routing.module';
 // Components
 import { AddArticleComponent } from './add-article/add-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
