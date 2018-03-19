@@ -5,7 +5,7 @@
     </h2>
     <div class="buttons">
       <!-- Save Button-->
-      <button mat-raised-button color="accent" (click)="saveArticle(title.value, ckeditorContent.value)">Save</button>
+      <button mat-raised-button color="accent" [disabled]="!articleDetails.article_title" (click)="saveArticle(title.value, ckeditorContent.value)">Save</button>
       <!-- Delete Button -->
       <button mat-raised-button color="warn" (click)="openDeleteDialog()">Delete</button>
     </div>
