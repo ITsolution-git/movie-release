@@ -331,6 +331,15 @@
   </section>
 </div>
 
+<!-- Articles -->
+<div *ngIf="movieArticles">
+  <div *ngFor="let article of movieArticles">
+    <h3>{{ article.article_title }}</h3>
+    <span>{{ article.article_date }}</span>
+    <p>{{ article.article_content }}</p>
+  </div>
+</div>
+
 <!-- Images -->
 <mat-card *ngIf="movieImagesLength > 0">
   <mat-card-title>Images</mat-card-title>
