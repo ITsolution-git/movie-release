@@ -49,10 +49,6 @@ export class ArticlesListComponent implements OnInit {
 
   loadingPublic = false;
 
-  // @ViewChild(MatPaginator) editorPaginator: MatPaginator;
-  // @ViewChild(MatSort) editorSort: MatSort;
-
-
   constructor(
     afDb: AngularFireDatabase,
     private router: Router,
@@ -72,7 +68,6 @@ export class ArticlesListComponent implements OnInit {
     this.loadingPublic = true;
     this.publicArticlesObs
       .subscribe(res => {
-        // console.log('PUBLIC ARTICLES: ', res);
         this.articlesList = res;
         this.publicArticlesDataSource = new MatTableDataSource(res);
         this.publicArticlesDataSource.sort = this.publicSort;
@@ -88,12 +83,10 @@ export class ArticlesListComponent implements OnInit {
   }
 
   goToArticleEditPage(key: string) {
-    // console.log(key);
     this.router.navigate(['admin/articles/edit-article/' + key]);
   }
 
   toggleArticleStatus(key: string, status: string) {
-    // console.log(key, status);
     this.publicArticlesRef.update((key.toString()), {
       article_status: status
     });
