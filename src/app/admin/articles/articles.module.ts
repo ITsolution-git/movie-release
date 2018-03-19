@@ -20,7 +20,6 @@ import { CKEditorModule } from 'ng2-ckeditor';
 // Routing Module
 import { ArticlesRoutingModule } from './articles-routing.module';
 // Components
-import { AddArticleComponent } from './add-article/add-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { DeleteArticleDialogComponent } from './delete-article-dialog/delete-article-dialog.component';
@@ -45,7 +44,6 @@ import { DeleteArticleDialogComponent } from './delete-article-dialog/delete-art
     MatDialogModule
   ],
   declarations: [
-    AddArticleComponent,
     EditArticleComponent,
     ArticlesListComponent,
     DeleteArticleDialogComponent,
