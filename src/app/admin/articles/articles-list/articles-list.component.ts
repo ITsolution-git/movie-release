@@ -4,6 +4,7 @@ import { DataSource } from '@angular/cdk/table';
 // Material
 import { PageEvent, MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 // AngularFire
+import { AngularFireAuth } from 'angularfire2/auth';
 import {
   AngularFireDatabase,
   AngularFireList
@@ -13,6 +14,7 @@ import { Observable } from 'rxjs/Observable';
 // Constant
 import { DB_COL } from '../../../constants';
 // Service
+import { AdminService } from '../../admin.service';
 import { ArticlesService } from '../articles.service';
 import { ApiService } from '../../../services/api/api.service';
 // Components
@@ -25,7 +27,7 @@ import { SelectMovieDialogComponent } from '../select-movie-dialog/select-movie-
 })
 export class ArticlesListComponent implements OnInit {
 
-  displayedAdminColumns = [
+  adminColumns = [
     'article-title',
     'movie-title',
     'article-owner',
@@ -33,53 +35,77 @@ export class ArticlesListComponent implements OnInit {
     'status',
     'user-actions'
   ];
-  displayedEditorColumns = [
+  editorColumns = [
     'article-title',
     'movie-title',
     'date',
     'status'
   ];
+  userRole: string;
   articlesList: any[];
-  publicArticlesDataSource: MatTableDataSource<any> | null;
-  publicArticlesObs: Observable<{}[]>;
-  publicArticlesRef: any;
+  articlesDataSource: MatTableDataSource<any> | null;
+  articlesObs: Observable<{}[]>;
+  articlesRef: any;
 
-  @ViewChild(MatPaginator) publicPaginator: MatPaginator;
-  @ViewChild(MatSort) publicSort: MatSort;
+  @ViewChild(MatPaginator) articlesPaginator: MatPaginator;
+  @ViewChild(MatSort) articlesSort: MatSort;
 
-  loadingPublic = false;
+  loading = false;
 
   constructor(
-    afDb: AngularFireDatabase,
+    private afDb: AngularFireDatabase,
+    private afAuth: AngularFireAuth,
     private router: Router,
     public dialog: MatDialog,
     private apis: ApiService,
-    public ars: ArticlesService
+    public ars: ArticlesService,
+    public ads: AdminService
   ) {
-    // initializes articles db collection
-    this.publicArticlesObs = afDb.list(DB_COL.ARTICLES).valueChanges();
-    this.publicArticlesRef = afDb.list(DB_COL.ARTICLES);
-    this.getPublicArticles();
+    this.ads.getUserRole()
+      .then(res => {
+        this.userRole = res;
+        // initializes articles db collection
+        this.articlesObs = this.afDb.list(DB_COL.ARTICLES).valueChanges();
+        this.articlesRef = this.afDb.list(DB_COL.ARTICLES);
+        this.getArticles(this.ads.userUid);
+      });
   }
 
   ngOnInit(): void { }
 
-  getPublicArticles() {
-    this.loadingPublic = true;
-    this.publicArticlesObs
-      .subscribe(res => {
-        this.articlesList = res;
-        this.publicArticlesDataSource = new MatTableDataSource(res);
-        this.publicArticlesDataSource.sort = this.publicSort;
-        this.publicArticlesDataSource.paginator = this.publicPaginator;
-        this.loadingPublic = false;
-      });
+  getArticles(uid: string) {
+    if (this.userRole === 'admin') {
+      this.userRole = 'admin';
+      // console.log('GET ALL ARTICLES!');
+      this.loading = true;
+      this.articlesObs
+        .subscribe(art => {
+          this.articlesList = art;
+          this.articlesDataSource = new MatTableDataSource(art);
+          this.articlesDataSource.sort = this.articlesSort;
+          this.articlesDataSource.paginator = this.articlesPaginator;
+          this.loading = false;
+        });
+    } else if (this.userRole === 'editor') {
+      this.userRole = 'editor';
+      // console.log('GET EDITOR ARTICLES: ');
+      this.loading = true;
+      this.afDb.list(DB_COL.ARTICLES, ref => ref.orderByChild('article_owner_id').equalTo(this.afAuth.auth.currentUser.uid))
+        .valueChanges()
+        .subscribe(art => {
+          this.articlesList = art;
+          this.articlesDataSource = new MatTableDataSource(art);
+          this.articlesDataSource.sort = this.articlesSort;
+          this.articlesDataSource.paginator = this.articlesPaginator;
+          this.loading = false;
+        });
+    }
   }
 
-  applyPublicFilter(filterValue: string): void {
+  applyArticlesFilter(filterValue: string): void {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    this.publicArticlesDataSource.filter = filterValue;
+    this.articlesDataSource.filter = filterValue;
   }
 
   goToArticleEditPage(key: string) {
@@ -87,7 +113,7 @@ export class ArticlesListComponent implements OnInit {
   }
 
   toggleArticleStatus(key: string, status: string) {
-    this.publicArticlesRef.update((key.toString()), {
+    this.articlesRef.update((key.toString()), {
       article_status: status
     });
   }

@@ -1,6 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="page-header">
   <!-- Page Title -->
-  <h2 fxFlex>Movie Articles</h2>
+  <h2 fxFlex>
+    <span *ngIf="userRole === 'editor'">My</span>
+    <span *ngIf="userRole === 'admin'">Movie</span> Articles
+  </h2>
   <!-- Add New Article Button -->
   <button class="add-btn" mat-raised-button color="primary" (click)="this.ars.openSelectMovieDialog()">
     <mat-icon>add</mat-icon> Add New
@@ -9,11 +12,12 @@
 
 <div fxLayout="column" fxFlex class="page-content">
   <!-- Article Search Field -->
-  <mat-form-field class="public-search">
-    <input matInput (keyup)="applyPublicFilter($event.target.value)" placeholder="Search for Amazing Articles">
+  <mat-form-field class="artciles-search">
+    <input matInput (keyup)="applyArticlesFilter($event.target.value)" placeholder="Search for Articles">
   </mat-form-field>
-  <!-- Articles Table -->
-  <mat-table #publicTable [dataSource]="publicArticlesDataSource" matSort class="public-table">
+
+  <!-- Admin Articles Table -->
+  <mat-table #articlesTable [dataSource]="articlesDataSource" matSort class="artciles-table">
     <!-- Article Title -->
     <ng-container matColumnDef="article-title" mat-sort-header>
       <mat-header-cell *matHeaderCellDef> Article Title </mat-header-cell>
@@ -62,12 +66,12 @@
               <mat-icon>edit</mat-icon> Edit
             </span>
           </button>
-          <button *ngIf="row.article_status === 'draft'" mat-menu-item (click)="toggleArticleStatus(row.article_key, 'public')">
+          <button *ngIf="row.article_status === 'draft' && userRole === 'admin'" mat-menu-item (click)="toggleArticleStatus(row.article_key, 'public')">
             <span>
               <mat-icon>visibility</mat-icon> Publish
             </span>
           </button>
-          <button *ngIf="row.article_status === 'public'" mat-menu-item (click)="toggleArticleStatus(row.article_key, 'draft')">
+          <button *ngIf="row.article_status === 'public' && userRole === 'admin'" mat-menu-item (click)="toggleArticleStatus(row.article_key, 'draft')">
             <span>
               <mat-icon>visibility_off</mat-icon>Unpublish
             </span>
@@ -76,8 +80,8 @@
       </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedAdminColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedAdminColumns;"></mat-row>
+    <mat-header-row *matHeaderRowDef="adminColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: adminColumns;"></mat-row>
   </mat-table>
   <!-- No Results -->
   <div *ngIf="articlesList?.length < 1" fxFlex fxLayoutAlign="center center" class="no-results">No Articles found!</div>
@@ -87,6 +91,6 @@
 </div>
 
 <!-- Loader -->
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLooading" class="loader" fxFlexLayoutAlign="center center">
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader" fxFlexLayoutAlign="center center">
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
