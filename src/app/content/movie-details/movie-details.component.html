@@ -1,5 +1,5 @@
 <!-- Movie Details & Posters -->
-<div *ngIf="movieDetails">
+<div *ngIf="movieDetails" [id]="movieDetails.id">
   <!-- Movie Details -->
   <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="movie-details">
     <div fxFlex="70%" fxFlex.sm="75%" fxFlex.xs="90%" id="main-right">
