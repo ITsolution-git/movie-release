@@ -19,6 +19,7 @@ import { ArticlesService } from '../articles.service';
 import { ApiService } from '../../../services/api/api.service';
 // Components
 import { SelectMovieDialogComponent } from '../select-movie-dialog/select-movie-dialog.component';
+import { DeleteArticleDialogComponent } from '../delete-article-dialog/delete-article-dialog.component';
 
 @Component({
   selector: 'app-articles-list',
@@ -117,5 +118,24 @@ export class ArticlesListComponent implements OnInit {
       article_status: status
     });
   }
+
+  // Opens Dialog Box when Delete Button is Clicked
+  openDeleteDialog(articleId: string): void {
+    let dialogRef = this.dialog.open(DeleteArticleDialogComponent, {
+      data: articleId
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      dialogRef = null;
+      if (typeof result === 'object' && result.deleted) {
+        this.goBack();
+      }
+    });
+  }
+
+  // Go back to previous route
+  public goBack(): void {
+    this.router.navigate(['admin/articles']);
+  }
+
 
 }

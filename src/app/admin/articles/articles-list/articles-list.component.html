@@ -66,6 +66,11 @@
               <mat-icon>edit</mat-icon> Edit
             </span>
           </button>
+          <button mat-menu-item (click)="openDeleteDialog(row.article_key)">
+            <span>
+              <mat-icon>close</mat-icon> Delete
+            </span>
+          </button>
           <button *ngIf="row.article_status === 'draft' && userRole === 'admin'" mat-menu-item (click)="toggleArticleStatus(row.article_key, 'public')">
             <span>
               <mat-icon>visibility</mat-icon> Publish
