@@ -18,7 +18,6 @@ import {
   MatTabsModule,
   MatOptionModule,
   MatSelectModule,
-  MatSidenav,
   MatSidenavModule,
   MatButtonToggleModule,
   MatSnackBarModule,
@@ -30,7 +29,7 @@ import {
   MatSliderModule,
   MatProgressBarModule,
   MatRadioModule,
-  MatRippleModule,
+  MatRippleModule
 } from '@angular/material';
 // Toastr
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -86,6 +85,7 @@ import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.componen
     MatTabsModule,
     MatOptionModule,
     MatSelectModule,
+    MatSidenavModule,
     CdkTableModule,
     FlexLayoutModule,
     FormsModule,

@@ -28,12 +28,6 @@ p, i, em{
   font-weight: normal;
 }
 /*HOST*/
-app-header{
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9;
-}
 app-movies, app-genres, app-movie-details, app-search, app-page-not-found, app-shared, app-login {
   margin: 90px auto;
   display: block;
