@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Observable';
 // AngularFire
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+// Toast Messages
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // Constants
 import { DB_COL, ckEditorConfig } from '../../../constants';
 // Services
@@ -44,7 +46,8 @@ export class EditArticleComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private afDb: AngularFireDatabase,
     public dialog: MatDialog,
-    private apis: ApiService
+    private apis: ApiService,
+    public toastr: ToastsManager
   ) {
     this.ckEditorConfig = ckEditorConfig;
     // Get the article ID from the URL
@@ -86,9 +89,7 @@ export class EditArticleComponent implements OnInit {
   }
 
   saveArticle(title: string, ckeditorContent: string): void {
-    // console.log(title, ckeditorContent);
     if (title) {
-
       this.articleRef.update({
         article_title: title,
         article_content: ckeditorContent,
@@ -96,18 +97,15 @@ export class EditArticleComponent implements OnInit {
         article_status: 'draft'
       })
         .then(() => {
-          // this.toastr.success('Page Saved');
-          console.log('Page Saved');
+          this.toastr.success('Article Saved');
           this.router.navigate(['admin/articles']);
         })
         .catch((error) => {
-          // this.toastr.error('Page Not Saved!');
-          console.log('Page Not Saved!');
+          this.toastr.error('There Was an Error. Article Was Not Saved!');
           console.log(error.message);
         });
     } else {
-      // this.toastr.error('Please Enter Page Title!');
-      console.log('Please Enter Page Title!');
+      this.toastr.error('Article Title Should Not Be Empty!');
     }
   }
 

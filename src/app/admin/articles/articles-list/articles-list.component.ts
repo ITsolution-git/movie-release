@@ -11,6 +11,8 @@ import {
 } from 'angularfire2/database';
 // RxJS
 import { Observable } from 'rxjs/Observable';
+// Toast Messages
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // Constant
 import { DB_COL } from '../../../constants';
 // Service
@@ -60,7 +62,8 @@ export class ArticlesListComponent implements OnInit {
     public dialog: MatDialog,
     private apis: ApiService,
     public ars: ArticlesService,
-    public ads: AdminService
+    public ads: AdminService,
+    public toastr: ToastsManager
   ) {
     this.ads.getUserRole()
       .then(res => {
@@ -116,6 +119,14 @@ export class ArticlesListComponent implements OnInit {
   toggleArticleStatus(key: string, status: string) {
     this.articlesRef.update((key.toString()), {
       article_status: status
+    }).then(() => {
+      if (status === 'public') {
+        this.toastr.success('Article Published!');
+      } else {
+        this.toastr.success('Article Unpublished!');
+      }
+    }).catch((error) => {
+      this.toastr.success('Could Not Change Article Status!', error);
     });
   }
 
@@ -136,6 +147,5 @@ export class ArticlesListComponent implements OnInit {
   public goBack(): void {
     this.router.navigate(['admin/articles']);
   }
-
 
 }

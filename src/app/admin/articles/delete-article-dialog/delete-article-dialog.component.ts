@@ -8,6 +8,8 @@ import {
   AngularFireObject,
   AngularFireList
 } from 'angularfire2/database';
+// Toast Messages
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // Constants
 import { DB_COL, ckEditorConfig } from '../../../constants';
 
@@ -22,21 +24,20 @@ export class DeleteArticleDialogComponent implements OnInit {
     private afDb: AngularFireDatabase,
     public dialogRef: MatDialogRef<DeleteArticleDialogComponent>,
     private router: Router,
-    @Inject(MAT_DIALOG_DATA) public articleID: string
+    @Inject(MAT_DIALOG_DATA) public articleID: string,
+    public toastr: ToastsManager
   ) { }
 
   ngOnInit(): void { }
 
   deleteArticle(): void {
-    console.log(this.articleID);
     this.afDb.object(`${DB_COL.ARTICLES}/${this.articleID}`).remove()
       .then(() => {
-        // this.toastr.success('Successfully Deleted Article!');
-        console.log('Successfully Deleted Article!');
+        this.toastr.success('Article Was Deleted!');
         this.dialogRef.close({ deleted: true });
         this.router.navigate(['admin/articles']);
       }).catch(error => {
-        // this.toastr.error(error.message);
+        this.toastr.error('There Was an Error. Article Was Not Be Deleted!');
         console.log(error.message);
       });
   }
