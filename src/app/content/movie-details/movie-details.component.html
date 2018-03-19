@@ -332,9 +332,9 @@
 </div>
 
 <!-- Articles -->
-<div *ngIf="movieArticles">
-  <div *ngFor="let article of movieArticles">
-    <div class="article-container" *ngIf="article.article_status === 'public'">
+<div *ngIf="movieArticles" id="articles">
+  <div *ngFor="let article of movieArticles" class="article">
+    <div *ngIf="article.article_status === 'public'">
       <h3>{{ article.article_title }}</h3>
       <span>{{ article.article_date | date: 'short' }}</span>
       <div class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
