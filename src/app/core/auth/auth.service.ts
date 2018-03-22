@@ -186,14 +186,14 @@ export class AuthService {
 
   logout(): void {
     this.afAuth.auth.signOut();
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/']);
   }
 
-  redirectToAuth(): void {
-    setTimeout(() => {
-      this.resetMessages();
-      this.router.navigate(['/auth']);
-    }, 3000);
-  }
+  // redirectToAuth(): void {
+  //   setTimeout(() => {
+  //     this.resetMessages();
+  //     this.router.navigate(['/auth']);
+  //   }, 3000);
+  // }
 
 }
