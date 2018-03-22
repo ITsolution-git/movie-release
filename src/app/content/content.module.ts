@@ -16,8 +16,6 @@ import {
   MatMenuModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-// Modules
-import { AuthModule } from '../core/auth/auth.module';
 // Routing Module
 import { ContentRoutingModule } from './content-routing.module';
 // Pipes
@@ -29,7 +27,7 @@ import { GenresComponent } from './genres/genres.component';
 import { SearchComponent } from './search/search.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialog.component';
-import { AuthDialogComponent } from './shared/auth-dialog/auth-dialog.component';
+// import { AuthDialogComponent } from './shared/auth-dialog/auth-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
 
@@ -50,8 +48,7 @@ import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movie
     MatDialogModule,
     MatMenuModule,
     FlexLayoutModule,
-    ContentRoutingModule,
-    AuthModule
+    ContentRoutingModule
   ],
   declarations: [
     HomeComponent,
@@ -60,14 +57,14 @@ import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movie
     SearchComponent,
     MovieDetailsComponent,
     TrailersDialogComponent,
-    AuthDialogComponent,
+    // AuthDialogComponent,
     GenresListComponent,
     MainMoviesDirectoryComponent,
     SafePipe
   ],
   entryComponents: [
     TrailersDialogComponent,
-    AuthDialogComponent
+    // AuthDialogComponent
   ]
 })
 export class ContentModule { }

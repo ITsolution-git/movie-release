@@ -88,25 +88,55 @@ export class AuthService {
       });
   }
 
-  emailRegister(email: string, password: string, passwordConfirm: string): any {
-    if (password === passwordConfirm) {
-      return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-        .then((userData) => {
-          this.registerUserData(userData, null);
-          this.resetMessages();
-          this.authMessage = 'Thank You for Registering. You will be redirected to Login Page.';
-          this.redirectToAuth();
-        })
-        .catch((err) => {
-          this.resetMessages();
-          this.authError = err.message;
-        });
-    } else {
-      this.authError = 'Passwords Don\'t Match';
-    }
+  // emailRegister(email: string, password: string, passwordConfirm: string): any {
+  //   if (password === passwordConfirm) {
+  //     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+  //       .then((userData) => {
+  //         this.registerUserData(userData, null, null);
+  //         this.resetMessages();
+  //         this.authMessage = 'Thank You for Registering. You will be redirected to Login Page.';
+  //         this.redirectToAuth();
+  //       })
+  //       .catch((err) => {
+  //         this.resetMessages();
+  //         this.authError = err.message;
+  //       });
+  //   } else {
+  //     this.authError = 'Passwords Don\'t Match';
+  //   }
+  // }
+
+  googleLogin(): void {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then((gUserData) => {
+        // console.log(guserData.user);
+        this.registerUserData(null, gUserData.user, null);
+        // if () {
+        // this.router.navigate(['/']);
+        // }
+      })
+      .catch((err) => {
+        this.resetMessages();
+        this.authError = err.message;
+      });
   }
 
-  registerUserData(userData: User, gUserData: User): void {
+  facebookLogin(): void {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then((fUserData) => {
+        // console.log(guserData.user);
+        this.registerUserData(null, null, fUserData.user);
+        // if () {
+        // this.router.navigate(['/']);
+        // }
+      })
+      .catch((err) => {
+        this.resetMessages();
+        this.authError = err.message;
+      });
+  }
+
+  registerUserData(userData: User, gUserData: User, fUserData: User): void {
     // if userData is initialized
     if (userData) {
       // console.log('Email Login UID: ', userData.uid);

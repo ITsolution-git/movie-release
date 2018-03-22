@@ -27,7 +27,7 @@
   <!-- Account Menu -->
   <nav id="account-menu">
     <!-- Login -->
-    <a routerLink="/auth/login" *ngIf="this.aus.isLoggedIn === false">
+    <a (click)="this.as.openLoginDialog()" *ngIf="this.aus.isLoggedIn === false">
       <button mat-raised-button color="primary" class="login-btn">
         <span>LOGIN</span>
         <!-- <mat-icon>exit_to_app</mat-icon> -->

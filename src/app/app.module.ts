@@ -16,7 +16,8 @@ import {
   MatProgressSpinnerModule,
   MatTabsModule,
   MatOptionModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule
 } from '@angular/material';
 // Toastr
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -27,6 +28,7 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { RolesGuardService } from './core/auth/roles-guard.service';
 // Modules
 import { CoreModule } from './core/core.module';
+import { AuthModule } from './core/auth/auth.module';
 // Routing Modules
 import { AppRoutingModule } from './app-routing.module';
 // Services
@@ -44,7 +46,7 @@ import { FooterComponent } from './content/shared/footer/footer.component';
 import { PageNotFoundComponent } from './content/page-not-found/page-not-found.component';
 import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu.component';
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
-
+import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
 @NgModule({
   declarations: [
     PublicComponent,
@@ -53,7 +55,8 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
     FooterComponent,
     PageNotFoundComponent,
     PrimaryMenuComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    AuthDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -74,10 +77,12 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
+    AuthModule,
     MatToolbarModule,
     MatIconModule,
     ToastModule.forRoot(),
     AppRoutingModule,
+    MatDialogModule
   ],
   providers: [
     AppService,
@@ -93,6 +98,7 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
       useClass: ToastrOptions
     }
   ],
+  entryComponents: [AuthDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

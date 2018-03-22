@@ -1,18 +1,2 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <mat-card fxLayoutAlign="center center">
-    <form>
-      <mat-form-field>
-        <input matInput name="email" type="text" placeholder="Email" #email required />
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput name="password" type="password" placeholder="Password" #password required autocomplete="" />
-      </mat-form-field>
-      <div *ngIf="this.as.authError" class="error">{{ this.as.authError }}</div>
-    </form>
-
-    <button mat-raised-button color="primary" (click)="this.as.emailLogin(email.value, password.value)">Login</button>
-
-    <a routerLink="/auth/register">Register</a>
-    <a routerLink="/auth/forgot-password">Forgot Password?</a>
-  </mat-card>
-</div>
+<button mat-raised-button color="accent" (click)="this.as.facebookLogin()">Login with Facebook</button>
+<button mat-raised-button color="accent" (click)="this.as.googleLogin()">Login with Google</button>

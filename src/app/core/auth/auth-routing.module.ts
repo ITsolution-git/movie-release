@@ -9,9 +9,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 // Auth Routes
 const authRoutes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'admin-login', component: AdminLoginComponent },
 ];

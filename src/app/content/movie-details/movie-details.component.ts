@@ -452,19 +452,19 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  openLoginDialog(): void {
-    let dialogRef = this.dialog.open(AuthDialogComponent, {
-      panelClass: 'login-dialog',
-      data: 'login',
-      height: '100%',
-      width: '100%',
-      maxWidth: '100%',
-      maxHeight: '100%'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      dialogRef = null;
-    });
-  }
+  // openLoginDialog(): void {
+  //   let dialogRef = this.dialog.open(AuthDialogComponent, {
+  //     panelClass: 'login-dialog',
+  //     data: 'login',
+  //     height: '100%',
+  //     width: '100%',
+  //     maxWidth: '100%',
+  //     maxHeight: '100%'
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     dialogRef = null;
+  //   });
+  // }
 
   rateMovie(rating: string): void {
     this.afAuth.authState.subscribe(res => {
@@ -482,7 +482,7 @@ export class MovieDetailsComponent implements OnInit {
         })
           .catch(err => console.log(err, 'You do not have access!'));
       } else {
-        this.openLoginDialog();
+        this.as.openLoginDialog();
       }
     });
   }
@@ -509,7 +509,7 @@ export class MovieDetailsComponent implements OnInit {
             .catch(err => console.log(err, 'You do not have access!'));
         }
       } else {
-        this.openLoginDialog();
+        this.as.openLoginDialog();
       }
     });
   }
