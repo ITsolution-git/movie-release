@@ -1,3 +1,30 @@
-<p>
-  edit-article works!
-</p>
+<div fxLayout="column" fxFlex class="article-editor-container" *ngIf="articleDetails && movieDetails && !isLoading">
+  <header fxLayout="row" fxLayoutAlign="center center" class="page-header">
+    <h2 fxFlex>
+      <mat-icon *ngIf="articleDetails.article_title" (click)="goBack()" matToolTip="Go Back To Previous Page">arrow_back</mat-icon>Edit Article for {{ movieDetails.title }}
+    </h2>
+    <div class="buttons">
+      <!-- Save Button-->
+      <button mat-raised-button color="accent" (click)="saveArticle(title.value, ckeditorContent.value)">Save</button>
+      <!-- Delete Button -->
+      <button mat-raised-button color="warn" (click)="openDeleteDialog()">Delete</button>
+    </div>
+  </header>
+
+  <!-- Title -->
+  <mat-form-field fxFlex>
+    <input class="title" type="text" [(ngModel)]="articleDetails.article_title" name="title" matInput placeholder="Article Title"
+      #title>
+  </mat-form-field>
+
+  <!-- WYSIWYG Editor -->
+  <ckeditor [(ngModel)]="articleDetails.article_content" name="ckeditorContent" [config]="ckEditorConfig" [readonly]="false"
+    (change)="onChange($event)" (ready)="onReady($event)" (focus)="onFocus($event)" (blur)="onBlur($event)" debounce="500"
+    #ckeditorContent>
+  </ckeditor>
+</div>
+
+<!-- Loader -->
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLooading" class="loader" fxFlexLayoutAlign="center center">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

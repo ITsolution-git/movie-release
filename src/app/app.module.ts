@@ -27,7 +27,6 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { RolesGuardService } from './core/auth/roles-guard.service';
 // Modules
 import { CoreModule } from './core/core.module';
-// import { ContentModule } from './content/content.module';
 // Routing Modules
 import { AppRoutingModule } from './app-routing.module';
 // Services
@@ -45,7 +44,6 @@ import { FooterComponent } from './content/shared/footer/footer.component';
 import { PageNotFoundComponent } from './content/page-not-found/page-not-found.component';
 import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu.component';
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
-
 
 @NgModule({
   declarations: [
@@ -76,7 +74,6 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
-    // ContentModule, // this makes the header to disappear
     MatToolbarModule,
     MatIconModule,
     ToastModule.forRoot(),

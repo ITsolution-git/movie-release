@@ -68,7 +68,7 @@ export class DeleteUserDialogComponent implements OnInit {
       // this.afDb.object(`${FB_LISTS.UPLOADS}/img/users/${this.userKey}`).remove(),
       resolve();
     }).then(() => {
-      this.toastr.success('Successfully Deleted User!');
+      this.toastr.success('User was deleted!');
       this.dialogRef.close();
       this.router.navigate(['admin/users']);
     });

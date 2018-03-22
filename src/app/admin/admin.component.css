@@ -1,17 +1,5 @@
-/* .sidenav-button { 
-    position: fixed;
-    position: sticky;
-    left: 1rem;
-    top: 1.2rem;
-    z-index: 3;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    background: #fff;
-}*/
-
 mat-drawer-content {
-  padding: 0 4.3rem;
+  padding: 0 2rem;
 }
 
 mat-drawer-container {
@@ -20,4 +8,5 @@ mat-drawer-container {
 
 mat-drawer {
   background: #222;
+  min-width: 200px;
 }

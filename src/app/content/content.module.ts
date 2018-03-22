@@ -20,6 +20,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthModule } from '../core/auth/auth.module';
 // Routing Module
 import { ContentRoutingModule } from './content-routing.module';
+// Pipes
+import { SafePipe } from '../pipes/safe-html.pipe';
 // Components
 import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
@@ -60,7 +62,8 @@ import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movie
     TrailersDialogComponent,
     AuthDialogComponent,
     GenresListComponent,
-    MainMoviesDirectoryComponent
+    MainMoviesDirectoryComponent,
+    SafePipe
   ],
   entryComponents: [
     TrailersDialogComponent,

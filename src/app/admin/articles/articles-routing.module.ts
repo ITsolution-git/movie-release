@@ -3,16 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // Components
-import { AddArticleComponent } from './add-article/add-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 
 // Articles Routes
 const articlesRoutes = [
   { path: '', component: ArticlesListComponent },
-  { path: 'edit/:id', component: EditArticleComponent },
-  { path: 'add', component: AddArticleComponent },
-]
+  { path: 'edit-article/:id', component: EditArticleComponent }
+];
 
 @NgModule({
   imports: [

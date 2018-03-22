@@ -34,7 +34,7 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void { }
 
   getUserRole(): void {
-    console.log('GET USER ROLE');
+    // console.log('GET USER ROLE');
     this.userObsRef.subscribe(res => {
       console.log(res['role']);
       this.userRole = res['role'];

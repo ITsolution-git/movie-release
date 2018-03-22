@@ -4,6 +4,6 @@ import { ToastOptions } from 'ng2-toastr';
 @Injectable()
 export class ToastrOptions extends ToastOptions {
     showCloseButton = true;
-    positionClass = 'toast-top-full-width';
+    positionClass = 'toast-bottom-right';
     toastLife = 3000;
 }

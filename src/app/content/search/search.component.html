@@ -13,7 +13,7 @@
 <div *ngIf="moviesList">
   <div *ngIf="!loading" class="result-content">
     <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="result-list">
-      <mat-card *ngFor="let movie of moviesList" class="result-card">
+      <mat-card *ngFor="let movie of moviesList" class="result-card" [id]="movie.id">
         <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
           <!-- Movie Poster -->
           <div>
