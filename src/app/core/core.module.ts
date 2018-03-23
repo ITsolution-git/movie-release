@@ -8,7 +8,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../../environments/environment';
 // Auth
 import { AuthService } from './auth/auth.service'; // Service for Authorization functions (login, register, reset password...)
-import { AuthGuard } from './auth/guards/auth.guard';
+import { AuthGuard } from './auth/guards/auth-guard.service';
 
 @NgModule({
   imports: [
