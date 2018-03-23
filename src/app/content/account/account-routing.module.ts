@@ -6,9 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AccountComponent } from './account.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { AccountFavoritesComponent } from './account-favorites/account-favorites.component';
-import { AccountReviewsComponent } from './account-reviews/account-reviews.component';
 import { AccountRatingsComponent } from './account-ratings/account-ratings.component';
-import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 // Account Routes
 const accountRoutes = [
@@ -17,9 +15,7 @@ const accountRoutes = [
       { path: '', redirectTo: 'details', pathMatch: 'full' },
       { path: 'details', component: AccountDetailsComponent },
       { path: 'favorites', component: AccountFavoritesComponent },
-      { path: 'reviews', component: AccountReviewsComponent },
-      { path: 'ratings', component: AccountRatingsComponent },
-      { path: 'settings', component: AccountSettingsComponent }
+      { path: 'ratings', component: AccountRatingsComponent }
     ]
   }
 ];
