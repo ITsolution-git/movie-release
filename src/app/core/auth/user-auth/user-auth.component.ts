@@ -5,11 +5,11 @@ import { AuthService } from '../auth.service';
 // Constants
 import { APP_SEO_NAME } from '../../../constants';
 @Component({
-  selector: 'app-user-login',
-  templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+  selector: 'app-user-auth',
+  templateUrl: './user-auth.component.html',
+  styleUrls: ['./user-auth.component.css']
 })
-export class UserLoginComponent {
+export class UserAuthComponent {
 
   constructor(
     public meta: Meta,

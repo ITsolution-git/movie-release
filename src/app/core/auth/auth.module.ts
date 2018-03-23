@@ -9,7 +9,7 @@ import {
 // Routing Module
 import { AuthRoutingModule } from './auth-routing.module';
 // Components
-import { UserLoginComponent } from './user-login/user-login.component';
+import { UserAuthComponent } from './user-auth/user-auth.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component'; // Service for Guarding Admin and Account Routes
@@ -23,13 +23,13 @@ import { AdminLoginComponent } from './admin-login/admin-login.component'; // Se
     MatButtonModule
   ],
   declarations: [
-    UserLoginComponent,
+    UserAuthComponent,
     RegisterComponent,
     ForgotPasswordComponent,
     AdminLoginComponent
   ],
   exports: [
-    UserLoginComponent
+    UserAuthComponent
   ]
 })
 export class AuthModule { }
