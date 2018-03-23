@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // AuthGuard
-import { AuthGuard } from '../core/auth/auth.guard';
+import { AuthGuard } from '../core/auth/guards/auth.guard';
 
 // components
 import { HomeComponent } from './home/home.component';

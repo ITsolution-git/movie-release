@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // AuthGuard
-import { AdminRoleGuardService } from '../core/auth/admin-role-guard.service';
+import { AdminRoleGuardService } from '../core/auth/guards/admin-role-guard.service';
 
 // Components
 import { AdminComponent } from './admin.component';

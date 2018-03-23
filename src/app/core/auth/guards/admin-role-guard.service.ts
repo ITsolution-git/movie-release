@@ -9,7 +9,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 // Services
-import { DB_COL } from '../../constants';
+import { DB_COL } from '../../../constants';
 
 @Injectable()
 export class AdminRoleGuardService {

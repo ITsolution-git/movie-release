@@ -24,8 +24,8 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ToastrOptions } from './toastr-options';
 import { ToastOptions } from 'ng2-toastr';
 // Guard Services
-import { AuthGuard } from './core/auth/auth.guard';
-import { RolesGuardService } from './core/auth/roles-guard.service';
+import { AuthGuard } from './core/auth/guards/auth.guard';
+import { RolesGuardService } from './core/auth/guards/roles-guard.service';
 // Modules
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './core/auth/auth.module';

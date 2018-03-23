@@ -88,24 +88,6 @@ export class AuthService {
       });
   }
 
-  // emailRegister(email: string, password: string, passwordConfirm: string): any {
-  //   if (password === passwordConfirm) {
-  //     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-  //       .then((userData) => {
-  //         this.registerUserData(userData, null, null);
-  //         this.resetMessages();
-  //         this.authMessage = 'Thank You for Registering. You will be redirected to Login Page.';
-  //         this.redirectToAuth();
-  //       })
-  //       .catch((err) => {
-  //         this.resetMessages();
-  //         this.authError = err.message;
-  //       });
-  //   } else {
-  //     this.authError = 'Passwords Don\'t Match';
-  //   }
-  // }
-
   googleLogin(): void {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then((gUserData) => {
@@ -188,12 +170,5 @@ export class AuthService {
     this.afAuth.auth.signOut();
     this.router.navigate(['/']);
   }
-
-  // redirectToAuth(): void {
-  //   setTimeout(() => {
-  //     this.resetMessages();
-  //     this.router.navigate(['/auth']);
-  //   }, 3000);
-  // }
 
 }
