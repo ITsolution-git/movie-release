@@ -49,7 +49,8 @@ app-movie-details,
 app-search,
 app-page-not-found,
 app-shared,
-app-login,
+app-user-login,
+app-admin-login,
 app-register,
 app-forgot-password {
   margin: 90px auto;
@@ -72,7 +73,8 @@ app-account {
   display: block;
 }
 
-app-login mat-card,
+app-user-login mat-card,
+app-admin-login mat-card,
 app-register mat-card,
 app-forgot-password mat-card {
   background: transparent !important;
