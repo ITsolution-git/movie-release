@@ -22,8 +22,6 @@ import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { AccountFavoritesComponent } from './account-favorites/account-favorites.component';
-import { AccountReviewsComponent } from './account-reviews/account-reviews.component';
-import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { AccountRatingsComponent } from './account-ratings/account-ratings.component';
 
 @NgModule({
@@ -46,8 +44,6 @@ import { AccountRatingsComponent } from './account-ratings/account-ratings.compo
     AccountComponent,
     AccountDetailsComponent,
     AccountFavoritesComponent,
-    AccountReviewsComponent,
-    AccountSettingsComponent,
     AccountRatingsComponent
   ]
 })

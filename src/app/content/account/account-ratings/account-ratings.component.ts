@@ -69,10 +69,6 @@ export class AccountRatingsComponent implements OnInit {
       this.movieRatingsObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/movie_ratings').valueChanges();
       this.userMovieRatingsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/movie_ratings');
       this.getUserMovieRatings();
-      // TV Shows DB References
-      this.tvShowRatingsObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/tv_show_ratings').valueChanges();
-      this.userTvShowRatingsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/tv_show_ratings');
-      this.getUserTvShowRatings();
     });
   }
 
@@ -90,20 +86,7 @@ export class AccountRatingsComponent implements OnInit {
       });
   }
 
-  getUserTvShowRatings(): void {
-    this.loading = true;
-    this.tvShowRatingsObsRef
-      .subscribe(res => {
-        this.tvShowRatingsSource = new MatTableDataSource(res);
-        // console.log('TV SHOWS RATING SOURCE: ', this.tvShowRatingsSource);
-        this.tvShowRatingsSource.sort = this.tvShowRatingsSort;
-        if (this.tvShowRatingsSource) {
-          this.loading = false;
-        }
-      });
-  }
-
-  rateMovie(rating: number, id: string, title: string, poster: string) {
+  rateMovie(rating: number, id: string, title: string, poster: string): void {
     // console.log('Rate Movie', rating);
     this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + id);
     this.movieRatingsRef.update(this.afAuth.auth.currentUser.uid, {
@@ -120,7 +103,7 @@ export class AccountRatingsComponent implements OnInit {
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
-  removeMovieRating(movieId: number) {
+  removeMovieRating(movieId: number): void {
     // console.log(movieId);
     this.afAuth.authState.subscribe(res => {
       this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + movieId + '/' + res.uid);
