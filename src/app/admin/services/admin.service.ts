@@ -5,7 +5,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 // RxJS
 import { Observable } from 'rxjs/Observable';
 // Constants
-import { DB_COL, APP_SEO_NAME } from '../constants';
+import { DB_COL, APP_SEO_NAME } from '../../constants';
 @Injectable()
 export class AdminService {
 

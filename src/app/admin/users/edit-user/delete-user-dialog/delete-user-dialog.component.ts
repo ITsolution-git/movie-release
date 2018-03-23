@@ -12,7 +12,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Services
 import { UsersService } from '../../users.service';
-import { UploadService } from '../../../_services/upload/upload.service';
+import { UploadService } from '../../../services/upload/upload.service';
 
 // Constant
 import { DB_COL } from '../../../../constants';

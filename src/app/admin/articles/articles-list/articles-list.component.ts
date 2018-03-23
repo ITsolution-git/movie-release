@@ -16,7 +16,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // Constant
 import { DB_COL } from '../../../constants';
 // Service
-import { AdminService } from '../../admin.service';
+import { AdminService } from '../../services/admin.service';
 import { ArticlesService } from '../articles.service';
 import { ApiService } from '../../../core/services/api/api.service';
 // Components
@@ -77,7 +77,7 @@ export class ArticlesListComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  getArticles(uid: string) {
+  getArticles(uid: string): void {
     if (this.userRole === 'admin') {
       this.userRole = 'admin';
       // console.log('GET ALL ARTICLES!');

@@ -73,29 +73,11 @@ export class UploadService {
               this.onDone.emit(upload);
               this.toastr.success('Logo Uploaded!');
             });
-        } else if (category === 'banner-top' || category === 'banner-bottom') {
-          this.saveBannerImg(upload)
-            .then(() => {
-              this.onDone.emit(upload);
-              this.toastr.success('Banner Uploaded!');
-            });
-        } else if (category === 'album') {
-          this.saveAlbumImg(upload)
-            .then(() => {
-              this.onDone.emit(upload);
-              this.toastr.success('Album Artwork Uploaded!');
-            });
         } else if (category === 'user-avatars') {
           this.saveUserProfileImg(upload)
             .then(() => {
               this.onDone.emit(upload);
               this.toastr.success('Profile Image Uploaded!');
-            });
-        } else if (category === 'fb-share-logo') {
-          this.saveFbShareDefaultImg(upload)
-            .then(() => {
-              this.onDone.emit(upload);
-              this.toastr.success('Default Facebook Share Logo Uploaded!');
             });
         }
       }
@@ -109,17 +91,8 @@ export class UploadService {
   private saveLogoImg(file: Upload, subPath?: string) {
     return this.db.list(`${this.imgBasePath}/logo`).push(file);
   }
-  private saveFbShareDefaultImg(file: Upload, subPath?: string) {
-    return this.db.list(`${this.imgBasePath}/fb-share`).push(file);
-  }
-  private saveBannerImg(file: Upload, subPath?: string) {
-    return this.db.list(`${this.imgBasePath}/banners`).push(file);
-  }
   private saveUserProfileImg(file: Upload, subPath?: string) {
     return this.db.list(`${this.imgBasePath}/users`).push(file);
-  }
-  private saveAlbumImg(file: Upload, subPath?: string) {
-    return this.db.list(`${this.imgBasePath}/albums`).push(file);
   }
 
   // Delete files from database

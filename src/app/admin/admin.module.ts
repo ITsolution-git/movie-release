@@ -16,8 +16,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 // Guard Services
 import { AdminRoleGuardService } from '../core/auth/admin-role-guard.service';
 // Services
-import { AdminService } from './admin.service';
-import { UploadService } from './_services/upload/upload.service';
+import { AdminService } from './services/admin.service';
+import { UploadService } from './services/upload/upload.service';
 import { UsersService } from './users/users.service';
 import { ArticlesService } from './articles/articles.service';
 // Components
