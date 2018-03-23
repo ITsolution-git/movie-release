@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 // Services
-import { AppService } from '../../services/app.service';
-import { ApiService } from '../../services/api/api.service';
+import { AppService } from '../../core/services/app.service';
+import { ApiService } from '../../core/services/api/api.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_300, APP_SEO_NAME } from '../../constants';
 

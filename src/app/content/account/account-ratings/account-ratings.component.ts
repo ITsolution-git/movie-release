@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_92, IMG_45, DB_COL, APP_SEO_NAME } from '../../../constants';
 // Services
-import { AppService } from '../../../services/app.service';
+import { AppService } from '../../../core/services/app.service';
 import { log } from 'util';
 
 @Component({

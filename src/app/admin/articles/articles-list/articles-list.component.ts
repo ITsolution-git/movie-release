@@ -18,7 +18,7 @@ import { DB_COL } from '../../../constants';
 // Service
 import { AdminService } from '../../admin.service';
 import { ArticlesService } from '../articles.service';
-import { ApiService } from '../../../services/api/api.service';
+import { ApiService } from '../../../core/services/api/api.service';
 // Components
 import { SelectMovieDialogComponent } from '../select-movie-dialog/select-movie-dialog.component';
 import { DeleteArticleDialogComponent } from '../delete-article-dialog/delete-article-dialog.component';

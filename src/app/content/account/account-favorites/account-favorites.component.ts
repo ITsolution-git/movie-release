@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL } from '../../../constants';
 // Services
-import { AppService } from '../../../services/app.service';
+import { AppService } from '../../../core/services/app.service';
 @Component({
   selector: 'app-account-favorites',
   templateUrl: './account-favorites.component.html',

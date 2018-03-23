@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 // Constants
-import { APP_SEO_NAME } from '../../constants';
+import { APP_SEO_NAME } from '../../../constants';
 @Injectable()
 export class SeoService {
 

@@ -13,7 +13,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // Constants
 import { DB_COL, ckEditorConfig } from '../../../constants';
 // Services
-import { ApiService } from '../../../services/api/api.service';
+import { ApiService } from '../../../core/services/api/api.service';
 // Components
 import { DeleteArticleDialogComponent } from '../delete-article-dialog/delete-article-dialog.component';
 

@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 // Constants
 import { DB_COL } from '../../constants';
 // Services
-import { ApiService } from '../../services/api/api.service';
+import { ApiService } from '../../core/services/api/api.service';
 // Components
 import { SelectMovieDialogComponent } from '../articles/select-movie-dialog/select-movie-dialog.component';
 

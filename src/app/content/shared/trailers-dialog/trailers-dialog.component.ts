@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 // Services
-import { ApiService } from '../../../services/api/api.service';
+import { ApiService } from '../../../core/services/api/api.service';
 // Constants
 import { YT_BASE_URL, YT_VIDEO_OPTIONS, YT_THUMB_BASE_URL, YT_THUMB_SIZES } from '../../../constants';
 

@@ -9,7 +9,7 @@ import {
 
 import { AppService } from '../app.service';
 
-import { DB_COL } from '../../constants';
+import { DB_COL } from '../../../constants';
 
 @Injectable()
 export class FirebaseService {

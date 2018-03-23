@@ -32,12 +32,12 @@ import { AuthModule } from './core/auth/auth.module';
 // Routing Modules
 import { AppRoutingModule } from './app-routing.module';
 // Services
-import { AppService } from './services/app.service';
-import { ApiService } from './services/api/api.service';
-import { SitemapService } from './services/sitemap/sitemap.service';
-import { FirebaseService } from './services/firebase/firebase.service';
-import { ResponsiveService } from './services/responsive.service';
-import { SeoService } from './services/seo/seo.service';
+import { AppService } from './core/services/app.service';
+import { ApiService } from './core/services/api/api.service';
+import { SitemapService } from './core/services/sitemap/sitemap.service';
+import { FirebaseService } from './core/services/firebase/firebase.service';
+import { ResponsiveService } from './core/services/responsive.service';
+import { SeoService } from './core/services/seo/seo.service';
 // Components
 import { PublicComponent } from './core/public/public.component';
 import { AppComponent } from './app.component';

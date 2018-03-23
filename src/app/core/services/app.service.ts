@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material';
 // Components
-import { AuthDialogComponent } from '../content/shared/auth-dialog/auth-dialog.component';
+import { AuthDialogComponent } from '../../content/shared/auth-dialog/auth-dialog.component';
 
 @Injectable()
 export class AppService {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 // Services
-import { AppService } from '../../../services/app.service';
+import { AppService } from '../../../core/services/app.service';
 
 @Component({
   selector: 'app-header',

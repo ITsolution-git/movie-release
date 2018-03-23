@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Observable';
 import { DB_COL, TMDB_IMAGES_BASE_URL, IMG_45 } from '../../../constants';
 // Service
 import { ArticlesService } from '../articles.service';
-import { ApiService } from '../../../services/api/api.service';
+import { ApiService } from '../../../core/services/api/api.service';
 
 @Component({
   selector: 'app-select-movie-dialog',

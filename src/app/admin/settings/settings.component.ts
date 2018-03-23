@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { SitemapService } from '../../services/sitemap/sitemap.service';
-import { ApiService } from '../../services/api/api.service';
+import { SitemapService } from '../../core/services/sitemap/sitemap.service';
+import { ApiService } from '../../core/services/api/api.service';
 
 @Component({
   selector: 'app-settings',
