@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 
 // Components
 import { UserAuthComponent } from './user-auth/user-auth.component';
-import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 // Auth Routes

@@ -10,7 +10,6 @@ import {
 import { AuthRoutingModule } from './auth-routing.module';
 // Components
 import { UserAuthComponent } from './user-auth/user-auth.component';
-import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component'; // Service for Guarding Admin and Account Routes
 
@@ -24,7 +23,6 @@ import { AdminLoginComponent } from './admin-login/admin-login.component'; // Se
   ],
   declarations: [
     UserAuthComponent,
-    RegisterComponent,
     ForgotPasswordComponent,
     AdminLoginComponent
   ],

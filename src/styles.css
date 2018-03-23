@@ -51,7 +51,6 @@ app-page-not-found,
 app-shared,
 app-user-auth,
 app-admin-login,
-app-register,
 app-forgot-password {
   margin: 90px auto;
   display: block;
@@ -75,7 +74,6 @@ app-account {
 
 app-user-auth mat-card,
 app-admin-login mat-card,
-app-register mat-card,
 app-forgot-password mat-card {
   background: transparent !important;
   color: #FFF !important;
