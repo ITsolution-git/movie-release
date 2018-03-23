@@ -21,23 +21,23 @@ export class SettingsComponent implements OnInit {
   }
 
   // Get Data From TMDB API
-  getAPIConfig() {
+  getAPIConfig(): void {
     this.apis.getAPIConfig();
   }
-  getMovieGenres() {
+  getMovieGenres(): void {
     this.apis.getMovieGenres();
   }
 
   // Generate Sitemaps
-  generateMoviesSitemap() {
+  generateMoviesSitemap(): void {
     this.sm.generateMoviesSitemap();
   }
 
-  generateMoviesCategoriesSitemap() {
+  generateMoviesCategoriesSitemap(): void {
     // this.sm.generateMoviesCategoriesSitemap();
   }
 
-  generateMovieGenresSitemap() {
+  generateMovieGenresSitemap(): void {
     this.sm.generateMoviesSitemap();
   }
 
