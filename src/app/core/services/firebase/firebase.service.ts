@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
-
+// RxJs
+import { Observable } from 'rxjs/Observable';
 // Firebase
 import {
   AngularFireDatabase,
   AngularFireObject,
   AngularFireList
 } from 'angularfire2/database';
-
+// Services
 import { AppService } from '../app.service';
-
+// Constants
 import { DB_COL } from '../../../constants';
 
 @Injectable()
 export class FirebaseService {
 
   moviesRef: AngularFireObject<any>;
+  moviesObsRef: Observable<any>;
   moviesQueriesRef: AngularFireList<any>;
   moviesResultsRef: AngularFireObject<any>;
+  moviesResultsObsRef: Observable<any>;
   movieGenresRef: AngularFireObject<any>;
   apiConfigRef: AngularFireObject<any>;
 
@@ -25,14 +28,45 @@ export class FirebaseService {
     private as: AppService
   ) {
     this.moviesRef = this.afDb.object(`${DB_COL.MOVIES}`);
+    this.moviesObsRef = this.afDb.list(`${DB_COL.MOVIES}`).valueChanges();
     this.moviesQueriesRef = this.afDb.list(`${DB_COL.MOVIES_QUERIES}`);
     this.moviesResultsRef = this.afDb.object(`${DB_COL.MOVIES_RESULTS}`);
+    this.moviesResultsObsRef = this.afDb.list(`${DB_COL.MOVIES_RESULTS}`).valueChanges();
     this.movieGenresRef = this.afDb.object(`${DB_COL.MOVIE_GENRES}`);
     this.apiConfigRef = this.afDb.object(`${DB_COL.API_CONFIG}`);
   }
 
   saveAPIConfigToDB(apiConfig: any): void {
     this.apiConfigRef.set(apiConfig);
+  }
+
+  // Get All Movies from Firebase
+  getAllMoviesResults(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.moviesResultsObsRef.subscribe(res => {
+        resolve(res);
+      });
+    });
+  }
+
+  getMoviesByTitle(movieTitle: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('title').equalTo(movieTitle))
+        .valueChanges()
+        .subscribe(res => {
+          resolve(res);
+        });
+    });
+  }
+
+  getMoviesBySlug(movieSlug: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('slug').equalTo(movieSlug))
+        .valueChanges()
+        .subscribe(res => {
+          resolve(res);
+        });
+    });
   }
 
   // Store Queried Movie Genres in Database
@@ -142,6 +176,5 @@ export class FirebaseService {
     };
     this.moviesQueriesRef.push(queryObj);
   }
-
 
 }

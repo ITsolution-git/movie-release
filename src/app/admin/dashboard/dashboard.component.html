@@ -1,3 +1,17 @@
+<h1>Duplicate Movie Titles</h1>
 <p>
-  dashboard works!
+  Found {{ duplicateTitles.length }} duplicate movie titles.
 </p>
+<p>Make sure you add a 'slug_fix' and a 'url_fix' property for the results below:</p>
+<ul>
+  <li *ngFor="let dup of duplicateTitles; let i = index" (click)="showThisMovieDuplicates(dup)">
+    {{ i + 1 }}.)
+    <div *ngFor="let d of dup">
+      <a [href]="'https://console.firebase.google.com/project/current-movie-releases/database/current-movie-releases/data/movies_results/' + d.id"
+        target="_blank">{{ d.id }}</a> | {{ d.title }} | {{ d.slug }}
+      <span class="fixed" *ngIf="d.slug_fix && d.slug_fix !== d.slug && d.url_fix && d.url_fix !== d.url"> <span>|</span> {{ d.slug_fix }} <span>|</span> {{ d.url_fix }} <span>|</span>
+        <mat-icon>check_circle</mat-icon> FIXED
+      </span>
+    </div>
+  </li>
+</ul>
