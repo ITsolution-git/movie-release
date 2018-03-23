@@ -34,7 +34,7 @@ export class TrailersDialogComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  callCreatePlaylist() {
+  callCreatePlaylist(): void {
     this.createPlaylist(this.trailersObj)
       .then((res) => {
         this.playlist = res;
@@ -84,11 +84,11 @@ export class TrailersDialogComponent implements OnInit {
     }, 1000);
   }
 
-  togglePlaylist() {
+  togglePlaylist(): void {
     this.isPlaylistOpen = !this.isPlaylistOpen;
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 

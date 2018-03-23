@@ -87,7 +87,7 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  loadMoreResults(pageIndex: number) {
+  loadMoreResults(pageIndex: number): void {
     this.loadingMore = true;
     if (this.searchType === 'movies') {
       this.apis.searchMovieByKeyword(this.pageKey, pageIndex)

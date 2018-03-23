@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  onResize(event) {
+  onResize(event): void {
     this.screenSize = event.target.innerWidth;
     if (this.screenSize < 959) {
       this.isSmallScreen = true;
