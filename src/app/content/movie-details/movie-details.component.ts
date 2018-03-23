@@ -218,7 +218,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   // Calculate the average rating based on TMDB + Firebase
-  calculateNewAverageRating() {
+  calculateNewAverageRating(): void {
     this.movieRatingsObsRef
       .subscribe(res => {
         this.fbRatingsLength = res.length;
@@ -244,7 +244,7 @@ export class MovieDetailsComponent implements OnInit {
       });
   }
 
-  checkIfMovieRatedByCurrentUser() {
+  checkIfMovieRatedByCurrentUser(): void {
     this.currentUserRatingObsRef
       .subscribe(res => {
         if (res) {
@@ -255,7 +255,7 @@ export class MovieDetailsComponent implements OnInit {
       });
   }
 
-  checkIfMovieFavorited() {
+  checkIfMovieFavorited(): void {
     // Check if movies is already favorited
     this.favMoviesObsRef
       .subscribe(resp => {
@@ -337,7 +337,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
-  getRecommemdedMovies() {
+  getRecommemdedMovies(): void {
     this.isLoadingMovies = true;
     this.apis.getRecommendedMovies(this.movieId, 1)
       .subscribe((res) => {
@@ -421,7 +421,7 @@ export class MovieDetailsComponent implements OnInit {
     }
   }
 
-  resetTabs(i: number) {
+  resetTabs(i: number): void {
     this.currentInfoTab = i;
     this.currentMoviesTab = i;
   }
@@ -452,20 +452,6 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  // openLoginDialog(): void {
-  //   let dialogRef = this.dialog.open(AuthDialogComponent, {
-  //     panelClass: 'login-dialog',
-  //     data: 'login',
-  //     height: '100%',
-  //     width: '100%',
-  //     maxWidth: '100%',
-  //     maxHeight: '100%'
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     dialogRef = null;
-  //   });
-  // }
-
   rateMovie(rating: string): void {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid) {
@@ -488,7 +474,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   // Add / Remove movie from Favorites
-  toggleFavoriteMovie() {
+  toggleFavoriteMovie(): void {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid) {
         if (this.isFavorited === true) {
@@ -514,24 +500,24 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  toggleShare() {
+  toggleShare(): void {
     this.isShareOpen = !this.isShareOpen;
     console.log('Open Share Movie Dialog');
   }
 
-  shareOnFb() {
+  shareOnFb(): void {
     console.log('Share on Facebook');
   }
 
-  shareOnGo() {
+  shareOnGo(): void {
     console.log('Share on Google');
   }
 
-  shareOnTw() {
+  shareOnTw(): void {
     console.log('Share on Twitter');
   }
 
-  openImageGallery(imgPath: string) {
+  openImageGallery(imgPath: string): void {
     console.log('Open Gallery Slider Dialog');
   }
 
@@ -539,7 +525,7 @@ export class MovieDetailsComponent implements OnInit {
   //   console.log('Buy tickets.');
   // }
 
-  showAddReviewForm() {
+  showAddReviewForm(): void {
     console.log('Open Add Review Dialog... You need to be logged in!');
   }
 
