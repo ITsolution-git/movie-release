@@ -9,9 +9,9 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 // Models
-import { AppRoles } from '../../models';
+import { AppRoles } from '../../../models';
 // Constants
-import { DEFAULT_USER_ROLE, DEFAULT_USER_IMG } from '../../constants';
+import { DEFAULT_USER_ROLE, DEFAULT_USER_IMG } from '../../../constants';
 
 interface User {
   uid: string;

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 // Services
 import { AppService } from '../../../core/services/app.service';
-import { AuthService } from '../../../core/auth/auth.service';
+import { AuthService } from '../../../core/auth/services/auth.service';
 import { ApiService } from '../../../core/services/api/api.service';
 
 @Component({

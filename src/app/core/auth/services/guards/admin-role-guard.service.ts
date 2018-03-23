@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import * as firebase from 'firebase';
+
 // RxJS
 import { Observable } from 'rxjs/Observable';
 
@@ -9,12 +9,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 // Services
-import { DB_COL } from '../../../constants';
-import { FirebaseAuth } from '@firebase/auth-types';
-
+import { DB_COL } from '../../../../constants';
 
 @Injectable()
-export class RolesGuardService {
+export class AdminRoleGuardService {
 
   userRef: any;
 
@@ -35,15 +33,13 @@ export class RolesGuardService {
           this.userRef = this.afDb.object(DB_COL.USERS + '/' + authRes.uid).valueChanges();
           this.userRef
             .subscribe(res => {
-              if (res.role === 'subscriber') {
+              if (res.role === 'editor') {
                 result = false;
-                // this.router.navigate(['/my-account/details']);
-              } else if (res.role === 'admin' || res.role === 'editor') {
+              } else if (res.role === 'admin') {
                 result = true;
               }
               resolve(result);
             });
-
         });
     });
     return promise;

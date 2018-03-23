@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 // Services
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 // Constants
 import { APP_SEO_NAME } from '../../../constants';
 
