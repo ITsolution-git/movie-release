@@ -9,11 +9,11 @@ export class SitemapService {
     private http: HttpClient
   ) { }
 
-  generateMoviesSitemap() {
+  generateMoviesSitemap(): void {
     this.http.get('/sitemap-movies').subscribe(res => console.log(res));
   }
 
-  generateMovieGenresSitemap() {
+  generateMovieGenresSitemap(): void {
     this.http.get('/sitemap-movie-genres').subscribe(res => console.log(res));
   }
 

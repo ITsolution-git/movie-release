@@ -22,15 +22,8 @@ export class AppService {
     const seoText = text.replace(/-/g, ' ');
     return seoText;
   }
-  scrollToTop() {
+  scrollToTop(): void {
     window.scrollTo(0, 0);
-  }
-
-  generateMoviesSitemap() {
-    this.http.get('/sitemap-movies')
-      .subscribe((res) => {
-        console.log(res);
-      });
   }
 
   openLoginDialog(): void {

@@ -31,12 +31,12 @@ export class FirebaseService {
     this.apiConfigRef = this.afDb.object(`${DB_COL.API_CONFIG}`);
   }
 
-  saveAPIConfigToDB(apiConfig: any) {
+  saveAPIConfigToDB(apiConfig: any): void {
     this.apiConfigRef.set(apiConfig);
   }
 
   // Store Queried Movie Genres in Database
-  createMovieGenresObject(movieGenres: Array<any>) {
+  createMovieGenresObject(movieGenres: Array<any>): void {
     const movieGenresObj = {};
     // adds 'url' key/value pair to object
     for (let i = 0; i < movieGenres.length; i++) {
@@ -50,13 +50,13 @@ export class FirebaseService {
     // console.log(movieGenresObj);
     this.saveMovieGenresToDB(movieGenresObj);
   }
-  saveMovieGenresToDB(movieGenresObj: Object) {
+  saveMovieGenresToDB(movieGenresObj: Object): void {
     this.movieGenresRef.set(movieGenresObj)
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
   // Store Queried Movies List in Database
-  createMoviesQueryResultsObject(movies: Array<any>, callSource: string) {
+  createMoviesQueryResultsObject(movies: Array<any>, callSource: string): void {
     console.log('SAVING ' + callSource + ' MOVIES TO DB: ', movies);
     const moviesObj = {};
     // Create New Movie Results Object
@@ -85,14 +85,14 @@ export class FirebaseService {
     // console.log(moviesObj);
     this.saveMoviesQueryResultsToDB(moviesObj);
   }
-  saveMoviesQueryResultsToDB(moviesObj: Object) {
+  saveMoviesQueryResultsToDB(moviesObj: Object): void {
     // Save copy of movies to firebase
     this.moviesResultsRef.update(moviesObj)
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
   // Store Single Movie Details in Database
-  createSingleMovieDetailsObject(movie: any, callSource: string) {
+  createSingleMovieDetailsObject(movie: any, callSource: string): void {
     const movieObj = {};
     const movieId = movie.id;
     // Movie Properties
@@ -128,14 +128,14 @@ export class FirebaseService {
     // console.log(movieObj);
     this.saveSingleMovieToDB(movieObj);
   }
-  saveSingleMovieToDB(moviesObj: Object) {
+  saveSingleMovieToDB(moviesObj: Object): void {
     // Save copy of movies to firebase
     this.moviesRef.update(moviesObj)
       .catch(err => console.log(err, 'You do not have access!'));
   }
 
   // Store Movie Search Query to Database
-  saveMovieSearchQueryToDB(query: string) {
+  saveMovieSearchQueryToDB(query: string): void {
     const queryObj = {
       date: Date.now(),
       query: query
