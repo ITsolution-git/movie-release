@@ -13,8 +13,8 @@
 <div *ngIf="moviesList">
   <div *ngIf="!loading" class="result-content">
     <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="result-list">
-      <mat-card *ngFor="let movie of moviesList" class="result-card">
-        <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title) + '/' + movie.id]">
+      <mat-card *ngFor="let movie of moviesList" class="result-card" [id]="movie.id">
+        <a (click)="this.as.goToMovieDetails(movie.id)">
           <!-- Movie Poster -->
           <div>
             <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"

@@ -4,8 +4,8 @@ import { Meta, Title } from '@angular/platform-browser';
 // RxJS
 import { Subscription } from 'rxjs/Subscription';
 // Services
-import { AppService } from '../../services/app.service';
-import { ApiService } from '../../services/api/api.service';
+import { AppService } from '../../core/services/app.service';
+import { ApiService } from '../../core/services/api/api.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
 
@@ -49,7 +49,7 @@ export class MoviesComponent implements OnInit {
     public title: Title,
     private router: Router,
     private ar: ActivatedRoute,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService
   ) {
     // Initialize Constants

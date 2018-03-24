@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // Services
-import { AppService } from '../../services/app.service';
-import { ApiService } from '../../services/api/api.service';
+import { AppService } from '../../core/services/app.service';
+import { ApiService } from '../../core/services/api/api.service';
 @Component({
   selector: 'app-genres-list',
   templateUrl: './genres-list.component.html',

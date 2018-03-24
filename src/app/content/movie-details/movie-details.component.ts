@@ -12,9 +12,9 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 // Services
-import { AppService } from '../../services/app.service';
-import { ApiService } from '../../services/api/api.service';
-import { AuthService } from '../../core/auth/auth.service';
+import { AppService } from '../../core/services/app.service';
+import { ApiService } from '../../core/services/api/api.service';
+import { AuthService } from '../../core/auth/services/auth.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME, DB_COL } from '../../constants';
 // Component
@@ -49,7 +49,7 @@ export class MovieDetailsComponent implements OnInit {
 
   routeParamsSubscription: Subscription;
   pageKey: string;
-  movieId: string;
+  movieId: any;
   movieDetails: any;
   movieCreditsCast: ICastData[];
   movieCreditsCrew: ICrewData[];
@@ -65,6 +65,8 @@ export class MovieDetailsComponent implements OnInit {
   movieReviews: any[];
   movieTranslations: any[];
   movieAltTitles: any[];
+
+  movieArticles: any[];
 
   defaulPersonImage: any;
   defaultPosterImage: any;
@@ -107,18 +109,20 @@ export class MovieDetailsComponent implements OnInit {
 
   isFavorited = false;
   isShareOpen = false;
+  getMovieDetailsCounter = 0;
 
   constructor(
     public meta: Meta,
     public title: Title,
     private router: Router,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService,
     private ar: ActivatedRoute,
     public dialog: MatDialog,
     private afDb: AngularFireDatabase,
     private afAuth: AngularFireAuth
   ) {
+
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
     this.IMG_45 = IMG_45;
@@ -127,6 +131,7 @@ export class MovieDetailsComponent implements OnInit {
     this.IMG_ORIG = IMG_ORIG;
 
     this.ar.url.subscribe((res) => {
+      // Reset Property Val;ues on Route Change
       this.resetTabs(0);
       this.as.scrollToTop();
       this.isMoreInfoOpen = false;
@@ -141,39 +146,46 @@ export class MovieDetailsComponent implements OnInit {
       this.movieLinks = undefined;
       this.movieTranslations = undefined;
       this.movieAltTitles = undefined;
+      this.movieId = undefined;
 
       // Get the movie title and ID from the URL
       this.routeParamsSubscription = this.ar.params
-        .subscribe(
-          params => {
-            this.pageKey = params['title'];
-            this.movieId = params['id'];
-            // console.log('MOVIE TITLE FROM ROUTE:', this.pageKey);
-            this.getMovieDetails().then(() => {
-              this.setSEOMetaTags();
-              this.getMovieKeywords();
-              this.getMovieImages();
-              this.getMovieTrailers();
-              this.getRecommemdedMovies();
-
-              // Initialize Firebase Ratings for this particular movie and Calculate the average rating based on TMDB + Firebase
-              this.movieRatingsObsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId).valueChanges();
-              this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId);
-              this.calculateNewAverageRating();
-            });
-          });
-
-      this.afAuth.authState.subscribe(userRes => {
-        if (userRes && userRes.uid) {
-          // Initialize User Favorites Collection
-          this.favMoviesRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/fav_movies');
-          this.favMoviesObsRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/fav_movies').valueChanges();
-          this.userMovieRatingsRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/movie_ratings');
-          this.currentUserRatingObsRef = this.afDb.object(DB_COL.MOVIE_RATINGS + '/' + this.movieId + '/' + userRes.uid).valueChanges();
-          this.checkIfMovieRatedByCurrentUser();
-          this.checkIfMovieFavorited();
-        }
-      });
+        .subscribe(params => {
+          this.pageKey = params['title'];
+          ++this.getMovieDetailsCounter;
+          if (this.getMovieDetailsCounter === 1) {
+            this.convertTitleToId(this.pageKey)
+              .then(() => {
+                this.getMovieDetails()
+                  .then(() => {
+                    this.setSEOMetaTags();
+                    this.getMovieKeywords();
+                    this.getMovieImages();
+                    this.getMovieTrailers();
+                    this.getRecommemdedMovies();
+                    // Initialize Firebase Ratings
+                    this.movieRatingsObsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId).valueChanges();
+                    this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId);
+                    this.calculateNewAverageRating();
+                  }).then(() => {
+                    this.getMovieDetailsCounter = 0;
+                    this.getMovieArticles(Number(this.movieId));
+                  });
+                this.afAuth.authState.subscribe(userRes => {
+                  if (userRes && userRes.uid) {
+                    // Initialize User Favorites Collection
+                    this.favMoviesRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/fav_movies');
+                    this.favMoviesObsRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/fav_movies').valueChanges();
+                    this.userMovieRatingsRef = this.afDb.list(DB_COL.USERS + '/' + userRes.uid + '/movie_ratings');
+                    // tslint:disable-next-line:max-line-length
+                    this.currentUserRatingObsRef = this.afDb.object(DB_COL.MOVIE_RATINGS + '/' + this.movieId + '/' + userRes.uid).valueChanges();
+                    this.checkIfMovieRatedByCurrentUser();
+                    this.checkIfMovieFavorited();
+                  }
+                });
+              });
+          }
+        });
     });
 
     this.Math = Math;
@@ -194,54 +206,56 @@ export class MovieDetailsComponent implements OnInit {
     );
   }
 
-  calculateNewAverageRating() {
-    // console.log('CALCULATE NEW AVERAGE: ');
+  // Convert Movie Title to Movie Id
+  convertTitleToId(title: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      const movie = this.afDb.list(DB_COL.MOVIES_RESULTS, ref => ref.orderByChild('slug').equalTo(title));
+      movie.valueChanges().subscribe(res => {
+        this.movieId = (res[0]['id']).toString();
+        resolve(this.movieId);
+      });
+    });
+  }
+
+  // Calculate the average rating based on TMDB + Firebase
+  calculateNewAverageRating(): void {
     this.movieRatingsObsRef
       .subscribe(res => {
         this.fbRatingsLength = res.length;
         let fbRatingTotal = 0;
 
         for (let i = 0; i < this.fbRatingsLength; i++) {
-          // console.log(res[i]);
-          // console.log(res[i]['rating']);
           fbRatingTotal = fbRatingTotal + res[i]['rating'];
-          // console.log('TOTAL', fbRatingTotal);
         }
 
+        // if movie not yet rated by CMR
         if (fbRatingTotal === 0) {
-          // console.log('MOVIE NOT YET RATED BY MD USER!');
           this.fbRatingAverage = 0;
           this.cobinedRatingAverage = this.movieDetails.vote_average / 2;
         } else {
           this.fbRatingAverage = fbRatingTotal / this.fbRatingsLength;
-          // console.log('NEW FB AVERAGE RATING: ', this.fbRatingAverage);
           if (this.movieDetails.vote_average === 0) {
             this.cobinedRatingAverage = this.fbRatingAverage;
-            // console.log('NEW COMBINED AVERAGE RATING: ', this.cobinedRatingAverage);
           } else {
             // tslint:disable-next-line:max-line-length
             this.cobinedRatingAverage = ((this.movieDetails.vote_count * (this.movieDetails.vote_average / 2)) + (fbRatingTotal)) / (this.movieDetails.vote_count + this.fbRatingsLength);
-            // console.log('NEW COMBINED AVERAGE RATING: ', this.cobinedRatingAverage);
           }
         }
       });
   }
 
-  checkIfMovieRatedByCurrentUser() {
+  checkIfMovieRatedByCurrentUser(): void {
     this.currentUserRatingObsRef
       .subscribe(res => {
         if (res) {
           this.currentUserRating = res['rating'];
-          // console.log('CURRENT USER RATING: ', this.currentUserRating);
         } else {
           this.currentUserRating = 0;
-          // console.log('CURRENT USER RATING: ', this.currentUserRating);
-
         }
       });
   }
 
-  checkIfMovieFavorited() {
+  checkIfMovieFavorited(): void {
     // Check if movies is already favorited
     this.favMoviesObsRef
       .subscribe(resp => {
@@ -260,7 +274,6 @@ export class MovieDetailsComponent implements OnInit {
         .subscribe((res) => {
           this.movieDetails = res;
           resolve();
-          // console.log(this.movieDetails);
         });
     });
 
@@ -270,7 +283,6 @@ export class MovieDetailsComponent implements OnInit {
       .subscribe((res) => {
         this.movieCreditsCast = res['cast'];
         this.movieCreditsCrew = res['crew'];
-        // console.log(this.movieCredits);
         if (this.movieCreditsCast && this.movieCreditsCrew) {
           this.castSource = new MatTableDataSource(this.movieCreditsCast);
           this.crewSource = new MatTableDataSource(this.movieCreditsCrew);
@@ -289,14 +301,12 @@ export class MovieDetailsComponent implements OnInit {
       .subscribe((res) => {
         this.movieImages = res['posters'];
         this.movieImagesLength = this.movieImages.length;
-        // console.log(this.movieImages);
       });
   }
   getMovieKeywords(): void {
     this.apis.getMovieKeywords(this.movieId)
       .subscribe((res) => {
         this.movieKeywords = res['keywords'];
-        // console.log(this.movieKeywords);
       });
   }
   getMovieReleaseDates(): void {
@@ -308,7 +318,6 @@ export class MovieDetailsComponent implements OnInit {
         if (this.movieReleaseDates) {
           this.isLoadingInfo = false;
         }
-        // console.log(this.movieReleaseDates);
       });
   }
   getMovieTrailers(): void {
@@ -316,37 +325,33 @@ export class MovieDetailsComponent implements OnInit {
       .subscribe((res) => {
         this.movieTrailers = res['results'];
         this.movieTrailersLength = this.movieTrailers.length;
-        // console.log(this.movieTrailersLength);
       });
   }
   getSimilarMovies(): void {
     this.isLoadingMovies = true;
-    this.apis.getSimilarMovies(this.movieId, 1) // fix
+    this.apis.getSimilarMovies(this.movieId, 1)
       .subscribe((res) => {
         this.similarMovies = res['results'];
         if (this.similarMovies) {
           this.isLoadingMovies = false;
         }
-        // console.log(this.similarMovies);
       });
   }
-  getRecommemdedMovies() {
+  getRecommemdedMovies(): void {
     this.isLoadingMovies = true;
-    this.apis.getRecommendedMovies(this.movieId, 1) // fix
+    this.apis.getRecommendedMovies(this.movieId, 1)
       .subscribe((res) => {
         this.recommendedMovies = res['results'];
         if (this.recommendedMovies) {
           this.isLoadingMovies = false;
         }
-        // console.log(this.recommendedMovies);
       });
   }
   getMovieReviews(): void {
     this.isLoadingInfo = true;
-    this.apis.getMovieReviews(this.movieId, 1) // fix
+    this.apis.getMovieReviews(this.movieId, 1)
       .subscribe((res) => {
         this.movieReviews = res['results'];
-        // console.log(this.mobieReviews);
         if (this.movieReviews) {
           this.isLoadingInfo = false;
         }
@@ -372,6 +377,15 @@ export class MovieDetailsComponent implements OnInit {
                 }
               });
           });
+      });
+  }
+
+  getMovieArticles(movieId: number): void {
+    const article = this.afDb.list(DB_COL.ARTICLES, ref => ref.orderByChild('article_movie_id').equalTo(movieId));
+    article.valueChanges()
+      .subscribe(res => {
+        // console.log('ARTICLE: ', res);
+        this.movieArticles = res;
       });
   }
 
@@ -407,25 +421,24 @@ export class MovieDetailsComponent implements OnInit {
     }
   }
 
-  resetTabs(i: number) {
+  resetTabs(i: number): void {
     this.currentInfoTab = i;
     this.currentMoviesTab = i;
   }
 
   applyCastFilter(filterValue: string): void {
     filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue = filterValue.toLowerCase();
     this.castSource.filter = filterValue;
   }
 
   applyCrewFilter(filterValue: string): void {
     filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue = filterValue.toLowerCase();
     this.crewSource.filter = filterValue;
   }
 
   openTrailersDialog(): void {
-    // console.log('Open Trailer Dialog');
     let dialogRef = this.dialog.open(TrailersDialogComponent, {
       panelClass: 'full-screen-dialog',
       data: 'movie',
@@ -439,29 +452,9 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  openLoginDialog(): void {
-    let dialogRef = this.dialog.open(AuthDialogComponent, {
-      panelClass: 'login-dialog',
-      data: 'login',
-      height: '100%',
-      width: '100%',
-      maxWidth: '100%',
-      maxHeight: '100%'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      dialogRef = null;
-    });
-  }
-
-  // onPersonTabChange($event) {
-  //   this.currentPersonTab = $event.index;
-  //   // console.log(this.currentPersonTab);
-  // }
-
-  rateMovie(rating: number): void {
+  rateMovie(rating: string): void {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid) {
-        // console.log('Rate Movie', rating);
         this.movieRatingsRef.update(this.afAuth.auth.currentUser.uid, {
           rating: rating
         }).then(() => {
@@ -475,14 +468,13 @@ export class MovieDetailsComponent implements OnInit {
         })
           .catch(err => console.log(err, 'You do not have access!'));
       } else {
-        this.openLoginDialog();
+        this.as.openLoginDialog();
       }
     });
   }
 
-
   // Add / Remove movie from Favorites
-  toggleFavoriteMovie() {
+  toggleFavoriteMovie(): void {
     this.afAuth.authState.subscribe(res => {
       if (res && res.uid) {
         if (this.isFavorited === true) {
@@ -503,29 +495,29 @@ export class MovieDetailsComponent implements OnInit {
             .catch(err => console.log(err, 'You do not have access!'));
         }
       } else {
-        this.openLoginDialog();
+        this.as.openLoginDialog();
       }
     });
   }
 
-  toggleShare() {
+  toggleShare(): void {
     this.isShareOpen = !this.isShareOpen;
     console.log('Open Share Movie Dialog');
   }
 
-  shareOnFb() {
+  shareOnFb(): void {
     console.log('Share on Facebook');
   }
 
-  shareOnGo() {
+  shareOnGo(): void {
     console.log('Share on Google');
   }
 
-  shareOnTw() {
+  shareOnTw(): void {
     console.log('Share on Twitter');
   }
 
-  openImageGallery(imgPath: string) {
+  openImageGallery(imgPath: string): void {
     console.log('Open Gallery Slider Dialog');
   }
 
@@ -533,7 +525,7 @@ export class MovieDetailsComponent implements OnInit {
   //   console.log('Buy tickets.');
   // }
 
-  showAddReviewForm() {
+  showAddReviewForm(): void {
     console.log('Open Add Review Dialog... You need to be logged in!');
   }
 

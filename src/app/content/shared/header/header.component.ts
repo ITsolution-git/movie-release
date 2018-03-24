@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 // Services
-import { AppService } from '../../../services/app.service';
+import { AppService } from '../../../core/services/app.service';
 
 @Component({
   selector: 'app-header',
@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  onResize(event) {
+  onResize(event): void {
     this.screenSize = event.target.innerWidth;
     if (this.screenSize < 959) {
       this.isSmallScreen = true;

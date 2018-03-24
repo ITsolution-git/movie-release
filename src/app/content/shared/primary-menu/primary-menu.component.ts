@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 // Services
-import { AppService } from '../../../services/app.service';
-import { AuthService } from '../../../core/auth/auth.service';
-import { ApiService } from '../../../services/api/api.service';
+import { AppService } from '../../../core/services/app.service';
+import { AuthService } from '../../../core/auth/services/auth.service';
+import { ApiService } from '../../../core/services/api/api.service';
 
 @Component({
   selector: 'app-primary-menu',

@@ -9,17 +9,19 @@
         <button mat-button routerLink="/my-account/favorites" routerLinkActive="active">
           <mat-icon>favorite</mat-icon> Favorites</button>
       </li>
-      <!-- <li>
-        <button mat-button routerLink="/my-account/reviews">Reviews</button>
-      </li> -->
       <li>
         <button mat-button routerLink="/my-account/ratings" routerLinkActive="active">
           <mat-icon>start</mat-icon> Ratings</button>
       </li>
       <li>
-        <!-- Admin -->
-        <button mat-button color="primary" class="admin" routerLink="/admin" *ngIf="userRole === 'admin' || userRole === 'editor'">
+        <!-- Admin Area-->
+        <button mat-button color="primary" class="admin" routerLink="/admin" *ngIf="userRole === 'admin'">
           <mat-icon>vpn_key</mat-icon> Admin Area</button>
+      </li>
+      <li>
+        <!-- Articles -->
+        <button mat-button color="primary" class="articles" routerLink="/admin/articles" *ngIf="userRole === 'editor'">
+          <mat-icon>description</mat-icon> Articles</button>
       </li>
       <!-- <li>
         <button mat-button routerLink="/my-account/settings">Settings</button>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // AuthGuard
-import { AuthGuard } from '../core/auth/auth.guard';
+import { AuthGuard } from '../core/auth/services/guards/auth-guard.service';
 
 // components
 import { HomeComponent } from './home/home.component';
@@ -25,7 +25,7 @@ const contentRoutes = [
   { path: 'movies/top-rated', component: MoviesComponent },
   { path: 'movies/upcoming', component: MoviesComponent },
   { path: 'movies/now-playing', component: MoviesComponent },
-  { path: 'movies/:title/:id', component: MovieDetailsComponent },
+  { path: 'movies/:title', component: MovieDetailsComponent },
   { path: 'my-account', canActivate: [AuthGuard], loadChildren: './account/account.module#AccountModule' },
 ];
 

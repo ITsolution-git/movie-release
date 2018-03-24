@@ -9,9 +9,9 @@ import {
 // Routing Module
 import { AuthRoutingModule } from './auth-routing.module';
 // Components
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'; // Service for Guarding Admin and Account Routes
+import { UserAuthComponent } from './user-auth/user-auth.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component'; // Service for Guarding Admin and Account Routes
 
 @NgModule({
   imports: [
@@ -22,12 +22,12 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     MatButtonModule
   ],
   declarations: [
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent
+    UserAuthComponent,
+    ForgotPasswordComponent,
+    AdminLoginComponent
   ],
   exports: [
-    LoginComponent
+    UserAuthComponent
   ]
 })
 export class AuthModule { }

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 // Constants
 import { DB_COL, APP_SEO_NAME } from '../../../constants';
 // Services
-import { AuthService } from '../../../core/auth/auth.service';
+import { AuthService } from '../../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-account-details',

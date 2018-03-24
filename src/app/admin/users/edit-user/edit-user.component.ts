@@ -18,13 +18,13 @@ import { Subscription } from 'rxjs/Subscription';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Interfaces
-import { Upload } from '../../_services/upload/upload';
+import { Upload } from '../../services/upload/upload';
 
 // Constant
 import { DB_COL } from '../../../constants';
 
 // Services
-import { UploadService } from '../../_services/upload/upload.service';
+import { UploadService } from '../../services/upload/upload.service';
 import { UsersService } from '../users.service';
 
 // Component

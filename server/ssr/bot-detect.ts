@@ -63,7 +63,7 @@ export const processURL = (request: express.Request, response: express.Response)
             });
     } else {
         // Not a bot, fetch the regular Angular app
-        fetch(`https://${APP_URL}`)
+        fetch(`${APP_URL}`)
             .then(res => res.text())
             .then(body => {
                 response.send(body.toString());

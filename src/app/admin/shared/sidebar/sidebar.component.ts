@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { AuthService } from '../../../core/auth/auth.service';
+// Service
+import { AuthService } from '../../../core/auth/services/auth.service';
+import { ArticlesService } from '../../articles/articles.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,8 @@ import { AuthService } from '../../../core/auth/auth.service';
 export class SidebarComponent implements OnInit {
 
   constructor(
-    public as: AuthService
+    public as: AuthService,
+    public ars: ArticlesService
   ) { }
 
   ngOnInit() {

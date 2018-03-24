@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL } from '../../../constants';
 // Services
-import { AppService } from '../../../services/app.service';
+import { AppService } from '../../../core/services/app.service';
 @Component({
   selector: 'app-account-favorites',
   templateUrl: './account-favorites.component.html',
@@ -40,7 +40,7 @@ export class AccountFavoritesComponent implements OnInit {
     public meta: Meta,
     private afDb: AngularFireDatabase,
     private afAuth: AngularFireAuth,
-    private as: AppService
+    public as: AppService
   ) {
     // Set SEO Title & remove Description & Keywords (This Page Does Not Need to be Indexed)
     this.title.setTitle('Favorite Movies and TV Shows - ' + APP_SEO_NAME);
@@ -78,44 +78,12 @@ export class AccountFavoritesComponent implements OnInit {
       });
   }
 
-  getFavoriteTvShows(): void {
-    this.loading = true;
-    // console.log('GET FAVORITE TV SHOWS');
-    this.favTvShowsObsRef
-      .subscribe(res => {
-        // console.log(res);
-        this.favoriteTvShows = res;
-        if (this.favoriteTvShows) {
-          this.loading = false;
-        }
-      });
-  }
-
-  getFavoriteCelebs(): void {
-    this.loading = true;
-    // console.log('GET FAVORITE CELEBS');
-    this.favCelebsObsRef
-      .subscribe(res => {
-        // console.log(res);
-        this.favoriteCelebs = res;
-        if (this.favoriteCelebs) {
-          this.loading = false;
-        }
-      });
-  }
-
   onFavTabChange($event): void {
     // console.log('TAB CHANGED TO: ', $event.index);
     this.currentFavTab = $event.index;
     if (this.currentFavTab === 0 && !this.favoriteMovies) {
       this.loading = true;
       this.getFavoriteMovies();
-    } else if (this.currentFavTab === 1 && !this.favoriteTvShows) {
-      this.loading = true;
-      this.getFavoriteTvShows();
-    } else if (this.currentFavTab === 2 && !this.favoriteCelebs) {
-      this.loading = true;
-      this.getFavoriteCelebs();
     }
   }
 

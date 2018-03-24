@@ -1,23 +1,14 @@
-/* .sidenav-button { 
-    position: fixed;
-    position: sticky;
-    left: 1rem;
-    top: 1.2rem;
-    z-index: 3;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    background: #fff;
-}*/
-
-mat-drawer-content {
-  padding: 0 4.3rem;
-}
-
 mat-drawer-container {
   height: 100%;
+  color: #999;
 }
-
 mat-drawer {
   background: #222;
+  min-width: 200px;
+}
+mat-drawer-content.admin-container{
+  padding: 0 2rem;
+}
+.mat-tab-label{
+  color: #999 !important;
 }

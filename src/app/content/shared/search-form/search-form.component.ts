@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { FirebaseService } from '../../../services/firebase/firebase.service';
-import { AppService } from '../../../services/app.service';
+import { FirebaseService } from '../../../core/services/firebase/firebase.service';
+import { AppService } from '../../../core/services/app.service';
 
 @Component({
   selector: 'app-search-form',

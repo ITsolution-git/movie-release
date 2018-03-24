@@ -12,7 +12,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // Services
 import { UsersService } from '../../users.service';
-import { UploadService } from '../../../_services/upload/upload.service';
+import { UploadService } from '../../../services/upload/upload.service';
 
 // Constant
 import { DB_COL } from '../../../../constants';
@@ -68,7 +68,7 @@ export class DeleteUserDialogComponent implements OnInit {
       // this.afDb.object(`${FB_LISTS.UPLOADS}/img/users/${this.userKey}`).remove(),
       resolve();
     }).then(() => {
-      this.toastr.success('Successfully Deleted User!');
+      this.toastr.success('User was deleted!');
       this.dialogRef.close();
       this.router.navigate(['admin/users']);
     });

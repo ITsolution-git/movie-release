@@ -3,16 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // Components
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { UserAuthComponent } from './user-auth/user-auth.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 // Auth Routes
 const authRoutes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent }
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: UserAuthComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'admin-login', component: AdminLoginComponent },
 ];
 
 @NgModule({

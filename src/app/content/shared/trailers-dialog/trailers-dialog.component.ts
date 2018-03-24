@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 // Services
-import { ApiService } from '../../../services/api/api.service';
+import { ApiService } from '../../../core/services/api/api.service';
 // Constants
 import { YT_BASE_URL, YT_VIDEO_OPTIONS, YT_THUMB_BASE_URL, YT_THUMB_SIZES } from '../../../constants';
 
@@ -34,7 +34,7 @@ export class TrailersDialogComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  callCreatePlaylist() {
+  callCreatePlaylist(): void {
     this.createPlaylist(this.trailersObj)
       .then((res) => {
         this.playlist = res;
@@ -84,11 +84,11 @@ export class TrailersDialogComponent implements OnInit {
     }, 1000);
   }
 
-  togglePlaylist() {
+  togglePlaylist(): void {
     this.isPlaylistOpen = !this.isPlaylistOpen;
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 

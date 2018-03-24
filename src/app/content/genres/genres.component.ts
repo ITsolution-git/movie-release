@@ -4,8 +4,8 @@ import { Meta, Title } from '@angular/platform-browser';
 // RxJS
 import { Subscription } from 'rxjs/Subscription';
 // Services
-import { AppService } from '../../services/app.service';
-import { ApiService } from '../../services/api/api.service';
+import { AppService } from '../../core/services/app.service';
+import { ApiService } from '../../core/services/api/api.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
 
@@ -36,7 +36,7 @@ export class GenresComponent implements OnInit {
     public meta: Meta,
     public title: Title,
     private router: Router,
-    private as: AppService,
+    public as: AppService,
     private apis: ApiService,
     private ar: ActivatedRoute
   ) {
@@ -72,10 +72,10 @@ export class GenresComponent implements OnInit {
       .map(x => x[0].toUpperCase() + x.slice(1))
       .join(' ') + ' | ' + APP_SEO_NAME);
     this.meta.updateTag(
-      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.pageKey) + ' ' + APP_SEO_NAME }
+      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.genreType) + ' ' + APP_SEO_NAME }
     );
     this.meta.updateTag(
-      { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.pageKey) },
+      { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.genreType) },
     );
   }
 

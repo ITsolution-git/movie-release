@@ -18,49 +18,28 @@ import {
   MatTabsModule,
   MatOptionModule,
   MatSelectModule,
-  MatSidenavModule,
-  MatButtonToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatListModule,
-  MatPaginatorModule,
-  MatStepperModule,
-  MatTableModule,
-  MatSliderModule,
-  MatProgressBarModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSlideToggleModule,
-  MatAutocompleteModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatDatepickerModule,
   MatDialogModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatNativeDateModule,
-  MatTooltipModule,
+  MatSidenavModule
 } from '@angular/material';
 // Toastr
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ToastrOptions } from './toastr-options';
 import { ToastOptions } from 'ng2-toastr';
 // Guard Services
-import { AuthGuard } from './core/auth/auth.guard';
-import { RolesGuardService } from './core/auth/roles-guard.service';
+import { AuthGuard } from './core/auth/services/guards/auth-guard.service';
+import { RolesGuardService } from './core/auth/services/guards/roles-guard.service';
 // Modules
 import { CoreModule } from './core/core.module';
-// import { ContentModule } from './content/content.module';
+import { AuthModule } from './core/auth/auth.module';
 // Routing Modules
 import { AppRoutingModule } from './app-routing.module';
 // Services
-import { AppService } from './services/app.service';
-import { ApiService } from './services/api/api.service';
-import { SitemapService } from './services/sitemap/sitemap.service';
-import { FirebaseService } from './services/firebase/firebase.service';
-import { ResponsiveService } from './services/responsive.service';
-import { SeoService } from './services/seo/seo.service';
+import { AppService } from './core/services/app.service';
+import { ApiService } from './core/services/api/api.service';
+import { SitemapService } from './core/services/sitemap/sitemap.service';
+import { FirebaseService } from './core/services/firebase/firebase.service';
+import { ResponsiveService } from './core/services/responsive.service';
+import { SeoService } from './core/services/seo/seo.service';
 // Components
 import { PublicComponent } from './core/public/public.component';
 import { AppComponent } from './app.component';
@@ -70,7 +49,7 @@ import { PageNotFoundComponent } from './content/page-not-found/page-not-found.c
 import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu.component';
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
 import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
-
+import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +60,8 @@ import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.componen
     PageNotFoundComponent,
     PrimaryMenuComponent,
     SearchFormComponent,
-    SidenavComponent
+    SidenavComponent,
+    AuthDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -96,41 +76,23 @@ import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.componen
     MatTabsModule,
     MatOptionModule,
     MatSelectModule,
-    MatSidenavModule,
-    MatButtonToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatListModule,
-    MatPaginatorModule,
-    MatStepperModule,
-    MatTableModule,
-    MatSliderModule,
-    MatProgressBarModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSlideToggleModule,
-    MatAutocompleteModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDatepickerModule,
     MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatNativeDateModule,
-    MatTooltipModule,
+    MatSidenavModule,
     CdkTableModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
+    AuthModule,
+    MatToolbarModule,
+    MatIconModule,
     ToastModule.forRoot(),
     AppRoutingModule,
+    MatDialogModule
   ],
   providers: [
     AppService,
-    // SeoService,
     ApiService,
     SitemapService,
     FirebaseService,
@@ -142,6 +104,7 @@ import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.componen
       useClass: ToastrOptions
     }
   ],
+  entryComponents: [AuthDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
