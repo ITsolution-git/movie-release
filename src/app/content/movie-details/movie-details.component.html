@@ -5,7 +5,7 @@
     <div fxFlex="70%" fxFlex.sm="75%" fxFlex.xs="90%" id="main-right">
       <!-- Title -->
       <div id="title" fxLayout="row" fxLayoutAlign="start stretch">
-        <h1>{{ movieDetails.title }}</h1>
+        <h1>{{ movieDetails.title }}<span class="title-year" id="year" *ngIf="movieDetails.release_date ">({{ movieDetails.release_date | date:'y' }})</span></h1>
       </div>
       <!-- Tagline -->
       <div id="tagline" *ngIf="movieDetails.tagline">
