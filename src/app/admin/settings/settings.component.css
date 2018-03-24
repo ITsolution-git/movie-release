@@ -1,0 +1,24 @@
+a {
+    color: #000;
+}
+
+li {
+    list-style: none;
+}
+
+h1 mat-icon {
+    cursor: pointer;
+}
+
+.fixed {
+    color: #008000;
+}
+
+.fixed span {
+    color: #000;
+}
+
+mat-icon {
+    position: relative;
+    top: 5px;
+}

@@ -1,7 +1,35 @@
-<h2>Get Data From TMDB API</h2>
-<button mat-raised-button color="primary" (click)="getAPIConfig()">Get API Configuration</button>
-<button mat-raised-button color="primary" (click)="getMovieGenres()">Get Movie Genres</button>
+<mat-tab-group>
+    <mat-tab label="API calls">
+        <h2>Get Data From TMDB API</h2>
+        <button mat-raised-button color="primary" (click)="getAPIConfig()">Get API Configuration</button>
+        <button mat-raised-button color="primary" (click)="getMovieGenres()">Get Movie Genres</button>
+    </mat-tab>
+    <mat-tab label="Sitemaps">
+        <h2>Generate Sitemaps</h2>
+        <button mat-raised-button color="primary" (click)="generateMoviesSitemap()">Generate Movies Sitemap</button>
+        <button mat-raised-button color="primary" (click)="generateMovieGenresSitemap()">Generate Movie Genres Sitemap</button>
+    </mat-tab>
+    <mat-tab label="Duplicate Titles">
+        <h1>Duplicate Movie URLs
+            <mat-icon (click)="getAllMoviesResults()">refresh</mat-icon>
+        </h1>
+        <p>Found {{ duplicateTitles.length }} duplicate movie URLs.</p>
+        <p>Make sure you update the 'slug' and 'url' properties for the results below:</p>
 
-<h2>Generate Sitemaps</h2>
-<button mat-raised-button color="primary" (click)="generateMoviesSitemap()">Generate Movies Sitemap</button>
-<button mat-raised-button color="primary" (click)="generateMovieGenresSitemap()">Generate Movie Genres Sitemap</button>
+        <!-- Duplicate Results -->
+        <ul *ngIf="duplicateTitles && !loading">
+            <li *ngFor="let dup of duplicateTitles; let i = index">
+                {{ i + 1 }}.)
+                <div *ngFor="let d of dup">
+                    <a [href]="'https://console.firebase.google.com/project/current-movie-releases/database/current-movie-releases/data/movies_results/' + d.id"
+                        target="_blank">{{ d.id }}</a> | {{ d.title }} | {{ d.slug }}
+                </div>
+            </li>
+        </ul>
+
+        <!-- Loader -->
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        </div>
+    </mat-tab>
+</mat-tab-group>
