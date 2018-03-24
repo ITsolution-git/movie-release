@@ -91,41 +91,40 @@ export class FirebaseService {
   }
 
   // Store Queried Movies List in Database
-  createMoviesQueryResultsObject(movies: Array<any>, callSource: string): void {
+  createMoviesQueryResultsObject(movies: Array<any>, callSource: string): Promise<any> {
     // console.log('SAVING ' + callSource + ' MOVIES TO DB: ', movies);
-    const moviesObj = {};
-    // Create New Movie Results Object
-    for (let i = 0; i < movies.length; i++) {
-      const movieId = movies[i].id;
-      this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('id').equalTo(movieId))
-        .valueChanges()
-        .subscribe(res => {
-          if (!res[0]) {
-            // Movie Properties
-            moviesObj[movieId] = {
-              adult: movies[i].adult || '',
-              backdrop_path: movies[i].backdrop_path || '',
-              genre_ids: movies[i].genre_ids || '',
-              id: movieId,
-              original_language: movies[i].original_language || '',
-              original_title: movies[i].original_title || '',
-              overview: movies[i].overview || '',
-              popularity: movies[i].popularity || '',
-              poster_path: movies[i].poster_path || '' || '',
-              release_date: movies[i].release_date,
-              slug: this.as.urlOptimizeText(movies[i].title),
-              title: movies[i].title,
-              url: 'movies/' + this.as.urlOptimizeText(movies[i].title),
-              video: movies[i].video || '',
-              vote_average: movies[i].vote_average || '',
-              vote_count: movies[i].vote_count || ''
-            };
-          }
-
-        });
-    }
-    // console.log(moviesObj);
-    this.saveMoviesQueryResultsToDB(moviesObj);
+    return new Promise<any>((resolves, reject) => {
+      const moviesObj = {};
+      // Create New Movie Results Object
+      for (let i = 0; i < movies.length; i++) {
+        const movieId = movies[i].id;
+        this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('id').equalTo(movieId))
+          .valueChanges()
+          .subscribe(res => {
+            if (!res[0]) {
+              // Movie Properties
+              moviesObj[movieId] = {
+                genre_ids: movies[i].genre_ids || '',
+                id: movies[i].id,
+                poster_path: movies[i].poster_path || '',
+                release_date: movies[i].release_date || '',
+                slug: this.as.urlOptimizeText(movies[i].title),
+                title: movies[i].title || '',
+                url: 'movies/' + this.as.urlOptimizeText(movies[i].title),
+                vote_average: movies[i].vote_average || ''
+              };
+              if (i === movies.length - 1) {
+                resolves(moviesObj);
+              }
+            } else {
+              // console.log('SKIP MOVIE.', movieId, moviesObj);
+              if (i === movies.length - 1) {
+                resolves(moviesObj);
+              }
+            }
+          });
+      }
+    });
   }
   saveMoviesQueryResultsToDB(moviesObj: Object): void {
     console.log('SAVING MOVIE RESULTS TO DB.', moviesObj);

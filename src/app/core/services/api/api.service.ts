@@ -180,7 +180,10 @@ export class ApiService {
         .subscribe((res) => {
           if (endpoint === 'get-movies-by-keyword') {
             this.moviesList = res;
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'SEARCHED');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'SEARCHED')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API MOVIES BY KEYWORD (' + pageIndex + '): ', this.moviesList);
           }
           resultSub.next(res);
@@ -190,11 +193,17 @@ export class ApiService {
         .subscribe((res) => {
           if (endpoint === 'get-movie-similar') {
             this.movieSimilars = res;
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'SIMILAR');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'SIMILAR')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API SIMILAR MOVIES (' + pageIndex + '): ', this.movieSimilars);
           } else if (endpoint === 'get-movie-recommendations') {
             this.movieRecommendations = res;
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'RECOMMENDED');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'RECOMMENDED')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API MOVIE RECOMMENDATIONS (' + pageIndex + '): ', this.movieRecommendations);
           } else if (endpoint === 'get-movie-reviews') {
             this.movieReviews = res;
@@ -210,35 +219,50 @@ export class ApiService {
             this.mainDirectoryMoviesLastIndex = res['page'];
             this.mainDirectoryMoviesTotalPages = res['total_pages'];
             this.mainDirectoryMoviesTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'MAIN DIRECTORY');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'MAIN DIRECTORY')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API HOMEPAGE MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-popular') {
             this.moviesPopular = this.moviesPopular.concat(res['results']);
             this.moviesPopularLastIndex = res['page'];
             this.moviesPopularTotalPages = res['total_pages'];
             this.moviesPopularTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'POPULAR');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'POPULAR')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API POPULAR MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-top-rated') {
             this.moviesTopRated = this.moviesTopRated.concat(res['results']);
             this.moviesTopRatedLastIndex = res['page'];
             this.moviesTopRatedTotalPages = res['total_pages'];
             this.moviesTopRatedTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'TOP RATED');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'TOP RATED')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API TOP RATED MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-upcoming') {
             this.moviesUpcoming = this.moviesUpcoming.concat(res['results']);
             this.moviesUpcomingLastIndex = res['page'];
             this.moviesUpcomingTotalPages = res['total_pages'];
             this.moviesUpcomingTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'UPCOMING');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'UPCOMING')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API UPCOMING MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-now-playing') {
             this.moviesNowPlaying = this.moviesNowPlaying.concat(res['results']);
             this.moviesNowPlayingLastIndex = res['page'];
             this.moviesNowPlayingTotalPages = res['total_pages'];
             this.moviesNowPlayingTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'NOW PLAYING');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'NOW PLAYING')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API NOW PLAYING MOVIES (' + pageIndex + '): ', res);
           }
           resultSub.next(res);
@@ -248,7 +272,10 @@ export class ApiService {
         .subscribe((res) => {
           if (endpoint === 'get-movies-by-genre') {
             this.moviesList = res['results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'GENRE FILTERED');
+            this.fbs.createMoviesQueryResultsObject(res['results'], 'GENRE FILTERED')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
             console.log('API MOVIES BY GENRE (' + pageIndex + '): ', res);
           }
           resultSub.next(res);

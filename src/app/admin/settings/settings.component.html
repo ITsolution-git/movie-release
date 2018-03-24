@@ -14,7 +14,7 @@
             <mat-icon (click)="getAllMoviesResults()">refresh</mat-icon>
         </h1>
         <p>Found {{ duplicateTitles.length }} duplicate movie URLs.</p>
-        <p>Make sure you update the 'slug' and 'url' properties for one of each results below:</p>
+        <p>Make sure you update the 'slug' and 'url' properties for each results below:</p>
 
         <!-- Duplicate Results -->
         <ul *ngIf="duplicateTitles && !loading">
