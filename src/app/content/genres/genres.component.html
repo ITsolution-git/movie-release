@@ -27,7 +27,7 @@
   <!-- Movies List -->
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="result-list" *ngIf="!loading && moviesList">
     <mat-card *ngFor="let movie of moviesList" class="result-card">
-      <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
+      <a (click)="this.as.goToMovieDetails(movie.id)">
         <!-- Movie Poster -->
         <div>
           <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"

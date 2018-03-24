@@ -360,7 +360,7 @@
     </div>
     <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="recommendations-tab-content" *ngIf="!isLoadingMovies">
       <mat-card *ngFor="let movie of recommendedMovies" class="movie-card">
-        <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
+        <a (click)="this.as.goToMovieDetails(movie.id)">
           <div>
             <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
               [title]="movie.title" class="movie-img">
@@ -391,7 +391,7 @@
     </div>
     <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="similar-movies-tab-content" *ngIf="!isLoadingMovies">
       <mat-card *ngFor="let movie of similarMovies" class="movie-card">
-        <a [routerLink]="['/movies/' + this.as.urlOptimizeText(movie.title)]">
+        <a (click)="this.as.goToMovieDetails(movie.id)">
           <div>
             <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
               [title]="movie.title" class="movie-img">
