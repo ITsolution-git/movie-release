@@ -7,6 +7,8 @@ mat-drawer {
   min-width: 200px;
 }
 mat-drawer-content.admin-container{
-  background-color: #333;
   padding: 0 2rem;
+}
+.mat-tab-label{
+  color: #999 !important;
 }
