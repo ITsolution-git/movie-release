@@ -10,29 +10,36 @@ export class DashboardComponent implements OnInit {
 
   duplicateTitles: any[] = [];
   duplicateMovieDetails: any;
-
+  loading: boolean;
   constructor(
     private fS: FirebaseService
   ) {
-    fS.getAllMoviesResults().then(res => {
-      console.log(res);
-      this.checkDuplicateMovieTitles('slug', res)
-        .then(duplicates => {
-          for (let i = 0; i < duplicates.length; i++) {
-            console.log(duplicates[i]);
-            const element = duplicates[i];
-            this.getDuplicateMovieDetailsBySlug(element)
-              .then(movie => {
-                console.log(movie);
-                this.duplicateTitles.push(movie);
-                console.log(this.duplicateTitles);
-              });
-          }
-        });
-    });
+    this.getAllMoviesResults();
   }
 
   ngOnInit(): void { }
+
+  getAllMoviesResults() {
+    this.duplicateTitles = [];
+    this.loading = true;
+    this.fS.getAllMoviesResults()
+      .then(res => {
+        this.checkDuplicateMovieTitles('slug', res)
+          .then(duplicates => {
+            for (let i = 0; i < duplicates.length; i++) {
+              // console.log(duplicates[i]);
+              const element = duplicates[i];
+              this.getDuplicateMovieDetailsBySlug(element)
+                .then(movie => {
+                  // console.log(movie);
+                  this.duplicateTitles.push(movie);
+                  // console.log(this.duplicateTitles);
+                  this.loading = false;
+                });
+            }
+          });
+      });
+  }
 
   checkDuplicateMovieTitles(propertyName, collection): Promise<any> {
     return new Promise<any>((resolve, reject) => {
