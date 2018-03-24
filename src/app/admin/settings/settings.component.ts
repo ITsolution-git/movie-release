@@ -39,15 +39,12 @@ export class SettingsComponent implements OnInit {
   generateMoviesSitemap(): void {
     this.sm.generateMoviesSitemap();
   }
-
   generateMoviesCategoriesSitemap(): void {
     // this.sm.generateMoviesCategoriesSitemap();
   }
-
   generateMovieGenresSitemap(): void {
     this.sm.generateMoviesSitemap();
   }
-
 
   getAllMoviesResults(): void {
     this.duplicateTitles = [];
