@@ -116,6 +116,11 @@ app-forgot-password mat-card {
 
 app-movie-details {
   background: transparent;
+  padding: 0 10%;
+}
+.movie-poster{
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 0 4px rgba(0,0,0,0.2);
 }
 
 /* Dialogs */
@@ -129,7 +134,7 @@ app-movie-details {
 /*Header*/
 
 header .mat-toolbar.mat-primary {
-  padding: 0 5% 0;
+  padding: 0 10% 0;
   margin: auto;
   background: #222222c7;
   border-color: #080808;
@@ -399,7 +404,7 @@ app-footer {
 app-footer footer#colophon {
   margin: 0 auto;
   display: block;
-  padding: 0 5%;
+  padding: 0 10%;
 }
 
 footer#colophon .widget-title {
@@ -423,8 +428,8 @@ footer#colophon .footer-inner .footer-widget {
 
 #sitemap {
   margin: auto;
-  border-top: 1px solid #4444449e;
-  border-bottom: 1px solid #4444449e;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
   font-size: 11px;
   display: inline-block;
   width: 100%;

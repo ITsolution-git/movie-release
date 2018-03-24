@@ -43,7 +43,7 @@
           </div>
         </div>
         <!-- Average Rating -->
-        <div *ngIf="currentUserRating === 0" class="rating" fxLayout="row" fxFlex="80" fxFlex.sm="75" fxFlex.xs="70">
+        <div *ngIf="currentUserRating === 0" class="rating" fxLayout="row" fxFlex="60" fxFlex.sm="60" fxFlex.xs="60">
           <span id="rate-text">Rate movie</span>
           <span>
             <mat-icon (click)="rateMovie(1)" *ngIf="cobinedRatingAverage < 0.25">star_border</mat-icon>
@@ -64,7 +64,7 @@
           </span>
         </div>
         <!-- Your Rating -->
-        <div *ngIf="currentUserRating !== 0" class="rating" fxLayout="row" fxFlex="80" fxFlex.sm="75" fxFlex.xs="70">
+        <div *ngIf="currentUserRating !== 0" class="rating" fxLayout="row" fxFlex="60" fxFlex.sm="60" fxFlex.xs="60">
           <span id="rate-text">Your Rating:</span>
           <span>
             <mat-icon (click)="rateMovie(1)" *ngIf="currentUserRating < 0.25">star_border</mat-icon>
@@ -84,22 +84,22 @@
             <mat-icon [ngClass]="{'active' : currentUserRating  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(currentUserRating  < 4.75)">star</mat-icon>
           </span>
         </div>
-      </div>
-      <!-- User Action Buttons -->
-      <div id="user-actions" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch">
-        <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
-          <mat-icon fxHide.sm="true" fxHide.xs="false">play_circle_outline</mat-icon>
-          <span>Watch Trailer</span>
-          <!-- <span *ngIf="movieTrailers?.length > 1">s</span> ({{ movieTrailers.length }}) -->
-        </button>
-        <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
-          <mat-icon fxHide.sm="true" fxHide.xs="false">local_movies</mat-icon>Buy Tickets
-        </button> -->
-        <div class="top-user-actions" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
-          <!-- Favorite Button -->
-          <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-            <mat-icon>favorite</mat-icon>
+        <!-- User Action Buttons -->
+        <div id="user-actions" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch">
+          <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
+            <mat-icon fxHide.sm="true" fxHide.xs="false">play_circle_outline</mat-icon>
+            <span>Watch Trailer</span>
+            <!-- <span *ngIf="movieTrailers?.length > 1">s</span> ({{ movieTrailers.length }}) -->
           </button>
+          <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
+            <mat-icon fxHide.sm="true" fxHide.xs="false">local_movies</mat-icon>Buy Tickets
+          </button> -->
+          <div class="top-user-actions" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+            <!-- Favorite Button -->
+            <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
 

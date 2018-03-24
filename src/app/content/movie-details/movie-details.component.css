@@ -59,7 +59,7 @@
 
 .movie-poster {
   width: 100%;
-  margin-bottom: 2rem;
+  border: 1px solid #00000073;
 }
 
 /* Background Image */
@@ -84,7 +84,7 @@
 
 #rating-result {
   padding: 0.5rem;
-  border-right: 1px solid #405266;
+  border-right: 1px solid #333;
 }
 
 #rating-result mat-icon {

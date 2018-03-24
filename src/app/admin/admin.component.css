@@ -1,5 +1,9 @@
-mat-drawer-content {
+div.mat-tab-body-wrapper {
   padding: 0 2rem;
+}
+
+div.mat-tab-labels{
+  background: #333;
 }
 
 mat-drawer-container {
