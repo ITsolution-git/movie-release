@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
-
+// RxJs
+import { Observable } from 'rxjs/Observable';
 // Firebase
 import {
   AngularFireDatabase,
   AngularFireObject,
   AngularFireList
 } from 'angularfire2/database';
-
+// Services
 import { AppService } from '../app.service';
-
+// Constants
 import { DB_COL } from '../../../constants';
 
 @Injectable()
 export class FirebaseService {
 
   moviesRef: AngularFireObject<any>;
+  moviesObsRef: Observable<any>;
   moviesQueriesRef: AngularFireList<any>;
   moviesResultsRef: AngularFireObject<any>;
+  moviesResultsObsRef: AngularFireList<any>;
   movieGenresRef: AngularFireObject<any>;
   apiConfigRef: AngularFireObject<any>;
 
@@ -25,14 +28,46 @@ export class FirebaseService {
     private as: AppService
   ) {
     this.moviesRef = this.afDb.object(`${DB_COL.MOVIES}`);
+    this.moviesObsRef = this.afDb.list(`${DB_COL.MOVIES}`).valueChanges();
     this.moviesQueriesRef = this.afDb.list(`${DB_COL.MOVIES_QUERIES}`);
     this.moviesResultsRef = this.afDb.object(`${DB_COL.MOVIES_RESULTS}`);
+    this.moviesResultsObsRef = this.afDb.list(`${DB_COL.MOVIES_RESULTS}`);
     this.movieGenresRef = this.afDb.object(`${DB_COL.MOVIE_GENRES}`);
     this.apiConfigRef = this.afDb.object(`${DB_COL.API_CONFIG}`);
   }
 
   saveAPIConfigToDB(apiConfig: any): void {
     this.apiConfigRef.set(apiConfig);
+  }
+
+  // Get All Movies from Firebase
+  getAllMoviesResults(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.moviesResultsObsRef.valueChanges()
+        .subscribe(res => {
+          resolve(res);
+        });
+    });
+  }
+
+  getMoviesByTitle(movieTitle: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('title').equalTo(movieTitle))
+        .valueChanges()
+        .subscribe(res => {
+          resolve(res);
+        });
+    });
+  }
+
+  getMoviesBySlug(movieSlug: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('slug').equalTo(movieSlug))
+        .valueChanges()
+        .subscribe(res => {
+          resolve(res);
+        });
+    });
   }
 
   // Store Queried Movie Genres in Database
@@ -57,35 +92,43 @@ export class FirebaseService {
 
   // Store Queried Movies List in Database
   createMoviesQueryResultsObject(movies: Array<any>, callSource: string): void {
-    console.log('SAVING ' + callSource + ' MOVIES TO DB: ', movies);
+    // console.log('SAVING ' + callSource + ' MOVIES TO DB: ', movies);
     const moviesObj = {};
     // Create New Movie Results Object
     for (let i = 0; i < movies.length; i++) {
       const movieId = movies[i].id;
-      // Movie Properties
-      moviesObj[movieId] = {
-        adult: movies[i].adult || '',
-        backdrop_path: movies[i].backdrop_path || '',
-        genre_ids: movies[i].genre_ids || '',
-        id: movieId,
-        original_language: movies[i].original_language || '',
-        original_title: movies[i].original_title || '',
-        overview: movies[i].overview || '',
-        popularity: movies[i].popularity || '',
-        poster_path: movies[i].poster_path || '' || '',
-        release_date: movies[i].release_date,
-        slug: this.as.urlOptimizeText(movies[i].title),
-        title: movies[i].title,
-        url: 'movies/' + this.as.urlOptimizeText(movies[i].title),
-        video: movies[i].video || '',
-        vote_average: movies[i].vote_average || '',
-        vote_count: movies[i].vote_count || ''
-      };
+      this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('id').equalTo(movieId))
+        .valueChanges()
+        .subscribe(res => {
+          if (!res[0]) {
+            // Movie Properties
+            moviesObj[movieId] = {
+              adult: movies[i].adult || '',
+              backdrop_path: movies[i].backdrop_path || '',
+              genre_ids: movies[i].genre_ids || '',
+              id: movieId,
+              original_language: movies[i].original_language || '',
+              original_title: movies[i].original_title || '',
+              overview: movies[i].overview || '',
+              popularity: movies[i].popularity || '',
+              poster_path: movies[i].poster_path || '' || '',
+              release_date: movies[i].release_date,
+              slug: this.as.urlOptimizeText(movies[i].title),
+              title: movies[i].title,
+              url: 'movies/' + this.as.urlOptimizeText(movies[i].title),
+              video: movies[i].video || '',
+              vote_average: movies[i].vote_average || '',
+              vote_count: movies[i].vote_count || ''
+            };
+          }
+
+        });
     }
     // console.log(moviesObj);
     this.saveMoviesQueryResultsToDB(moviesObj);
   }
   saveMoviesQueryResultsToDB(moviesObj: Object): void {
+    console.log('SAVING MOVIE RESULTS TO DB.', moviesObj);
     // Save copy of movies to firebase
     this.moviesResultsRef.update(moviesObj)
       .catch(err => console.log(err, 'You do not have access!'));
@@ -142,6 +185,5 @@ export class FirebaseService {
     };
     this.moviesQueriesRef.push(queryObj);
   }
-
 
 }

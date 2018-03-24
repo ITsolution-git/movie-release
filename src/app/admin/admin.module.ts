@@ -9,7 +9,8 @@ import {
   MatButtonModule,
   MatDialogModule,
   MatTableModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTabsModule
 } from '@angular/material';
 // Routing Module
 import { AdminRoutingModule } from './admin-routing.module';
@@ -41,6 +42,7 @@ import { SelectMovieDialogComponent } from './articles/select-movie-dialog/selec
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
+    MatTabsModule,
     MatProgressSpinnerModule,
     FlexLayoutModule
   ],
