@@ -1,14 +1,14 @@
 mat-drawer-container {
   height: 100%;
+  color: #999;
 }
-
 mat-drawer {
   background: #222;
   min-width: 200px;
 }
-mat-drawer-container .mat-tab-body-wrapper {
+mat-drawer-content.admin-container{
   padding: 0 2rem;
 }
-mat-drawer-container .mat-tab-labels{
-  background: #333;
+.mat-tab-label{
+  color: #999 !important;
 }
