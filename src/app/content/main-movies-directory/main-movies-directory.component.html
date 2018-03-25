@@ -1,61 +1,81 @@
-<div id="page-header" fxLayout="row">
-  <div id="header-left" fxFlex>
-    <!-- Page Title -->
-    <h1>Current Movie Releases</h1>
-
-    <!-- Movies Directory Results Counter -->
-    <div id="results-counter">Results:
-      <span *ngIf="mainDirectoryCurrentIndex === mainDirectoryTotalPages">{{ mainDirectoryTotalResults }}</span>
-      <span *ngIf="mainDirectoryCurrentIndex !== mainDirectoryTotalPages">{{ mainDirectoryCurrentIndex * 20 }}</span> / {{ mainDirectoryTotalResults }}
+<!-- Jumbotron-->
+<div id="jumbotron" class="mat-elevation-z6">
+  <div class="container">
+    <h1 class="page-title entry-title">Main Movie Directory</h1>
+    <h2 class="page-description">This is the main directory description. This needs to be the same with the Meta Description of the page.</h2>
+    <div class="advanced_filters">
+      <span></span>
+    </div>
+    <div class="page-taxonomy-list">
+    </div>
+    <!-- <div id="breadcrumbs">
+      <span xmlns:v="http://rdf.data-vocabulary.org/#">
+        <span>Feel free to browse our wide selection of the current releases, and find out what is playing near you right now.
+          <a href="#now-playing">Now Playing Movies</a>
+        </span>
+        <span>
+          <a href="#upcoming">Upcoming Movies</a>
+        </span>
+      </span>
+    </div> -->
+    <div id="page-header" fxLayout="row">
+      <div id="header-left" fxFlex>
+        <!-- Upcoming Results Counter -->
+        <div id="results-counter">
+          <span>Showing:</span>
+          <span *ngIf="currentPageIndex === mainDirectoryTotalPages">{{ mainDirectoryTotalPages }}</span>
+          <span *ngIf="currentPageIndex !== mainDirectoryTotalPages">{{ mainDirectoryCurrentIndex * 20 }}</span> / {{ mainDirectoryTotalPages }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 <!-- Main Directory -->
-<div *ngIf="!loading" class="movies-directory-content">
-  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
-    <mat-card *ngFor="let movie of mainDirectoryMovies; let i = index" class="movie-card">
-      <div class="movie-data">
-        <div class="release-date">
-          <h3 class="year">Released Movie:
-            <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-          </h3>
-        </div>
-      </div>
-      <a (click)="this.as.goToMovieDetails(movie.id)">
-        <div class="movie-thumbnail">
-          <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title"
-            class="movie-img">
-          <ng-template #defaultMovieImage>
-            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-          </ng-template>
-        </div>
-        <div class="movie-info">
-          <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="space-evenly stretch">
-            <span class="movie-rating">
-              <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
-            <div class="favorite">
-              <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-                <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-              </button>
-            </div>
-          </div>
+<section *ngIf="!loading" id="now-playing" class="movies-directory-content section">
+  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
+    <mat-card *ngFor="let movie of mainDirectoryMovies; let i = index" class="movie-card" tabindex="0">
+      <mat-card-header>
+        <mat-card-title>
           <h2>{{ movie.title }}</h2>
-        </div>
-      </a>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]"
+        [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'">
+      <ng-template #defaultMovieImage>
+        <img mat-card-image class="movie-img" src="assets/img/default-movie-poster.png" [alt]="movie.title + ' Current Movie Releases'"
+          [title]="movie.title + ' Current Movie Releases'">
+      </ng-template>
+      <mat-card-content>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+          dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+          specimen book.</p>
+      </mat-card-content>
+      <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+        <button mat-button>
+          <mat-icon class="rating">star</mat-icon>
+          <span>{{ movie.vote_average / 2 }}</span>
+        </button>
+        <button mat-button>
+          <mat-icon class="mat-icon material-icons">favorite</mat-icon>
+        </button>
+      </mat-card-actions>
     </mat-card>
   </div>
-</div>
-
-<!-- Loader -->
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-</div>
-<!-- More Loader -->
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-</div>
-<!-- Load More Button -->
-<div id="load-more" *ngIf="!loading && mainDirectoryCurrentIndex !== mainDirectoryTotalPages">
-  <button mat-raised-button color="primary" (click)="loadMoreResults(mainDirectoryCurrentIndex + 1)">LOAD MORE...</button>
-</div>
+</section>
+<section>
+  <!-- Loader -->
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <!-- More Loader -->
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <!-- Load More Button -->
+  <div id="load-more" *ngIf="!loading && mainDirectoryCurrentIndex !== mainDirectoryTotalPages">
+    <button mat-raised-button color="primary" (click)="loadMoreResults(mainDirectoryCurrentIndex + 1)">LOAD MORE...</button>
+  </div>
+</section>

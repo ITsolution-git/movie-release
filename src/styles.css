@@ -1,537 +1,135 @@
-/* You can add global styles to this file, and also import other style files */
-
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-family: "Roboto","Helvetica Neue Light","Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
   height: 100%;
   width: 100%;
-  background: #1f1f1f;
-  color: #EEE;
 }
-
-* {
-  -o-transition: .5s;
-  -ms-transition: .5s;
-  -moz-transition: .5s;
-  -webkit-transition: .5s;
-  transition: .5s;
+a{
+    color: #c62828;
 }
-
-a {
-  color: #FFF;
+a:hover, a:focus, a:active{
+    color: #CCC;
 }
-
-a:hover {
-  color: #c62828
+h1, h2, h3, h4, h5, h6{
+    font-weight: normal;
 }
-
-p,
-i,
-em {
-  font-weight: normal;
+.result-counter{
+    color: #CCC;
 }
-
-/*HOST*/
-
-app-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9;
+/*App Wrapper*/
+app-main-movies-directory, app-movies{
+    display: block;
+    padding: 1rem;
 }
-
-app-movies,
-app-genres,
-app-movie-details,
-app-search,
-app-page-not-found,
-app-shared,
-app-user-auth,
-app-admin-login,
-app-forgot-password {
-  margin: 90px auto;
-  display: block;
-  padding: 0 5%;
+/*App Wrapper END*/
+/*Section*/
+.section{
+    padding: 2%;
 }
-
-.home app-public {
-  margin-top: 0;
+/*Section END*/
+/*Material Cards*/
+mat-card{
+    max-width: 220px;
+    margin: 8px;
 }
-
-app-home .timeline-movies-content {
-  margin: 30px auto;
-  display: block;
-  padding: 0 5%;
+mat-card-title{
+    white-space: pre-line;
+    word-wrap: break-word;
+    display: inline-flex !important;
+    max-height: 1.2em;
+    overflow: hidden;
 }
-
-app-account {
-  margin-top: 63px;
-  display: block;
+mat-card-title h2{
+    font-weight: normal;
+    margin: 0;
+    font-size: 1em;
 }
-
-app-user-auth mat-card,
-app-admin-login mat-card,
-app-forgot-password mat-card {
-  background: transparent !important;
-  color: #FFF !important;
-  box-shadow: none !important;
+.mat-card-image{
+    max-height: 400px;
+    height: 100%;
 }
-
-/*Jumbotron*/
-
-#jumbotron {
-  background-color: #2A2A2A;
-  box-shadow: rgb(0, 0, 0) 0px -10px 10px -5px inset;
-  -moz-box-shadow: rgb(17, 17, 17) 0px -10px 10px -5px inset;
-  -webkit-box-shadow: rgb(0, 0, 0) 0px -10px 10px -5px inset;
-  background-image: url("/assets/img/background.png");
-  background-size: 100%;
-  padding: 20% 15%;
-  text-align: center;
-  position: relative;
+.mat-card-content p, .mat-card-subtitle{
+    font-size: 0.8em;
 }
-
-#jumbotron h2 {
-  color: #FFF;
-  font-weight: normal;
+.mat-card-subtitle{
+    font-size: 0.8em;
 }
-
-#jumbotron a {
-  text-decoration: none;
+.mat-tab-group{
+    margin: 0rem -1rem;
 }
-
-#jumbotron #breadcrumbs {
-  position: absolute;
-  bottom: 6%;
-  text-align: center;
-  width: 100%;
-  display: block;
-  left: 0;
-}
-
-/*Movie Details*/
-
-app-movie-details {
-  background: transparent;
-  padding: 0 10%;
-}
-.movie-poster{
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 0 4px rgba(0,0,0,0.2);
-}
-.title-year{
-  font-size: 0.5em;
-  color: #999;
-}
-/* Dialogs */
-
-.full-screen-dialog,
-.full-screen-dialog .mat-dialog-container {
-  background: #000;
-  padding: 0;
-}
-
-/*Header*/
-
-header .mat-toolbar.mat-primary {
-  padding: 0 10% 0;
-  margin: auto;
-  background: #222222c7;
-  border-color: #080808;
-  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
-}
-
-#header-container {
-  position: relative;
-}
-
-#logo,
-#menu {
-  padding: 0;
-  position: relative;
-  z-index: 1;
-}
-
-#logo h1 {
-  line-height: 4rem;
-  outline: none;
-  cursor: pointer;
-}
-
-#mobile-menu-toggler {
-  position: absolute;
-  top: 17px;
-  right: 0;
-  z-index: 1;
-  cursor: pointer;
-  z-index: 3;
-}
-
-#mobile-menu-toggler mat-icon {
-  font-size: 2rem;
-}
-
-.mat-toolbar {
-  background: transparent;
-}
-
-/*Content*/
-
-h2,
-mat-cell a {
-  color: #999;
-  font-weight: normal;
-}
-
-.section:nth-of-type(2) {
-  border-top: 1px solid #111;
-  margin-top: 50px;
-}
-
-.section:nth-of-type(2) .section-title {
-  border-top: 1px solid #4444449e;
-  margin-top: 0;
-  padding-top: 19px;
-}
-
-.results-counter {
-  color: #999;
-  margin: 0 0 20px 0;
-  text-align: right;
-  padding-top: 29px;
-}
-
-.section:nth-of-type(2) .results-counter {
-  border-top: 1px solid #4444449e;
-}
-
-.results-counter .view_all {
-  margin-left: 10px;
-  display: inline-block;
-}
-
-.view_all a {
-  text-decoration: none;
-}
-
-/*Labels*/
-
-.mat-tab-label,
-.mat-tab-link,
-.tab-heading {
-  color: #FFF !important;
-  font-weight: normal;
-}
-
-.mat-form-field-label {
-  font-weight: normal;
-}
-
-/*Loader*/
-
-.loader,
-#load-more {
-  text-align: center;
-  margin: 1rem 0;
-  width: 100%;
-  display: block
-}
-
-.movie-card {
-  position: relative;
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  padding: 0;
-  cursor: pointer;
-  overflow: hidden;
-  background: black !important;
-}
-
-.movie-card:hover {
-  box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
-  -moz-box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
-  -webkit-box-shadow: rgb(0, 0, 0) 0px 0px 10px !important;
-}
-
-.movie-card img {
-  width: 100%;
-  max-width: 250px;
-  min-width: 250px;
-  min-height: 390px;
-  display: block;
-}
-
-/*Movie Data for Movie Cards - release date and favorite button*/
-
-mat-card {
-  padding: 0 !important;
-  border-radius: 0 !important;
-  display: block;
-  border: 0;
-}
-
-.movie-data {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  opacity: 0;
-}
-
-mat-card a {
-  text-decoration: none;
-  display: block;
-}
-
-.movie-data .release-date {
-  color: #FFF;
-}
-
-.movie-data .release-date h3 {
-  margin: 0;
-  padding: 2% 5%;
-  font-size: 75%;
-  font-weight: normal;
-  background: #000;
-  text-align: center;
-  color: #999;
-}
-
-.movie-info {
-  position: absolute;
-  opacity: 0;
-  width: 100%;
-  bottom: 24px;
-  text-align: center;
-  background: #000;
-  color: #FFF;
-}
-
-.movie-info-sub {
-  border-bottom: 1px solid #111;
-  display: inline-flex;
-  width: 100%;
-  padding: 0 5%;
-}
-
-.movie-card a h2 {
-  font-weight: normal;
-  padding: 0.3rem 0 0.3rem 0;
-  margin: 0;
-  text-align: center;
-  font-size: 0.8em;
-  max-height: 35px;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  background: #1f1f1f;
-}
-
-mat-card:hover a h2 {
-  color: #FFF;
-  background: #000;
-}
-
-h3 span.year {
-  font-size: 1rem;
-  font-weight: normal;
-}
-
-.movie-info-sub {
-  border-bottom: 1px solid #111;
-}
-
-.movie-info-sub button.favorite.mat-icon-button {
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-}
-
-.movie-rating {
-  width: 100%;
-  text-align: left;
-  font-size: 0.625rem;
-  padding-top: 8px;
-}
-
-.movie-rating mat-icon {
-  font-size: 1rem;
-  width: auto;
-  height: auto;
-  top: 2px;
-  position: relative;
-  margin-right: 0.3rem;
-  color: gold;
-  text-shadow: 1px 1px 0px #777;
-}
-
-.movie-card:hover .movie-info,
-.movie-card:hover .movie-data {
-  opacity: 1;
-}
-
-/* User Actions */
-
-.favorite button:hover mat-icon {
-  color: #fff;
-}
-
-.favorite button mat-icon {
-  color: #c62828;
-}
-
-.favorite button.active {
-  background: #c62828;
-}
-
-.favorite button.active mat-icon {
-  color: #fff;
-}
-
-app-footer {
-  background-color: #2A2A2A;
-  box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
-  -moz-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
-  -webkit-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
-  color: #939393;
-  border: 0;
-  font-size: 0.8em;
-  display: block;
-}
-
-app-footer footer#colophon {
-  margin: 0 auto;
-  display: block;
-  padding: 0 10%;
-}
-
-footer#colophon .widget-title {
-  color: #DDD;
-  font-size: 1rem;
-  margin-bottom: 1.5em;
-  text-transform: uppercase;
-  font-weight: normal;
-}
-
-footer#colophon .footer-inner {
-  display: block;
-  min-height: 250px;
-  padding: 30px 0px;
-  border-bottom: 1px solid #111;
-}
-
-footer#colophon .footer-inner .footer-widget {
-  margin: 0 3%;
-}
-
-#sitemap {
-  margin: auto;
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
-  font-size: 11px;
-  display: inline-block;
-  width: 100%;
-}
-
-#sitemap ul {
-  margin: 0;
-  padding: 0;
-}
-
-#sitemap ul li {
-  display: inline-block;
-  list-style: none;
-}
-
-#sitemap ul li a {
-  display: block;
-  position: relative;
-  display: block;
-  padding: 10px 20px;
-  line-height: 2.5em;
-  text-decoration: none;
-  color: #CCC;
-}
-
-#sitemap ul li a:hover {
-  background: #44444469;
-  color: #FFF;
-}
-
-#credits,
-#disclaimer {
-  padding: 15px 0px;
-  color: #666;
-  font-size: 0.8em;
-}
-
-#disclaimer {
-  border-bottom: 1px solid #4444449e;
-}
-
-.scrolltotop {
-  cursor: pointer;
-  background: #00000059;
-  border: none;
-  color: #FFF;
-}
-
-.scrolltotop .mat-icon {
-  padding: 15% 5%;
-}
-
-/*Login*/
-
-.login-dialog,
-.login-dialog .mat-dialog-container {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-/*Nice Scrollbar*/
-
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-::-webkit-scrollbar-thumb {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-}
-
-@media screen and (max-width: 600px) {
-  #page-header h1 {
-    font-size: 1.4rem;
-  }
-  .tab-heading {
-    text-transform: lowercase;
-  }
-  .movies-list {
-    padding: 0.1rem;
-  }
-  .movie-card {
-    margin: 0.05rem 0 0 0;
-  }
-}
-
-@media screen and (max-width: 959px) {
-  #logo {
+h3.tab-heading{
+    display: block;
     width: 100%;
-  }
-  #menu {
-    height: auto !important;
-  }
-  #mobile-menu-toggler {
-    right: 2.5%;
-    top: 0.9rem;
-  }
+}
+.mat-card .rating{
+    color: #f1c40f;
+}
+/*Material Cards END*/
+/*Jumbotron*/
+#jumbotron{
+    padding: 1rem 2rem 3rem 2rem;
+    margin: -1rem -1rem 0rem -1rem;
+    box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
+    -moz-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
+    position: relative;
+}
+/*Jumbotron END*/
+#load-more{
+    text-align: center;
+    margin: 3rem 0;
+}
+
+/*Mat Dark Theme*/
+mat-dark-theme #jumbotron{
+    background-color: #2A2A2A;
+}
+app-home #jumbotron{
+    margin: 0rem;
+    background-image: url("/assets/img/background.png");
+    background-size: 100%;
+    padding: 20% 15%;
+    margin: 0rem 0rem 1rem 0rem;
+    text-align: center;
+}
+app-movies #jumbotron{
+    background-image: url("https://www.themoviedb.org/static_cache/v4/footers_v2/Furious7-d0f17d0793c58d83056a64d22157c9aff5ffb4c179b60048264e5158916fec22.jpg");
+    background-size: cover;
+}
+mat-dark-theme a{
+    color: #FFF;
+}
+mat-dark-theme a:hover, mat-dark-theme a:focus, mat-dark-theme a:active{
+    color: #c62828;
+}
+/*Material Extras*/
+mat-toolbar{
+    z-index: 9;
+}
+mat-toolbar .mat-button{
+    min-width: auto;
+}
+.docs-cmr-logo{
+    width: 70px;
+    padding: 6px 5px;
+}
+.mat-button-wrapper{
+    display: block;
+}
+mat-toolbar .mat-button.docs-button{
+    margin-left: 15px;
+    padding: 0 16px 0 8px;
+}
+/*Material Extras END*/
+@media (max-width: 616px) {
+    mat-card{
+        max-width: inherit;
+    }
+    .mat-card-image{
+        max-height: inherit;
+        height: auto;
+    }
+    
 }

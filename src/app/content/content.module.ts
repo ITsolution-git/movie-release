@@ -30,6 +30,8 @@ import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialo
 // import { AuthDialogComponent } from './shared/auth-dialog/auth-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
+import { MovieCardComponent } from './shared/movie-card/movie-card.component';
+import { JumbotronComponent } from './shared/jumbotron/jumbotron.component';
 
 @NgModule({
   imports: [
@@ -60,7 +62,9 @@ import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movie
     // AuthDialogComponent,
     GenresListComponent,
     MainMoviesDirectoryComponent,
-    SafePipe
+    SafePipe,
+    MovieCardComponent,
+    JumbotronComponent
   ],
   entryComponents: [
     TrailersDialogComponent,

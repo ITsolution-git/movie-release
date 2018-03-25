@@ -19,7 +19,8 @@ import {
   MatOptionModule,
   MatSelectModule,
   MatDialogModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatListModule,
 } from '@angular/material';
 // Toastr
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -50,6 +51,7 @@ import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
 import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
 import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,7 @@ import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.co
     MatSelectModule,
     MatDialogModule,
     MatSidenavModule,
+    MatListModule,
     CdkTableModule,
     FlexLayoutModule,
     FormsModule,
@@ -89,7 +92,7 @@ import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.co
     MatIconModule,
     ToastModule.forRoot(),
     AppRoutingModule,
-    MatDialogModule
+    LayoutModule
   ],
   providers: [
     AppService,
