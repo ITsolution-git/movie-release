@@ -21,7 +21,7 @@
   <div *ngIf="duplicateMovieDetails && !loading" fxFlex class="duplicate-details">
     <div class="fixed-box" fxFlex>
       <div *ngFor="let d of duplicateMovieDetails" fxLayout="row" fxLayoutAlign="center center">
-        <a [href]="'https://console.firebase.google.com/project/rock-extension-140016/database/rock-extension-140016/data/movies_results/' + d.id"
+        <a [href]="'https://console.firebase.google.com/project/current-movie-releases/database/current-movie-releases/data/movies_results/' + d.id"
           target="_blank">{{ d.id }}</a> | {{ d.release_date | date: 'y'}}
         <mat-form-field fxFlex class="duplicate-input">
           <input matInput type="text" [(ngModel)]="d.slug" #slug>
