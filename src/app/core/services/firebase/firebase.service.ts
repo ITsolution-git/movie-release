@@ -7,6 +7,8 @@ import {
   AngularFireObject,
   AngularFireList
 } from 'angularfire2/database';
+// Toastr
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // Services
 import { AppService } from '../app.service';
 // Constants
@@ -25,7 +27,8 @@ export class FirebaseService {
 
   constructor(
     private afDb: AngularFireDatabase,
-    private as: AppService
+    private as: AppService,
+    public toastr: ToastsManager
   ) {
     this.moviesRef = this.afDb.object(`${DB_COL.MOVIES}`);
     this.moviesObsRef = this.afDb.list(`${DB_COL.MOVIES}`).valueChanges();
@@ -174,6 +177,20 @@ export class FirebaseService {
     // Save copy of movies to firebase
     this.moviesRef.update(moviesObj)
       .catch(err => console.log(err, 'You do not have access!'));
+  }
+
+  updateMovieResultURL(movieId: string, slug: string, url: string): void {
+    this.moviesResultsObsRef.update(movieId, {
+      slug: slug,
+      url: url
+    })
+      .then(res => {
+        this.toastr.success('Slug & URL Updated for ', slug);
+      })
+      .catch(error => {
+        console.log(error);
+        this.toastr.error('There was an error updating this movie! ', error);
+      });
   }
 
   // Store Movie Search Query to Database
