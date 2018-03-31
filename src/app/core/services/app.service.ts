@@ -76,22 +76,35 @@ export class AppService {
       });
   }
 
+  // Movie Functions
   goToMovieDetails(movieId: string) {
     // Get the Movie URL by MovieID from firebase movie_results collection
     this.getMovieUrlById(movieId)
       .then(res => {
-        console.log(res['url']);
         this.router.navigate([res['url']]);
       });
   }
-
   getMovieUrlById(movieId: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('id').equalTo(movieId)).valueChanges()
         .subscribe(res => {
-          console.log(res);
-          console.log(res[0]);
-          console.log(res[0]['url']);
+          resolve(res[0]);
+        });
+    });
+  }
+
+  // Celeb Functions
+  goToCelebDetails(celebId: number): void {
+    // Get the Celeb URL by CelebID from firebase celebs_results collection
+    this.getCelebUrlById(celebId)
+      .then(res => {
+        this.router.navigate([res['url']]);
+      });
+  }
+  getCelebUrlById(celebId: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.afDb.list(`${DB_COL.CELEBS_RESULTS}`, ref => ref.orderByChild('id').equalTo(celebId)).valueChanges()
+        .subscribe(res => {
           resolve(res[0]);
         });
     });
