@@ -7,12 +7,12 @@
         <ng-container matColumnDef="movieImg">
           <mat-header-cell *matHeaderCellDef> Poster </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(element?.title)]">
+            <a (click)="this.as.goToMovieDetails(element?.id)">
               <img *ngIf="element?.poster; else defaultMovieImage" class="movie-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.poster]"
                 [alt]="[element?.title]" [title]="[element?.title]">
             </a>
             <ng-template #defaultMovieImage>
-              <a [routerLink]="['/movies/' + this.as.urlOptimizeText(element?.title)]">
+              <a (click)="this.as.goToMovieDetails(element?.id)">
                 <img class="movie-img" src="assets/img/default-movie-poster.png" [alt]="[element?.title]" [title]="[element?.title]">
               </a>
             </ng-template>
@@ -23,7 +23,7 @@
         <ng-container matColumnDef="movieTitle">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Movie Title </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <a [routerLink]="['/movies/' + this.as.urlOptimizeText(element?.title)]">{{ element?.title }}</a>
+            <a (click)="this.as.goToMovieDetails(element?.id)">{{ element?.title }}</a>
           </mat-cell>
         </ng-container>
 

@@ -18,7 +18,7 @@
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #genres="matMenu" [overlapTrigger]="false">
-      <a [routerLink]="'/movies/genre/' + this.as.urlOptimizeText(genre.name)" mat-menu-item *ngFor="let genre of movieGenresList"
+      <a (click)="this.as.goToMovieGenresPage(genre.name)" mat-menu-item *ngFor="let genre of movieGenresList"
         class="genre-btn" routerLinkActive="active">{{ genre.name }}</a>
     </mat-menu>
   </nav>

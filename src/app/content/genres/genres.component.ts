@@ -121,11 +121,6 @@ export class GenresComponent implements OnInit {
       });
   }
 
-  goToMovieGenresPage(genre: string): void {
-    const seoURL = this.as.urlOptimizeText(genre);
-    this.router.navigate(['/movies/genre/' + seoURL]);
-  }
-
   // Load More Results
   loadMoreResults(pageIndex: number) {
     // console.log(pageIndex);
