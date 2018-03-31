@@ -11,6 +11,7 @@ admin.initializeApp({
 export let AD = admin;
 export const DB_LISTS = {
     API_CONFIG: '/api_config',
+    CELEBS: '/celebs',
     CELEBS_QUERIES: '/celebs_queries',
     CELEBS_RESULTS: '/celebs_results',
     MOVIE_GENRES: '/movie_genres',
