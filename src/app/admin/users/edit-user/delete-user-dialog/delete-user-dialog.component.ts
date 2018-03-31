@@ -71,7 +71,10 @@ export class DeleteUserDialogComponent implements OnInit {
       this.toastr.success('User was deleted!');
       this.dialogRef.close();
       this.router.navigate(['admin/users']);
-    });
+    })
+      .catch(error => {
+        console.log('There was an error while deleting the user! ', error);
+      });
   }
 
 }

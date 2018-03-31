@@ -198,7 +198,7 @@ export class FirebaseService {
         this.toastr.success('Slug & URL Updated for ', slug);
       })
       .catch(error => {
-        console.log(error);
+        console.log('There was an error while updating the movie! ', error);
         this.toastr.error('There was an error updating this movie! ', error);
       });
   }
@@ -269,6 +269,9 @@ export class FirebaseService {
                     // console.log('LAST PERSON. SAVE!');
                     resolves(personsObj);
                   }
+                })
+                .catch(error => {
+                  console.log('There was an error while optimizing texts for the URL! ', error);
                 });
             } else {
               // console.log('SKIP PERSON.', personId);

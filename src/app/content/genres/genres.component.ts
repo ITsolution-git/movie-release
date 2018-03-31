@@ -55,10 +55,14 @@ export class GenresComponent implements OnInit {
             this.pageTitle = this.pageKey.toLowerCase().split(' ').map(x => x[0].toUpperCase() + x.slice(1)).join(' ');
             this.pageTitle = this.as.seoOptimizeText(this.pageTitle);
             this.moviesList = [];
-            this.getMovieGenres().then(() => {
-              this.setSEOMetaTags();
-              this.getMovieGenreId(this.pageKey);
-            });
+            this.getMovieGenres()
+              .then(() => {
+                this.setSEOMetaTags();
+                this.getMovieGenreId(this.pageKey);
+              })
+              .catch(error => {
+                console.log('There was an error while getting the Movie Genres! ', error);
+              });
           }
         });
   }
@@ -97,6 +101,9 @@ export class GenresComponent implements OnInit {
         if (this.genreId) {
           this.getMoviesByGenre(1);
         }
+      })
+      .catch(error => {
+        console.log('There was an error while getting the genre ID by Genre Name! ', error);
       });
   }
 

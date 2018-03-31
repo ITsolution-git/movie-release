@@ -65,6 +65,9 @@ export class EditArticleComponent implements OnInit {
     this.getArticleDetails()
       .then(res => {
         this.getMovieDetails(res.article_movie_id);
+      })
+      .catch(error => {
+        console.log('Could Not Get Article Details! ', error);
       });
   }
 

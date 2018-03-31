@@ -31,6 +31,9 @@ export class AppService {
           const replaceAnd = res.replace(/\&/g, 'and');
           const urlText = replaceAnd.toLowerCase().replace(/[^a-zA-Z0-9-$@]+/gm, '-');
           resolves(urlText);
+        })
+        .catch(error => {
+          console.log('There was an error while removing accents froms string', error);
         });
     });
   }
@@ -82,6 +85,9 @@ export class AppService {
     this.getMovieUrlById(movieId)
       .then(res => {
         this.router.navigate([res['url']]);
+      })
+      .catch(error => {
+        console.log('There was an error while getting the movie URL! ', error);
       });
   }
   getMovieUrlById(movieId: string): Promise<any> {

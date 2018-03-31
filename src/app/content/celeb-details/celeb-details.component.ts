@@ -80,7 +80,13 @@ export class CelebDetailsComponent implements OnInit {
                     this.setSEOMetaTags();
                     this.getActorImages();
                     this.getActorTaggedImages();
+                  })
+                  .catch(error => {
+                    console.log('There was an error while grtting the Celeb Details! ', error);
                   });
+              })
+              .catch(error => {
+                console.log('There was an error while getting the Celeb ID! ', error);
               });
           }
         });

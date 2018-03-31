@@ -83,14 +83,19 @@ export class SelectMovieDialogComponent implements OnInit {
       article_status: 'draft',
       article_date: Date.now(),
       article_date_reverse: -(Date.now())
-    }).then(res => {
-      this.articlesRef.update(res.key, {
-        article_key: res.key,
-      }).then(() => {
-        this.dialogRef.close();
-        this.router.navigate(['admin/articles/edit-article/' + res.key]);
+    })
+      .then(res => {
+        this.articlesRef.update(res.key, {
+          article_key: res.key,
+        })
+          .then(() => {
+            this.dialogRef.close();
+            this.router.navigate(['admin/articles/edit-article/' + res.key]);
+          })
+          .catch(error => {
+            console.log('There was an error while creating new article! ', error);
+          });
       });
-    });
   }
 
   // applyMovieFilter(filterValue: string) {

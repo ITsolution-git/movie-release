@@ -18,9 +18,15 @@ const getMoviesList = (setup: (r: FBAdmin.database.Reference) => FBAdmin.databas
                     calculateSitemapGenerationPercenrtage(index, dataLength)
                         .then(res => {
                             console.log(`Loading: ${res}%`);
+                        })
+                        .catch(error => {
+                            console.log('Error with Calculating Sitemap Loading Percentage', error);
                         });
                 }
                 resolve(moviesList);
+            })
+            .catch(error => {
+                console.log('There was an error returnning movie results from firebase! ', error);
             });
     });
 };

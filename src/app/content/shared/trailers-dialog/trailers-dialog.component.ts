@@ -43,7 +43,13 @@ export class TrailersDialogComponent implements OnInit {
             this.videoURLs = links;
             // console.log(this.videoURLs);
             this.sanitizeURL(this.videoURLs[0]);
+          })
+          .catch(error => {
+            console.log('There was an error while generating Youtube Links! ', error);
           });
+      })
+      .catch(error => {
+        console.log('There was an error while creating video playlist! ', error);
       });
   }
 

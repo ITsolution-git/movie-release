@@ -50,24 +50,32 @@ export const loadList = (name: string, setup: (r: admin.database.Reference) => a
 export const loadObject = (listUrl: string, id: string): Promise<any> => {
     return new Promise<any>((resolve, reject) => {
         const ref = admin.database().ref(`${listUrl}/${id}`);
-        ref.once('value').then(data => {
-            let result: any = null;
-            result = {
-                $key: id,
-                ...data.val()
-            };
-            resolve(result);
-            ref.off('value');
-        });
+        ref.once('value')
+            .then(data => {
+                let result: any = null;
+                result = {
+                    $key: id,
+                    ...data.val()
+                };
+                resolve(result);
+                ref.off('value');
+            })
+            .catch(error => {
+                console.log(error);
+            });
     });
 };
 
 export const loadValue = (url: string): Promise<any> => {
     return new Promise<any>((resolve, reject) => {
         const ref = admin.database().ref(url);
-        ref.once('value').then(data => {
-            resolve(data.val());
-            ref.off('value');
-        });
+        ref.once('value')
+            .then(data => {
+                resolve(data.val());
+                ref.off('value');
+            })
+            .catch(error => {
+                console.log(error);
+            });
     });
 };

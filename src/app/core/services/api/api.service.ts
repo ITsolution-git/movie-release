@@ -175,7 +175,13 @@ export class ApiService {
                 this.fbs.createPersonsQueryResultsObject(res['crew'], 'MOVIE CREW')
                   .then(celebObj => {
                     this.fbs.savePersonsQueryResultsToDB(celebObj);
+                  })
+                  .catch(error => {
+                    console.log('There was an error while creating person query results object for crew! ', error);
                   });
+              })
+              .catch(error => {
+                console.log('There was an error while creating person query results object for cast! ', error);
               });
             console.log('API MOVIE CREDITS: ', this.movieCredits);
           } else if (endpoint === 'get-movie-external-links') {
@@ -208,6 +214,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['cast'], 'PERSON MOVIE CREDITS')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movies query results object! ', error);
               });
             console.log('API PERSON MOVIE CREDITS: ', this.personMovieCredits);
           } else if (endpoint === 'get-person-external-links') {
@@ -227,6 +236,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'SEARCHED')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movie query results object! ', error);
               });
             console.log('API MOVIES BY KEYWORD (' + pageIndex + '): ', this.moviesList);
           } else if (endpoint === 'get-persons-by-keyword') {
@@ -234,6 +246,9 @@ export class ApiService {
             this.fbs.createPersonsQueryResultsObject(res['results'], 'SEARCHED')
               .then(celebObj => {
                 this.fbs.savePersonsQueryResultsToDB(celebObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating person query results object! ', error);
               });
             console.log('API PERSONS BY KEYWORD (' + pageIndex + '): ', this.personsList);
           }
@@ -247,6 +262,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'SIMILAR')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movie query results object! ', error);
               });
             console.log('API SIMILAR MOVIES (' + pageIndex + '): ', this.movieSimilars);
           } else if (endpoint === 'get-movie-recommendations') {
@@ -254,6 +272,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'RECOMMENDED')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movie query results object! ', error);
               });
             console.log('API MOVIE RECOMMENDATIONS (' + pageIndex + '): ', this.movieRecommendations);
           } else if (endpoint === 'get-movie-reviews') {
@@ -276,6 +297,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'MAIN DIRECTORY')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movies query results object! ', error);
               });
             console.log('API HOMEPAGE MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-popular') {
@@ -286,6 +310,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'POPULAR')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movies query results object! ', error);
               });
             console.log('API POPULAR MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-top-rated') {
@@ -296,6 +323,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'TOP RATED')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movies query results object! ', error);
               });
             console.log('API TOP RATED MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-upcoming') {
@@ -306,6 +336,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'UPCOMING')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movies query results object! ', error);
               });
             console.log('API UPCOMING MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-movies-now-playing') {
@@ -316,6 +349,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'NOW PLAYING')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movies query results object! ', error);
               });
             console.log('API NOW PLAYING MOVIES (' + pageIndex + '): ', res);
           } else if (endpoint === 'get-persons-popular') {
@@ -326,6 +362,9 @@ export class ApiService {
             this.fbs.createPersonsQueryResultsObject(res['results'], 'POPULAR')
               .then(celebObj => {
                 this.fbs.savePersonsQueryResultsToDB(celebObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating person query results object! ', error);
               });
             console.log('API POPULAR ACTORS (' + pageIndex + '): ', res);
           }
@@ -339,6 +378,9 @@ export class ApiService {
             this.fbs.createMoviesQueryResultsObject(res['results'], 'GENRE FILTERED')
               .then(movieObj => {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              })
+              .catch(error => {
+                console.log('There was an error while creating movies query results object! ', error);
               });
             console.log('API MOVIES BY GENRE (' + pageIndex + '): ', res);
           }
