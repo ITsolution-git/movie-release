@@ -40,7 +40,7 @@ export class SelectMovieDialogComponent implements OnInit {
 
   articlesRef: AngularFireList<any>;
 
-  isLooading: boolean;
+  isLoading: boolean;
 
   constructor(
     private afDb: AngularFireDatabase,
@@ -60,14 +60,14 @@ export class SelectMovieDialogComponent implements OnInit {
   ngOnInit(): void { }
 
   searchForMovie(keyword: string) {
-    this.isLooading = true;
+    this.isLoading = true;
     this.apis.searchMovieByKeyword(keyword, 1)
       .subscribe(res => {
         this.searchMovieResults = res['results'];
         this.movieResultslesDataSource = new MatTableDataSource(res['results']);
         this.movieResultslesDataSource.sort = this.searchMovieResultsSort;
         this.movieResultslesDataSource.paginator = this.searchMovieResultsPaginator;
-        this.isLooading = false;
+        this.isLoading = false;
       });
   }
 

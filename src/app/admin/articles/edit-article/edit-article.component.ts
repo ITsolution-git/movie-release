@@ -38,7 +38,7 @@ export class EditArticleComponent implements OnInit {
 
   movieDetails: any;
 
-  isLooading: boolean;
+  isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -71,7 +71,7 @@ export class EditArticleComponent implements OnInit {
   ngOnInit(): void { }
 
   getArticleDetails(): Promise<any> {
-    this.isLooading = true;
+    this.isLoading = true;
     return new Promise<any>((resolve, reject) => {
       this.articleObs.subscribe(res => {
         this.articleDetails = res;
@@ -84,7 +84,7 @@ export class EditArticleComponent implements OnInit {
     this.apis.getMovieDetails(movieId)
       .subscribe(res => {
         this.movieDetails = res;
-        this.isLooading = false;
+        this.isLoading = false;
       });
   }
 
