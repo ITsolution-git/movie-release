@@ -66,6 +66,17 @@ app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
 });
 
+// Sitemap Files Location
+app.get('/sitemap-movies.xml', (req, res) => {
+    res.sendFile(path.join(__dirname, './sitemaps/movies-sitemap.xml'));
+});
+app.get('/sitemap-movie-genres.xml', (req, res) => {
+    res.sendFile(path.join(__dirname, './sitemaps/movie-genres-sitemap.xml'));
+});
+app.get('/sitemap-celebs.xml', (req, res) => {
+    res.sendFile(path.join(__dirname, './sitemaps/celebs-sitemap.xml'));
+});
+
 // Sitemap Endpoints
 app.get('/sitemap-movies', (req, res) => {
     const sitemap = tryGenerateMoviesSitemap(req, res);
