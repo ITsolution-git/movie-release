@@ -80,9 +80,9 @@ export class AppService {
   }
 
   // Movie Functions
-  goToMovieDetails(movieId: string) {
+  goToMovieDetails(movieId: number) {
     // Get the Movie URL by MovieID from firebase movie_results collection
-    this.getMovieUrlById(movieId)
+    this.getMovieUrlById(Number(movieId))
       .then(res => {
         this.router.navigate([res['url']]);
       })
@@ -90,7 +90,13 @@ export class AppService {
         console.log('There was an error while getting the movie URL! ', error);
       });
   }
-  getMovieUrlById(movieId: string): Promise<any> {
+  goToMovieGenresPage(genre: string): void {
+    this.urlOptimizeText(genre)
+      .then(res => {
+        this.router.navigate(['/movies/genre/' + res]);
+      });
+  }
+  getMovieUrlById(movieId: number): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('id').equalTo(movieId)).valueChanges()
         .subscribe(res => {

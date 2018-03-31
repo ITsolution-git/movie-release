@@ -91,11 +91,14 @@ export class FirebaseService {
     // adds 'url' key/value pair to object
     for (let i = 0; i < movieGenres.length; i++) {
       const genreId = movieGenres[i].id;
-      movieGenresObj[genreId] = {
-        id: movieGenres[i].id,
-        name: movieGenres[i].name,
-        url: 'movies/genre/' + this.as.urlOptimizeText(movieGenres[i].name)
-      };
+      this.as.urlOptimizeText(movieGenres[i].name)
+        .then(slug => {
+          movieGenresObj[genreId] = {
+            id: movieGenres[i].id,
+            name: movieGenres[i].name,
+            url: 'movies/genre/' + slug
+          };
+        });
     }
     // console.log(movieGenresObj);
     this.saveMovieGenresToDB(movieGenresObj);
@@ -116,20 +119,23 @@ export class FirebaseService {
           .valueChanges()
           .subscribe(res => {
             if (!res[0]) {
-              // Movie Properties
-              moviesObj[movieId] = {
-                genre_ids: movies[i].genre_ids || '',
-                id: movies[i].id,
-                poster_path: movies[i].poster_path || '',
-                release_date: movies[i].release_date || '',
-                slug: this.as.urlOptimizeText(movies[i].title),
-                title: movies[i].title || '',
-                url: 'movies/' + this.as.urlOptimizeText(movies[i].title),
-                vote_average: movies[i].vote_average || ''
-              };
-              if (i === movies.length - 1) {
-                resolves(moviesObj);
-              }
+              this.as.urlOptimizeText(movies[i].title)
+                .then(slug => {
+                  // Movie Properties
+                  moviesObj[movieId] = {
+                    genre_ids: movies[i].genre_ids || '',
+                    id: movies[i].id,
+                    poster_path: movies[i].poster_path || '',
+                    release_date: movies[i].release_date || '',
+                    slug: slug,
+                    title: movies[i].title || '',
+                    url: 'movies/' + slug,
+                    vote_average: movies[i].vote_average || ''
+                  };
+                  if (i === movies.length - 1) {
+                    resolves(moviesObj);
+                  }
+                });
             } else {
               // console.log('SKIP MOVIE.', movieId, moviesObj);
               if (i === movies.length - 1) {
@@ -147,41 +153,47 @@ export class FirebaseService {
       .catch(err => console.log(err, 'You do not have access!'));
   }
   // Store Single Movie Details in Database
-  createSingleMovieDetailsObject(movie: any, callSource: string): void {
-    const movieObj = {};
-    const movieId = movie.id;
-    // Movie Properties
-    movieObj[movieId] = {
-      adult: movie.adult,
-      backdrop_path: movie.backdrop_path,
-      belongs_to_collection: movie.belongs_to_collection || '',
-      budget: movie.budget || '',
-      genre_ids: movie.genre_ids || movie.genres,
-      homepage: movie.homepage || '',
-      id: movie.id,
-      imdb_id: movie.imdb_id || '',
-      original_language: movie.original_language,
-      original_title: movie.original_title,
-      overview: movie.overview,
-      popularity: movie.popularity,
-      poster_path: movie.poster_path,
-      production_companies: movie.production_companies || '',
-      production_countries: movie.production_countries || '',
-      release_date: movie.release_date,
-      revenue: movie.revenue || '',
-      runtime: movie.runtime || '',
-      slug: this.as.urlOptimizeText(movie.title),
-      spoken_languages: movie.spoken_languages || '',
-      status: movie.status || '',
-      tagline: movie.tagline || '',
-      title: movie.title,
-      url: 'movies/' + this.as.urlOptimizeText(movie.title),
-      video: movie.video,
-      vote_average: movie.vote_average,
-      vote_count: movie.vote_count
-    };
+  createSingleMovieDetailsObject(movie: any, callSource: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      const movieObj = {};
+      const movieId = movie.id;
+      this.as.urlOptimizeText(movie.title)
+        .then(slug => {
+          // Movie Properties
+          movieObj[movieId] = {
+            adult: movie.adult,
+            backdrop_path: movie.backdrop_path,
+            belongs_to_collection: movie.belongs_to_collection || '',
+            budget: movie.budget || '',
+            genre_ids: movie.genre_ids || movie.genres,
+            homepage: movie.homepage || '',
+            id: movie.id,
+            imdb_id: movie.imdb_id || '',
+            original_language: movie.original_language,
+            original_title: movie.original_title,
+            overview: movie.overview,
+            popularity: movie.popularity,
+            poster_path: movie.poster_path,
+            production_companies: movie.production_companies || '',
+            production_countries: movie.production_countries || '',
+            release_date: movie.release_date,
+            revenue: movie.revenue || '',
+            runtime: movie.runtime || '',
+            slug: slug,
+            spoken_languages: movie.spoken_languages || '',
+            status: movie.status || '',
+            tagline: movie.tagline || '',
+            title: movie.title,
+            url: 'movies/' + slug,
+            video: movie.video,
+            vote_average: movie.vote_average,
+            vote_count: movie.vote_count
+          };
+        });
+      resolve(movieObj);
+    });
     // console.log(movieObj);
-    this.saveSingleMovieToDB(movieObj);
+    // this.saveSingleMovieToDB(movieObj);
   }
   saveSingleMovieToDB(moviesObj: Object): void {
     // Save copy of movies to firebase
@@ -298,27 +310,29 @@ export class FirebaseService {
   createSinglePersonDetailsObject(person: any, callSource: string) {
     const personObj = {};
     const personId = person.id;
-    const slug = this.as.urlOptimizeText(person.name);
-    // Person Properties
-    personObj[personId] = {
-      adult: person.adult,
-      also_known_as: person.also_known_as || '',
-      biography: person.biography || '',
-      birthday: person.birthday || '',
-      deathday: person.deathday || '',
-      gender: person.gender || '',
-      homepage: person.homepage || '',
-      id: person.id,
-      imdb_id: person.imdb_id || '',
-      name: person.name,
-      place_of_birth: person.place_of_birth || '',
-      popularity: person.popularity,
-      profile_path: person.profile_path,
-      slug: slug,
-      url: 'celebrity/' + slug
-    };
-    // console.log(personObj);
-    this.saveSinglePersonToDB(personObj);
+    this.as.urlOptimizeText(person.name)
+      .then(slug => {
+        // Person Properties
+        personObj[personId] = {
+          adult: person.adult,
+          also_known_as: person.also_known_as || '',
+          biography: person.biography || '',
+          birthday: person.birthday || '',
+          deathday: person.deathday || '',
+          gender: person.gender || '',
+          homepage: person.homepage || '',
+          id: person.id,
+          imdb_id: person.imdb_id || '',
+          name: person.name,
+          place_of_birth: person.place_of_birth || '',
+          popularity: person.popularity,
+          profile_path: person.profile_path,
+          slug: slug,
+          url: 'celebrity/' + slug
+        };
+        // console.log(personObj);
+        this.saveSinglePersonToDB(personObj);
+      });
   }
   saveSinglePersonToDB(personObj: Object) {
     // console.log('SAVING PERSON DETAILS TO DB.', personObj);
