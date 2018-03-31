@@ -31,7 +31,7 @@ export class CelebsComponent implements OnInit {
     public title: Title,
     private router: Router,
     private apis: ApiService,
-    private as: AppService
+    public as: AppService
   ) {
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle('Most Popular Actors and Actresses - ' + APP_SEO_NAME);
