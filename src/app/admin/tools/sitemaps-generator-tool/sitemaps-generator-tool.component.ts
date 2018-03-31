@@ -22,5 +22,8 @@ export class SitemapsGeneratorToolComponent implements OnInit {
   generateMovieGenresSitemap(): void {
     this.sm.generateMovieGenresSitemap();
   }
+  generateCelebsSitemap(): void {
+    this.sm.generateCelebsSitemap();
+  }
 
 }
