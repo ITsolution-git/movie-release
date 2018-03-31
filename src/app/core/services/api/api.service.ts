@@ -57,6 +57,20 @@ export class ApiService {
   movieAltTitles: any;
   movieTranslations: any;
 
+  // Person Properties
+  personsList: any;
+  personsPopular: any[] = [];
+  personsPopularLastIndex: number;
+  personsPopularTotalPages: number;
+  personsPopularTotalResults: number;
+  personsLatest: any;
+  personDetails: any;
+  personMovieCredits: any;
+  personTvCredits: any;
+  personExternalLinks: any;
+  personImages: any;
+  personTaggedImages: any;
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -138,6 +152,9 @@ export class ApiService {
           } else if (endpoint === 'get-movies-latest' && !this.moviesLatest) {
             this.moviesLatest = res;
             console.log('API LATEST MOVIES: ', this.moviesLatest);
+          } else if (endpoint === 'get-persons-latest' && !this.personsLatest) {
+            this.personsLatest = res;
+            console.log('API LATEST ACTORS: ', this.personsLatest);
           }
           resultSub.next(res);
         });
@@ -150,6 +167,16 @@ export class ApiService {
             console.log('API MOVIE DETAILS: ', this.movieDetails);
           } else if (endpoint === 'get-movie-credits') {
             this.movieCredits = res;
+            this.fbs.createPersonsQueryResultsObject(res['cast'], 'MOVIE CAST')
+              .then(celebObj => {
+                this.fbs.savePersonsQueryResultsToDB(celebObj);
+              })
+              .then(() => {
+                this.fbs.createPersonsQueryResultsObject(res['crew'], 'MOVIE CREW')
+                  .then(celebObj => {
+                    this.fbs.savePersonsQueryResultsToDB(celebObj);
+                  });
+              });
             console.log('API MOVIE CREDITS: ', this.movieCredits);
           } else if (endpoint === 'get-movie-external-links') {
             this.movieExternalLinks = res;
@@ -172,6 +199,23 @@ export class ApiService {
           } else if (endpoint === 'get-movie-translations') {
             this.movieTranslations = res;
             console.log('API MOVIE TRANSLATIONS: ', this.movieTranslations);
+          } else if (endpoint === 'get-person-details') {
+            this.personDetails = res;
+            this.fbs.createSinglePersonDetailsObject(res, 'single');
+            console.log('API PERSON DETAILS: ', this.personDetails);
+          } else if (endpoint === 'get-person-movie-credits') {
+            this.personMovieCredits = res;
+            this.fbs.createMoviesQueryResultsObject(res['cast'], 'PERSON MOVIE CREDITS')
+              .then(movieObj => {
+                this.fbs.saveMoviesQueryResultsToDB(movieObj);
+              });
+            console.log('API PERSON MOVIE CREDITS: ', this.personMovieCredits);
+          } else if (endpoint === 'get-person-external-links') {
+            this.personExternalLinks = res;
+            console.log('API PERSON EXTERNAL LINKS: ', this.personExternalLinks);
+          } else if (endpoint === 'get-person-images') {
+            this.personImages = res;
+            console.log('API PERSON IMAGES: ', this.personImages);
           }
           resultSub.next(res);
         });
@@ -185,6 +229,13 @@ export class ApiService {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
               });
             console.log('API MOVIES BY KEYWORD (' + pageIndex + '): ', this.moviesList);
+          } else if (endpoint === 'get-persons-by-keyword') {
+            this.personsList = res;
+            this.fbs.createPersonsQueryResultsObject(res['results'], 'SEARCHED')
+              .then(celebObj => {
+                this.fbs.savePersonsQueryResultsToDB(celebObj);
+              });
+            console.log('API PERSONS BY KEYWORD (' + pageIndex + '): ', this.personsList);
           }
           resultSub.next(res);
         });
@@ -208,6 +259,9 @@ export class ApiService {
           } else if (endpoint === 'get-movie-reviews') {
             this.movieReviews = res;
             console.log('API MOVIE REVIEWS (' + pageIndex + '): ', this.movieReviews);
+          } else if (endpoint === 'get-person-tagged-images') {
+            this.personTaggedImages = res;
+            console.log('API PERSON TAGGED IMAGES (' + pageIndex + '): ', this.personTaggedImages);
           }
           resultSub.next(res);
         });
@@ -264,6 +318,16 @@ export class ApiService {
                 this.fbs.saveMoviesQueryResultsToDB(movieObj);
               });
             console.log('API NOW PLAYING MOVIES (' + pageIndex + '): ', res);
+          } else if (endpoint === 'get-persons-popular') {
+            this.personsPopular = this.personsPopular.concat(res['results']);
+            this.personsPopularLastIndex = res['page'];
+            this.personsPopularTotalPages = res['total_pages'];
+            this.personsPopularTotalResults = res['total_results'];
+            this.fbs.createPersonsQueryResultsObject(res['results'], 'POPULAR')
+              .then(celebObj => {
+                this.fbs.savePersonsQueryResultsToDB(celebObj);
+              });
+            console.log('API POPULAR ACTORS (' + pageIndex + '): ', res);
           }
           resultSub.next(res);
         });
@@ -355,6 +419,31 @@ export class ApiService {
   }
   getMovieAltTranslations(movieId: string): Observable<any[]> {
     return this.callAPI('get-movie-translations', movieId);
+  }
+  // Actor API Calls
+  searchPersonsByKeyword(keyword: string, pageIndex: number): Observable<any[]> {
+    return this.callAPI('get-persons-by-keyword', null, null, keyword, pageIndex);
+  }
+  getPopularActors(pageIndex: number): Observable<any[]> {
+    return this.callAPI('get-persons-popular', null, null, null, pageIndex);
+  }
+  getLatestActors(): Observable<any[]> {
+    return this.callAPI('get-persons-latest');
+  }
+  getActorDetails(actorId: string): Observable<any[]> {
+    return this.callAPI('get-person-details', actorId);
+  }
+  getActorMovieCredits(actorId: string): Observable<any[]> {
+    return this.callAPI('get-person-movie-credits', actorId);
+  }
+  getActorExternalLinks(actorId: string): Observable<any[]> {
+    return this.callAPI('get-person-external-links', actorId);
+  }
+  getActorImages(actorId: string): Observable<any[]> {
+    return this.callAPI('get-person-images', actorId);
+  }
+  getActorTaggedImages(actorId: string, pageIndex: number): Observable<any[]> {
+    return this.callAPI('get-person-tagged-images', actorId, null, null, pageIndex);
   }
 
 }

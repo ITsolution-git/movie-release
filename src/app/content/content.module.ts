@@ -27,9 +27,10 @@ import { GenresComponent } from './genres/genres.component';
 import { SearchComponent } from './search/search.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialog.component';
-// import { AuthDialogComponent } from './shared/auth-dialog/auth-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
+import { CelebsComponent } from './celebs/celebs.component';
+import { CelebDetailsComponent } from './celeb-details/celeb-details.component';
 
 @NgModule({
   imports: [
@@ -57,14 +58,14 @@ import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movie
     SearchComponent,
     MovieDetailsComponent,
     TrailersDialogComponent,
-    // AuthDialogComponent,
     GenresListComponent,
     MainMoviesDirectoryComponent,
+    CelebsComponent,
+    CelebDetailsComponent,
     SafePipe
   ],
   entryComponents: [
-    TrailersDialogComponent,
-    // AuthDialogComponent
+    TrailersDialogComponent
   ]
 })
 export class ContentModule { }

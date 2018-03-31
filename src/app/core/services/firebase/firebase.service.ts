@@ -17,32 +17,47 @@ import { DB_COL } from '../../../constants';
 @Injectable()
 export class FirebaseService {
 
+  // General Properties
+  apiConfigRef: AngularFireObject<any>;
+  // Movie Properties
   moviesRef: AngularFireObject<any>;
   moviesObsRef: Observable<any>;
   moviesQueriesRef: AngularFireList<any>;
   moviesResultsRef: AngularFireObject<any>;
   moviesResultsObsRef: AngularFireList<any>;
   movieGenresRef: AngularFireObject<any>;
-  apiConfigRef: AngularFireObject<any>;
+  // Celeb Properties
+  personsRef: AngularFireObject<any>;
+  personsQueriesRef: AngularFireList<any>;
+  personsResultsRef: AngularFireObject<any>;
+  personsResultsObsRef: AngularFireList<any>;
 
   constructor(
     private afDb: AngularFireDatabase,
     private as: AppService,
     public toastr: ToastsManager
   ) {
+    // General DB Collentions Initialization
+    this.apiConfigRef = this.afDb.object(`${DB_COL.API_CONFIG}`);
+    // Movies DB Collentions Initialization
     this.moviesRef = this.afDb.object(`${DB_COL.MOVIES}`);
     this.moviesObsRef = this.afDb.list(`${DB_COL.MOVIES}`).valueChanges();
     this.moviesQueriesRef = this.afDb.list(`${DB_COL.MOVIES_QUERIES}`);
     this.moviesResultsRef = this.afDb.object(`${DB_COL.MOVIES_RESULTS}`);
     this.moviesResultsObsRef = this.afDb.list(`${DB_COL.MOVIES_RESULTS}`);
     this.movieGenresRef = this.afDb.object(`${DB_COL.MOVIE_GENRES}`);
-    this.apiConfigRef = this.afDb.object(`${DB_COL.API_CONFIG}`);
+    // Persons DB Collentions Initialization
+    this.personsRef = this.afDb.object(`${DB_COL.CELEBS}`);
+    this.personsQueriesRef = this.afDb.list(`${DB_COL.CELEBS_QUERIES}`);
+    this.personsResultsRef = this.afDb.object(`${DB_COL.CELEBS_RESULTS}`);
+    this.personsResultsObsRef = this.afDb.list(`${DB_COL.CELEBS_RESULTS}`);
   }
 
   saveAPIConfigToDB(apiConfig: any): void {
     this.apiConfigRef.set(apiConfig);
   }
 
+  // Movies Functions
   // Get All Movies from Firebase
   getAllMoviesResults(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -52,7 +67,6 @@ export class FirebaseService {
         });
     });
   }
-
   getMoviesByTitle(movieTitle: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('title').equalTo(movieTitle))
@@ -62,7 +76,6 @@ export class FirebaseService {
         });
     });
   }
-
   getMoviesBySlug(movieSlug: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('slug').equalTo(movieSlug))
@@ -72,7 +85,6 @@ export class FirebaseService {
         });
     });
   }
-
   // Store Queried Movie Genres in Database
   createMovieGenresObject(movieGenres: Array<any>): void {
     const movieGenresObj = {};
@@ -92,7 +104,6 @@ export class FirebaseService {
     this.movieGenresRef.set(movieGenresObj)
       .catch(err => console.log(err, 'You do not have access!'));
   }
-
   // Store Queried Movies List in Database
   createMoviesQueryResultsObject(movies: Array<any>, callSource: string): Promise<any> {
     // console.log('SAVING ' + callSource + ' MOVIES TO DB: ', movies);
@@ -135,7 +146,6 @@ export class FirebaseService {
     this.moviesResultsRef.update(moviesObj)
       .catch(err => console.log(err, 'You do not have access!'));
   }
-
   // Store Single Movie Details in Database
   createSingleMovieDetailsObject(movie: any, callSource: string): void {
     const movieObj = {};
@@ -178,7 +188,7 @@ export class FirebaseService {
     this.moviesRef.update(moviesObj)
       .catch(err => console.log(err, 'You do not have access!'));
   }
-
+  // Update URL and SLug for Duplicate Movies Fix
   updateMovieResultURL(movieId: string, slug: string, url: string): void {
     this.moviesResultsObsRef.update(movieId, {
       slug: slug,
@@ -192,7 +202,6 @@ export class FirebaseService {
         this.toastr.error('There was an error updating this movie! ', error);
       });
   }
-
   // Store Movie Search Query to Database
   saveMovieSearchQueryToDB(query: string): void {
     const queryObj = {
@@ -202,4 +211,139 @@ export class FirebaseService {
     this.moviesQueriesRef.push(queryObj);
   }
 
+  // Persons Functions
+  // Get All Persons from Firebase
+  getAllPersonsResults(): Promise<any> {
+    return new Promise<any>((resolves, reject) => {
+      this.personsResultsObsRef.valueChanges()
+        .subscribe(res => {
+          // console.log(res);
+          resolves(res);
+        });
+    });
+  }
+  // Get Persons By Name
+  getPersonsByName(personName: string): Promise<any> {
+    return new Promise<any>((resolves, reject) => {
+      this.afDb.list(`${DB_COL.CELEBS_RESULTS}`, ref => ref.orderByChild('name').equalTo(personName))
+        .valueChanges()
+        .subscribe(res => {
+          // console.log(res);
+          resolves(res);
+        });
+    });
+  }
+  // Get Persons By Slug
+  getPersonsBySlug(personSlug: string): Promise<any> {
+    return new Promise<any>((resolves, reject) => {
+      this.afDb.list(`${DB_COL.CELEBS_RESULTS}`, ref => ref.orderByChild('slug').equalTo(personSlug))
+        .valueChanges()
+        .subscribe(res => {
+          // console.log(res);
+          resolves(res);
+        });
+    });
+  }
+  // Store Queried Persons in Database
+  createPersonsQueryResultsObject(persons: Array<any>, callSource: string): Promise<any> {
+    // console.log('SAVING ' + callSource + ' PERSONS TO DB.: ', persons);
+    return new Promise<any>((resolves, reject) => {
+      const personsObj = {};
+      for (let i = 0; i < persons.length; i++) {
+        const personId = persons[i].id;
+        this.afDb.list(`${DB_COL.CELEBS_RESULTS}`, ref => ref.orderByChild('id').equalTo(personId))
+          .valueChanges()
+          .subscribe(res => {
+            if (!res[0]) {
+              this.as.urlOptimizeText(persons[i].name)
+                .then(slug => {
+                  // Person Properties
+                  personsObj[personId] = {
+                    id: persons[i].id,
+                    name: persons[i].name,
+                    profile_path: persons[i].profile_path,
+                    slug: slug,
+                    url: 'celebrity/' + slug
+                  };
+                  if (i === persons.length - 1) {
+                    // console.log('LAST PERSON. SAVE!');
+                    resolves(personsObj);
+                  }
+                });
+            } else {
+              // console.log('SKIP PERSON.', personId);
+              if (i === persons.length - 1) {
+                // console.log('LAST PERSON. SAVE!');
+                resolves(personsObj);
+              }
+            }
+          });
+      }
+    });
+  }
+  savePersonsQueryResultsToDB(personsObj: Object) {
+    // Save copy of persons in firebase
+    if (JSON.stringify(personsObj) === '{}') {
+      console.log('NO NEW CELEBS TO SAVE!');
+    } else {
+      console.log('SAVING PERSONS RESULTS:', personsObj);
+      this.personsResultsRef.update(personsObj)
+        .catch(err => console.log(err, 'You do not have access!'));
+    }
+  }
+  // Store Single Person Details in Database
+  createSinglePersonDetailsObject(person: any, callSource: string) {
+    const personObj = {};
+    const personId = person.id;
+    const slug = this.as.urlOptimizeText(person.name);
+    // Person Properties
+    personObj[personId] = {
+      adult: person.adult,
+      also_known_as: person.also_known_as || '',
+      biography: person.biography || '',
+      birthday: person.birthday || '',
+      deathday: person.deathday || '',
+      gender: person.gender || '',
+      homepage: person.homepage || '',
+      id: person.id,
+      imdb_id: person.imdb_id || '',
+      name: person.name,
+      place_of_birth: person.place_of_birth || '',
+      popularity: person.popularity,
+      profile_path: person.profile_path,
+      slug: slug,
+      url: 'celebrity/' + slug
+    };
+    // console.log(personObj);
+    this.saveSinglePersonToDB(personObj);
+  }
+  saveSinglePersonToDB(personObj: Object) {
+    // console.log('SAVING PERSON DETAILS TO DB.', personObj);
+    // Save copy of tv shows in firebase
+    this.personsRef.update(personObj)
+      .catch(err => console.log(err, 'You do not have access!'));
+  }
+  // Update URL and SLUG for Duplicate Persons Fix
+  updatePersonResultURL(personId: string, slug: string, url: string): void {
+    this.personsResultsObsRef.update(personId, {
+      slug: slug,
+      url: url
+    })
+      .then(res => {
+        this.toastr.success('Slug & URL Updated for ', slug);
+      })
+      .catch(error => {
+        console.log(error);
+        this.toastr.error('There was an error updating this person! ', error);
+      });
+  }
+  // Store Celeb Search Query to Database
+  saveCelebsSearchQueryToDB(query: string) {
+    // console.log('SAVING CELEB SEARCH QUERY TO DB.', query);
+    const queryObj = {
+      date: Date.now(),
+      query: query
+    };
+    this.personsQueriesRef.push(queryObj);
+  }
 }
