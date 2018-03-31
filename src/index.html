@@ -24,19 +24,6 @@
 
 <body>
   <app-root></app-root>
-
-  <!-- Register Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then((registration) => {
-          // console.log('SW registered');
-        })
-        .catch((err) => {
-          console.log('SW error', err);
-        });
-    }
-  </script>
   <!-- If JavaScript is disabled in browser -->
   <noscript>
     For full functionality of this site it is necessary to enable JavaScript. Here are the
