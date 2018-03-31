@@ -39,7 +39,6 @@ import {
     tryGetPersonMovieCreditsById,
     tryGetPersonsListByKeyword,
     tryGetPersonTaggedImagesById,
-    tryGetPersonTvCreditsById,
     tryGetPopularPersons
 } from './api/api-persons';
 import {
@@ -117,7 +116,6 @@ app.get('/get-persons-popular/:pageIndex', tryGetPopularPersons);
 app.get('/get-persons-latest', tryGetLatestPersons);
 app.get('/get-person-details/:id', tryGetPersonDetailsById);
 app.get('/get-person-movie-credits/:id', tryGetPersonMovieCreditsById);
-app.get('/get-person-tv-credits/:id', tryGetPersonTvCreditsById);
 app.get('/get-person-external-links/:id', tryGetPersonExternalLinksById);
 app.get('/get-person-images/:id', tryGetPersonImagesById);
 app.get('/get-person-tagged-images/:id/:pageIndex', tryGetPersonTaggedImagesById);

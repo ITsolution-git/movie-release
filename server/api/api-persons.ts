@@ -179,41 +179,7 @@ export const tryGetPersonMovieCreditsById = (req, res) => {
         });
 };
 
-// Get person tv credits by person ID
-const getPersonTvCreditsById = (personId: number): Promise<any> => {
-    // const url = 'https://api.themoviedb.org/3/person/137905/tv_credits?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US';
-    return new Promise<any>((resolve, reject) => {
-        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'person/' + personId + '/tv_credits' + TMDB_API_KEY + TMDB_API_LANG, (resp) => {
-            let data = '';
-            // A chunk of data has been recieved.
-            resp.on('data', (chunk) => {
-                // console.log(chunk);
-                data += chunk;
-            });
-            // The whole response has been received. Print out the result.
-            resp.on('end', () => {
-                const result_obj = JSON.parse(data);
-                // console.log(result_obj);
-                resolve(result_obj);
-            });
-        }).on('error', (err) => {
-            console.log('Error: ' + err.message);
-            reject(err);
-        });
-    });
-};
-export const tryGetPersonTvCreditsById = (req, res) => {
-    const id = req.params['id'];
-    getPersonTvCreditsById(id)
-        .then((result) => {
-            res.send(result);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-};
-
-// Get person movie credits by person ID
+// Get person external links by person ID
 const getPersonExternalLinksById = (personId: number): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/person/9827/external_ids?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US';
     return new Promise<any>((resolve, reject) => {
@@ -281,7 +247,7 @@ export const tryGetPersonImagesById = (req, res) => {
         });
 };
 
-// Get person images by person ID (paginated)
+// Get person tagged images by person ID (paginated)
 const getPersonTaggedImagesById = (personId: number, pageIndex): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/person/12835/tagged_images?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise<any>((resolve, reject) => {
