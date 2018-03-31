@@ -109,6 +109,9 @@ export class DuplicateCheckerToolComponent implements OnInit {
           this.duplicateDetails = res;
           resolve(res);
           // this.duplicateMovieDetails = res;
+        })
+        .catch(error => {
+          console.log('There was an error while getting movies by title! ', error);
         });
     });
   }
@@ -122,6 +125,9 @@ export class DuplicateCheckerToolComponent implements OnInit {
           this.duplicateMovieDetails = res;
           resolve(res);
           // this.duplicateMovieDetails = res;
+        })
+        .catch(error => {
+          console.log('There was an error while getting the movies by Slug! ', error);
         });
     });
   }

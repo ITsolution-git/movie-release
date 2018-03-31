@@ -35,6 +35,9 @@ export const tryGenerateMoviesSitemap = (req, res) => {
         .then((resp) => {
             console.log('All URLs are grabbed... generating Sitemap.');
             generateSitemap(resp, 'movies');
+        })
+        .catch(error => {
+            console.log('There was an error returnning movie results from firebase! ', error);
         });
 };
 
@@ -53,9 +56,15 @@ const getMovieGenresList = (setup: (r: FBAdmin.database.Reference) => FBAdmin.da
                     calculateSitemapGenerationPercenrtage(index, dataLength)
                         .then(res => {
                             console.log(`Loading: ${res}%`);
+                        })
+                        .catch(error => {
+                            console.log('Error with Calculating Sitemap Loading Percentage', error);
                         });
                 }
                 resolve(movieGenresList);
+            })
+            .catch(error => {
+                console.log('There was an error returnning movie genres from firebase! ', error);
             });
     });
 };
@@ -64,6 +73,9 @@ export const tryGenerateMovieGenresSitemap = (req, res) => {
         .then((resp) => {
             console.log('All URLs are grabbed... generating Sitemap.');
             generateSitemap(resp, 'movie-genres');
+        })
+        .catch(error => {
+            console.log('There was an error returnning movie genres from firebase! ', error);
         });
 };
 
@@ -82,9 +94,15 @@ const getCelebsList = (setup: (r: FBAdmin.database.Reference) => FBAdmin.databas
                     calculateSitemapGenerationPercenrtage(index, dataLength)
                         .then(res => {
                             console.log(`Loading: ${res}%`);
+                        })
+                        .catch(error => {
+                            console.log('Error with Calculating Sitemap Loading Percentage', error);
                         });
                 }
                 resolve(celebsList);
+            })
+            .catch(error => {
+                console.log('There was an error returnning celeb results from firebase! ', error);
             });
     });
 };
@@ -93,6 +111,9 @@ export const tryGenerateCelebsSitemap = (req, res) => {
         .then((resp) => {
             console.log('All URLs are grabbed... generating Sitemap.');
             generateSitemap(resp, 'celebs');
+        })
+        .catch(error => {
+            console.log('There was an error returnning celeb results from firebase! ', error);
         });
 };
 

@@ -33,7 +33,7 @@ export class AppService {
           resolves(urlText);
         })
         .catch(error => {
-          console.log('There was an error while removing accents froms string', error);
+          console.log('There was an error while removing accents froms string! ', error);
         });
     });
   }
@@ -105,6 +105,9 @@ export class AppService {
     this.getCelebUrlById(celebId)
       .then(res => {
         this.router.navigate([res['url']]);
+      })
+      .catch(error => {
+        console.log('There was an error while getting the celeb URL! ', error);
       });
   }
   getCelebUrlById(celebId: number): Promise<any> {
