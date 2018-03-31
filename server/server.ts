@@ -32,8 +32,20 @@ import {
     tryGetUpcomingMovies
 } from './api/api-movies';
 import {
+    tryGetLatestPersons,
+    tryGetPersonDetailsById,
+    tryGetPersonExternalLinksById,
+    tryGetPersonImagesById,
+    tryGetPersonMovieCreditsById,
+    tryGetPersonsListByKeyword,
+    tryGetPersonTaggedImagesById,
+    tryGetPersonTvCreditsById,
+    tryGetPopularPersons
+} from './api/api-persons';
+import {
     tryGenerateMovieGenresSitemap,
-    tryGenerateMoviesSitemap
+    tryGenerateMoviesSitemap,
+    tryGenerateCelebsSitemap
 } from './sitemap/sitemap';
 import { processURL } from './ssr/bot-detect';
 
@@ -66,6 +78,11 @@ app.get('/sitemap-movie-genres', (req, res) => {
     res.header('Content-Type', 'text/xml');
     res.send(sitemap);
 });
+app.get('/sitemap-celebs', (req, res) => {
+    const sitemap = tryGenerateCelebsSitemap(req, res);
+    res.header('Content-Type', 'text/xml');
+    res.send(sitemap);
+});
 
 // TMDB API Endpoints
 // General Endpoints
@@ -94,5 +111,15 @@ app.get('/get-movie-release-dates/:id', tryGetMovieReleaseDatesById);
 app.get('/get-movie-alt-titles/:id', tryGetAlternativeTitlesById);
 app.get('/get-movie-external-links/:id', tryGetMovieExternalLinksById);
 app.get('/get-movie-images/:id', tryGetMovieImagesById);
+// Persons Endpoints
+app.get('/get-persons-by-keyword/:keyword/:pageIndex', tryGetPersonsListByKeyword);
+app.get('/get-persons-popular/:pageIndex', tryGetPopularPersons);
+app.get('/get-persons-latest', tryGetLatestPersons);
+app.get('/get-person-details/:id', tryGetPersonDetailsById);
+app.get('/get-person-movie-credits/:id', tryGetPersonMovieCreditsById);
+app.get('/get-person-tv-credits/:id', tryGetPersonTvCreditsById);
+app.get('/get-person-external-links/:id', tryGetPersonExternalLinksById);
+app.get('/get-person-images/:id', tryGetPersonImagesById);
+app.get('/get-person-tagged-images/:id/:pageIndex', tryGetPersonTaggedImagesById);
 // All other endpoints will be processed by bot detector
 app.get('**', processURL);
