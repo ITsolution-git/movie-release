@@ -1,418 +1,177 @@
 <!-- Movie Details & Posters -->
 <div *ngIf="movieDetails" [id]="movieDetails.id">
   <!-- Movie Details -->
-  <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="movie-details">
-    <div fxFlex="70%" fxFlex.sm="75%" fxFlex.xs="90%" id="main-right">
-      <!-- Title -->
-      <div id="title" fxLayout="row" fxLayoutAlign="start stretch">
-        <h1>{{ movieDetails.title }}<span class="title-year" id="year" *ngIf="movieDetails.release_date ">({{ movieDetails.release_date | date:'y' }})</span></h1>
+  <section id="movie-details">
+    <div class="content-head" fxLayoutWrap="wrap" fxLayout="column" fxLayout.xs="column">
+      <div class="movie-head" fxLayout="row" fxLayout.xs="column">
+        <!-- Movie Title -->
+        <div id="movie-title" fxLayout="row" fxFlex="50" fxFlex.sm="50%" fxFlex.xs="50%">
+          <h1>{{ movieDetails.title }}
+            <span class="title-year" id="year" *ngIf="movieDetails.release_date ">({{ movieDetails.release_date | date:'y' }})</span>
+          </h1>
+        </div>
+        <!-- Movie Rating -->
+        <div id="movie-rating" fxLayout="row" fxFlex="50" fxFlex.sm="50%" fxFlex.xs="50%">
+          <!-- Rating Results-->
+          <div id="rating-result" fxFlex="50" fxFlex.sm="50" fxFlex.xs="50" fxLayout="row">
+            <span>
+              <mat-icon class="active">star</mat-icon>{{ cobinedRatingAverage | number: '1.2-2' }} / 5</span>
+            <span id="total-votes">{{ movieDetails.vote_count + fbRatingsLength }} votes</span>
+          </div>
+          <!-- Average Rating -->
+          <div id="average-rating" *ngIf="currentUserRating === 0" class="rating" fxLayout="row" fxFlex="50" fxFlex.sm="50" fxFlex.xs="50">
+            <span id="rate-text">Rate movie</span>
+            <span>
+              <mat-icon (click)="rateMovie(1)" *ngIf="cobinedRatingAverage < 0.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage >= 0.25 && cobinedRatingAverage  < 0.75}" (click)="rateMovie(1)" *ngIf="cobinedRatingAverage > 0.25 && cobinedRatingAverage  < 0.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(cobinedRatingAverage  < 0.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(2)" *ngIf="cobinedRatingAverage < 1.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 1.25 && cobinedRatingAverage  < 1.75}" (click)="rateMovie(2)" *ngIf="cobinedRatingAverage >= 1.25 && cobinedRatingAverage  < 1.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(cobinedRatingAverage  < 1.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(3)" *ngIf="cobinedRatingAverage < 2.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 2.25 && cobinedRatingAverage  < 2.75}" (click)="rateMovie(3)" *ngIf="cobinedRatingAverage >= 2.25 && cobinedRatingAverage  < 2.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(cobinedRatingAverage  < 2.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(4)" *ngIf="cobinedRatingAverage < 3.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 3.25 && cobinedRatingAverage  < 3.75}" (click)="rateMovie(4)" *ngIf="cobinedRatingAverage >= 3.25 && cobinedRatingAverage  < 3.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(cobinedRatingAverage  < 3.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(5)" *ngIf="cobinedRatingAverage < 4.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 4.25 && cobinedRatingAverage  < 4.75}" (click)="rateMovie(5)" *ngIf="cobinedRatingAverage >= 4.25 && cobinedRatingAverage  < 4.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(cobinedRatingAverage  < 4.75)">star</mat-icon>
+            </span>
+          </div>
+          <!-- User Rating -->
+          <div *ngIf="currentUserRating !== 0" class="rating" fxLayout="row" fxFlex="50" fxFlex.sm="50" fxFlex.xs="50">
+            <span id="rate-text">Your Rating:</span>
+            <span>
+              <mat-icon (click)="rateMovie(1)" *ngIf="currentUserRating < 0.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating >= 0.25 && currentUserRating  < 0.75}" (click)="rateMovie(1)" *ngIf="currentUserRating > 0.25 && currentUserRating  < 0.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(currentUserRating  < 0.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(2)" *ngIf="currentUserRating < 1.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 1.25 && currentUserRating  < 1.75}" (click)="rateMovie(2)" *ngIf="currentUserRating >= 1.25 && currentUserRating  < 1.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(currentUserRating  < 1.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(3)" *ngIf="currentUserRating < 2.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 2.25 && currentUserRating  < 2.75}" (click)="rateMovie(3)" *ngIf="currentUserRating >= 2.25 && currentUserRating  < 2.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(currentUserRating  < 2.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(4)" *ngIf="currentUserRating < 3.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 3.25 && currentUserRating  < 3.75}" (click)="rateMovie(4)" *ngIf="currentUserRating >= 3.25 && currentUserRating  < 3.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(currentUserRating  < 3.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(5)" *ngIf="currentUserRating < 4.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 4.25 && currentUserRating  < 4.75}" (click)="rateMovie(5)" *ngIf="currentUserRating >= 4.25 && currentUserRating  < 4.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(currentUserRating  < 4.75)">star</mat-icon>
+            </span>
+          </div>
+        </div>
       </div>
-      <!-- Tagline -->
-      <div id="tagline" *ngIf="movieDetails.tagline">
-        <h2>{{ movieDetails.tagline }}</h2>
+      <!-- Movie Tagline -->
+      <div id="movie-tagline" fxLayout="row" *ngIf="movieDetails.tagline">
+        <span>Movie Tagline: <span>{{ movieDetails.tagline }}</span></span>
       </div>
-      <!-- Genres and Movie Info -->
-      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start stretch" id="genre-runtime">
-        <div id="genres">
+      <div id="movie-tech-details" fxLayoutWrap="wrap" fxLayout="row" fxLayout.xs="column">
+        <span id="year" fxFlex="50" class="release-date" *ngIf="movieDetails.release_date">Release Date:
+          <span>{{ movieDetails.release_date | date:'longDate' }}</span>
+        </span>
+        <span id="status" fxFlex="50" class="pg-rating">Movie Status:
+          <span>{{ movieDetails.status }}</span>
+        </span>
+        <span id="genres" fxFlex="50" class="genre">Genres:
           <span *ngFor="let genre of movieDetails.genres; let i = index">
             <span>
               <a [routerLink]="['/movies/genre/' + this.as.urlOptimizeText(genre.name)]" class="genre-link">{{ genre.name }}</a>
             </span>
             <span *ngIf="i < movieDetails.genres.length - 1">,</span>
           </span>
-        </div>
-        <div id="duration" *ngIf="movieDetails.runtime > 0">
-          <span fxHide.xs="true">|</span>
+        </span>
+        <span id="duration" fxFlex="50" class="runtime" *ngIf="movieDetails.runtime > 0">Runtime:
           <span *ngIf="movieDetails.runtime > 60">{{ this.Math.floor(movieDetails.runtime / 60) }} hrs.</span>
           <span *ngIf="movieDetails.runtime > 0">{{ this.Math.floor(movieDetails.runtime % 60) }} mins.</span>
-          | </div>
-        <span id="year" *ngIf="movieDetails.release_date "> {{ movieDetails.release_date | date:'longDate' }}</span>
-
+        </span>
       </div>
-      <!-- Rating -->
-      <div id="rating" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-        <div id="rating-result" fxFlex="20" fxFlex.sm="25" fxFlex.xs="30" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start stretch">
-          <div fxFlex="35" fxHide.sm="true" fxHide.xs="true">
-            <mat-icon class="active">star</mat-icon>
-          </div>
-          <div fxFlex="65" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center">
-            <div id="average-rating">{{ cobinedRatingAverage | number: '1.2-2' }}
-              <span>/ 5</span>
-            </div>
-            <div id="total-votes">{{ movieDetails.vote_count + fbRatingsLength }} votes</div>
-          </div>
+    </div>
+    <div class="movie-content-main" fxLayout="row" fxLayout.xs="column">
+      <!-- Movie Poster Image -->
+      <div class="movie-content-poster" fxFlex="50" fxFlex.sm="50%" fxFlex.xs="50%">
+        <div id="posters">
+          <img *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
+            [alt]="movieDetails.title" [title]="movieDetails.title">
+          <ng-template #defaultMoviePoster>
+            <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]"
+              [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'">
+          </ng-template>
         </div>
-        <!-- Average Rating -->
-        <div *ngIf="currentUserRating === 0" class="rating" fxLayout="row" fxFlex="60" fxFlex.sm="60" fxFlex.xs="60">
-          <span id="rate-text">Rate movie</span>
-          <span>
-            <mat-icon (click)="rateMovie(1)" *ngIf="cobinedRatingAverage < 0.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage >= 0.25 && cobinedRatingAverage  < 0.75}" (click)="rateMovie(1)" *ngIf="cobinedRatingAverage > 0.25 && cobinedRatingAverage  < 0.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(cobinedRatingAverage  < 0.75)">star</mat-icon>
-            <mat-icon (click)="rateMovie(2)" *ngIf="cobinedRatingAverage < 1.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 1.25 && cobinedRatingAverage  < 1.75}" (click)="rateMovie(2)" *ngIf="cobinedRatingAverage >= 1.25 && cobinedRatingAverage  < 1.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(cobinedRatingAverage  < 1.75)">star</mat-icon>
-            <mat-icon (click)="rateMovie(3)" *ngIf="cobinedRatingAverage < 2.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 2.25 && cobinedRatingAverage  < 2.75}" (click)="rateMovie(3)" *ngIf="cobinedRatingAverage >= 2.25 && cobinedRatingAverage  < 2.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(cobinedRatingAverage  < 2.75)">star</mat-icon>
-            <mat-icon (click)="rateMovie(4)" *ngIf="cobinedRatingAverage < 3.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 3.25 && cobinedRatingAverage  < 3.75}" (click)="rateMovie(4)" *ngIf="cobinedRatingAverage >= 3.25 && cobinedRatingAverage  < 3.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(cobinedRatingAverage  < 3.75)">star</mat-icon>
-            <mat-icon (click)="rateMovie(5)" *ngIf="cobinedRatingAverage < 4.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 4.25 && cobinedRatingAverage  < 4.75}" (click)="rateMovie(5)" *ngIf="cobinedRatingAverage >= 4.25 && cobinedRatingAverage  < 4.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(cobinedRatingAverage  < 4.75)">star</mat-icon>
-          </span>
-        </div>
-        <!-- Your Rating -->
-        <div *ngIf="currentUserRating !== 0" class="rating" fxLayout="row" fxFlex="60" fxFlex.sm="60" fxFlex.xs="60">
-          <span id="rate-text">Your Rating:</span>
-          <span>
-            <mat-icon (click)="rateMovie(1)" *ngIf="currentUserRating < 0.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating >= 0.25 && currentUserRating  < 0.75}" (click)="rateMovie(1)" *ngIf="currentUserRating > 0.25 && currentUserRating  < 0.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(currentUserRating  < 0.75)">star</mat-icon>
-            <mat-icon (click)="rateMovie(2)" *ngIf="currentUserRating < 1.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 1.25 && currentUserRating  < 1.75}" (click)="rateMovie(2)" *ngIf="currentUserRating >= 1.25 && currentUserRating  < 1.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(currentUserRating  < 1.75)">star</mat-icon>
-            <mat-icon (click)="rateMovie(3)" *ngIf="currentUserRating < 2.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 2.25 && currentUserRating  < 2.75}" (click)="rateMovie(3)" *ngIf="currentUserRating >= 2.25 && currentUserRating  < 2.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(currentUserRating  < 2.75)">star</mat-icon>
-            <mat-icon (click)="rateMovie(4)" *ngIf="currentUserRating < 3.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 3.25 && currentUserRating  < 3.75}" (click)="rateMovie(4)" *ngIf="currentUserRating >= 3.25 && currentUserRating  < 3.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(currentUserRating  < 3.75)">star</mat-icon>
-            <mat-icon (click)="rateMovie(5)" *ngIf="currentUserRating < 4.25">star_border</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 4.25 && currentUserRating  < 4.75}" (click)="rateMovie(5)" *ngIf="currentUserRating >= 4.25 && currentUserRating  < 4.75">star_half</mat-icon>
-            <mat-icon [ngClass]="{'active' : currentUserRating  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(currentUserRating  < 4.75)">star</mat-icon>
-          </span>
+      </div>
+      <div class="movie-content-info" fxFlex="50" fxFlex.sm="50%" fxFlex.xs="50%">
+        <div id="overview" class="movie-content-overview">
+          <h2>Movie Overview</h2>
+          <p>{{ movieDetails.overview }}</p>
         </div>
         <!-- User Action Buttons -->
-        <div id="user-actions" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch">
-          <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
-            <mat-icon fxHide.sm="true" fxHide.xs="false">play_circle_outline</mat-icon>
-            <span>Watch Trailer</span>
-            <!-- <span *ngIf="movieTrailers?.length > 1">s</span> ({{ movieTrailers.length }}) -->
-          </button>
-          <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
-            <mat-icon fxHide.sm="true" fxHide.xs="false">local_movies</mat-icon>Buy Tickets
-          </button> -->
-          <div class="top-user-actions" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
-            <!-- Favorite Button -->
-            <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-              <mat-icon>favorite</mat-icon>
+        <div id="user-actions" fxLayout="row" fxLayoutAlign="space-evenly stretch">
+            <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
+              <mat-icon fxHide.sm="true" fxHide.xs="false">play_circle_outline</mat-icon>
+              <span>Watch Trailer</span>
+              <!-- <span *ngIf="movieTrailers?.length > 1">s</span> ({{ movieTrailers.length }}) -->
             </button>
+            <div class="top-user-actions" fxLayout="row">
+              <!-- Favorite Button -->
+              <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
+                <mat-icon>favorite</mat-icon>
+              </button>
+              <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
+                <mat-icon fxHide.sm="true" fxHide.xs="false">local_movies</mat-icon>Buy Tickets
+              </button> -->
+            </div>
           </div>
+        <div class="ad-widget">
+          <p>Here comes the advertisment widget</p>
+        </div>
+        <div class="movie-content-cast">
+          <mat-tab-group id="movie-content-details" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
+            <mat-tab label="Cast &amp; Crew">
+              <div class="mat-tab-body-wrapper">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                  to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                  typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                  sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                  including versions of Lorem Ipsum.</p>
+              </div>
+            </mat-tab>
+            <mat-tab label="Technical Details">
+              <div class="mat-tab-body-wrapper">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                  to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                  typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                  sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                  including versions of Lorem Ipsum.</p>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
         </div>
       </div>
-
-      <!-- Movie Detail Tabs -->
-      <mat-tab-group id="main-tab-group" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
-        <!-- Overview Tab -->
-        <mat-tab label="Overview">
-          <div class="overview-tab-content">
-            <p>{{ movieDetails.overview }}</p>
-            <p *ngIf="movieDetails.release_date">Release Date: {{ movieDetails.release_date | date }}</p>
-            <p *ngIf="movieKeywords?.length">Keywords:
-              <span *ngFor="let keyword of movieKeywords; let i = index">
-                <strong>{{ keyword.name }}</strong>
-                <span *ngIf="i < movieKeywords?.length - 1">,</span>
-              </span>
-            </p>
-            <!-- More Info-->
-            <div class="more-info" *ngIf="isMoreInfoOpen">
-              <!-- More Info loader -->
-              <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingInfo" class="loader">
-                <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-              </div>
-              <!-- More Info Content-->
-              <p *ngIf="movieAltTitles?.length && !isLoadingInfo">Alternative Titles:
-                <span *ngFor="let altTitle of movieAltTitles; let i = index">
-                  {{ altTitle.title }}
-                  <span *ngIf="i < movieAltTitles?.length - 1">,</span>
-                </span>
-              </p>
-              <p *ngIf="movieDetails.budget !== 0 && !isLoadingInfo">Budget: {{ movieDetails.budget | number: '1.0-0' }} USD</p>
-              <p *ngIf="movieDetails.revenue !== 0 && !isLoadingInfo">Revenue: {{ movieDetails.revenue | number: '1.0-0' }} USD</p>
-              <p *ngIf="movieDetails.production_companies?.length && !isLoadingInfo">Production Companies:
-                <span *ngFor="let company of movieDetails.production_companies; let i = index">
-                  <a [href]="'production-company' + '/' + this.as.urlOptimizeText(company.name) + '/' + company.id">{{ company.name }}</a>
-                  <span *ngIf="i < movieDetails.production_companies?.length - 1">,</span>
-                </span>
-              </p>
-              <p *ngIf="movieDetails.production_countries?.length && !isLoadingInfo">Production Countries:
-                <span *ngFor="let country of movieDetails.production_countries; let i = index">
-                  {{ country.name }}
-                  <span *ngIf="i < movieDetails.production_countries?.length - 1">,</span>
-                </span>
-              </p>
-              <p *ngIf="movieDetails.spoken_languages?.length && !isLoadingInfo">Spoken Languages:
-                <span *ngFor="let lang of movieDetails.spoken_languages; let i = index">
-                  {{ lang.name }}
-                  <span *ngIf="i < movieDetails.spoken_languages?.length - 1">,</span>
-                </span>
-              </p>
-              <p *ngIf="movieTranslations?.length && !isLoadingInfo">Translations:
-                <span *ngFor="let translation of movieTranslations; let i = index">
-                  {{ translation.name }}
-                  <span *ngIf="i < movieTranslations?.length - 1">,</span>
-                </span>
-              </p>
-              <p *ngIf="movieDetails.homepage && !isLoadingInfo">Homepage:
-                <a [href]="movieDetails.homepage" target="_blank">{{ movieDetails.homepage }}</a>
-              </p>
-              <div id="movie-links" *ngIf="movieLinks && !isLoadingInfo">
-                <div *ngIf="movieLinks.facebook_id">facebook: {{ movieLinks.facebook_id }}</div>
-                <div *ngIf="movieLinks.imdb_id">imdb: {{ movieLinks.imdb_id }}</div>
-                <div *ngIf="movieLinks.instagram_id">instagram: {{ movieLinks.instagram_id }}</div>
-                <div *ngIf="movieLinks.twitter_id">twitter: {{ movieLinks.twitter_id }}</div>
-              </div>
-            </div>
-            <!-- More Info Button -->
-            <button mat-button (click)="toggleMoreInfo()" class="more-info-btn">
-              <span *ngIf="!isMoreInfoOpen">Show More Info
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </span>
-              <span *ngIf="isMoreInfoOpen">Hide More Info
-                <mat-icon>keyboard_arrow_up</mat-icon>
-              </span>
-            </button>
-          </div>
-        </mat-tab>
-        <!-- Cast & Crew Tab -->
-        <mat-tab label="Cast &amp; Crew">
-          <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingInfo" class="loader">
-            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-          </div>
-          <div class="cast-tab-content" *ngIf="!isLoadingInfo && movieCreditsCast?.length > 0" fxLayout="column">
-            <div class="tab-header" fxLayout="column">
-              <div class="tab-title" fxLayout="row">
-                <h3>Cast</h3>
-                <span>({{ movieCreditsCast?.length }})</span>
-              </div>
-              <mat-form-field class="tab-search">
-                <input matInput (keyup)="applyCastFilter($event.target.value)" placeholder="Search for Cast">
-              </mat-form-field>
-            </div>
-            <mat-table #castTable [dataSource]="castSource" matSort class="cast-crew-table">
-              <!-- Image Column -->
-              <ng-container matColumnDef="actorImg">
-                <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                  <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">
-                    <img *ngIf="element?.profile_path; else defaultCastImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
-                      [alt]="[element?.name + ' alias ' + element?.character]" [title]="[element?.name + ' alias ' + element?.character]">
-                  </a>
-                  <ng-template #defaultCastImage>
-                    <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">
-                      <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' alias ' + element?.character]"
-                        [title]="[element?.name + ' alias ' + element?.character]">
-                    </a>
-                  </ng-template>
-                </mat-cell>
-              </ng-container>
-              <!-- Name Column -->
-              <ng-container matColumnDef="actorName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Actor Name </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                  <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">{{ element?.name }}</a>
-                </mat-cell>
-              </ng-container>
-              <!-- Character Column -->
-              <ng-container matColumnDef="character">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Character </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{ element?.character }} </mat-cell>
-              </ng-container>
-              <mat-header-row *matHeaderRowDef="castColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: castColumns;"></mat-row>
-            </mat-table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="movieCreditsCast?.length"></mat-paginator>
-          </div>
-          <div class="crew-tab-content" *ngIf="!isLoadingInfo && movieCreditsCrew?.length > 0" fxLayout="column">
-            <div class="tab-header" fxLayout="column">
-              <div class="tab-title" fxLayout="row">
-                <h3>Crew</h3>
-                <span>({{ movieCreditsCrew?.length }})</span>
-              </div>
-              <mat-form-field class="tab-search">
-                <input matInput (keyup)="applyCrewFilter($event.target.value)" placeholder="Search For Crew Members">
-              </mat-form-field>
-            </div>
-            <mat-table #crewTable [dataSource]="crewSource" matSort class="cast-crew-table">
-              <!-- Image Column -->
-              <ng-container matColumnDef="crewImg">
-                <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                  <img *ngIf="element?.profile_path; else defaultCrewImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
-                    [alt]="[element?.name + ' as ' + element?.job]" [title]="[element?.name + ' as ' + element?.job]">
-                  <ng-template #defaultCrewImage>
-                    <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' as ' + element?.job]" [title]="[element?.name + ' as ' + element?.job]">
-                  </ng-template>
-                </mat-cell>
-              </ng-container>
-              <!-- Name Column -->
-              <ng-container matColumnDef="crewName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Crew Member </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element?.name}} </mat-cell>
-              </ng-container>
-              <!-- Job Column -->
-              <ng-container matColumnDef="crewJob">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Job </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element?.job }} </mat-cell>
-              </ng-container>
-              <!-- Department Column -->
-              <ng-container matColumnDef="department">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element?.department }} </mat-cell>
-              </ng-container>
-              <mat-header-row *matHeaderRowDef="crewColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: crewColumns;"></mat-row>
-            </mat-table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="movieCreditsCrew?.length"></mat-paginator>
-          </div>
-        </mat-tab>
-        <!-- Reviews Tab -->
-        <mat-tab label="Reviews">
-          <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingInfo" class="loader">
-            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-          </div>
-          <div class="reviews-tab-content" *ngIf="!isLoadingInfo">
-            <div *ngFor="let review of movieReviews">
-              <div class="review-author">{{ review.author }}</div>
-              <div class="review-content">{{ review.content }}</div>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <button mat-raised-button color="primary" (click)="showAddReviewForm()" class="add-review-btn">Add a review</button>
-            </div>
-          </div>
-        </mat-tab>
-        <!-- Release Dates Tab -->
-        <mat-tab label="Release Dates">
-          <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingInfo" class="loader">
-            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-          </div>
-          <div class="media-tab-content" *ngIf="!isLoadingInfo">
-            <div class="release-dates">
-              <mat-table #table [dataSource]="releaseDatesSource" matSort>
-                <!-- Date Column -->
-                <ng-container matColumnDef="date">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element?.release_dates[0].release_date | date}} </mat-cell>
-                </ng-container>
-                <!-- Certification Column -->
-                <ng-container matColumnDef="certification">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Certification </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element?.release_dates[0].certification}} </mat-cell>
-                </ng-container>
-                <!-- Country Column -->
-                <ng-container matColumnDef="country">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element?.iso_3166_1 }} </mat-cell>
-                </ng-container>
-                <mat-header-row *matHeaderRowDef="releaseDatesColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: releaseDatesColumns;"></mat-row>
-              </mat-table>
-            </div>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-    </div>
-
-    <!-- Movie Poster Image -->
-    <div fxFlex="30%" fxFlex.sm="25%" fxFlex.xs="90%" id="main-left">
-      <div id="posters">
-        <img *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
-          [alt]="movieDetails.title" [title]="movieDetails.title">
-        <ng-template #defaultMoviePoster>
-          <img src="assets/img/default-movie-poster.png" [alt]="movieDetails.title" [title]="movieDetails.title" class="movie-poster">
-        </ng-template>
-      </div>
-    </div>
-    <!-- Background Image -->
-    <!-- <img *ngIf="movieDetails.backdrop_path" [src]="TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path" [alt]="movieDetails.title"
+      <!-- Background Image -->
+      <!-- <img *ngIf="movieDetails.backdrop_path" [src]="TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path" [alt]="movieDetails.title"
       id="bg-img"> -->
+    </div>
+    <!-- Articles -->
+    <mat-card class="mat-card" *ngIf="movieArticles" id="articles">
+      <mat-card-title><h2>Movie Review</h2></mat-card-title>
+      <mat-card-content *ngFor="let article of movieArticles" class="article">
+        <div class="article-inner" *ngIf="article.article_status === 'public'">
+          <mat-card-subtitle><h3>{{ article.article_title }}</h3></mat-card-subtitle>
+          <span><mat-icon>textsms</mat-icon>{{ article.article_date | date: 'short' }}</span>
+          <div class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="mat-card" id="merchandising">
+      <h3>Merchandising</h3>
+    </mat-card>
+    <mat-card class="mat-card" id="recommended">
+      <h3>Recommended</h3>
+    </mat-card>
+    <mat-card class="mat-card" id="release-dates">
+      <h3>Release Dates</h3>
+    </mat-card>
   </section>
 </div>
-
-<!-- Articles -->
-<div *ngIf="movieArticles" id="articles">
-  <div *ngFor="let article of movieArticles" class="article">
-    <div *ngIf="article.article_status === 'public'">
-      <h3>{{ article.article_title }}</h3>
-      <span>{{ article.article_date | date: 'short' }}</span>
-      <div class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
-    </div>
-  </div>
-</div>
-
-<!-- Images -->
-<mat-card *ngIf="movieImagesLength > 0">
-  <mat-card-title>Images</mat-card-title>
-  <mat-card-content>
-    <img *ngFor="let img of movieImages" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + img.file_path]" [alt]="movieDetails.title"
-      [title]="movieDetails.title">
-  </mat-card-content>
-</mat-card>
-
-<!-- Recommended & Similar Movies -->
-<mat-tab-group (selectChange)="onMoviesTabChange($event)" [selectedIndex]="currentMoviesTab" mat-stretch-tabs="true" id="movies-tabs">
-  <!-- Recommended Movies Tab -->
-  <mat-tab label="Recommended Movies">
-    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingMovies" class="loader">
-      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-    </div>
-    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="recommendations-tab-content" *ngIf="!isLoadingMovies">
-      <mat-card *ngFor="let movie of recommendedMovies" class="movie-card">
-        <a (click)="this.as.goToMovieDetails(movie.id)">
-          <div>
-            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-              [title]="movie.title" class="movie-img">
-            <ng-template #defaultMovieImage>
-              <img src="assets/img/default-movie-poster.png" [alt]="movie.title" [title]="movie.title" class="movie-img">
-            </ng-template>
-          </div>
-          <div class="movie-info">
-            <div class="movie-title">
-              <h3>{{ movie.title }}
-                <span class="year">({{ movie.release_date | date: 'y' }})</span>
-              </h3>
-            </div>
-            <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="center center">
-              <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
-              <span class="movie-rating">
-                <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
-            </div>
-          </div>
-        </a>
-      </mat-card>
-    </div>
-  </mat-tab>
-  <!-- Similar Movies Tab-->
-  <mat-tab label="Similar Movies">
-    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingMovies" class="loader">
-      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-    </div>
-    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="similar-movies-tab-content" *ngIf="!isLoadingMovies">
-      <mat-card *ngFor="let movie of similarMovies" class="movie-card">
-        <a (click)="this.as.goToMovieDetails(movie.id)">
-          <div>
-            <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-              [title]="movie.title" class="movie-img">
-            <ng-template #defaultMovieImage>
-              <img src="assets/img/default-movie-poster.png" [alt]="movie.title" [title]="movie.title" class="movie-img">
-            </ng-template>
-          </div>
-          <div class="movie-info">
-            <div class="movie-title">
-              <h3>{{ movie.title }}
-                <span class="year">({{ movie.release_date | date: 'y' }})</span>
-              </h3>
-            </div>
-            <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="center center">
-              <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
-              <span class="movie-rating">
-                <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
-            </div>
-          </div>
-        </a>
-      </mat-card>
-    </div>
-  </mat-tab>
-</mat-tab-group>

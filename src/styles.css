@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6{
     color: #CCC;
 }
 /*App Wrapper*/
-app-main-movies-directory, app-movies{
+app-main-movies-directory, app-movies, app-movie-details{
     display: block;
     padding: 1rem;
 }
@@ -31,8 +31,12 @@ app-main-movies-directory, app-movies{
 /*Section END*/
 /*Material Cards*/
 mat-card{
-    max-width: 220px;
     margin: 8px;
+    background-color: #2A2A2A;
+}
+app-home mat-card, app-movies mat-card, app-main-movies-directory mat-card{
+    max-width: 220px;
+    cursor: pointer;
 }
 mat-card-title{
     white-space: pre-line;
@@ -81,6 +85,15 @@ h3.tab-heading{
     text-align: center;
     margin: 3rem 0;
 }
+/*Login Overlay*/
+.cdk-global-overlay-wrapper{
+    width: 50% !important;
+    height: 50% !important;
+    margin: 10% auto;
+    position: relative !important;
+}
+/*Login Overlay END*/
+
 
 /*Mat Dark Theme*/
 mat-dark-theme #jumbotron{

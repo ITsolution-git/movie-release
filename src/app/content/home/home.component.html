@@ -30,7 +30,7 @@
 <!-- Now Playng Movies -->
 <section *ngIf="!loading" id="now-playing" class="now-playing-movies-container section">
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
-    <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card" tabindex="0">
+    <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card" tabindex="0" (click)="this.as.goToMovieDetails(movie.id)">
       <mat-card-header>
         <mat-card-title>
           <h2>{{ movie.title }}</h2>
@@ -57,9 +57,6 @@
           </button>
           <button mat-button>
             <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-          </button>
-          <button mat-button [routerLink]=" ['./movies/'] ">
-            <mat-icon class="mat-icon material-icons">more</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card-footer>
