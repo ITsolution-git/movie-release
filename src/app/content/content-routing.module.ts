@@ -31,7 +31,7 @@ const contentRoutes = [
   { path: 'movies/:title', component: MovieDetailsComponent },
   // Persons
   { path: 'search/celebrities/:keyword', component: SearchComponent },
-  { path: 'celebrities/most-popular', component: CelebsComponent },
+  { path: 'celebrities', component: CelebsComponent },
   { path: 'celebrity/:name', component: CelebDetailsComponent },
   // Account
   { path: 'my-account', canActivate: [AuthGuard], loadChildren: './account/account.module#AccountModule' }
