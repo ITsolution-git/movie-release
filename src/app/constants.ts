@@ -10,6 +10,9 @@ export const DEFAULT_USER_ROLE = 'subscriber';
 export const DB_COL = {
     API_CONFIG: '/api_config',
     ARTICLES: '/articles',
+    CELEBS: '/celebs',
+    CELEBS_QUERIES: '/celebs_queries',
+    CELEBS_RESULTS: '/celebs_results',
     MOVIE_GENRES: '/movie_genres',
     MOVIE_RATINGS: '/movie_ratings',
     MOVIES: '/movies',

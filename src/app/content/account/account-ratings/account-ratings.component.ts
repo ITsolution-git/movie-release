@@ -52,7 +52,7 @@ export class AccountRatingsComponent implements OnInit {
     public meta: Meta,
     private afDb: AngularFireDatabase,
     private afAuth: AngularFireAuth,
-    private as: AppService
+    public as: AppService
   ) {
     // Set SEO Title & remove Description & Keywords (This Page Does Not Need to be Indexed)
     this.title.setTitle('My Ratings - ' + APP_SEO_NAME);

@@ -72,6 +72,9 @@ export class ArticlesListComponent implements OnInit {
         this.articlesObs = this.afDb.list(DB_COL.ARTICLES).valueChanges();
         this.articlesRef = this.afDb.list(DB_COL.ARTICLES);
         this.getArticles(this.ads.userUid);
+      })
+      .catch(error => {
+        console.log('Could Not Get User Role! ', error);
       });
   }
 
@@ -119,15 +122,17 @@ export class ArticlesListComponent implements OnInit {
   toggleArticleStatus(key: string, status: string) {
     this.articlesRef.update((key.toString()), {
       article_status: status
-    }).then(() => {
-      if (status === 'public') {
-        this.toastr.success('Article Published!');
-      } else {
-        this.toastr.success('Article Unpublished!');
-      }
-    }).catch((error) => {
-      this.toastr.success('Could Not Change Article Status!', error);
-    });
+    })
+      .then(() => {
+        if (status === 'public') {
+          this.toastr.success('Article Published!');
+        } else {
+          this.toastr.success('Article Unpublished!');
+        }
+      })
+      .catch((error) => {
+        this.toastr.success('Could Not Change Article Status!', error);
+      });
   }
 
   // Opens Dialog Box when Delete Button is Clicked

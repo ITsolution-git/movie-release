@@ -76,7 +76,7 @@
         <span id="genres" fxFlex="50" class="genre">Genres:
           <span *ngFor="let genre of movieDetails.genres; let i = index">
             <span>
-              <a [routerLink]="['/movies/genre/' + this.as.urlOptimizeText(genre.name)]" class="genre-link">{{ genre.name }}</a>
+              <a (click)="this.as.goToMovieGenresPage(genre.name)" class="genre-link">{{ genre.name }}</a>
             </span>
             <span *ngIf="i < movieDetails.genres.length - 1">,</span>
           </span>

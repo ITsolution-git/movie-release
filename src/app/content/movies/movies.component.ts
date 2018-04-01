@@ -129,14 +129,10 @@ export class MoviesComponent implements OnInit {
   }
 
   getMovieGenres(): void {
-    this.apis.getMovieGenres().subscribe((res) => {
-      this.movieGenresList = res['genres'];
-    });
-  }
-
-  goToGenresPage(genre: string): void {
-    const seoURL = this.as.urlOptimizeText(genre);
-    this.router.navigate(['/movies/genre/' + seoURL]);
+    this.apis.getMovieGenres()
+      .subscribe((res) => {
+        this.movieGenresList = res['genres'];
+      });
   }
 
   getPopularMovies(pageIndex: number): void {

@@ -2,7 +2,6 @@ import * as express from 'express';
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
-import * as fs from 'fs';
 import fetch from 'node-fetch';
 import {
     tryGetAPIConfig,
@@ -32,8 +31,20 @@ import {
     tryGetUpcomingMovies
 } from './api/api-movies';
 import {
+    tryGetLatestPersons,
+    tryGetPersonDetailsById,
+    tryGetPersonExternalLinksById,
+    tryGetPersonImagesById,
+    tryGetPersonMovieCreditsById,
+    tryGetPersonsListByKeyword,
+    tryGetPersonTaggedImagesById,
+    tryGetPersonTvCreditsById,
+    tryGetPopularPersons
+} from './api/api-persons';
+import {
     tryGenerateMovieGenresSitemap,
-    tryGenerateMoviesSitemap
+    tryGenerateMoviesSitemap,
+    tryGenerateCelebsSitemap
 } from './sitemap/sitemap';
 import { processURL } from './ssr/bot-detect';
 
@@ -55,6 +66,17 @@ app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
 });
 
+// Sitemap Files Location
+app.get('/sitemap-movies-xml', (req, res) => {
+    res.sendFile(path.join(__dirname, './sitemaps/movies-sitemap.xml'));
+});
+app.get('/sitemap-movie-genres-xml', (req, res) => {
+    res.sendFile(path.join(__dirname, './sitemaps/movie-genres-sitemap.xml'));
+});
+app.get('/sitemap-celebs-xml', (req, res) => {
+    res.sendFile(path.join(__dirname, './sitemaps/celebs-sitemap.xml'));
+});
+
 // Sitemap Endpoints
 app.get('/sitemap-movies', (req, res) => {
     const sitemap = tryGenerateMoviesSitemap(req, res);
@@ -65,6 +87,16 @@ app.get('/sitemap-movie-genres', (req, res) => {
     const sitemap = tryGenerateMovieGenresSitemap(req, res);
     res.header('Content-Type', 'text/xml');
     res.send(sitemap);
+});
+app.get('/sitemap-celebs', (req, res) => {
+    const sitemap = tryGenerateCelebsSitemap(req, res);
+    res.header('Content-Type', 'text/xml');
+    res.send(sitemap);
+});
+
+// Static robots.txt
+app.get('/robots.txt', (req, res) => {
+    res.sendFile(path.join(__dirname, './robots.txt'));
 });
 
 // TMDB API Endpoints
@@ -94,5 +126,15 @@ app.get('/get-movie-release-dates/:id', tryGetMovieReleaseDatesById);
 app.get('/get-movie-alt-titles/:id', tryGetAlternativeTitlesById);
 app.get('/get-movie-external-links/:id', tryGetMovieExternalLinksById);
 app.get('/get-movie-images/:id', tryGetMovieImagesById);
+// Persons Endpoints
+app.get('/get-persons-by-keyword/:keyword/:pageIndex', tryGetPersonsListByKeyword);
+app.get('/get-persons-popular/:pageIndex', tryGetPopularPersons);
+app.get('/get-persons-latest', tryGetLatestPersons);
+app.get('/get-person-details/:id', tryGetPersonDetailsById);
+app.get('/get-person-movie-credits/:id', tryGetPersonMovieCreditsById);
+app.get('/get-person-tv-credits/:id', tryGetPersonTvCreditsById);
+app.get('/get-person-external-links/:id', tryGetPersonExternalLinksById);
+app.get('/get-person-images/:id', tryGetPersonImagesById);
+app.get('/get-person-tagged-images/:id/:pageIndex', tryGetPersonTaggedImagesById);
 // All other endpoints will be processed by bot detector
 app.get('**', processURL);

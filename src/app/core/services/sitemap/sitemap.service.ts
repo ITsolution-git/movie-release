@@ -17,4 +17,7 @@ export class SitemapService {
     this.http.get('/sitemap-movie-genres').subscribe(res => console.log(res));
   }
 
+  generateCelebsSitemap() {
+    this.http.get('/sitemap-celebs').subscribe(res => console.log(res));
+  }
 }

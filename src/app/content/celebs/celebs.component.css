@@ -1,0 +1,78 @@
+.loader {
+  margin: 1rem 0;
+}
+
+/* Page Header */
+
+#page-header {
+  padding: 0 5%;
+}
+
+#page-header h1 {
+  margin: 0 0 0.5rem;
+}
+
+#results-counter {
+  margin-bottom: 1rem;
+}
+
+/* Results List */
+
+.actor-card {
+  position: relative;
+  max-height: 278px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  background: #000;
+}
+
+.actor-card img {
+  width: 100%;
+}
+
+.actor-info {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  max-width: 165px;
+  bottom: 0;
+  padding: 0.4rem 10px;
+  text-align: center;
+  background: #fff;
+  color: #333;
+}
+
+.actor-info h3 {
+  font-size: 1rem;
+  padding: 0 0 0.3rem 0;
+  border-bottom: 1px solid #eee;
+  margin: 0;
+}
+
+.actor-rating {
+  width: 100%;
+  margin-top: 0.3rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.actor-card:hover .actor-info {
+  opacity: 1;
+}
+
+#load-more {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+@media screen and (max-width: 600px) {
+  #page-header h1 {
+    font-size: 1.4rem;
+  }
+  .actor-card {
+    margin: 0.05rem 0;
+  }
+}

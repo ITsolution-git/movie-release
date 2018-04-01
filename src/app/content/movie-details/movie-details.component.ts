@@ -167,9 +167,13 @@ export class MovieDetailsComponent implements OnInit {
                     this.movieRatingsObsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId).valueChanges();
                     this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId);
                     this.calculateNewAverageRating();
-                  }).then(() => {
+                  })
+                  .then(() => {
                     this.getMovieDetailsCounter = 0;
                     this.getMovieArticles(Number(this.movieId));
+                  })
+                  .catch(error => {
+                    console.log('There was an error while getting Movie Details! ', error);
                   });
                 this.afAuth.authState.subscribe(userRes => {
                   if (userRes && userRes.uid) {
@@ -183,6 +187,9 @@ export class MovieDetailsComponent implements OnInit {
                     this.checkIfMovieFavorited();
                   }
                 });
+              })
+              .catch(error => {
+                console.log('There was an error while getting the movie ID! ', error);
               });
           }
         });

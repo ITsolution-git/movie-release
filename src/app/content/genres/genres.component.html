@@ -17,7 +17,7 @@
     </button>
     <mat-menu #genres="matMenu" [overlapTrigger]="false">
       <span *ngIf="genreType === 'movies'">
-        <a mat-menu-item *ngFor="let genre of movieGenresList" class="genre-btn" (click)="goToMovieGenresPage(genre.name)">{{ genre.name }}</a>
+        <a mat-menu-item *ngFor="let genre of movieGenresList" class="genre-btn" (click)="this.as.goToMovieGenresPage(genre.name)">{{ genre.name }}</a>
       </span>
     </mat-menu>
   </div>
