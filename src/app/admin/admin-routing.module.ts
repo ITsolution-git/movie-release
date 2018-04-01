@@ -21,7 +21,8 @@ const adminRoutes = [
       { path: 'categories', component: CategoriesComponent },
       { path: 'tags', component: TagsComponent },
       { path: 'users', canActivate: [AdminRoleGuardService], loadChildren: 'app/admin/users/users.module#UsersModule' },
-      { path: 'settings', canActivate: [AdminRoleGuardService], component: SettingsComponent }
+      { path: 'settings', canActivate: [AdminRoleGuardService], component: SettingsComponent },
+      { path: 'tools', loadChildren: 'app/admin/tools/tools.module#ToolsModule' }
     ]
   }
 ];

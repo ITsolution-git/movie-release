@@ -1,0 +1,43 @@
+<h1>Duplicate Movie URLs
+  <mat-icon (click)="getAllMoviesResults()">refresh</mat-icon>
+</h1>
+{{ currentStatus }}
+<div *ngIf="fbDuplicateTitles?.length && !loading">
+  <p>Found {{ fbDuplicateTitles.length }} duplicate movie URLs.</p>
+  <p>Make sure you update the 'slug' and 'url' properties for each results below:</p>
+</div>
+
+<div fxLayout="row">
+  <!-- DB Duplicate Results -->
+  <ul *ngIf="fbDuplicateTitles && !loading" fxFlex="35%" class="duplicate-list">
+    <!-- <p>Last Checked: {{ fbDuplicateTitles }}</p> -->
+    <li *ngFor="let dup of fbDuplicateTitles; let i = index" (click)="getDuplicateMovieDetailsBySlug(dup)" class="duplicate">
+      <div>{{ i + 1 }}.) {{ dup }}</div>
+
+    </li>
+  </ul>
+
+  <!-- Duplicate Details -->
+  <div *ngIf="duplicateMovieDetails && !loading" fxFlex class="duplicate-details">
+    <div class="fixed-box" fxFlex>
+      <div *ngFor="let d of duplicateMovieDetails" fxLayout="row" fxLayoutAlign="center center">
+        <a [href]="'https://console.firebase.google.com/project/current-movie-releases/database/current-movie-releases/data/movies_results/' + d.id"
+          target="_blank">{{ d.id }}</a> | {{ d.release_date | date: 'y'}}
+        <mat-form-field fxFlex class="duplicate-input">
+          <input matInput type="text" [(ngModel)]="d.slug" #slug>
+        </mat-form-field>
+        <mat-form-field fxFlex class="duplicate-input">
+          <input matInput type="text" [(ngModel)]="d.url" #url>
+        </mat-form-field>
+        <button mat-raised-button (click)="updateUrl(d.id, slug.value, url.value)">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="fbDuplicateTitles === null && !loading">No duplicate titles are saved in Firebase. Please Run Duplicate Checker again!</div>
+
+<!-- Loader -->
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
