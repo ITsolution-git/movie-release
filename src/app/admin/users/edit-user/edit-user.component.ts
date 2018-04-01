@@ -113,6 +113,9 @@ export class EditUserComponent implements OnInit, OnDestroy {
         .then(() => {
           this._toastr.success('User Profile Updated!');
           this._router.navigate(['admin/users']);
+        })
+        .catch(error => {
+          console.log(error);
         });
     }
   }

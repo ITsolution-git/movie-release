@@ -5,7 +5,9 @@
     <div fxFlex="70%" fxFlex.sm="75%" fxFlex.xs="90%" id="main-right">
       <!-- Title -->
       <div id="title" fxLayout="row" fxLayoutAlign="start stretch">
-        <h1>{{ movieDetails.title }}<span class="title-year" id="year" *ngIf="movieDetails.release_date ">({{ movieDetails.release_date | date:'y' }})</span></h1>
+        <h1>{{ movieDetails.title }}
+          <span class="title-year" id="year" *ngIf="movieDetails.release_date ">({{ movieDetails.release_date | date:'y' }})</span>
+        </h1>
       </div>
       <!-- Tagline -->
       <div id="tagline" *ngIf="movieDetails.tagline">
@@ -16,7 +18,7 @@
         <div id="genres">
           <span *ngFor="let genre of movieDetails.genres; let i = index">
             <span>
-              <a [routerLink]="['/movies/genre/' + this.as.urlOptimizeText(genre.name)]" class="genre-link">{{ genre.name }}</a>
+              <a (click)="this.as.goToMovieGenresPage(genre.name)" class="genre-link">{{ genre.name }}</a>
             </span>
             <span *ngIf="i < movieDetails.genres.length - 1">,</span>
           </span>
@@ -133,7 +135,7 @@
               <p *ngIf="movieDetails.revenue !== 0 && !isLoadingInfo">Revenue: {{ movieDetails.revenue | number: '1.0-0' }} USD</p>
               <p *ngIf="movieDetails.production_companies?.length && !isLoadingInfo">Production Companies:
                 <span *ngFor="let company of movieDetails.production_companies; let i = index">
-                  <a [href]="'production-company' + '/' + this.as.urlOptimizeText(company.name) + '/' + company.id">{{ company.name }}</a>
+                  {{ company.name }}
                   <span *ngIf="i < movieDetails.production_companies?.length - 1">,</span>
                 </span>
               </p>
@@ -196,12 +198,12 @@
               <ng-container matColumnDef="actorImg">
                 <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">
+                  <a (click)="this.as.goToCelebDetails(element?.id)">
                     <img *ngIf="element?.profile_path; else defaultCastImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
                       [alt]="[element?.name + ' alias ' + element?.character]" [title]="[element?.name + ' alias ' + element?.character]">
                   </a>
                   <ng-template #defaultCastImage>
-                    <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">
+                    <a (click)="this.as.goToCelebDetails(element?.id)">
                       <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' alias ' + element?.character]"
                         [title]="[element?.name + ' alias ' + element?.character]">
                     </a>
@@ -212,7 +214,7 @@
               <ng-container matColumnDef="actorName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Actor Name </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  <a [routerLink]="['/celebrity/' + this.as.urlOptimizeText(element?.name)]">{{ element?.name }}</a>
+                  <a (click)="this.as.goToCelebDetails(element?.id)">{{ element?.name }}</a>
                 </mat-cell>
               </ng-container>
               <!-- Character Column -->
@@ -240,17 +242,25 @@
               <ng-container matColumnDef="crewImg">
                 <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  <img *ngIf="element?.profile_path; else defaultCrewImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
-                    [alt]="[element?.name + ' as ' + element?.job]" [title]="[element?.name + ' as ' + element?.job]">
+                  <a (click)="this.as.goToCelebDetails(element?.id)">
+                    <img *ngIf="element?.profile_path; else defaultCrewImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
+                      [alt]="[element?.name + ' as ' + element?.job]" [title]="[element?.name + ' as ' + element?.job]">
+                  </a>
                   <ng-template #defaultCrewImage>
-                    <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' as ' + element?.job]" [title]="[element?.name + ' as ' + element?.job]">
+                    <a (click)="this.as.goToCelebDetails(element?.id)">
+                      <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' as ' + element?.job]" [title]="[element?.name + ' as ' + element?.job]">
+                    </a>
                   </ng-template>
                 </mat-cell>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="crewName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Crew Member </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element?.name}} </mat-cell>
+                <mat-cell *matCellDef="let element">
+                  <a (click)="this.as.goToCelebDetails(element?.id)">
+                    {{element?.name}}
+                  </a>
+                </mat-cell>
               </ng-container>
               <!-- Job Column -->
               <ng-container matColumnDef="crewJob">

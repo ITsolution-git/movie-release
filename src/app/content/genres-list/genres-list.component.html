@@ -1,5 +1,5 @@
 <ul>
   <li *ngFor="let genre of genresList">
-    <a [href]="'movies/genre/' + this.as.urlOptimizeText(genre.name)">{{ genre.name }}</a>
+    <a (click)="this.as.goToMovieGenresPage(genre.name)">{{ genre.name }}</a>
   </li>
 </ul>

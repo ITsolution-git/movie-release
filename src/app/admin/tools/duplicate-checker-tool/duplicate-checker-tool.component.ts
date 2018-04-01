@@ -26,6 +26,9 @@ export class DuplicateCheckerToolComponent implements OnInit {
       .then(res => {
         this.fbDuplicateTitles = res;
         this.loading = false;
+      })
+      .catch(error => {
+        console.log('There was an error getting duplicates from firebase! ', error);
       });
   }
 
@@ -61,9 +64,21 @@ export class DuplicateCheckerToolComponent implements OnInit {
                     this.fbDuplicateTitles = duplicate;
                     this.currentStatus = 'Duplicate Movie Title Checking is Done!';
                     this.loading = false;
+                  })
+                  .catch(error => {
+                    console.log('There was an error while getting the duplicate movies from firebase! ', error);
                   });
+              })
+              .catch(error => {
+                console.log('There was an error saving the duplicates to firebase! ', error);
               });
+          })
+          .catch(error => {
+            console.log('There was an error checking the duplicate movie titles! ', error);
           });
+      })
+      .catch(error => {
+        console.log('There was an error getting the movie results! ', error);
       });
   }
 
@@ -94,6 +109,9 @@ export class DuplicateCheckerToolComponent implements OnInit {
           this.duplicateDetails = res;
           resolve(res);
           // this.duplicateMovieDetails = res;
+        })
+        .catch(error => {
+          console.log('There was an error while getting movies by title! ', error);
         });
     });
   }
@@ -107,6 +125,9 @@ export class DuplicateCheckerToolComponent implements OnInit {
           this.duplicateMovieDetails = res;
           resolve(res);
           // this.duplicateMovieDetails = res;
+        })
+        .catch(error => {
+          console.log('There was an error while getting the movies by Slug! ', error);
         });
     });
   }

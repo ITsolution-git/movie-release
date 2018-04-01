@@ -3,10 +3,10 @@
     <!-- Search Inputs Container -->
     <div class="input-container" fxFlex>
       <!-- Search Inputs -->
-      <input type="text" name="keyword" [(ngModel)]="keyword" placeholder="Search for Movies to write Article for" (keyup.enter)="searchForMovie(keyword)"
-        fxFlex>
+      <input type="text" name="keyword" placeholder="Search for Movies to write Article for" (keyup.enter)="searchForMovie(keyword.value)"
+        fxFlex #keyword>
       <!-- Search button -->
-      <button mat-raised-button color="primary" (click)="searchForMovie(keyword)" class="search-btn">
+      <button mat-raised-button color="primary" (click)="searchForMovie(keyword.value)" class="search-btn">
         <mat-icon>search</mat-icon>
       </button>
     </div>
@@ -55,6 +55,6 @@
 </div>
 
 <!-- Loader -->
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLooading" class="loader">
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoading" class="loader">
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>

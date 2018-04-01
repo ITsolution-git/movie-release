@@ -19,9 +19,41 @@ export class AppService {
     private afDb: AngularFireDatabase
   ) { }
 
-  urlOptimizeText(text: string): string {
-    const urlText = text.toLowerCase().replace(/[^a-zA-Z0-9-$@]+/gm, '-');
-    return urlText;
+  urlOptimizeText(text: string): Promise<string> {
+    // console.log('URL Optimize:', text);
+    const noSpecial = text.replace(/\(|\)|\?|\!|\'|\.|\,|\:|\;|\<|\>|\[|\]|\*|\+/g, '');
+    const noDouble = noSpecial.replace(/\œ/g, 'oe').replace(/\ᴂ/g, 'ae');
+    // console.log('no brachets: ', noSpecial);
+    return new Promise<string>((resolves, rejects) => {
+      this.removeAccents(noDouble)
+        .then(res => {
+          // console.log(res);
+          const replaceAnd = res.replace(/\&/g, 'and');
+          const urlText = replaceAnd.toLowerCase().replace(/[^a-zA-Z0-9-$@]+/gm, '-');
+          resolves(urlText);
+        })
+        .catch(error => {
+          console.log('There was an error while removing accents froms string! ', error);
+        });
+    });
+  }
+
+  removeAccents(p): Promise<string> {
+    // console.log('TEXT TO CONVERT: ', p);
+    const c = 'áàãâäåéèêëíìîïóòõôöøúùûüçćÁÀÃÂÄÅÉÈÊËÍÌÎÏÓÒÕÖÔÚÙÛÜÇĆ';
+    const s = 'aaaaaaeeeeiiiioooooouuuuccAAAAAAEEEEIIIIOOOOOUUUUCC';
+    let n = '';
+    return new Promise<string>((resolve, reject) => {
+      for (let i = 0; i < p.length; i++) {
+        if (c.search(p.substr(i, 1)) >= 0) {
+          n += s.substr(c.search(p.substr(i, 1)), 1);
+        } else {
+          n += p.substr(i, 1);
+        }
+      }
+      // console.log('CONVERTED TEXT: ', n);
+      resolve(n);
+    });
   }
 
   seoOptimizeText(text: string): string {
@@ -47,24 +79,49 @@ export class AppService {
       });
   }
 
-  goToMovieDetails(movieId: string) {
+  // Movie Functions
+  goToMovieDetails(movieId: number) {
     // Get the Movie URL by MovieID from firebase movie_results collection
-    this.getMovieUrlById(movieId)
+    this.getMovieUrlById(Number(movieId))
       .then(res => {
-        console.log(res['url']);
         this.router.navigate([res['url']]);
+      })
+      .catch(error => {
+        console.log('There was an error while getting the movie URL! ', error);
       });
   }
-
-  getMovieUrlById(movieId: string): Promise<any> {
+  goToMovieGenresPage(genre: string): void {
+    this.urlOptimizeText(genre)
+      .then(res => {
+        this.router.navigate(['/movies/genre/' + res]);
+      });
+  }
+  getMovieUrlById(movieId: number): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('id').equalTo(movieId)).valueChanges()
         .subscribe(res => {
-          console.log(res);
-          console.log(res[0]);
-          console.log(res[0]['url']);
           resolve(res[0]);
         });
-    })
+    });
+  }
+
+  // Celeb Functions
+  goToCelebDetails(celebId: number): void {
+    // Get the Celeb URL by CelebID from firebase celebs_results collection
+    this.getCelebUrlById(celebId)
+      .then(res => {
+        this.router.navigate([res['url']]);
+      })
+      .catch(error => {
+        console.log('There was an error while getting the celeb URL! ', error);
+      });
+  }
+  getCelebUrlById(celebId: number): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.afDb.list(`${DB_COL.CELEBS_RESULTS}`, ref => ref.orderByChild('id').equalTo(celebId)).valueChanges()
+        .subscribe(res => {
+          resolve(res[0]);
+        });
+    });
   }
 }

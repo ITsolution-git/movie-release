@@ -36,7 +36,8 @@ export class DeleteArticleDialogComponent implements OnInit {
         this.toastr.success('Article Was Deleted!');
         this.dialogRef.close({ deleted: true });
         this.router.navigate(['admin/articles']);
-      }).catch(error => {
+      })
+      .catch(error => {
         this.toastr.error('There Was an Error. Article Was Not Be Deleted!');
         console.log(error.message);
       });

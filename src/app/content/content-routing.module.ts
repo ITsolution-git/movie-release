@@ -13,10 +13,13 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { GenresComponent } from './genres/genres.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
+import { CelebDetailsComponent } from './celeb-details/celeb-details.component';
+import { CelebsComponent } from './celebs/celebs.component';
 
 // Content Routes
 const contentRoutes = [
   { path: '', component: HomeComponent },
+  // Movies
   { path: 'search/movies/:keyword', component: SearchComponent },
   { path: 'movies', component: MainMoviesDirectoryComponent },
   { path: 'movies/genres', component: GenresListComponent },
@@ -26,7 +29,12 @@ const contentRoutes = [
   { path: 'movies/upcoming', component: MoviesComponent },
   { path: 'movies/now-playing', component: MoviesComponent },
   { path: 'movies/:title', component: MovieDetailsComponent },
-  { path: 'my-account', canActivate: [AuthGuard], loadChildren: './account/account.module#AccountModule' },
+  // Persons
+  { path: 'search/celebrities/:keyword', component: SearchComponent },
+  { path: 'celebrities/most-popular', component: CelebsComponent },
+  { path: 'celebrity/:name', component: CelebDetailsComponent },
+  // Account
+  { path: 'my-account', canActivate: [AuthGuard], loadChildren: './account/account.module#AccountModule' }
 ];
 
 @NgModule({

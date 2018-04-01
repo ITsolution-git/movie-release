@@ -23,10 +23,12 @@ export class SearchFormComponent implements OnInit {
 
   goToSearchPage(keyword: string, searchType?: string): void {
     if (keyword) {
-      const searchURL = this.as.urlOptimizeText(keyword);
-      // if (searchType === 'movies') {
-        this.fbs.saveMovieSearchQueryToDB(keyword);
-        this.router.navigate(['search/movies/' + searchURL]);
+      const searchURL = this.as.urlOptimizeText(keyword)
+        .then(res => {
+          // if (searchType === 'movies') {
+          this.fbs.saveMovieSearchQueryToDB(keyword);
+          this.router.navigate(['search/movies/' + res]);
+        });
       // }
     } else {
       // Show message "Please Enter Text To Search For" or something like that
