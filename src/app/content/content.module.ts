@@ -29,6 +29,8 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
+import { MovieCardComponent } from './shared/movie-card/movie-card.component';
+import { JumbotronComponent } from './shared/jumbotron/jumbotron.component';
 import { CelebsComponent } from './celebs/celebs.component';
 import { CelebDetailsComponent } from './celeb-details/celeb-details.component';
 
@@ -60,6 +62,9 @@ import { CelebDetailsComponent } from './celeb-details/celeb-details.component';
     TrailersDialogComponent,
     GenresListComponent,
     MainMoviesDirectoryComponent,
+    SafePipe,
+    MovieCardComponent,
+    JumbotronComponent,
     CelebsComponent,
     CelebDetailsComponent,
     SafePipe

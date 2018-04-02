@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<div class="main-sidenav-container" [class.view-is-mobile]="mobileQuery.matches">
+    <mat-toolbar class="sidenav-toolbar mat-elevation-z6">
+        <button mat-icon-button (click)="sidebar.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <a _ngcontent-c1="" aria-label="Current Movie Releases" class="docs-button mat-button" mat-button="" routerlink="/" tabindex="0" aria-disabled="false" href="/"><span class="mat-button-wrapper"><img _ngcontent-c1="" alt="Current Movie Releases" class="docs-cmr-logo" src="../assets/img/currentmoviereleases_logo_v2.svg"><span _ngcontent-c1="" class="sidenav-app-name">Current Movie Releases</span></span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></a>
+        <app-primary-menu class="header-actions"></app-primary-menu>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="view-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #sidebar mode="side" opened="false">
+            <mat-nav-list>
+                <app-sidenav></app-sidenav>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content class="dashboard-container">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+</div>

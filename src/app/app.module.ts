@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
+import {HttpModule} from '@angular/http';
 // Material Modules
 import {
   MatInputModule,
@@ -17,7 +18,9 @@ import {
   MatTabsModule,
   MatOptionModule,
   MatSelectModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSidenavModule,
+  MatListModule,
 } from '@angular/material';
 // Toastr
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -46,7 +49,10 @@ import { FooterComponent } from './content/shared/footer/footer.component';
 import { PageNotFoundComponent } from './content/page-not-found/page-not-found.component';
 import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu.component';
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
+import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
 import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
+import { LayoutModule } from '@angular/cdk/layout';
+
 @NgModule({
   declarations: [
     PublicComponent,
@@ -56,6 +62,7 @@ import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.co
     PageNotFoundComponent,
     PrimaryMenuComponent,
     SearchFormComponent,
+    SidenavComponent,
     AuthDialogComponent
   ],
   imports: [
@@ -71,6 +78,9 @@ import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.co
     MatTabsModule,
     MatOptionModule,
     MatSelectModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatListModule,
     CdkTableModule,
     FlexLayoutModule,
     FormsModule,
@@ -82,11 +92,10 @@ import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.co
     MatIconModule,
     ToastModule.forRoot(),
     AppRoutingModule,
-    MatDialogModule
+    LayoutModule
   ],
   providers: [
     AppService,
-    // SeoService,
     ApiService,
     SitemapService,
     FirebaseService,

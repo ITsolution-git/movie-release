@@ -1,34 +1,41 @@
-<div id="page-header" fxLayout="row">
-  <div id="header-left" fxFlex>
-    <!-- Page Title -->
-    <h2>{{ pageTitle }}</h2>
+<!-- Jumbotron-->
+<div id="jumbotron" class="mat-elevation-z6">
+  <div class="container">
+    <h1 class="page-title entry-title">{{ pageTitle }}</h1>
+    <h2 class="page-description">This is the page description, this should be the same as the <em>meta-description</em>. In pharetra nunc felis, quis viverra libero efficitur sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque tincidunt, Limit this text to 330 characters...</h2>
+    <div class="advanced_filters"></div>
+    <div class="page-taxonomy-list"></div>
+    <div id="breadcrumbs"></div>
+    <div id="page-header" fxLayout="row">
+      <div id="header-left" fxFlex>
 
-    <!-- Upcoming Results Counter -->
-    <div *ngIf="pageKey === 'upcoming'" id="results-counter">Results:
-      <span *ngIf="upcomingMoviesCurrentIndex === upcomingMoviesTotalPages">{{ upcomingMoviesTotalResults }}</span>
-      <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 20 }}</span> / {{ upcomingMoviesTotalResults }}
-    </div>
+        <!-- Upcoming Results Counter -->
+        <div *ngIf="pageKey === 'upcoming'" id="results-counter">Showing:
+          <span *ngIf="upcomingMoviesCurrentIndex === upcomingMoviesTotalPages">{{ upcomingMoviesTotalResults }}</span>
+          <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 20 }}</span> / {{ upcomingMoviesTotalResults }}
+        </div>
 
-    <!-- Now Playing Results Counter -->
-    <div *ngIf="pageKey === 'now-playing'" id="results-counter">Results:
-      <span *ngIf="nowPlayingMoviesCurrentIndex === nowPlayingMoviesTotalPages">{{ nowPlayingMoviesTotalResults }}</span>
-      <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 20 }}</span> / {{ nowPlayingMoviesTotalResults }}
-    </div>
+        <!-- Now Playing Results Counter -->
+        <div *ngIf="pageKey === 'now-playing'" id="results-counter">Showing:
+          <span *ngIf="nowPlayingMoviesCurrentIndex === nowPlayingMoviesTotalPages">{{ nowPlayingMoviesTotalResults }}</span>
+          <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 20 }}</span> / {{ nowPlayingMoviesTotalResults }}
+        </div>
 
-    <!-- Popular Results Counter -->
-    <div *ngIf="pageKey === 'most-popular'" id="results-counter">Results:
-      <span *ngIf="popularMoviesCurrentIndex === popularMoviesTotalPages">{{ popularMoviesTotalResults }}</span>
-      <span *ngIf="popularMoviesCurrentIndex !== popularMoviesTotalPages">{{ popularMoviesCurrentIndex * 20 }}</span> / {{ popularMoviesTotalResults }}
-    </div>
+        <!-- Popular Results Counter -->
+        <div *ngIf="pageKey === 'most-popular'" id="results-counter">Showing:
+          <span *ngIf="popularMoviesCurrentIndex === popularMoviesTotalPages">{{ popularMoviesTotalResults }}</span>
+          <span *ngIf="popularMoviesCurrentIndex !== popularMoviesTotalPages">{{ popularMoviesCurrentIndex * 20 }}</span> / {{ popularMoviesTotalResults }}
+        </div>
 
-    <!-- Top Rated Results Counter -->
-    <div *ngIf="pageKey === 'top-rated'" id="results-counter">Results:
-      <span *ngIf="topRatedMoviesCurrentIndex === topRatedMoviesTotalPages">{{ topRatedMoviesTotalResults }}</span>
-      <span *ngIf="topRatedMoviesCurrentIndex !== topRatedMoviesTotalPages">{{ topRatedMoviesCurrentIndex * 20 }}</span> / {{ topRatedMoviesTotalResults }}
+        <!-- Top Rated Results Counter -->
+        <div *ngIf="pageKey === 'top-rated'" id="results-counter">Showing:
+          <span *ngIf="topRatedMoviesCurrentIndex === topRatedMoviesTotalPages">{{ topRatedMoviesTotalResults }}</span>
+          <span *ngIf="topRatedMoviesCurrentIndex !== topRatedMoviesTotalPages">{{ topRatedMoviesCurrentIndex * 20 }}</span> / {{ topRatedMoviesTotalResults }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 <!-- Movie Tabs Container -->
 <mat-tab-group (selectChange)="onMovieTabChange($event)" [selectedIndex]="currentMovieTab" mat-stretch-tabs="true" id="movies-tab-group">
   <!-- Upcoming Movies Tab-->
@@ -37,41 +44,40 @@
     <ng-template mat-tab-label>
       <h3 (click)="goToMoviesPage('upcoming')" class="tab-heading">Upcoming</h3>
     </ng-template>
-    <!-- Movies List -->
-    <div *ngIf="!loading" class="upcoming-movies-tab-content">
-      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
-        <mat-card *ngFor="let movie of upcomingMovies" class="movie-card">
-          <div class="movie-data">
-            <div class="release-date">
-              <h3 class="year">Released Movie:
-                <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-              </h3>
-            </div>
-          </div>
-          <a (click)="this.as.goToMovieDetails(movie.id)">
-            <div class="movie-thumbnail">
-              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-                class="movie-img">
-              <ng-template #defaultMovieImage>
-                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-              </ng-template>
-            </div>
-            <div class="movie-info">
-              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="space-evenly stretch">
-                <span class="movie-rating">
-                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
-                <div class="favorite">
-                  <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-                    <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-                  </button>
-                </div>
-              </div>
+    <!-- Upcoming Movies List -->
+    <section *ngIf="!loading" id="Upcoming" class="upcoming-movies-tab-content section">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
+        <mat-card *ngFor="let movie of upcomingMovies; let i = index" class="movie-card" tabindex="0">
+          <mat-card-header>
+            <mat-card-title>
               <h2>{{ movie.title }}</h2>
-            </div>
-          </a>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
+            [alt]="movie.title">
+          <ng-template #defaultMovieImage>
+            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+          </ng-template>
+          <mat-card-content>
+              <!-- <p>{{ movie.overview }}</p> -->
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque tincidunt, facilisis faucibus leo. Donec placerat egestas risus, Limit this text to 323 characters...</p>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+            <button mat-button>
+              <mat-icon class="rating">star</mat-icon>
+              <span>{{ movie.vote_average / 2 }}</span>
+            </button>
+            <button mat-button>
+              <mat-icon class="mat-icon material-icons">favorite</mat-icon>
+            </button>
+          </mat-card-actions>
         </mat-card>
       </div>
-    </div>
+    </section>
     <!-- Loader -->
     <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
@@ -92,41 +98,40 @@
     <ng-template mat-tab-label>
       <h3 (click)="goToMoviesPage('now-playing')" class="tab-heading">Now Playing</h3>
     </ng-template>
-    <!-- Movies List -->
-    <div *ngIf="!loading" class="now-playing-movies-tab-content">
-      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
-        <mat-card *ngFor="let movie of nowPlayingMovies" class="movie-card">
-          <div class="movie-data">
-            <div class="release-date">
-              <h3 class="year">Released Movie:
-                <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-              </h3>
-            </div>
-          </div>
-          <a (click)="this.as.goToMovieDetails(movie.id)">
-            <div class="movie-thumbnail">
-              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-                class="movie-img">
-              <ng-template #defaultMovieImage>
-                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-              </ng-template>
-            </div>
-            <div class="movie-info">
-              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="space-evenly stretch">
-                <span class="movie-rating">
-                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
-                <div class="favorite">
-                  <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-                    <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-                  </button>
-                </div>
-              </div>
+    <!-- Now Playing Movies List -->
+    <section *ngIf="!loading" id="now-playing" class="now-playing-movies-tab-content section">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
+        <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card" tabindex="0">
+          <mat-card-header>
+            <mat-card-title>
               <h2>{{ movie.title }}</h2>
-            </div>
-          </a>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
+            [alt]="movie.title">
+          <ng-template #defaultMovieImage>
+            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+          </ng-template>
+          <mat-card-content>
+              <!-- <p>{{ movie.overview }}</p> -->
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque tincidunt, facilisis faucibus leo. Donec placerat egestas risus, Limit this text to 323 characters...</p>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+            <button mat-button>
+              <mat-icon class="rating">star</mat-icon>
+              <span>{{ movie.vote_average / 2 }}</span>
+            </button>
+            <button mat-button>
+              <mat-icon class="mat-icon material-icons">favorite</mat-icon>
+            </button>
+          </mat-card-actions>
         </mat-card>
       </div>
-    </div>
+    </section>
     <!-- Loader -->
     <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
@@ -147,41 +152,40 @@
     <ng-template mat-tab-label>
       <h3 (click)="goToMoviesPage('most-popular')" class="tab-heading">Most Popular</h3>
     </ng-template>
-    <!-- Movies List -->
-    <div *ngIf="!loading" class="popular-movies-tab-content">
-      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
-        <mat-card *ngFor="let movie of popularMovies" class="movie-card">
-          <div class="movie-data">
-            <div class="release-date">
-              <h3 class="year">Released Movie:
-                <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-              </h3>
-            </div>
-          </div>
-          <a (click)="this.as.goToMovieDetails(movie.id)">
-            <div class="movie-thumbnail">
-              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-                class="movie-img">
-              <ng-template #defaultMovieImage>
-                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-              </ng-template>
-            </div>
-            <div class="movie-info">
-              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="space-evenly stretch">
-                <span class="movie-rating">
-                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
-                <div class="favorite">
-                  <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-                    <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-                  </button>
-                </div>
-              </div>
+    <!-- Most Popular Movies List -->
+    <section *ngIf="!loading" id="most-popular" class="popular-movies-tab-content section">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
+        <mat-card *ngFor="let movie of popularMovies; let i = index" class="movie-card" tabindex="0">
+          <mat-card-header>
+            <mat-card-title>
               <h2>{{ movie.title }}</h2>
-            </div>
-          </a>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
+            [alt]="movie.title">
+          <ng-template #defaultMovieImage>
+            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+          </ng-template>
+          <mat-card-content>
+              <!-- <p>{{ movie.overview }}</p> -->
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque tincidunt, facilisis faucibus leo. Donec placerat egestas risus, Limit this text to 323 characters...</p>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+            <button mat-button>
+              <mat-icon class="rating">star</mat-icon>
+              <span>{{ movie.vote_average / 2 }}</span>
+            </button>
+            <button mat-button>
+              <mat-icon class="mat-icon material-icons">favorite</mat-icon>
+            </button>
+          </mat-card-actions>
         </mat-card>
       </div>
-    </div>
+    </section>
     <!-- Loader -->
     <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
@@ -202,41 +206,40 @@
     <ng-template mat-tab-label>
       <h3 (click)="goToMoviesPage('top-rated')" class="tab-heading">Top Rated</h3>
     </ng-template>
-    <!-- Movies List -->
-    <div *ngIf="!loading" class="top-rated-movies-tab-content">
-      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list">
-        <mat-card *ngFor="let movie of topRatedMovies" class="movie-card">
-          <div class="movie-data">
-            <div class="release-date">
-              <h3 class="year">Released Movie:
-                <span class="release_date">{{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-              </h3>
-            </div>
-          </div>
-          <a (click)="this.as.goToMovieDetails(movie.id)">
-            <div class="movie-thumbnail">
-              <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-                class="movie-img">
-              <ng-template #defaultMovieImage>
-                <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-              </ng-template>
-            </div>
-            <div class="movie-info">
-              <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="space-evenly stretch">
-                <span class="movie-rating">
-                  <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
-                <div class="favorite">
-                  <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-                    <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-                  </button>
-                </div>
-              </div>
+    <!-- Top Rated Movies List -->
+    <section *ngIf="!loading" id="top-rated" class="top-rated-movies-tab-content section">
+      <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
+        <mat-card *ngFor="let movie of topRatedMovies; let i = index" class="movie-card" tabindex="0">
+          <mat-card-header>
+            <mat-card-title>
               <h2>{{ movie.title }}</h2>
-            </div>
-          </a>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
+            [alt]="movie.title">
+          <ng-template #defaultMovieImage>
+            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
+          </ng-template>
+          <mat-card-content>
+              <!-- <p>{{ movie.overview }}</p> -->
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque tincidunt, facilisis faucibus leo. Donec placerat egestas risus, Limit this text to 323 characters...</p>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+            <button mat-button>
+              <mat-icon class="rating">star</mat-icon>
+              <span>{{ movie.vote_average / 2 }}</span>
+            </button>
+            <button mat-button>
+              <mat-icon class="mat-icon material-icons">favorite</mat-icon>
+            </button>
+          </mat-card-actions>
         </mat-card>
       </div>
-    </div>
+    </section>
     <!-- Loader -->
     <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
