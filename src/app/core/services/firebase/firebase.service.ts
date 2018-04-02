@@ -275,7 +275,7 @@ export class FirebaseService {
                     name: persons[i].name,
                     profile_path: persons[i].profile_path,
                     slug: slug,
-                    url: 'actor/' + slug
+                    url: 'celebrity/' + slug
                   };
                   if (i === persons.length - 1) {
                     // console.log('LAST PERSON. SAVE!');
@@ -328,7 +328,7 @@ export class FirebaseService {
           popularity: person.popularity,
           profile_path: person.profile_path,
           slug: slug,
-          url: 'actor/' + slug
+          url: 'celebrity/' + slug
         };
         // console.log(personObj);
         this.saveSinglePersonToDB(personObj);
