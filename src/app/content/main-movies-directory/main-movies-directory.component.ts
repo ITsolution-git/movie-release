@@ -44,7 +44,6 @@ export class MainMoviesDirectoryComponent implements OnInit {
     this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_MOVIES).valueChanges();
     this.seoMetaDetailsObsRef
       .subscribe(res => {
-        console.log(res);
         this.pageSeoTitle = res._movies_main.title;
         this.pageSeoDescr = res._movies_main.descr;
         this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
@@ -92,7 +91,7 @@ export class MainMoviesDirectoryComponent implements OnInit {
         if (this.mainDirectoryMovies) {
           this.loading = false;
         }
-        console.log(this.mainDirectoryMovies);
+        // console.log(this.mainDirectoryMovies);
       });
   }
 

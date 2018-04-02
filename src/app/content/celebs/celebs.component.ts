@@ -44,7 +44,6 @@ export class CelebsComponent implements OnInit {
     this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_CELEBS).valueChanges();
     this.seoMetaDetailsObsRef
       .subscribe(res => {
-        console.log(res);
         this.pageSeoTitle = res._celebs_main.title;
         this.pageSeoDescr = res._celebs_main.descr;
         this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);

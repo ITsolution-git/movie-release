@@ -88,7 +88,6 @@ export class GenresComponent implements OnInit {
   ngOnInit(): void { }
 
   setSEOMetaTags(title: string, description: string): void {
-    console.log(title, description);
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle(title + ' | ' + APP_SEO_NAME);
     this.meta.updateTag(
