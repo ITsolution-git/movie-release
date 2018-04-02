@@ -1,7 +1,8 @@
 <!-- Page Header -->
 <div id="page-header" fxLayout="column">
   <!-- Page Title -->
-  <h1>Most Popular Celebrities</h1>
+  <h2>{{ pageSeoTitle }}</h2>
+  <p>{{ pageSeoDescr }}</p>
   <!-- Results Counter -->
   <div *ngIf="popularActors" id="results-counter">Showing:
     <span *ngIf="currentPageIndex === totalPages">{{ totalResults }}</span>

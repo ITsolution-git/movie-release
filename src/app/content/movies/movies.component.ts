@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+// AngularFire
+import { AngularFireDatabase } from 'angularfire2/database';
 // RxJS
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 // Services
 import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL } from '../../constants';
 
 @Component({
   selector: 'app-movies',
@@ -16,12 +19,16 @@ import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
 })
 export class MoviesComponent implements OnInit {
 
+  seoMetaDetailsObsRef: Observable<any>;
+  pageSeoTitle: string;
+  pageSeoDescr: string;
+
   TMDB_IMAGES_BASE_URL: any;
   IMG_185: any;
 
   routeParamsSubscription: Subscription;
   pageKey: any;
-  pageTitle: string;
+  // pageTitle: string;
   currentMovieTab: any;
   movieGenresList: any[];
   latestMovies: any[];
@@ -47,6 +54,7 @@ export class MoviesComponent implements OnInit {
   constructor(
     public meta: Meta,
     public title: Title,
+    private afDb: AngularFireDatabase,
     private router: Router,
     private ar: ActivatedRoute,
     public as: AppService,
@@ -56,14 +64,27 @@ export class MoviesComponent implements OnInit {
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
     this.IMG_185 = IMG_185;
 
+    this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_MOVIES).valueChanges();
+
     // Generate Page Titles Based on Current URL
     this.routeParamsSubscription = this.ar.url
       .subscribe((params) => {
         this.as.scrollToTop();
         this.pageKey = params[1].path; // upcoming / now-playing / most-popular / top-rated
         if (this.pageKey === 'most-popular') {
-          this.pageTitle = 'Most Popular Movies';
-          this.setSEOMetaTags();
+          this.seoMetaDetailsObsRef
+            .subscribe(res => {
+              this.as.urlOptimizeText(this.pageKey)
+                .then(key => {
+                  const dbKey = key.replace('-', '_') + '_movies';
+                  this.pageSeoTitle = res[dbKey].title;
+                  this.pageSeoDescr = res[dbKey].descr;
+                  this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                })
+                .catch(error => {
+                  console.log('There was an error while URL Optimizing the text.', error);
+                });
+            });
           if (!this.apis.moviesPopular.length) {
             this.getPopularMovies(1);
           } else {
@@ -74,8 +95,19 @@ export class MoviesComponent implements OnInit {
           }
           this.changeTab(2);
         } else if (this.pageKey === 'top-rated') {
-          this.pageTitle = 'Top Rated Movies';
-          this.setSEOMetaTags();
+          this.seoMetaDetailsObsRef
+            .subscribe(res => {
+              this.as.urlOptimizeText(this.pageKey)
+                .then(key => {
+                  const dbKey = key.replace('-', '_') + '_movies';
+                  this.pageSeoTitle = res[dbKey].title;
+                  this.pageSeoDescr = res[dbKey].descr;
+                  this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                })
+                .catch(error => {
+                  console.log('There was an error while URL Optimizing the text.', error);
+                });
+            });
           if (!this.apis.moviesTopRated.length) {
             this.getTopRatedMovies(1);
           } else {
@@ -86,8 +118,19 @@ export class MoviesComponent implements OnInit {
           }
           this.changeTab(3);
         } else if (this.pageKey === 'upcoming') {
-          this.pageTitle = 'Upcoming Movies';
-          this.setSEOMetaTags();
+          this.seoMetaDetailsObsRef
+            .subscribe(res => {
+              this.as.urlOptimizeText(this.pageKey)
+                .then(key => {
+                  const dbKey = key.replace('-', '_') + '_movies';
+                  this.pageSeoTitle = res[dbKey].title;
+                  this.pageSeoDescr = res[dbKey].descr;
+                  this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                })
+                .catch(error => {
+                  console.log('There was an error while URL Optimizing the text.', error);
+                });
+            });
           if (!this.apis.moviesUpcoming.length) {
             this.getUpcomingMovies(1);
           } else {
@@ -98,8 +141,19 @@ export class MoviesComponent implements OnInit {
           }
           this.changeTab(0);
         } else if (this.pageKey === 'now-playing') {
-          this.pageTitle = 'Now Playing Movies';
-          this.setSEOMetaTags();
+          this.seoMetaDetailsObsRef
+            .subscribe(res => {
+              this.as.urlOptimizeText(this.pageKey)
+                .then(key => {
+                  const dbKey = key.replace('-', '_') + '_movies';
+                  this.pageSeoTitle = res[dbKey].title;
+                  this.pageSeoDescr = res[dbKey].descr;
+                  this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                })
+                .catch(error => {
+                  console.log('There was an error while URL Optimizing the text.', error);
+                });
+            });
           if (!this.apis.moviesNowPlaying.length) {
             this.getNowPlayingMovies(1);
           } else {
@@ -112,19 +166,18 @@ export class MoviesComponent implements OnInit {
         }
       });
     this.getMovieGenres();
-    // this.getLatestMovies();
   }
 
   ngOnInit(): void { }
 
-  setSEOMetaTags(): void {
+  setSEOMetaTags(title: string, description: string): void {
     // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(this.pageTitle + ' | ' + APP_SEO_NAME);
+    this.title.setTitle(title + ' | ' + APP_SEO_NAME);
     this.meta.updateTag(
-      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.pageKey) + ' ' + APP_SEO_NAME }
+      { name: 'description', content: description + ' | ' + APP_SEO_NAME }
     );
     this.meta.updateTag(
-      { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.pageKey) },
+      { name: 'keywords', content: title + ',' + this.as.seoOptimizeText(this.pageKey) },
     );
   }
 

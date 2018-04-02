@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+// AngularFire
+import { AngularFireDatabase } from 'angularfire2/database';
 // RxJS
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 // Services
 import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL } from '../../constants';
 
 @Component({
   selector: 'app-genres',
@@ -16,12 +19,15 @@ import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME } from '../../constants';
 })
 export class GenresComponent implements OnInit {
 
+  seoMetaDetailsObsRef: Observable<any>;
+  pageSeoTitle: string;
+  pageSeoDescr: string;
+
   TMDB_IMAGES_BASE_URL: any;
   IMG_185: any;
 
   routeParamsSubscription: Subscription;
   pageKey: string;
-  pageTitle: string;
   genreType: string;
   genreId: string;
   movieGenresList: any[];
@@ -29,12 +35,14 @@ export class GenresComponent implements OnInit {
   currentPageIndex: number;
   totalResults: number;
   totalPages: number;
+
   loading = false;
   loadingMore = false;
 
   constructor(
     public meta: Meta,
     public title: Title,
+    private afDb: AngularFireDatabase,
     private router: Router,
     public as: AppService,
     private apis: ApiService,
@@ -51,13 +59,23 @@ export class GenresComponent implements OnInit {
           this.genreType = params[0].path;
           this.pageKey = params[2].path;
           if (this.genreType === 'movies') {
-            // console.log('movies');
-            this.pageTitle = this.pageKey.toLowerCase().split(' ').map(x => x[0].toUpperCase() + x.slice(1)).join(' ');
-            this.pageTitle = this.as.seoOptimizeText(this.pageTitle);
             this.moviesList = [];
             this.getMovieGenres()
               .then(() => {
-                this.setSEOMetaTags();
+                this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_GENRE_MOVIES).valueChanges();
+                this.seoMetaDetailsObsRef
+                  .subscribe(res => {
+                    this.as.urlOptimizeText(this.pageKey)
+                      .then(key => {
+                        const dbKey = 'genre_' + key.replace('-', '_') + '_movies';
+                        this.pageSeoTitle = res[dbKey].title;
+                        this.pageSeoDescr = res[dbKey].descr;
+                        this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                      })
+                      .catch(error => {
+                        console.log('There was an error while URL Optimizing the text.', error);
+                      });
+                  });
                 this.getMovieGenreId(this.pageKey);
               })
               .catch(error => {
@@ -69,27 +87,26 @@ export class GenresComponent implements OnInit {
 
   ngOnInit(): void { }
 
-
-  setSEOMetaTags(): void {
+  setSEOMetaTags(title: string, description: string): void {
+    console.log(title, description);
     // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(this.pageTitle + ' ' + (this.genreType.replace('-', ' ')).toLowerCase().split(' ')
-      .map(x => x[0].toUpperCase() + x.slice(1))
-      .join(' ') + ' | ' + APP_SEO_NAME);
+    this.title.setTitle(title + ' | ' + APP_SEO_NAME);
     this.meta.updateTag(
-      { name: 'description', content: this.pageTitle + ' ' + this.as.seoOptimizeText(this.genreType) + ' ' + APP_SEO_NAME }
+      { name: 'description', content: description + ' | ' + APP_SEO_NAME }
     );
     this.meta.updateTag(
-      { name: 'keywords', content: this.pageTitle + ',' + this.as.seoOptimizeText(this.genreType) },
+      { name: 'keywords', content: this.pageSeoTitle + ',' + this.as.seoOptimizeText(this.genreType) },
     );
   }
 
   // Movies Functions
   getMovieGenres(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apis.getMovieGenres().subscribe((res) => {
-        this.movieGenresList = res['genres'];
-        resolve();
-      });
+      this.apis.getMovieGenres()
+        .subscribe((res) => {
+          this.movieGenresList = res['genres'];
+          resolve();
+        });
     });
   }
 
