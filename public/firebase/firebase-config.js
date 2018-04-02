@@ -11,6 +11,9 @@ admin.initializeApp({
 exports.AD = admin;
 exports.DB_LISTS = {
     API_CONFIG: '/api_config',
+    CELEBS: '/celebs',
+    CELEBS_QUERIES: '/celebs_queries',
+    CELEBS_RESULTS: '/celebs_results',
     MOVIE_GENRES: '/movie_genres',
     MOVIE_RATINGS: '/movie_ratings',
     MOVIES: '/movies',
@@ -43,20 +46,28 @@ exports.loadList = (name, setup = null) => {
 exports.loadObject = (listUrl, id) => {
     return new Promise((resolve, reject) => {
         const ref = admin.database().ref(`${listUrl}/${id}`);
-        ref.once('value').then(data => {
+        ref.once('value')
+            .then(data => {
             let result = null;
             result = Object.assign({ $key: id }, data.val());
             resolve(result);
             ref.off('value');
+        })
+            .catch(error => {
+            console.log(error);
         });
     });
 };
 exports.loadValue = (url) => {
     return new Promise((resolve, reject) => {
         const ref = admin.database().ref(url);
-        ref.once('value').then(data => {
+        ref.once('value')
+            .then(data => {
             resolve(data.val());
             ref.off('value');
+        })
+            .catch(error => {
+            console.log(error);
         });
     });
 };
