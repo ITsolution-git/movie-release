@@ -207,7 +207,7 @@ export class FirebaseService {
       url: url
     })
       .then(res => {
-        this.toastr.success('Slug & URL Updated for ', slug);
+        this.toastr.success(`Slug & URL Updated for ${slug}`);
       })
       .catch(error => {
         console.log('There was an error while updating the movie! ', error);
@@ -275,7 +275,7 @@ export class FirebaseService {
                     name: persons[i].name,
                     profile_path: persons[i].profile_path,
                     slug: slug,
-                    url: 'celebrity/' + slug
+                    url: 'actor/' + slug
                   };
                   if (i === persons.length - 1) {
                     // console.log('LAST PERSON. SAVE!');
@@ -328,7 +328,7 @@ export class FirebaseService {
           popularity: person.popularity,
           profile_path: person.profile_path,
           slug: slug,
-          url: 'celebrity/' + slug
+          url: 'actor/' + slug
         };
         // console.log(personObj);
         this.saveSinglePersonToDB(personObj);
@@ -347,7 +347,7 @@ export class FirebaseService {
       url: url
     })
       .then(res => {
-        this.toastr.success('Slug & URL Updated for ', slug);
+        this.toastr.success(`Slug & URL Updated for ${slug}`);
       })
       .catch(error => {
         console.log(error);

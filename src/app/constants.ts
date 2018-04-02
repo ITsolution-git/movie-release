@@ -18,6 +18,10 @@ export const DB_COL = {
     MOVIES: '/movies',
     MOVIES_QUERIES: '/movies_queries',
     MOVIES_RESULTS: '/movies_results',
+    SETTINGS: '/settings',
+    SETTINGS_SEO_MOVIES: '/settings/seo/movies',
+    SETTINGS_SEO_GENRE_MOVIES: '/settings/seo/genre_movies',
+    SETTINGS_SEO_CELEBS: '/settings/seo/celebs',
     UPLOADS: '/uploads',
     USERS: '/users'
 };
