@@ -1,32 +1,75 @@
 div{
-    border: 1px solid #000;
+    margin: 5px;
 }
 h1{
     margin: 0;
+    text-shadow: 1px 1px 1px #000;
 }
 .content-head{
     position: relative;
 }
 img{
     max-width: 100%;
+    min-width: 100%;
+    border: 1.3px solid #000;
 }
 .mat-tab-group, .mat-tab-header{
     width: 100%;
     margin: 0;
 }
-.movie-content-cast{
-   width: 100%;
-   display: block;
-}
 .mat-tab-body-wrapper{
     padding: 1% 5%;
 }
-#movie-rating span{
-    font-size: 80%;
-}
-.movie-content-poster{
-    padding: 0 5%;
-}
 #articles{
     font-size: 80%;
+}
+#jumbotron.moviebg{
+    min-height: 380px;
+    z-index: -1;
+    box-shadow: rgb(0, 0, 0) 0px -50px 100px inset;
+    filter: grayscale(100%);
+    position: absolute;
+    width: 100%;
+    padding: 1rem 0;
+}
+.wrapper{
+    max-width: 1220px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 9;
+}
+#movie-content-info{
+    background: rgba(0, 0, 0, 0.60);
+    border-radius: 3px;
+    position: relative;
+    padding: 0 1%;
+}
+.movie-poster-image{
+    max-width: 100%;
+    min-width: 100%;
+    border: 1.6px solid rgba(0, 0, 0, 0.2);
+    padding: 0px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    z-index: -1;
+    box-sizing: border-box;
+}
+span#year.detail-release-date, span#status.detail-pg-rating, span#genres.detail-genre, span#duration.detail-runtime, span#prod-comp.detail-prod-comp, span#cast.detail-castcrew{
+    display: block;
+    margin: 5px 0;
+}
+.advert-widget{
+    background: #000;
+    border-radius: 3px;
+    padding: 5px 15px;
+}
+#user-actions{
+    position: absolute;
+    bottom: 8px;
 }

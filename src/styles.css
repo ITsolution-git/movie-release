@@ -23,6 +23,9 @@ app-main-movies-directory, app-movies, app-movie-details{
     display: block;
     padding: 1rem;
 }
+.mat-drawer-container{
+    background-color: #1f1f1f !important;
+}
 /*App Wrapper END*/
 /*Section*/
 .section{
@@ -32,6 +35,9 @@ app-main-movies-directory, app-movies, app-movie-details{
 /*Material Cards*/
 mat-card{
     margin: 8px;
+}
+app-home mat-card:hover{
+    box-shadow: 0px 12px 19px -7px #000;
     background-color: #2A2A2A;
 }
 app-home mat-card, app-movies mat-card, app-main-movies-directory mat-card{
@@ -67,8 +73,17 @@ h3.tab-heading{
     display: block;
     width: 100%;
 }
-.mat-card .rating{
-    color: #f1c40f;
+mat-icon.rating{
+    color: #E4BB24;
+    text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.6);
+    font-size: 1.8rem;
+}
+.total-rating, #total-votes{
+    font-size:60%;
+    color:#CCC;
+}
+.total-rating, .rating-number{
+    vertical-align: text-top !important;
 }
 /*Material Cards END*/
 /*Jumbotron*/
@@ -79,6 +94,7 @@ h3.tab-heading{
     -moz-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     -webkit-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     position: relative;
+    background-size: cover;
 }
 /*Jumbotron END*/
 #load-more{
@@ -123,6 +139,9 @@ mat-dark-theme .mat-drawer{
 /*Material Extras*/
 mat-toolbar{
     z-index: 9;
+    background: #222222 !important;
+    color: white;
+    border-color: #080808;
 }
 mat-toolbar .mat-button{
     min-width: auto;

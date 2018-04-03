@@ -1,0 +1,179 @@
+<!-- Movie Details & Posters -->
+<div *ngIf="movieDetails" [id]="movieDetails.id">
+  <!-- Movie Details -->
+  <section id="movie-details">
+    <div class="content-head" fxLayoutWrap="wrap" fxLayout="column" fxLayout.xs="column">
+      <div class="movie-head" fxLayout="row" fxLayout.xs="column">
+        <!-- Movie Title -->
+        <div id="movie-title" fxLayout="row" fxFlex="50" fxFlex.sm="50%" fxFlex.xs="50%">
+          <h1>{{ movieDetails.title }}
+            <span class="title-year" id="year" *ngIf="movieDetails.release_date ">({{ movieDetails.release_date | date:'y' }})</span>
+          </h1>
+        </div>
+        <!-- Movie Rating -->
+        <div id="movie-rating" fxLayout="row" fxFlex="50" fxFlex.sm="50%" fxFlex.xs="50%">
+          <!-- Rating Results-->
+          <div id="rating-result" fxFlex="50" fxFlex.sm="50" fxFlex.xs="50" fxLayout="row">
+            <span>
+              <mat-icon class="active">star</mat-icon>{{ cobinedRatingAverage | number: '1.2-2' }} / 5</span>
+            <span id="total-votes">{{ movieDetails.vote_count + fbRatingsLength }} votes</span>
+          </div>
+          <!-- Average Rating -->
+          <div id="average-rating" *ngIf="currentUserRating === 0" class="rating" fxLayout="row" fxFlex="50" fxFlex.sm="50" fxFlex.xs="50">
+            <span id="rate-text">Rate movie</span>
+            <span>
+              <mat-icon (click)="rateMovie(1)" *ngIf="cobinedRatingAverage < 0.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage >= 0.25 && cobinedRatingAverage  < 0.75}" (click)="rateMovie(1)" *ngIf="cobinedRatingAverage > 0.25 && cobinedRatingAverage  < 0.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(cobinedRatingAverage  < 0.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(2)" *ngIf="cobinedRatingAverage < 1.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 1.25 && cobinedRatingAverage  < 1.75}" (click)="rateMovie(2)" *ngIf="cobinedRatingAverage >= 1.25 && cobinedRatingAverage  < 1.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(cobinedRatingAverage  < 1.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(3)" *ngIf="cobinedRatingAverage < 2.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 2.25 && cobinedRatingAverage  < 2.75}" (click)="rateMovie(3)" *ngIf="cobinedRatingAverage >= 2.25 && cobinedRatingAverage  < 2.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(cobinedRatingAverage  < 2.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(4)" *ngIf="cobinedRatingAverage < 3.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 3.25 && cobinedRatingAverage  < 3.75}" (click)="rateMovie(4)" *ngIf="cobinedRatingAverage >= 3.25 && cobinedRatingAverage  < 3.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(cobinedRatingAverage  < 3.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(5)" *ngIf="cobinedRatingAverage < 4.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 4.25 && cobinedRatingAverage  < 4.75}" (click)="rateMovie(5)" *ngIf="cobinedRatingAverage >= 4.25 && cobinedRatingAverage  < 4.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : cobinedRatingAverage  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(cobinedRatingAverage  < 4.75)">star</mat-icon>
+            </span>
+          </div>
+          <!-- User Rating -->
+          <div *ngIf="currentUserRating !== 0" class="rating" fxLayout="row" fxFlex="50" fxFlex.sm="50" fxFlex.xs="50">
+            <span id="rate-text">Your Rating:</span>
+            <span>
+              <mat-icon (click)="rateMovie(1)" *ngIf="currentUserRating < 0.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating >= 0.25 && currentUserRating  < 0.75}" (click)="rateMovie(1)" *ngIf="currentUserRating > 0.25 && currentUserRating  < 0.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(currentUserRating  < 0.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(2)" *ngIf="currentUserRating < 1.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 1.25 && currentUserRating  < 1.75}" (click)="rateMovie(2)" *ngIf="currentUserRating >= 1.25 && currentUserRating  < 1.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(currentUserRating  < 1.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(3)" *ngIf="currentUserRating < 2.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 2.25 && currentUserRating  < 2.75}" (click)="rateMovie(3)" *ngIf="currentUserRating >= 2.25 && currentUserRating  < 2.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(currentUserRating  < 2.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(4)" *ngIf="currentUserRating < 3.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 3.25 && currentUserRating  < 3.75}" (click)="rateMovie(4)" *ngIf="currentUserRating >= 3.25 && currentUserRating  < 3.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(currentUserRating  < 3.75)">star</mat-icon>
+              <mat-icon (click)="rateMovie(5)" *ngIf="currentUserRating < 4.25">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 4.25 && currentUserRating  < 4.75}" (click)="rateMovie(5)" *ngIf="currentUserRating >= 4.25 && currentUserRating  < 4.75">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(currentUserRating  < 4.75)">star</mat-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- Movie Tagline -->
+      <div id="movie-tagline" fxLayout="row" *ngIf="movieDetails.tagline">
+        <span>Movie Tagline: <span>{{ movieDetails.tagline }}</span></span>
+      </div>
+      <div id="movie-tech-details" fxLayoutWrap="wrap" fxLayout="row" fxLayout.xs="column">
+        <span id="year" fxFlex="50" class="release-date" *ngIf="movieDetails.release_date">Release Date:
+          <span>{{ movieDetails.release_date | date:'longDate' }}</span>
+        </span>
+        <span id="status" fxFlex="50" class="pg-rating">Movie Status:
+          <span>{{ movieDetails.status }}</span>
+        </span>
+        <span id="genres" fxFlex="50" class="genre">Genres:
+          <span *ngFor="let genre of movieDetails.genres; let i = index">
+            <span>
+              <a (click)="this.as.goToMovieGenresPage(genre.name)" class="genre-link">{{ genre.name }}</a>
+            </span>
+            <span *ngIf="i < movieDetails.genres.length - 1">,</span>
+          </span>
+        </span>
+        <span id="duration" fxFlex="50" class="runtime" *ngIf="movieDetails.runtime > 0">Runtime:
+          <span *ngIf="movieDetails.runtime > 60">{{ this.Math.floor(movieDetails.runtime / 60) }} hrs.</span>
+          <span *ngIf="movieDetails.runtime > 0">{{ this.Math.floor(movieDetails.runtime % 60) }} mins.</span>
+        </span>
+      </div>
+    </div>
+    <div class="movie-content-main" fxLayout="row" fxLayout.xs="column">
+      <!-- Movie Poster Image -->
+      <div class="movie-content-poster" fxFlex="50" fxFlex.sm="50%" fxFlex.xs="50%">
+        <div id="posters">
+          <img *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
+            [alt]="movieDetails.title" [title]="movieDetails.title">
+          <ng-template #defaultMoviePoster>
+            <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]"
+              [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'">
+          </ng-template>
+        </div>
+      </div>
+      <div class="movie-content-info" fxFlex="50" fxFlex.sm="50%" fxFlex.xs="50%">
+        <div id="overview" class="movie-content-overview">
+          <h2>Movie Overview</h2>
+          <p>{{ movieDetails.overview }}</p>
+        </div>
+        <!-- User Action Buttons -->
+        <div id="user-actions" fxLayout="row" fxLayoutAlign="space-evenly stretch">
+            <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
+              <mat-icon fxHide.sm="true" fxHide.xs="false">play_circle_outline</mat-icon>
+              <span>Watch Trailer</span>
+              <!-- <span *ngIf="movieTrailers?.length > 1">s</span> ({{ movieTrailers.length }}) -->
+            </button>
+            <div class="top-user-actions" fxLayout="row">
+              <!-- Favorite Button -->
+              <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
+                <mat-icon>favorite</mat-icon>
+              </button>
+              <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
+                <mat-icon fxHide.sm="true" fxHide.xs="false">local_movies</mat-icon>Buy Tickets
+              </button> -->
+            </div>
+          </div>
+        <div id="ad-widget">
+          <p>Here comes the advertisment widget</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            standard dummy text ever since the 1500s</p>
+        </div>
+        <div class="movie-content-cast">
+          <mat-tab-group id="movie-content-details" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
+            <mat-tab label="Cast &amp; Crew">
+              <div class="mat-tab-body-wrapper">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                  to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                  typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                  sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                  including versions of Lorem Ipsum.</p>
+              </div>
+            </mat-tab>
+            <mat-tab label="Technical Details">
+              <div class="mat-tab-body-wrapper">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                  to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                  typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                  sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                  including versions of Lorem Ipsum.</p>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+      <!-- Background Image -->
+      <!-- <img *ngIf="movieDetails.backdrop_path" [src]="TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path" [alt]="movieDetails.title"
+      id="bg-img"> -->
+    </div>
+    <!-- Articles -->
+    <mat-card class="mat-card" *ngIf="movieArticles" id="articles">
+      <mat-card-title><h2>Movie Review</h2></mat-card-title>
+      <mat-card-content *ngFor="let article of movieArticles" class="article">
+        <div class="article-inner" *ngIf="article.article_status === 'public'">
+          <mat-card-subtitle><h3>{{ article.article_title }}</h3></mat-card-subtitle>
+          <span><mat-icon>textsms</mat-icon>{{ article.article_date | date: 'short' }}</span>
+          <div class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="mat-card" id="merchandising">
+      <h3>Merchandising</h3>
+    </mat-card>
+    <mat-card class="mat-card" id="recommended">
+      <h3>Recommended</h3>
+    </mat-card>
+    <mat-card class="mat-card" id="release-dates">
+      <h3>Release Dates</h3>
+    </mat-card>
+  </section>
+</div>
