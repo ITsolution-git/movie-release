@@ -171,6 +171,7 @@ export class MovieDetailsComponent implements OnInit {
                     this.pageSeoKeywords = this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0].name + ' movie';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                     // Get Additional API Data
+                    this.getMovieCredits();
                     this.getMovieKeywords();
                     this.getMovieImages();
                     this.getMovieTrailers();
@@ -404,16 +405,16 @@ export class MovieDetailsComponent implements OnInit {
 
   onInfoTabChange($event): void {
     this.currentInfoTab = $event.index;
-    if (this.currentInfoTab === 3 && !this.movieReleaseDates) {
-      this.isLoadingInfo = true;
-      this.getMovieReleaseDates();
-    } else if (this.currentInfoTab === 2 && !this.movieReviews) {
-      this.isLoadingInfo = true;
-      this.getMovieReviews();
-    } else if (this.currentInfoTab === 1 && !this.movieCreditsCast && !this.movieCreditsCrew) {
-      this.isLoadingInfo = true;
-      this.getMovieCredits();
-    }
+    // if (this.currentInfoTab === 3 && !this.movieReleaseDates) {
+    //   this.isLoadingInfo = true;
+    //   this.getMovieReleaseDates();
+    // } else if (this.currentInfoTab === 2 && !this.movieReviews) {
+    //   this.isLoadingInfo = true;
+    //   this.getMovieReviews();
+    // } else if (this.currentInfoTab === 1 && !this.movieCreditsCast && !this.movieCreditsCrew) {
+    //   this.isLoadingInfo = true;
+    //   this.getMovieCredits();
+    // }
   }
 
   onMoviesTabChange($event): void {

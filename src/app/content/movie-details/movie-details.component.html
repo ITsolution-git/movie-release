@@ -64,7 +64,9 @@
       </div>
       <!-- Movie Tagline -->
       <div id="movie-tagline" fxLayout="row" *ngIf="movieDetails.tagline">
-        <span>Movie Tagline: <span>{{ movieDetails.tagline }}</span></span>
+        <span>Movie Tagline:
+          <span>{{ movieDetails.tagline }}</span>
+        </span>
       </div>
       <div id="movie-tech-details" fxLayoutWrap="wrap" fxLayout="row" fxLayout.xs="column">
         <span id="year" fxFlex="50" class="release-date" *ngIf="movieDetails.release_date">Release Date:
@@ -103,24 +105,36 @@
         <div id="overview" class="movie-content-overview">
           <h2>Movie Overview</h2>
           <p>{{ movieDetails.overview }}</p>
+          <h2>Top 5 Celebs</h2>
+          <ul>
+            <li *ngFor="let person of movieCreditsCast | slice:0:5" (click)="this.as.goToCelebDetails(person.id)">
+              {{ person.name }} | {{ person.character }}
+            </li>
+          </ul>
+          <h2>Top 5 Crew</h2>
+          <ul>
+            <li *ngFor="let person of movieCreditsCrew | slice:0:5" (click)="this.as.goToCelebDetails(person.id)">
+              <span>{{ person.name }} | {{ person.job }}</span>
+            </li>
+          </ul>
         </div>
         <!-- User Action Buttons -->
         <div id="user-actions" fxLayout="row" fxLayoutAlign="space-evenly stretch">
-            <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
-              <mat-icon fxHide.sm="true" fxHide.xs="false">play_circle_outline</mat-icon>
-              <span>Watch Trailer</span>
-              <!-- <span *ngIf="movieTrailers?.length > 1">s</span> ({{ movieTrailers.length }}) -->
+          <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
+            <mat-icon fxHide.sm="true" fxHide.xs="false">play_circle_outline</mat-icon>
+            <span>Watch Trailer</span>
+            <!-- <span *ngIf="movieTrailers?.length > 1">s</span> ({{ movieTrailers.length }}) -->
+          </button>
+          <div class="top-user-actions" fxLayout="row">
+            <!-- Favorite Button -->
+            <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
+              <mat-icon>favorite</mat-icon>
             </button>
-            <div class="top-user-actions" fxLayout="row">
-              <!-- Favorite Button -->
-              <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
+            <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
                 <mat-icon fxHide.sm="true" fxHide.xs="false">local_movies</mat-icon>Buy Tickets
               </button> -->
-            </div>
           </div>
+        </div>
         <div id="ad-widget">
           <p>Here comes the advertisment widget</p>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -157,11 +171,16 @@
     </div>
     <!-- Articles -->
     <mat-card class="mat-card" *ngIf="movieArticles" id="articles">
-      <mat-card-title><h2>Movie Review</h2></mat-card-title>
+      <mat-card-title>
+        <h2>Movie Review</h2>
+      </mat-card-title>
       <mat-card-content *ngFor="let article of movieArticles" class="article">
         <div class="article-inner" *ngIf="article.article_status === 'public'">
-          <mat-card-subtitle><h3>{{ article.article_title }}</h3></mat-card-subtitle>
-          <span><mat-icon>textsms</mat-icon>{{ article.article_date | date: 'short' }}</span>
+          <mat-card-subtitle>
+            <h3>{{ article.article_title }}</h3>
+          </mat-card-subtitle>
+          <span>
+            <mat-icon>textsms</mat-icon>{{ article.article_date | date: 'short' }}</span>
           <div class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
         </div>
       </mat-card-content>
