@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 // Services
 import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
+import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_300, APP_SEO_NAME, DB_COL } from '../../constants';
 
@@ -20,6 +21,7 @@ export class MainMoviesDirectoryComponent implements OnInit {
   seoMetaDetailsObsRef: Observable<any>;
   pageSeoTitle: string;
   pageSeoDescr: string;
+  pageSeoKeywords: string;
 
   TMDB_IMAGES_BASE_URL: any;
   IMG_300: any;
@@ -39,20 +41,22 @@ export class MainMoviesDirectoryComponent implements OnInit {
     public title: Title,
     private afDb: AngularFireDatabase,
     public as: AppService,
-    private apis: ApiService
+    private apis: ApiService,
+    private seoS: SeoService
   ) {
+    // Set SEO Meta Tags
     this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_MOVIES).valueChanges();
     this.seoMetaDetailsObsRef
       .subscribe(res => {
         this.pageSeoTitle = res._movies_main.title;
         this.pageSeoDescr = res._movies_main.descr;
-        this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+        this.pageSeoKeywords = 'movies, movie directory, movie filter';
+        seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
       });
 
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
     this.IMG_300 = IMG_300;
-    // Calls the function that gets the list of movies and tv shows for the sliders
 
     if (!this.apis.mainDirectoryMovies.length) {
       this.getMoviesForMainDirectory(1);
@@ -66,19 +70,6 @@ export class MainMoviesDirectoryComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  setSEOMetaTags(title: string, description: string): void {    // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(title + ' | ' + APP_SEO_NAME);
-    this.meta
-      .updateTag(
-        {
-          name: 'description',
-          content: description + ' | ' + APP_SEO_NAME
-        }
-      );
-    this.meta.updateTag(
-      { name: 'keywords', content: 'movies, tv shows, celebrities, production companies, cinema tickets, actors, actresses' },
-    );
-  }
   // Get movies for homepage from service
   getMoviesForMainDirectory(pageIndex: number): void {
     this.loading = true;
@@ -97,7 +88,6 @@ export class MainMoviesDirectoryComponent implements OnInit {
 
   loadMoreResults(pageIndex: number): void {
     this.loadingMore = true;
-
     this.apis.getMoviesForMainDirectory(pageIndex)
       .subscribe((res) => {
         this.mainDirectoryCurrentIndex = res['page'];
@@ -105,7 +95,7 @@ export class MainMoviesDirectoryComponent implements OnInit {
         if (this.mainDirectoryMovies) {
           this.loadingMore = false;
         }
-        console.log(this.mainDirectoryMovies);
+        // console.log(this.mainDirectoryMovies);
       });
   }
 

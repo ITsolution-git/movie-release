@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 // Services
 import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
+import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
 import { APP_SEO_NAME, DB_COL } from '../../constants';
 
@@ -20,6 +21,7 @@ export class GenresListComponent implements OnInit {
   seoMetaDetailsObsRef: Observable<any>;
   pageSeoTitle: string;
   pageSeoDescr: string;
+  pageSeoKeywords: string;
 
   genresList: any[];
 
@@ -28,16 +30,19 @@ export class GenresListComponent implements OnInit {
     public title: Title,
     private apis: ApiService,
     private afDb: AngularFireDatabase,
-    private as: AppService
+    private as: AppService,
+    private seoS: SeoService
   ) {
+    // Set SEO Meta Tags
     this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_GENRE_MOVIES).valueChanges();
     this.seoMetaDetailsObsRef
       .subscribe(res => {
         this.pageSeoTitle = res._genres_main.title;
         this.pageSeoDescr = res._genres_main.descr;
-        this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+        this.pageSeoKeywords = 'movie genres, genres';
+        seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
       });
-
+    // Get Movie Genres
     this.apis.getMovieGenres()
       .subscribe(res => {
         this.genresList = res['genres'];
@@ -46,14 +51,4 @@ export class GenresListComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  setSEOMetaTags(title: string, description: string) {
-    // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(title + ' | ' + APP_SEO_NAME);
-    this.meta.updateTag(
-      { name: 'description', content: description + ' | ' + APP_SEO_NAME }
-    );
-    this.meta.updateTag(
-      { name: 'keywords', content: 'movie genres, genres' },
-    );
-  }
 }

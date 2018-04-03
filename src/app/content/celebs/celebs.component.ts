@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 // Services
 import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
+import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL } from '../../constants';
 
@@ -22,6 +23,7 @@ export class CelebsComponent implements OnInit {
   seoMetaDetailsObsRef: Observable<any>;
   pageSeoTitle: string;
   pageSeoDescr: string;
+  pageSeoKeywords: string;
 
   TMDB_IMAGES_BASE_URL: any;
   IMG_185: any;
@@ -30,6 +32,7 @@ export class CelebsComponent implements OnInit {
   currentPageIndex: number;
   totalResults: number;
   totalPages: number;
+
   loading = false;
   loadingMore = false;
 
@@ -39,14 +42,16 @@ export class CelebsComponent implements OnInit {
     private afDb: AngularFireDatabase,
     private router: Router,
     private apis: ApiService,
-    public as: AppService
+    public as: AppService,
+    private seoS: SeoService
   ) {
     this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_CELEBS).valueChanges();
     this.seoMetaDetailsObsRef
       .subscribe(res => {
         this.pageSeoTitle = res._celebs_main.title;
         this.pageSeoDescr = res._celebs_main.descr;
-        this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+        this.pageSeoKeywords = this.pageSeoTitle + ', celebrities, actors, actresses, persons, most popular';
+        seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
       });
 
     // Initialize Constants
@@ -68,16 +73,7 @@ export class CelebsComponent implements OnInit {
   }
 
   ngOnInit(): void { }
-  setSEOMetaTags(title: string, description: string) {
-    // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(title + ' | ' + APP_SEO_NAME);
-    this.meta.updateTag(
-      { name: 'description', content: description + ' | ' + APP_SEO_NAME }
-    );
-    this.meta.updateTag(
-      { name: 'keywords', content: 'celebrities, actors, actresses, persons, most popular' },
-    );
-  }
+
   getPopularActors(pageIndex: number): void {
     this.loading = true;
     this.apis.getPopularActors(pageIndex)
@@ -102,7 +98,7 @@ export class CelebsComponent implements OnInit {
         if (this.popularActors) {
           this.loadingMore = false;
         }
-        console.log(this.popularActors);
+        // console.log(this.popularActors);
       });
   }
 

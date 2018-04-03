@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 // Services
 import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
+import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL } from '../../constants';
 
@@ -22,32 +23,37 @@ export class MoviesComponent implements OnInit {
   seoMetaDetailsObsRef: Observable<any>;
   pageSeoTitle: string;
   pageSeoDescr: string;
+  pageSeoKeywords: string;
 
   TMDB_IMAGES_BASE_URL: any;
   IMG_185: any;
 
   routeParamsSubscription: Subscription;
   pageKey: any;
-  // pageTitle: string;
   currentMovieTab: any;
+
   movieGenresList: any[];
-  latestMovies: any[];
+
   upcomingMovies: any[];
   upcomingMoviesCurrentIndex: number;
   upcomingMoviesTotalResults: number;
   upcomingMoviesTotalPages: number;
+
   nowPlayingMovies: any[];
   nowPlayingMoviesCurrentIndex: number;
   nowPlayingMoviesTotalResults: number;
   nowPlayingMoviesTotalPages: number;
+
   popularMovies: any[];
   popularMoviesCurrentIndex: number;
   popularMoviesTotalResults: number;
   popularMoviesTotalPages: number;
+
   topRatedMovies: any[];
   topRatedMoviesCurrentIndex: number;
   topRatedMoviesTotalResults: number;
   topRatedMoviesTotalPages: number;
+
   loading = false;
   loadingMore = false;
 
@@ -58,7 +64,8 @@ export class MoviesComponent implements OnInit {
     private router: Router,
     private ar: ActivatedRoute,
     public as: AppService,
-    private apis: ApiService
+    private apis: ApiService,
+    private seoS: SeoService
   ) {
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
@@ -79,7 +86,8 @@ export class MoviesComponent implements OnInit {
                   const dbKey = key.replace('-', '_') + '_movies';
                   this.pageSeoTitle = res[dbKey].title;
                   this.pageSeoDescr = res[dbKey].descr;
-                  this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                  this.pageSeoKeywords = this.pageSeoTitle + ',' + this.as.seoOptimizeText(this.pageKey);
+                  seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                 })
                 .catch(error => {
                   console.log('There was an error while URL Optimizing the text.', error);
@@ -102,7 +110,8 @@ export class MoviesComponent implements OnInit {
                   const dbKey = key.replace('-', '_') + '_movies';
                   this.pageSeoTitle = res[dbKey].title;
                   this.pageSeoDescr = res[dbKey].descr;
-                  this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                  this.pageSeoKeywords = this.pageSeoTitle + ',' + this.as.seoOptimizeText(this.pageKey);
+                  seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                 })
                 .catch(error => {
                   console.log('There was an error while URL Optimizing the text.', error);
@@ -125,7 +134,8 @@ export class MoviesComponent implements OnInit {
                   const dbKey = key.replace('-', '_') + '_movies';
                   this.pageSeoTitle = res[dbKey].title;
                   this.pageSeoDescr = res[dbKey].descr;
-                  this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                  this.pageSeoKeywords = this.pageSeoTitle + ',' + this.as.seoOptimizeText(this.pageKey);
+                  seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                 })
                 .catch(error => {
                   console.log('There was an error while URL Optimizing the text.', error);
@@ -148,7 +158,8 @@ export class MoviesComponent implements OnInit {
                   const dbKey = key.replace('-', '_') + '_movies';
                   this.pageSeoTitle = res[dbKey].title;
                   this.pageSeoDescr = res[dbKey].descr;
-                  this.setSEOMetaTags(this.pageSeoTitle, this.pageSeoDescr);
+                  this.pageSeoKeywords = this.pageSeoTitle + ',' + this.as.seoOptimizeText(this.pageKey);
+                  seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                 })
                 .catch(error => {
                   console.log('There was an error while URL Optimizing the text.', error);
@@ -169,17 +180,6 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit(): void { }
-
-  setSEOMetaTags(title: string, description: string): void {
-    // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(title + ' | ' + APP_SEO_NAME);
-    this.meta.updateTag(
-      { name: 'description', content: description + ' | ' + APP_SEO_NAME }
-    );
-    this.meta.updateTag(
-      { name: 'keywords', content: title + ',' + this.as.seoOptimizeText(this.pageKey) },
-    );
-  }
 
   getMovieGenres(): void {
     this.apis.getMovieGenres()

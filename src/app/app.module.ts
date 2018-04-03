@@ -97,6 +97,7 @@ import { LayoutModule } from '@angular/cdk/layout';
   providers: [
     AppService,
     ApiService,
+    SeoService,
     SitemapService,
     FirebaseService,
     ResponsiveService,

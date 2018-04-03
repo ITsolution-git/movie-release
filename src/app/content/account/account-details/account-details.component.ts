@@ -42,6 +42,7 @@ export class AccountDetailsComponent {
     this.title.setTitle('Account Details - ' + APP_SEO_NAME);
     this.meta.removeTag('name = "description"');
     this.meta.removeTag('name = "keywords"');
+
     this.afAuth.authState.subscribe(res => {
       this.userRef = afDb.list(DB_COL.USERS + '/');
       this.userObsRef = afDb.object(DB_COL.USERS + '/' + res.uid).valueChanges();
