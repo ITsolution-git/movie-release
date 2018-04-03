@@ -117,6 +117,9 @@ mat-dark-theme a{
 mat-dark-theme a:hover, mat-dark-theme a:focus, mat-dark-theme a:active{
     color: #c62828;
 }
+mat-dark-theme .mat-drawer{
+    background: #000;
+}
 /*Material Extras*/
 mat-toolbar{
     z-index: 9;
