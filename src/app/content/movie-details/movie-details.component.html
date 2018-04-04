@@ -1,5 +1,5 @@
 <!-- Background Image -->
-<div id="jumbotron" class="moviebg mat-elevation-z6" *ngIf="movieDetails.backdrop_path" [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
+<div id="jumbotron" class="moviebg mat-elevation-z6" *ngIf="movieDetails?.backdrop_path" [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
 <!-- Movie Details & Posters -->
 <div class="wrapper" *ngIf="movieDetails" [id]="movieDetails.id">
   <!-- Movie Details -->
@@ -22,7 +22,11 @@
           <!-- Rating Results-->
           <div id="rating-result" fxFlex="50" fxFlex.sm="50" fxFlex.xs="50" fxLayout="row">
             <span>
-              <mat-icon class="active rating">star</mat-icon><span class="rating-number">{{ cobinedRatingAverage | number: '1.2-2' }}</span> <span class="total-rating"> /5</span><span id="total-votes"> ({{ movieDetails.vote_count + fbRatingsLength }} votes)</span></span>
+              <mat-icon class="active rating">star</mat-icon>
+              <span class="rating-number">{{ cobinedRatingAverage | number: '1.2-2' }}</span>
+              <span class="total-rating"> /5</span>
+              <span id="total-votes"> ({{ movieDetails.vote_count + fbRatingsLength }} votes)</span>
+            </span>
           </div>
           <!-- Average Rating -->
           <div id="average-rating" *ngIf="currentUserRating === 0" class="rating" fxLayout="row" fxFlex="50" fxFlex.sm="50" fxFlex.xs="50">
@@ -92,55 +96,151 @@
             <span *ngIf="movieDetails.runtime > 60">{{ this.Math.floor(movieDetails.runtime / 60) }} hrs.</span>
             <span *ngIf="movieDetails.runtime > 0">{{ this.Math.floor(movieDetails.runtime % 60) }} mins.</span>
           </span>
-          <span id="prod-comp" class="detail-prod-comp">Production Company:
-              <span>
-                  <a class="company-link">Warner Brothers (hardcoded)</a>
-                </span>
+          <span id="prod-comp" *ngIf="movieDetails.production_companies?.length">Production Companies:
+            <span *ngFor="let company of movieDetails.production_companies; let i = index">
+              <span class="company-link">{{ company.name }}</span>
+              <span *ngIf="i < movieDetails.production_companies?.length - 1">,</span>
             </span>
+          </span>
           <span id="cast" class="detail-castcrew">Cast and Crew:
             <span>
-              <a href="#">See list</a>
+              <a href="/#movie-content-cast">See list</a>
             </span>
           </span>
         </div>
         <!-- User Action Buttons -->
-        <div id="user-actions" fxLayout="row" fxLayoutAlign="space-evenly stretch">
+        <div id="user-actions" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start space-between" fxLayoutGap="5px">
           <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
-            <mat-icon fxHide.sm="true" fxHide.xs="false">play_circle_outline</mat-icon>
-            <span>Watch Trailer</span>
-            <!-- <span *ngIf="movieTrailers?.length > 1">s</span> ({{ movieTrailers.length }}) -->
+            <mat-icon>play_circle_outline</mat-icon>
+            <span fxHide.sm="true" fxHide.xs="true">Watch Trailer</span>
+            <span *ngIf="movieTrailers?.length > 1">({{ movieTrailers.length }})</span>
           </button>
-          <div class="top-user-actions" fxLayout="row">
-            <!-- Favorite Button -->
-            <button mat-icon-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!" [ngClass]="{'active': isFavorited === true}">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
-                <mat-icon fxHide.sm="true" fxHide.xs="false">local_movies</mat-icon>Buy Tickets
-              </button> -->
-          </div>
+          <!-- Favorite Button -->
+          <button mat-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!">
+            <mat-icon [ngClass]="{'active': isFavorited === true}">favorite</mat-icon>
+            <span *ngIf="isFavorited === true" fxHide.sm="true" fxHide.xs="true">In my list</span>
+            <span *ngIf="isFavorited === false" fxHide.sm="true" fxHide.xs="true">Add to Favorites</span>
+          </button>
+          <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
+            <mat-icon>local_movies</mat-icon>
+            <span fxHide.sm="true" fxHide.xs="true">Buy Ticket</span>
+          </button>
+          <button mat-raised-button class="share-btn">
+            <mat-icon>share</mat-icon>
+            <span fxHide.sm="true" fxHide.xs="true">Share</span>
+          </button>
         </div>
       </div>
     </div>
     <div id="movie-overview" fxLayout="column" fxLayout.xs="column">
       <h2>Movie Overview</h2>
       <p>{{ movieDetails.overview }}</p>
+      <h2>Top 5 Celebs</h2>
+      <ul>
+        <li *ngFor="let person of movieCreditsCast | slice:0:5" (click)="this.as.goToCelebDetails(person.id)">
+          {{ person.name }} | {{ person.character }}
+        </li>
+      </ul>
+      <h2>Top 5 Crew</h2>
+      <ul>
+        <li *ngFor="let person of movieCreditsCrew | slice:0:5" (click)="this.as.goToCelebDetails(person.id)">
+          <span>{{ person.name }} | {{ person.job }}</span>
+        </li>
+      </ul>
     </div>
     <div id="single-ad-widget1" class="advert-widget">
       <p>Here comes the advertisment widget</p>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
         dummy text ever since the 1500s</p>
     </div>
-    <div class="movie-content-cast">
+    <div id="movie-content-cast">
       <mat-tab-group id="movie-content-details" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
         <mat-tab label="Cast &amp; Crew">
-          <div class="mat-tab-body-wrapper">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-              standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-              make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-              Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-              of Lorem Ipsum.</p>
+          <div class="cast-tab-content" *ngIf="movieCreditsCast?.length > 0" fxLayout="column">
+            <div class="tab-header" fxLayout="column">
+              <div class="tab-title" fxLayout="row">
+                <h3>Cast</h3>
+                <span>({{ movieCreditsCast?.length }})</span>
+              </div>
+              <mat-form-field class="tab-search">
+                <input matInput (keyup)="applyCastFilter($event.target.value)" placeholder="Search for Cast">
+              </mat-form-field>
+            </div>
+            <mat-table #castTable [dataSource]="castSource" matSort class="cast-crew-table">
+              <!-- Image Column -->
+              <ng-container matColumnDef="actorImg">
+                <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <a (click)="this.as.goToCelebDetails(person.id)">
+                    <img *ngIf="element?.profile_path; else defaultCastImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
+                      [alt]="[element?.name + ' alias ' + element?.character]" [title]="[element?.name + ' alias ' + element?.character]">
+                  </a>
+                  <ng-template #defaultCastImage>
+                    <a (click)="this.as.goToCelebDetails(person.id)">
+                      <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' alias ' + element?.character]"
+                        [title]="[element?.name + ' alias ' + element?.character]">
+                    </a>
+                  </ng-template>
+                </mat-cell>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="actorName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Actor Name </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <a (click)="this.as.goToCelebDetails(person.id)">{{ element?.name }}</a>
+                </mat-cell>
+              </ng-container>
+              <!-- Character Column -->
+              <ng-container matColumnDef="character">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Character </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element?.character }} </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="castColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: castColumns;"></mat-row>
+            </mat-table>
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="movieCreditsCast?.length"></mat-paginator> -->
+          </div>
+          <div class="crew-tab-content" *ngIf="movieCreditsCrew?.length > 0" fxLayout="column">
+            <div class="tab-header" fxLayout="column">
+              <div class="tab-title" fxLayout="row">
+                <h3>Crew</h3>
+                <span>({{ movieCreditsCrew?.length }})</span>
+              </div>
+              <mat-form-field class="tab-search">
+                <input matInput (keyup)="applyCrewFilter($event.target.value)" placeholder="Search For Crew Members">
+              </mat-form-field>
+            </div>
+            <mat-table #crewTable [dataSource]="crewSource" matSort class="cast-crew-table">
+              <!-- Image Column -->
+              <ng-container matColumnDef="crewImg">
+                <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <img *ngIf="element?.profile_path; else defaultCrewImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
+                    [alt]="[element?.name + ' as ' + element?.job]" [title]="[element?.name + ' as ' + element?.job]">
+                  <ng-template #defaultCrewImage>
+                    <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' as ' + element?.job]" [title]="[element?.name + ' as ' + element?.job]">
+                  </ng-template>
+                </mat-cell>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="crewName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Crew Member </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element?.name}} </mat-cell>
+              </ng-container>
+              <!-- Job Column -->
+              <ng-container matColumnDef="crewJob">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Job </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element?.job }} </mat-cell>
+              </ng-container>
+              <!-- Department Column -->
+              <ng-container matColumnDef="department">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element?.department }} </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="crewColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: crewColumns;"></mat-row>
+            </mat-table>
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="movieCreditsCrew?.length"></mat-paginator> -->
           </div>
         </mat-tab>
         <mat-tab label="Technical Details">
@@ -174,16 +274,58 @@
     <mat-card class="mat-card" id="merchandising">
       <h3>Merchandising</h3>
     </mat-card>
-    <mat-card class="mat-card" id="recommended">
-      <h3>Recommended</h3>
+    <!-- Similar Movies Tab-->
+    <mat-card label="Similar Movies" class="mat-card" id="similar" *ngFor="let movie of similarMovies">
+      <a (click)="this.as.goToMovieDetails(movie.id)">
+        <div>
+          <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
+            [title]="movie.title" class="movie-img">
+          <ng-template #defaultMovieImage>
+            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" [title]="movie.title" class="movie-img">
+          </ng-template>
+        </div>
+        <div class="movie-info">
+          <div class="movie-title">
+            <h3>{{ movie.title }}
+              <span class="year">({{ movie.release_date | date: 'y' }})</span>
+            </h3>
+          </div>
+          <div class="movie-info-sub" fxLayout="row" fxLayoutAlign="center center">
+            <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
+            <span class="movie-rating">
+              <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+          </div>
+        </div>
+      </a>
     </mat-card>
     <div id="single-ad-widget2" class="advert-widget">
       <p>Here comes the advertisment widget</p>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
         dummy text ever since the 1500s</p>
     </div>
-    <mat-card class="mat-card" id="release-dates">
-      <h3>Release Dates</h3>
+    <!-- Release Dates Tab -->
+    <mat-card label="Release Dates" id="release-datesdsdsdsdsdsdsds">
+      <div class="release-dates">
+        <mat-table #table [dataSource]="releaseDatesSource" matSort>
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.release_dates[0].release_date | date}} </mat-cell>
+          </ng-container>
+          <!-- Certification Column -->
+          <ng-container matColumnDef="certification">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Certification </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.release_dates[0].certification}} </mat-cell>
+          </ng-container>
+          <!-- Country Column -->
+          <ng-container matColumnDef="country">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element?.iso_3166_1 }} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="releaseDatesColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: releaseDatesColumns;"></mat-row>
+        </mat-table>
+      </div>
     </mat-card>
   </section>
 </div>

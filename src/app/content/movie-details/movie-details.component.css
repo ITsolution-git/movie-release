@@ -24,13 +24,13 @@ img{
     font-size: 80%;
 }
 #jumbotron.moviebg{
-    min-height: 380px;
     z-index: -1;
     box-shadow: rgb(0, 0, 0) 0px -50px 100px inset;
-    filter: grayscale(100%);
+    filter: grayscale(70%);
     position: absolute;
     width: 100%;
-    padding: 1rem 0;
+    padding: 13rem 0;
+    display: block;
 }
 .wrapper{
     max-width: 1220px;
@@ -44,6 +44,7 @@ img{
     border-radius: 3px;
     position: relative;
     padding: 0 1%;
+    text-shadow: 1px 1px 1px #000;
 }
 .movie-poster-image{
     max-width: 100%;
@@ -72,4 +73,10 @@ span#year.detail-release-date, span#status.detail-pg-rating, span#genres.detail-
 #user-actions{
     position: absolute;
     bottom: 8px;
+}
+@media (max-width: 1100px) {
+    #user-actions{
+        position: inherit;
+        margin-top: 10px;
+    }
 }

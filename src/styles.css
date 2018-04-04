@@ -8,6 +8,7 @@ body {
 }
 a{
     color: #c62828;
+    cursor: pointer;
 }
 a:hover, a:focus, a:active{
     color: #CCC;
@@ -82,9 +83,6 @@ mat-icon.rating{
     font-size:60%;
     color:#CCC;
 }
-.total-rating, .rating-number{
-    vertical-align: text-top !important;
-}
 /*Material Cards END*/
 /*Jumbotron*/
 #jumbotron{
@@ -103,10 +101,8 @@ mat-icon.rating{
 }
 /*Login Overlay*/
 .cdk-global-overlay-wrapper{
-    width: 50% !important;
-    height: 50% !important;
-    margin: 10% auto;
-    position: relative !important;
+    justify-content: center;
+    align-items: center;
 }
 /*Login Overlay END*/
 

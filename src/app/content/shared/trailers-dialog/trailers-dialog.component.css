@@ -76,6 +76,7 @@ iframe {
   background: #222;
   padding: 0.5rem 0.5rem 0.3rem;
   cursor: pointer;
+  z-index: 9;
 }
 
 #toggle-playlist mat-icon {
@@ -84,7 +85,12 @@ iframe {
 
 #trailer-list.open {
   right: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: #1f1f1f;
+  padding: 5px;
+  height: 95%;
+  max-height: 95%;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 #trailer-list.open>#toggle-playlist {
@@ -96,7 +102,7 @@ iframe {
 }
 
 #trailer-list.closed>#toggle-playlist {
-  right: 0;
+  right: 10px;
 }
 
 @media screen and (max-width: 600px) {
