@@ -10,14 +10,23 @@ export class SitemapService {
   ) { }
 
   generateMoviesSitemap(): void {
-    this.http.get('/sitemap-movies').subscribe(res => console.log(res));
+    this.http.get('/sitemap-movies')
+      .subscribe(res => {
+        // console.log(res);
+      });
   }
 
   generateMovieGenresSitemap(): void {
-    this.http.get('/sitemap-movie-genres').subscribe(res => console.log(res));
+    this.http.get('/sitemap-movie-genres')
+      .subscribe(res => {
+        // console.log(res);
+      });
   }
 
   generateCelebsSitemap() {
-    this.http.get('/sitemap-celebs').subscribe(res => console.log(res));
+    this.http.get('/sitemap-celebs')
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 }

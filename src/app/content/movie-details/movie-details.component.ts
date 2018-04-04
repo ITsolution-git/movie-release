@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
 import { AuthService } from '../../core/auth/services/auth.service';
+import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME, DB_COL } from '../../constants';
 // Component
@@ -40,6 +41,10 @@ export interface ICrewData {
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
+
+  pageSeoTitle: string;
+  pageSeoDescr: string;
+  pageSeoKeywords: string;
 
   TMDB_IMAGES_BASE_URL: any;
   IMG_45: any;
@@ -120,9 +125,9 @@ export class MovieDetailsComponent implements OnInit {
     private ar: ActivatedRoute,
     public dialog: MatDialog,
     private afDb: AngularFireDatabase,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private seoS: SeoService
   ) {
-
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
     this.IMG_45 = IMG_45;
@@ -158,14 +163,22 @@ export class MovieDetailsComponent implements OnInit {
               .then(() => {
                 this.getMovieDetails()
                   .then(() => {
-                    this.setSEOMetaTags();
-                    this.getMovieKeywords();
+                    // Set SEO Meta Tags
+                    // tslint:disable-next-line:max-line-length
+                    this.pageSeoTitle = this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie';
+                    // tslint:disable-next-line:max-line-length
+                    this.pageSeoDescr = this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie. ' + this.movieDetails.overview;
+                    this.pageSeoKeywords = this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0].name + ' movie';
+                    seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+                    // Get Additional API Data
+                    this.getMovieCredits();
+                    this.getMovieReleaseDates();
                     this.getMovieImages();
                     this.getMovieTrailers();
                     this.getMovieCredits();
                     this.getSimilarMovies();
                     this.getRecommemdedMovies();
-                    this.getMovieReleaseDates();
+                    this.getMovieKeywords();
                     // Initialize Firebase Ratings
                     this.movieRatingsObsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId).valueChanges();
                     this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId);
@@ -202,19 +215,6 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void { }
-
-  setSEOMetaTags(): void {
-    // Set SEO Title, Keywords and Description Meta tags
-    // tslint:disable-next-line:max-line-length
-    this.title.setTitle(this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie | ' + APP_SEO_NAME);
-    this.meta.updateTag(
-      // tslint:disable-next-line:max-line-length
-      { name: 'description', content: this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie. ' + this.movieDetails.overview + ' ' + APP_SEO_NAME }
-    );
-    this.meta.updateTag(
-      { name: 'keywords', content: this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0] },
-    );
-  }
 
   // Convert Movie Title to Movie Id
   convertTitleToId(title: string): Promise<any> {
@@ -408,9 +408,26 @@ export class MovieDetailsComponent implements OnInit {
 
   onInfoTabChange($event): void {
     this.currentInfoTab = $event.index;
-    if (this.currentInfoTab === 1 && !this.movieReviews) {
-      this.isLoadingInfo = true;
-      this.getMovieReviews();
+    // if (this.currentInfoTab === 3 && !this.movieReleaseDates) {
+    //   this.isLoadingInfo = true;
+    //   this.getMovieReleaseDates();
+    // } else if (this.currentInfoTab === 2 && !this.movieReviews) {
+    //   this.isLoadingInfo = true;
+    //   this.getMovieReviews();
+    // } else if (this.currentInfoTab === 1 && !this.movieCreditsCast && !this.movieCreditsCrew) {
+    //   this.isLoadingInfo = true;
+    //   this.getMovieCredits();
+    // }
+  }
+
+  onMoviesTabChange($event): void {
+    this.currentMoviesTab = $event.index;
+    if (this.currentMoviesTab === 0 && !this.recommendedMovies) {
+      this.isLoadingMovies = true;
+      this.getRecommemdedMovies();
+    } else if (this.currentMoviesTab === 1 && !this.similarMovies) {
+      this.isLoadingMovies = true;
+      this.getSimilarMovies();
     }
   }
 

@@ -27,7 +27,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { SettingsComponent } from './settings/settings.component';
 import { DeleteUserDialogComponent } from './users/edit-user/delete-user-dialog/delete-user-dialog.component';
 import { SelectMovieDialogComponent } from './articles/select-movie-dialog/select-movie-dialog.component';
 
@@ -52,7 +51,6 @@ import { SelectMovieDialogComponent } from './articles/select-movie-dialog/selec
     CategoriesComponent,
     TagsComponent,
     SidebarComponent,
-    SettingsComponent,
     DeleteUserDialogComponent,
     SelectMovieDialogComponent
   ],

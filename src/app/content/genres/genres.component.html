@@ -1,7 +1,8 @@
 <div id="page-header" fxLayout="row">
   <div id="header-left" fxFlex>
     <!-- Page Title -->
-    <h2 *ngIf="genreType === 'movies'">{{ pageTitle }} Movies</h2>
+    <h2 *ngIf="genreType === 'movies'">{{ pageSeoTitle }}</h2>
+    <p>{{ pageSeoDescr }}</p>
 
     <!-- Results Counter -->
     <div *ngIf="moviesList" id="results-counter">Results:
@@ -30,7 +31,8 @@
       <a (click)="this.as.goToMovieDetails(movie.id)">
         <!-- Movie Poster -->
         <div>
-          <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title" class="result-img">
+          <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
+            class="result-img">
           <ng-template #defaultMovieImage>
             <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="result-img">
           </ng-template>

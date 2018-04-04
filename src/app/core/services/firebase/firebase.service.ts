@@ -207,7 +207,7 @@ export class FirebaseService {
       url: url
     })
       .then(res => {
-        this.toastr.success('Slug & URL Updated for ', slug);
+        this.toastr.success(`Slug & URL Updated for ${slug}`);
       })
       .catch(error => {
         console.log('There was an error while updating the movie! ', error);
@@ -347,7 +347,7 @@ export class FirebaseService {
       url: url
     })
       .then(res => {
-        this.toastr.success('Slug & URL Updated for ', slug);
+        this.toastr.success(`Slug & URL Updated for ${slug}`);
       })
       .catch(error => {
         console.log(error);

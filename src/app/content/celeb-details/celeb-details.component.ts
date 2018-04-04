@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 // Services
 import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
+import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
 import { TMDB_IMAGES_BASE_URL, IMG_185, IMG_500, APP_SEO_NAME, DB_COL } from '../../constants';
 
@@ -17,6 +18,10 @@ import { TMDB_IMAGES_BASE_URL, IMG_185, IMG_500, APP_SEO_NAME, DB_COL } from '..
   styleUrls: ['./celeb-details.component.css']
 })
 export class CelebDetailsComponent implements OnInit {
+
+  pageSeoTitle: string;
+  pageSeoDescr: string;
+  pageSeoKeywords: string;
 
   TMDB_IMAGES_BASE_URL: any;
   IMG_185: any;
@@ -50,7 +55,8 @@ export class CelebDetailsComponent implements OnInit {
     private as: AppService,
     private apis: ApiService,
     private ar: ActivatedRoute,
-    private afDb: AngularFireDatabase
+    private afDb: AngularFireDatabase,
+    private seoS: SeoService
   ) {
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
@@ -77,7 +83,12 @@ export class CelebDetailsComponent implements OnInit {
               .then(() => {
                 this.getActorDetails()
                   .then(() => {
-                    this.setSEOMetaTags();
+                    // Set SEO Meta Tags
+                    this.pageSeoTitle = this.actorDetails.name + ' Latest Movies, Biography';
+                    this.pageSeoDescr = this.actorDetails.biography;
+                    this.pageSeoKeywords = this.actorDetails.name + ', celebrity, actor, actress, person, popular';
+                    seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+                    // Get Additional API Data
                     this.getActorImages();
                     this.getActorTaggedImages();
                   })
@@ -105,17 +116,6 @@ export class CelebDetailsComponent implements OnInit {
           resolve(this.actorId);
         });
     });
-  }
-
-  setSEOMetaTags(): void {
-    // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(this.actorDetails.name + ' Latest Movies, Biography');
-    this.meta.updateTag(
-      { name: 'description', content: this.actorDetails.biography + ' - ' + APP_SEO_NAME }
-    );
-    this.meta.updateTag(
-      { name: 'keywords', content: this.actorDetails.name + ', celebrity, actor, actress, person, popular' },
-    );
   }
 
   getActorDetails(): Promise<any> {
