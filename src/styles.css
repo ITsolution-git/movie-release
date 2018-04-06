@@ -7,11 +7,9 @@ body {
   width: 100%;
 }
 a{
-    color: #c62828;
+    color: #FFF;
     cursor: pointer;
-}
-a:hover, a:focus, a:active{
-    color: #CCC;
+    text-decoration: underline;
 }
 h1, h2, h3, h4, h5, h6{
     font-weight: normal;
@@ -20,28 +18,55 @@ h1, h2, h3, h4, h5, h6{
     color: #CCC;
 }
 /*App Wrapper*/
-app-main-movies-directory, app-movies, app-movie-details{
+app-main-movies-directory, app-movies, app-movie-details, app-genres{
     display: block;
     padding: 1rem;
 }
+.mat-sidenav-content a:hover, .mat-sidenav-content a:focus, .mat-sidenav-content a:active{
+    color: #c62828;
+}
+.mat-sidenav{
+    background-color: #121212 !important;
+    margin-top: 56px;
+}
+.mat-sidenav a:hover, .mat-sidenav a:focus, .mat-sidenav a:active{
+    color: #FFF;
+}
 .mat-drawer-container{
     background-color: #1f1f1f !important;
+    overflow-y: auto !important;
+}
+.wrapper{
+    max-width: 1220px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 9;
+}
+.section-header{
+    padding: 1rem;
+}
+.section-header:first-of-type{
+    padding-top: 0;
 }
 /*App Wrapper END*/
 /*Section*/
 .section{
     padding: 2%;
 }
+.section:first-of-type{
+    padding-top: 0;
+}
 /*Section END*/
 /*Material Cards*/
 mat-card{
-    margin: 8px;
+    margin-bottom: 8px;
 }
-app-home mat-card:hover{
+mat-card:hover{
     box-shadow: 0px 12px 19px -7px #000;
     background-color: #2A2A2A;
 }
-app-home mat-card, app-movies mat-card, app-main-movies-directory mat-card{
+app-home mat-card, app-movies mat-card, app-main-movies-directory mat-card, #similar-movies mat-card{
     max-width: 220px;
     cursor: pointer;
 }
@@ -62,10 +87,7 @@ mat-card-title h2{
     height: 100%;
 }
 .mat-card-content p, .mat-card-subtitle{
-    font-size: 0.8em;
-}
-.mat-card-subtitle{
-    font-size: 0.8em;
+    font-size: 0.8em !important;
 }
 .mat-tab-group{
     margin: 0rem -1rem;
@@ -73,6 +95,9 @@ mat-card-title h2{
 h3.tab-heading{
     display: block;
     width: 100%;
+}
+#movie-rating mat-icon.active{
+    color: #E4BB24;
 }
 mat-icon.rating{
     color: #E4BB24;
@@ -82,6 +107,9 @@ mat-icon.rating{
 .total-rating, #total-votes{
     font-size:60%;
     color:#CCC;
+}
+.favorite mat-icon.active{
+    color: #c62828;
 }
 /*Material Cards END*/
 /*Jumbotron*/
@@ -98,6 +126,8 @@ mat-icon.rating{
 #load-more{
     text-align: center;
     margin: 3rem 0;
+    display: inline-block;
+    width: 100%;
 }
 /*Login Overlay*/
 .cdk-global-overlay-wrapper{
@@ -105,8 +135,6 @@ mat-icon.rating{
     align-items: center;
 }
 /*Login Overlay END*/
-
-
 /*Mat Dark Theme*/
 mat-dark-theme #jumbotron{
     background-color: #2A2A2A;
@@ -153,6 +181,21 @@ mat-toolbar .mat-button.docs-button{
     margin-left: 15px;
     padding: 0 16px 0 8px;
 }
+/*Nice Scrollbar*/
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #000;
+    box-shadow: inset 0 0 6px #000;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px #000;
+    box-shadow: inset 0 0 6px #000;
+  }
 /*Material Extras END*/
 @media (max-width: 616px) {
     mat-card{

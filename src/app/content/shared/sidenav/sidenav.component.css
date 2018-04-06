@@ -1,0 +1,9 @@
+.top-links{
+    border-bottom: 1px solid #080808;
+}
+.bottom-links{
+    border-top: 1px solid #30303080;
+}
+mat-list-item span{
+    margin: 0 15px;
+}

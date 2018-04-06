@@ -8,40 +8,9 @@
     z-index: 2;
   }
   
-  .nav-container {
-    margin-top: 0.9rem;
-  }
-  
-  .account-button {
-    padding-left: 0;
-  }
-  
-  .account-button img {
-    position: relative;
-    left: -1px;
-    max-width: 35px;
-    margin-right: .5em;
-  }
-  
-  .account-button span {
-    margin-right: 0.5rem;
-  }
-  
   #main-menu a button {
     width: 100%;
     color: #eee;
-  }
-  
-  a.active,
-  a.active strong {
-    background: #c62828;
-    color: #fff !important;
-    border-radius: 2px;
-  }
-  
-  a.active:hover {
-    background: #c62828 !important;
-    color: #fff !important;
   }
   
   #account-menu {
@@ -59,36 +28,7 @@
     max-height: 37px;
     overflow: hidden;
   }
-  
-  .login-btn mat-icon {
-    position: relative;
-    top: 5px;
-  }
-
-  .main-search{
-    display: block;
-    width: 30%;
+.nav-container{
+  padding: 14px;
 }
-  
-  @media screen and (max-width: 959px) {
-    .nav-container {
-      height: auto;
-      padding-top: 1rem;
-      /* background: #151515;
-      box-shadow: 0px 0px 15px -5px #888; */
-    }
-    #account-menu {
-      margin: 1rem 0 2rem 0;
-      text-align: center;
-    }
-    #account-menu a button {
-      margin: auto;
-    }
-    #account-menu button {
-      top: 0;
-    }
-    #main-menu>button {
-      padding-left: 2rem;
-    }
-  }
   

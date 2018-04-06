@@ -249,11 +249,11 @@
       </div>
     </section>
     <!-- Loader -->
-    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="loading" class="loader">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
     </div>
     <!-- More Loader -->
-    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
     </div>
     <!-- Load More Button -->

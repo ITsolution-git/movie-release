@@ -171,13 +171,11 @@ export class MovieDetailsComponent implements OnInit {
                     this.pageSeoKeywords = this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0].name + ' movie';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                     // Get Additional API Data
+                    this.getMovieImages();
                     this.getMovieCredits();
                     this.getMovieReleaseDates();
-                    this.getMovieImages();
-                    this.getMovieTrailers();
-                    this.getMovieCredits();
                     this.getSimilarMovies();
-                    this.getRecommemdedMovies();
+                    this.getMovieTrailers();
                     this.getMovieKeywords();
                     // Initialize Firebase Ratings
                     this.movieRatingsObsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId).valueChanges();
@@ -347,16 +345,16 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
-  getRecommemdedMovies(): void {
-    this.isLoadingMovies = true;
-    this.apis.getRecommendedMovies(this.movieId, 1)
-      .subscribe((res) => {
-        this.recommendedMovies = res['results'];
-        if (this.recommendedMovies) {
-          this.isLoadingMovies = false;
-        }
-      });
-  }
+  // getRecommemdedMovies(): void {
+  //   this.isLoadingMovies = true;
+  //   this.apis.getRecommendedMovies(this.movieId, 1)
+  //     .subscribe((res) => {
+  //       this.recommendedMovies = res['results'];
+  //       if (this.recommendedMovies) {
+  //         this.isLoadingMovies = false;
+  //       }
+  //     });
+  // }
   getMovieReviews(): void {
     this.isLoadingInfo = true;
     this.apis.getMovieReviews(this.movieId, 1)
@@ -420,16 +418,16 @@ export class MovieDetailsComponent implements OnInit {
     // }
   }
 
-  onMoviesTabChange($event): void {
-    this.currentMoviesTab = $event.index;
-    if (this.currentMoviesTab === 0 && !this.recommendedMovies) {
-      this.isLoadingMovies = true;
-      this.getRecommemdedMovies();
-    } else if (this.currentMoviesTab === 1 && !this.similarMovies) {
-      this.isLoadingMovies = true;
-      this.getSimilarMovies();
-    }
-  }
+  // onMoviesTabChange($event): void {
+  //   this.currentMoviesTab = $event.index;
+  //   if (this.currentMoviesTab === 0 && !this.recommendedMovies) {
+  //     this.isLoadingMovies = true;
+  //     this.getRecommemdedMovies();
+  //   } else if (this.currentMoviesTab === 1 && !this.similarMovies) {
+  //     this.isLoadingMovies = true;
+  //     this.getSimilarMovies();
+  //   }
+  // }
 
   resetTabs(i: number): void {
     this.currentInfoTab = i;

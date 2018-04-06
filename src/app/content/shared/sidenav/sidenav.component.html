@@ -1,11 +1,10 @@
-<a mat-list-item routerLink="/movies/" role="listitem">Movies Filter</a>
-<a mat-list-item routerLink="/movies/now-playing" routerLinkActive="active" role="listitem">Now Playing</a>
-<a mat-list-item routerLink="/movies/upcoming" routerLinkActive="active" role="listitem">Upcoming</a>
-<a mat-list-item routerLink="/movies/most-popular" routerLinkActive="active" role="listitem">Most Popular</a>
-<a mat-list-item routerLink="/movies/top-rated" routerLinkActive="active" role="listitem">Top Rated</a>
-
-
-<!-- <mat-menu #genres="matMenu" [overlapTrigger]="false">
-  <a [routerLink]="'/movies/genre/' + this.as.urlOptimizeText(genre.name)" mat-menu-item *ngFor="let genre of movieGenresList"
-    class="genre-btn" routerLinkActive="active">{{ genre.name }}</a>
-</mat-menu> -->
+<mat-nav-list class="top-links" role="list">
+  <mat-list-item role="listitem" routerLink="/movies/" tabindex="0"><mat-icon class="mat-icon material-icons">movie_filter</mat-icon><span>Movies Filter</span></mat-list-item>
+  <mat-list-item role="listitem" routerLink="/movies/now-playing" tabindex="0"><mat-icon class="mat-icon material-icons">schedule</mat-icon><span>Now Playing</span></mat-list-item>
+  <mat-list-item role="listitem" routerLink="/movies/upcoming" tabindex="0"><mat-icon class="mat-icon material-icons">schedule</mat-icon><span>Upcoming</span></mat-list-item>
+  <mat-list-item role="listitem" routerLink="/movies/most-popular" tabindex="0"><mat-icon class="mat-icon material-icons">timeline</mat-icon><span>Most Popular</span></mat-list-item>
+  <mat-list-item role="listitem" routerLink="/movies/top-rated" tabindex="0"><mat-icon class="mat-icon material-icons">star_rate</mat-icon><span>Top Rated</span></mat-list-item>
+</mat-nav-list>
+<mat-nav-list  class="bottom-links" role="list">
+  <mat-list-item role="listitem" *ngFor="let genre of movieGenresList" (click)="this.as.goToMovieGenresPage(genre.name)" tabindex="0">{{ genre.name }}</mat-list-item>
+</mat-nav-list>
