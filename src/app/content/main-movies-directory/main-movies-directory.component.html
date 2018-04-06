@@ -23,8 +23,8 @@
         <!-- Upcoming Results Counter -->
         <div id="results-counter">
           <span>Showing:</span>
-          <span *ngIf="currentPageIndex === mainDirectoryTotalPages">{{ mainDirectoryTotalPages }}</span>
-          <span *ngIf="currentPageIndex !== mainDirectoryTotalPages">{{ mainDirectoryCurrentIndex * 20 }}</span> / {{ mainDirectoryTotalPages }}
+          <span *ngIf="mainDirectoryCurrentIndex === mainDirectoryTotalPages">{{ mainDirectoryTotalPages }}</span>
+          <span *ngIf="mainDirectoryCurrentIndex !== mainDirectoryTotalPages">{{ mainDirectoryCurrentIndex * 20 }}</span> / {{ mainDirectoryTotalPages }}
         </div>
       </div>
     </div>
@@ -49,9 +49,7 @@
           [title]="movie.title + ' Current Movie Releases'">
       </ng-template>
       <mat-card-content>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-          dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-          specimen book.</p>
+        <p>{{ movie.overview | slice:0:300 }}</p>
       </mat-card-content>
       <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
         <button mat-button>

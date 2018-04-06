@@ -1,7 +1,8 @@
 <!-- Jumbotron-->
 <div id="jumbotron" class="mat-elevation-z6">
   <div class="container">
-    <h1 class="page-title entry-title">What's <i>your</i> next best movie?</h1>
+    <h1 class="page-title entry-title">What's
+      <i>your</i> next best movie?</h1>
     <h2 class="page-description">Welcome to the best selection of recently released
       <a routerLink="/">Action</a>,
       <a routerLink="/">Adventure</a>,
@@ -46,8 +47,7 @@
           [title]="movie.title + ' Current Movie Releases'">
       </ng-template>
       <mat-card-content>
-          <!-- <p>{{ movie.overview }}</p> -->
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque tincidunt, facilisis faucibus leo. Donec placerat egestas risus, Limit this text to 323 characters...</p>
+        <p>{{ movie.overview | slice:0:300 }}</p>
       </mat-card-content>
       <mat-card-footer>
         <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
