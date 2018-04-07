@@ -1,34 +1,3 @@
-/*Menu*/
-
-:host {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    z-index: 2;
-  }
-  
-  #main-menu a button {
-    width: 100%;
-    color: #eee;
-  }
-  
-  #account-menu {
-    margin-left: 1rem;
-  }
-  
-  #account-menu>a {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    text-decoration: none;
-  }
-  
-  #account-menu>button {
-    max-height: 37px;
-    overflow: hidden;
-  }
-.nav-container{
-  padding: 14px;
+#account-menu {
+  margin-left: 10px;
 }
-  

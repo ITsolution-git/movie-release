@@ -48,7 +48,6 @@ app-genres{
     padding: 15px 0;
 }
 .mat-drawer-container{
-    background-color: #1f1f1f !important;
     overflow-y: auto !important;
 }
 .wrapper{
@@ -131,6 +130,9 @@ mat-icon.rating{
     font-size:60%;
     color:#CCC;
 }
+.rating-number{
+    vertical-align: text-top !important;
+}
 .favorite mat-icon.active{
     color: #c62828;
 }
@@ -191,7 +193,6 @@ mat-dark-theme .mat-drawer{
 /*Material Extras*/
 mat-toolbar{
     z-index: 9;
-    background: #222222 !important;
     color: white;
 }
 mat-toolbar .mat-button{
@@ -205,8 +206,8 @@ mat-toolbar .mat-button{
     display: block;
 }
 mat-toolbar .mat-button.docs-button{
-    margin-left: 15px;
-    padding: 0 16px 0 8px;
+    margin: 0 10px;
+    padding: 0 8px 0 4px;
 }
 .version{
     font-size: 0.5em;

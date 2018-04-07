@@ -1,42 +1,19 @@
-<div class="nav-container" fxLayout.lg="row" fxLayout.sm="row" fxLayout.xs="row" fxLayoutAlign="end">
-  <!-- <nav id="main-menu" fxFlex fxLayout.lg="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="end stretch">
-          <button mat-button [matMenuTriggerFor]="movies">
-            <strong>Movies</strong>
-            <mat-icon>keyboard_arrow_down</mat-icon>
-          </button>
-          <mat-menu #movies="matMenu" [overlapTrigger]="false">
-            <a mat-menu-item routerLink="/movies/upcoming" routerLinkActive="active">Upcoming</a>
-            <a mat-menu-item routerLink="/movies/now-playing" routerLinkActive="active">Now Playing</a>
-            <a mat-menu-item routerLink="/movies/most-popular" routerLinkActive="active">Most Popular</a>
-            <a mat-menu-item routerLink="/movies/top-rated" routerLinkActive="active">Top Rated</a>
-          </mat-menu>
-      
-          <button mat-button [matMenuTriggerFor]="genres">
-            <strong>Genres</strong>
-            <mat-icon>keyboard_arrow_down</mat-icon>
-          </button>
-          <mat-menu #genres="matMenu" [overlapTrigger]="false">
-            <a (click)="this.as.goToMovieGenresPage(genre.name)" mat-menu-item *ngFor="let genre of movieGenresList"
-              class="genre-btn" routerLinkActive="active">{{ genre.name }}</a>
-          </mat-menu>
-        </nav> -->
-  <!-- Main Search -->
-  <app-search-form class="main-search"></app-search-form>
-  <!-- Account Menu -->
-  <nav id="account-menu">
-    <!-- Login -->
-    <button mat-raised-button color="primary" class="login-btn" (click)="this.as.openLoginDialog()" *ngIf="this.aus.isLoggedIn === false">
-      <span>LOGIN</span>
-    </button>
-    <!-- My Account -->
-    <button mat-raised-button color="primary" class="account-button" [matMenuTriggerFor]="account" *ngIf="this.aus.isLoggedIn === true">
-      <mat-icon>perm_identity</mat-icon>
-    </button>
-    <mat-menu #account="matMenu" [overlapTrigger]="false">
-      <a mat-menu-item routerLink="/my-account" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Account</a>
-      <a mat-menu-item routerLink="/my-account/favorites" routerLinkActive="active">Favorites</a>
-      <a mat-menu-item routerLink="/my-account/ratings" routerLinkActive="active">Ratings</a>
-      <a mat-menu-item (click)="this.aus.logout()">Logout</a>
-    </mat-menu>
-  </nav>
-</div>
+<!-- Main Search -->
+<app-search-form class="main-search"></app-search-form>
+<!-- Account Menu -->
+<nav id="account-menu">
+  <!-- Login -->
+  <button mat-button class="login-btn" (click)="this.as.openLoginDialog()" *ngIf="this.aus.isLoggedIn === false">
+    <mat-icon class="mat-icon material-icons">perm_identity</mat-icon>
+  </button>
+  <!-- My Account -->
+  <button mat-button class="account-button" [matMenuTriggerFor]="account" *ngIf="this.aus.isLoggedIn === true">
+    <mat-icon class="mat-icon material-icons">perm_identity</mat-icon>
+  </button>
+  <mat-menu #account="matMenu" [overlapTrigger]="false">
+    <a mat-menu-item routerLink="/my-account" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Account</a>
+    <a mat-menu-item routerLink="/my-account/favorites" routerLinkActive="active">Favorites</a>
+    <a mat-menu-item routerLink="/my-account/ratings" routerLinkActive="active">Ratings</a>
+    <a mat-menu-item (click)="this.aus.logout()">Logout</a>
+  </mat-menu>
+</nav>
