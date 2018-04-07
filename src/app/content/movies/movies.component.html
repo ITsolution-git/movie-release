@@ -63,10 +63,7 @@
             <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
           </ng-template>
           <mat-card-content>
-            <!-- <p>{{ movie.overview }}</p> -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur
-              sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque
-              tincidunt, facilisis faucibus leo. Donec placerat egestas risus, Limit this text to 323 characters...</p>
+            <p>{{ movie.overview | slice:0:300 }}</p>
           </mat-card-content>
           <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
             <button mat-button>

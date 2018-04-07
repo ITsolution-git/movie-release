@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
 // AuthGuard
 import { AdminRoleGuardService } from '../core/auth/services/guards/admin-role-guard.service';
-
 // Components
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
-import { SettingsComponent } from './settings/settings.component';
 
 // Admin Routes
 const adminRoutes = [
