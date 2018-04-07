@@ -13,8 +13,8 @@
     <div id="movie-content-main" fxLayout="row" fxLayout.xs="column">
       <!-- Movie Poster Image -->
       <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%">
-        <img *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
-          [alt]="movieDetails.title" [title]="movieDetails.title">
+        <img *ngIf="movieDetails.poster_path;" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
+          onError="this.src='assets/img/default-movie-poster.png';" [alt]="movieDetails.title + ' Official Movie Poster'" [title]="movieDetails.title + ' Official Movie Poster'" />
       </div>
       <div id="movie-content-info" fxFlex="80" fxFlex.sm="80%" fxFlex.xs="80%">
         <!-- Movie Rating -->

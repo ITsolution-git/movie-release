@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AppService } from '../../../core/services/app.service';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { ApiService } from '../../../core/services/api/api.service';
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',

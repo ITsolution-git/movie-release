@@ -17,8 +17,6 @@ iframe {
 #trailer-list {
   background: #000;
   position: relative;
-  height: 100%;
-  ;
 }
 
 #trailer-list img {
@@ -28,19 +26,20 @@ iframe {
 .trailer-thumb {
   position: relative;
   cursor: pointer;
-  opacity: 0.95;
+  opacity: 0.5;
 }
 
 .trailer-thumb:hover {
   opacity: 1;
+  color: #FFF;
 }
 
 .trailer-thumb>mat-icon {
   position: absolute;
   z-index: 1;
-  color: #fff;
-  left: 50%;
-  top: 25%;
+  color: #CCC;
+  left: 45%;
+  top: 20%;
   transform: translate(-60%);
   font-size: 3rem;
 }
@@ -48,46 +47,48 @@ iframe {
 .close-dialog {
   z-index: 99;
   position: absolute;
-  left: 1rem;
-  top: 1rem;
+  left: 0;
+  top: 0;
   font-size: 2rem;
-  color: #fff;
+  color: #CCC;
   font-weight: bold;
   cursor: pointer;
 }
 
 .close-dialog:hover {
   opacity: 1;
+  color: #FFF;
 }
 
 /* Row View */
 
 #trailer {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   width: 100%;
+  min-width: 100%;
 }
 
 #toggle-playlist {
-  position: fixed;
-  top: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
   background: #222;
   padding: 0.5rem 0.5rem 0.3rem;
   cursor: pointer;
   z-index: 9;
+  border-radius: 3px;
 }
 
 #toggle-playlist mat-icon {
-  color: #fff;
+  color: #CCC;
 }
 
 #trailer-list.open {
-  right: 0;
-  background: #1f1f1f;
+  right: -30px;
   padding: 5px;
-  height: 95%;
   max-height: 95%;
   overflow: scroll;
   overflow-x: hidden;

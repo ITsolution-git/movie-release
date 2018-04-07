@@ -5,3 +5,7 @@ $accent: mat-palette($mat-orange, 600, 100, 800);
 $warn:  mat-palette($mat-red, 600);
 $theme: mat-dark-theme($primary, $accent);
 @include angular-material-theme($theme);
+
+.mat-drawer-backdrop.mat-drawer-shown, .cdk-overlay-dark-backdrop{
+    background-color: rgba(0, 0, 0, 0.75) !important;
+}

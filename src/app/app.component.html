@@ -3,11 +3,11 @@
         <button mat-icon-button (click)="sidebar.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <a _ngcontent-c1="" aria-label="Current Movie Releases" class="docs-button mat-button" mat-button="" routerlink="/" tabindex="0"
+        <a aria-label="Current Movie Releases" class="docs-button mat-button" mat-button="" routerlink="/" tabindex="0"
             aria-disabled="false" href="/">
             <span class="mat-button-wrapper">
-                <img _ngcontent-c1="" alt="Current Movie Releases" class="docs-cmr-logo" src="../assets/img/currentmoviereleases_logo_v2.svg">
-                <span _ngcontent-c1="" class="sidenav-app-name" fxHide.xs="true">Current Movie Releases</span>
+                <img alt="Current Movie Releases" class="docs-cmr-logo" src="../assets/img/currentmoviereleases_logo_v2.svg">
+                <span class="sidenav-app-name" fxHide.xs="true">Current Movie Releases</span>
             </span>
             <div class="mat-button-ripple mat-ripple" matripple=""></div>
             <div class="mat-button-focus-overlay"></div>
@@ -18,10 +18,13 @@
         <mat-sidenav #sidebar mode="over" opened="false" [fixedInViewport]="true" [fixedTopGap]="fixedTop" [fixedBottomGap]="fixedBottom">
             <mat-nav-list role="list">
                 <app-sidenav></app-sidenav>
-                <button mat-icon-button (click)="sidebar.toggle()">Close Menu
-                    <mat-icon>close</mat-icon>
-                </button>
             </mat-nav-list>
+            <div class="sidenav-footer" fxLayoutAlign="center center" fxLayout="column">
+                <button mat-button (click)="sidebar.toggle()">
+                    <mat-icon>chevron_left</mat-icon> Collapse Sidebar
+                </button>
+                <em class="version">App version 0.1 | 2018</em>
+            </div>
         </mat-sidenav>
         <mat-sidenav-content class="dashboard-container">
             <router-outlet></router-outlet>

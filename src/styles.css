@@ -6,10 +6,16 @@ body {
   height: 100%;
   width: 100%;
 }
+*{
+    box-sizing: border-box;
+}
 a{
     color: #FFF;
     cursor: pointer;
     text-decoration: underline;
+}
+.mat-list-item.active{
+    background: rgba(255, 255, 255, 0.04);
 }
 h1, h2, h3, h4, h5, h6{
     font-weight: normal;
@@ -18,9 +24,14 @@ h1, h2, h3, h4, h5, h6{
     color: #CCC;
 }
 /*App Wrapper*/
-app-main-movies-directory, app-movies, app-movie-details, app-genres{
+app-main-movies-directory, app-movies, app-movie-details{
     display: block;
     padding: 1rem;
+}
+app-genres{
+    max-width: 1100px;
+    margin: auto;
+    display: block;
 }
 .mat-sidenav-content a:hover, .mat-sidenav-content a:focus, .mat-sidenav-content a:active{
     color: #c62828;
@@ -31,6 +42,10 @@ app-main-movies-directory, app-movies, app-movie-details, app-genres{
 }
 .mat-sidenav a:hover, .mat-sidenav a:focus, .mat-sidenav a:active{
     color: #FFF;
+}
+.sidenav-footer{
+    border-top: 1px solid #30303080;
+    padding: 15px 0;
 }
 .mat-drawer-container{
     background-color: #1f1f1f !important;
@@ -82,9 +97,11 @@ mat-card-title h2{
     margin: 0;
     font-size: 1em;
 }
-.mat-card-image{
-    max-height: 400px;
+#movie-poster{
+    display: block;
     height: 100%;
+    width: 100%;
+    content: " ";
 }
 .mat-card-content p, .mat-card-subtitle{
     font-size: 0.8em !important;
@@ -92,9 +109,15 @@ mat-card-title h2{
 .mat-tab-group{
     margin: 0rem -1rem;
 }
-h3.tab-heading{
-    display: block;
+.mat-tab-label{
+    padding: 0 !important;
+}
+.tab-heading{
+    display: inline-block;
     width: 100%;
+    padding: 3rem 0;
+    margin: 0;
+    line-height: 3rem;
 }
 #movie-rating mat-icon.active{
     color: #E4BB24;
@@ -121,6 +144,7 @@ mat-icon.rating{
     -webkit-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     position: relative;
     background-size: cover;
+    min-height: 300px;
 }
 /*Jumbotron END*/
 #load-more{
@@ -133,6 +157,10 @@ mat-icon.rating{
 .cdk-global-overlay-wrapper{
     justify-content: center;
     align-items: center;
+    position: relative !important;
+    width: 65% !important;
+    height: 75% !important;
+    margin: 4% auto;
 }
 /*Login Overlay END*/
 /*Mat Dark Theme*/
@@ -165,7 +193,6 @@ mat-toolbar{
     z-index: 9;
     background: #222222 !important;
     color: white;
-    border-color: #080808;
 }
 mat-toolbar .mat-button{
     min-width: auto;
@@ -181,8 +208,14 @@ mat-toolbar .mat-button.docs-button{
     margin-left: 15px;
     padding: 0 16px 0 8px;
 }
+.version{
+    font-size: 0.5em;
+    color: #2A2A2A;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
 /*Nice Scrollbar*/
-
 ::-webkit-scrollbar {
     width: 7px;
   }

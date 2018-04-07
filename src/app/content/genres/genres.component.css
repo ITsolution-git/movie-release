@@ -41,23 +41,22 @@
   position: absolute;
   opacity: 0;
   width: 100%;
-  max-width: 165px;
   bottom: 0;
   padding: 0.4rem 10px;
   text-align: center;
-  background: #fff;
-  color: #333;
+  background: #000;
+  color: #999;
 }
 
 .result-info h3 {
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 0 0 0.3rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #111;
   margin: 0;
 }
 
 h3 span.year {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: normal;
 }
 
@@ -69,7 +68,7 @@ h3 span.year {
 .result-rating {
   width: 100%;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .result-rating mat-icon {
@@ -79,8 +78,7 @@ h3 span.year {
   top: 2px;
   position: relative;
   margin-right: 0.3rem;
-  color: gold;
-  text-shadow: 1px 1px 0px #777;
+  color: #E4BB24;
 }
 
 .result-card:hover .result-info {

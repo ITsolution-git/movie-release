@@ -1,5 +1,10 @@
 <!-- CLose Button -->
-<mat-icon class="close-dialog" (click)="closeDialog()">close</mat-icon>
+<div id="toggle-trailer">
+  <mat-icon class="close-dialog" (click)="closeDialog()">close</mat-icon>
+</div>
+<div id="toggle-playlist" (click)="togglePlaylist()">
+  <mat-icon>playlist_play</mat-icon>
+</div>
 <!-- Dialog Container -->
 <div fxLayout="row" fxLayoutAlign="space-evenly stretch" class="dialog-container">
   <!-- Video Container -->
@@ -9,9 +14,6 @@
   <!-- Playlist Container -->
   <div id="trailer-list" fxLayout="column" fxFlex="20%" fxFlexOffset="80%" fxFlex.xs="50%" fxFlexOffset.xs="50%" class="open"
     [ngClass]="[isPlaylistOpen ? 'open' : 'closed']">
-    <div id="toggle-playlist" (click)="togglePlaylist()">
-      <mat-icon>playlist_play</mat-icon>
-    </div>
     <div *ngFor="let url of videoURLs; let i = index" class="trailer-thumb" (click)="sanitizeURL(url)">
       <img [src]="videoThumbs[i]" alt="">
       <mat-icon class="play-arrow">play_circle_outline</mat-icon>

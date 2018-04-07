@@ -33,23 +33,20 @@
           <div class="result-info-sub" fxLayout="row" fxLayoutAlign="center center">
             <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
             <span class="result-rating">
-              <mat-icon>star</mat-icon>{{ movie.vote_average / 2 }}</span>
+              <mat-icon class="rating">star</mat-icon>{{ movie.vote_average / 2 }}</span>
           </div>
         </div>
       </a>
     </mat-card>
-    <!-- More Loader -->
-    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
-      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-    </div>
-
-    <!-- Load More Button -->
-    <div id="load-more" *ngIf="!loading && currentPageIndex !== totalPages">
-      <button mat-raised-button color="primary" (click)="loadMoreResults(currentPageIndex + 1)">LOAD MORE...</button>
-    </div>
-
   </div>
-
+  <!-- More Loader -->
+  <div fxLayout="column" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <!-- Load More Button -->
+  <div id="load-more" *ngIf="!loading && currentPageIndex !== totalPages">
+    <button mat-raised-button color="primary" (click)="loadMoreResults(currentPageIndex + 1)">LOAD MORE...</button>
+  </div>
   <!-- Loader -->
   <div fxLayout="column" fxLayoutAlign="center center" *ngIf="loading" class="loader">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>

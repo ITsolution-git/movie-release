@@ -1,8 +1,7 @@
 <!-- Jumbotron-->
 <div id="jumbotron" class="mat-elevation-z6">
   <div class="container">
-    <h1 class="page-title entry-title">What's
-      <i>your</i> next best movie?</h1>
+    <h1 class="page-title entry-title">Interested to get the current movie releases?</h1>
     <h2 class="page-description">Welcome to the best selection of recently released
       <a routerLink="/">Action</a>,
       <a routerLink="/">Adventure</a>,
@@ -44,12 +43,7 @@
           <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
         </mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]"
-        [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'">
-      <ng-template #defaultMovieImage>
-        <img mat-card-image class="movie-img" src="assets/img/default-movie-poster.png" [alt]="movie.title + ' Current Movie Releases'"
-          [title]="movie.title + ' Current Movie Releases'">
-      </ng-template>
+      <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]" [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'" onError="this.src='assets/img/default-movie-poster.png';" />
       <mat-card-content>
         <!-- <p>{{ movie.overview }}</p> -->
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur sit
@@ -63,7 +57,7 @@
             <span class="rating-number">{{ movie.vote_average / 2 }}</span>
           </button>
           <button mat-button>
-            <mat-icon class="mat-icon material-icons">favorite</mat-icon>
+            <mat-icon class="mat-icon material-icons">favorite_border</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card-footer>
