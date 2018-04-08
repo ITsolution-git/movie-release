@@ -9,6 +9,9 @@ body {
 *{
     box-sizing: border-box;
 }
+*:hover{
+    transition: all 0.3s ease-in-out;
+}
 a{
     color: #FFF;
     cursor: pointer;
@@ -20,11 +23,15 @@ a{
 h1, h2, h3, h4, h5, h6{
     font-weight: normal;
 }
-.result-counter{
-    color: #CCC;
+.result-counter, .section-details{
+    color: #999;
+    font-size: 0.8em;
+}
+.section-details .view-all{
+    text-align: right;
 }
 /*App Wrapper*/
-app-main-movies-directory, app-movies, app-movie-details{
+app-main-movies-directory, app-movies, app-movie-details, app-search{
     display: block;
     padding: 1rem;
 }
@@ -52,37 +59,57 @@ app-genres{
 }
 .wrapper{
     max-width: 1220px;
-    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
     z-index: 9;
 }
+.wrapper.margin{
+    margin-top: 5%;
+}
+.wrapper.border{
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #6d6d6d24;
+}
 .section-header{
-    padding: 1rem;
+    padding: 1rem 0.2rem;
 }
 .section-header:first-of-type{
     padding-top: 0;
+}
+.section-header.wrapper p{
+    margin-top: 0;
 }
 /*App Wrapper END*/
 /*Section*/
 .section{
     padding: 2%;
 }
-.section:first-of-type{
+app-home .section{
     padding-top: 0;
 }
 /*Section END*/
 /*Material Cards*/
 mat-card{
     margin-bottom: 8px;
+    cursor: pointer;
+    padding: 10px !important;
+    background: rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    filter: grayscale(20%);
+    box-sizing: content-box;
 }
 mat-card:hover{
+    -webkit-box-shadow: 0px 12px 19px -7px #000;
     box-shadow: 0px 12px 19px -7px #000;
-    background-color: #2A2A2A;
+    background: rgba(0, 0, 0, 0.66) !important;
+    filter: grayscale(0%);
 }
 app-home mat-card, app-movies mat-card, app-main-movies-directory mat-card, #similar-movies mat-card{
-    max-width: 220px;
-    cursor: pointer;
+    max-width: 215px;
+}
+.mat-card-header-text{
+    margin: 0 !important;
+    width: 100%;
 }
 mat-card-title{
     white-space: pre-line;
@@ -96,15 +123,41 @@ mat-card-title h2{
     margin: 0;
     font-size: 1em;
 }
+.mat-card-subtitle{
+    color: #999;
+    border-top: 1px solid #6d6d6d24;
+    padding-top: 5px;
+    margin-bottom: 6px !important;
+}
+.short-story{
+    margin-bottom: 0;
+}
+.mat-card-content p, .mat-card-subtitle, .short-story{
+    font-size: 0.8em !important;
+}
 #movie-poster{
     display: block;
     height: 100%;
     width: 100%;
     content: " ";
 }
-.mat-card-content p, .mat-card-subtitle{
-    font-size: 0.8em !important;
+.mat-card-image {
+    width: calc(100% + 20px) !important;
+    margin: 0 -10px 10px -10px !important;
+    max-height: 360px;
+    min-height: 360px;
 }
+.mat-card-footer{
+    margin: 0 !important;
+}
+.mat-card-actions {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: -10px !important;
+    padding: 0 !important;
+    border-top: 1px solid #6d6d6d24;
+}
+/*Tabs*/
 .mat-tab-group{
     margin: 0rem -1rem;
 }
@@ -123,15 +176,10 @@ mat-card-title h2{
 }
 mat-icon.rating{
     color: #E4BB24;
-    text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.6);
-    font-size: 1.8rem;
 }
 .total-rating, #total-votes{
     font-size:60%;
     color:#CCC;
-}
-.rating-number{
-    vertical-align: text-top !important;
 }
 .favorite mat-icon.active{
     color: #c62828;
@@ -230,10 +278,104 @@ mat-toolbar .mat-button.docs-button{
     -webkit-box-shadow: inset 0 0 6px #000;
     box-shadow: inset 0 0 6px #000;
   }
+
+/*Footer*/
+app-footer {
+    background-color: #2A2A2A;
+    box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
+    -moz-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
+    -webkit-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
+    color: #939393;
+    border: 0;
+    font-size: 0.8em;
+    display: block;
+  }
+  
+  app-footer footer#colophon {
+    margin: 0 auto;
+    display: block;
+    padding: 0 10%;
+  }
+  
+  footer#colophon .widget-title {
+    color: #DDD;
+    font-size: 1rem;
+    margin-bottom: 1.5em;
+    text-transform: uppercase;
+    font-weight: normal;
+  }
+  
+  footer#colophon .footer-inner {
+    display: block;
+    min-height: 250px;
+    padding: 30px 0px;
+    border-bottom: 1px solid #111;
+  }
+  
+  footer#colophon .footer-inner .footer-widget {
+    margin: 0 3%;
+  }
+  
+  #sitemap {
+    margin: auto;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    font-size: 11px;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  #sitemap ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #sitemap ul li {
+    display: inline-block;
+    list-style: none;
+  }
+  
+  #sitemap ul li a {
+    display: block;
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    line-height: 2.5em;
+    text-decoration: none;
+    color: #CCC;
+  }
+  
+  #sitemap ul li a:hover {
+    background: #44444469;
+    color: #FFF;
+  }
+  
+  #credits,
+  #disclaimer {
+    padding: 15px 0px;
+    color: #666;
+    font-size: 0.8em;
+  }
+  
+  #disclaimer {
+    border-bottom: 1px solid #4444449e;
+  }
+  
+  .scrolltotop {
+    cursor: pointer;
+    background: #00000059;
+    border: none;
+    color: #FFF;
+  }
+  
+  .scrolltotop .mat-icon {
+    padding: 15% 5%;
+  }
+/*Footer END*/
 /*Material Extras END*/
-@media (max-width: 616px) {
+@media (max-width: 599px) {
     mat-card{
-        max-width: inherit;
+        max-width: 90% !important;
     }
     .mat-card-image{
         max-height: inherit;
@@ -241,3 +383,20 @@ mat-toolbar .mat-button.docs-button{
     }
     
 }
+
+@media (min-width: 544px) {
+    .movie-list {
+        display: flex;
+        width: 100%;
+    }
+    .movie-list .mat-card {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .mat-card-content {
+      flex: 1 1 auto;
+    }
+  }

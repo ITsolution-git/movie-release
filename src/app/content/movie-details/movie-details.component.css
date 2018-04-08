@@ -82,6 +82,13 @@ img.person-img{
     max-width: 145px !important;
     overflow: hidden;
 }
+mat-icon.rating{
+    text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.6);
+    font-size: 1.8rem;
+}
+.rating-number{
+    vertical-align: text-top !important;
+}
 @media (max-width: 1100px) {
     #user-actions{
         position: inherit;

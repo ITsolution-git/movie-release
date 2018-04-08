@@ -6,6 +6,9 @@ $warn:  mat-palette($mat-pink, 600);
 $theme: mat-dark-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 
+.mat-drawer-container{
+    background-color: #1f1f1f;
+}
 .mat-drawer-backdrop.mat-drawer-shown, .cdk-overlay-dark-backdrop{
     background-color: rgba(0, 0, 0, 0.75) !important;
 }
