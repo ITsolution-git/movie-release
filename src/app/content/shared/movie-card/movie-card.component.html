@@ -21,7 +21,7 @@
   <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
     <button mat-button>
       <mat-icon class="rating">star</mat-icon>
-      <span class="rating-number">{{ movie.vote_average / 2 }}</span>
+      <span class="rating-number">{{ (movie.vote_average) / 2 }}</span>
     </button>
     <button mat-button (click)="this.as.goToMovieDetails(movie.id)">
       <mat-icon class="mat-icon material-icons">more</mat-icon>
