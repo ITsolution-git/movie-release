@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6{
     text-align: right;
 }
 /*App Wrapper*/
-app-main-movies-directory, app-movies, app-movie-details, app-search{
+app-main-movies-directory, app-movies, app-search{
     display: block;
     padding: 1rem;
 }
@@ -66,14 +66,20 @@ app-genres{
 .wrapper.margin{
     margin-top: 5%;
 }
-.wrapper.border{
-    padding-bottom: 3rem;
+.border{
+    padding-bottom: 2rem;
     border-bottom: 1px solid #6d6d6d24;
 }
-.section-header{
-    padding: 1rem 0.2rem;
+.section-header {
+    margin-bottom: 5px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
-.section-header:first-of-type{
+/* .section-header{
+    padding: 0rem 0.2rem 1rem;
+} */
+app-home .section-header{
     padding-top: 0;
 }
 .section-header.wrapper p{
@@ -82,9 +88,9 @@ app-genres{
 /*App Wrapper END*/
 /*Section*/
 .section{
-    padding: 2%;
+    padding: 2rem;
 }
-app-home .section{
+app-home .section, app-movie-details .section{
     padding-top: 0;
 }
 /*Section END*/
@@ -188,13 +194,16 @@ mat-icon.rating{
 /*Jumbotron*/
 #jumbotron{
     padding: 1rem 2rem 3rem 2rem;
-    margin: -1rem -1rem 0rem -1rem;
+    margin: 0;
     box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     -moz-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     -webkit-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     position: relative;
     background-size: cover;
     min-height: 300px;
+}
+app-movies #jumbotron, app-main-movies-directory #jumbotron{
+    margin: -1rem -1rem 0rem -1rem;
 }
 /*Jumbotron END*/
 #load-more{
@@ -218,7 +227,6 @@ mat-dark-theme #jumbotron{
     background-color: #2A2A2A;
 }
 app-home #jumbotron{
-    margin: 0rem;
     background-image: url("/assets/img/background.png");
     background-size: 100%;
     padding: 20% 15%;
@@ -266,7 +274,7 @@ mat-toolbar .mat-button.docs-button{
 }
 /*Nice Scrollbar*/
 ::-webkit-scrollbar {
-    width: 7px;
+    width: 10px;
   }
   
   ::-webkit-scrollbar-track {
@@ -275,8 +283,7 @@ mat-toolbar .mat-button.docs-button{
   }
   
   ::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px #000;
-    box-shadow: inset 0 0 6px #000;
+      background: #000;
   }
 
 /*Footer*/
