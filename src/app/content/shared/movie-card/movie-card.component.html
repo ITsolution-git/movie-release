@@ -23,8 +23,8 @@
       <mat-icon class="rating">star</mat-icon>
       <span class="rating-number">{{ movie.vote_average / 2 }}</span>
     </button>
-    <button mat-button>
-      <mat-icon class="mat-icon material-icons">favorite_border</mat-icon>
+    <button mat-button (click)="this.as.goToMovieDetails(movie.id)">
+      <mat-icon class="mat-icon material-icons">more</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card-footer>

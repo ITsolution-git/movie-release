@@ -65,11 +65,16 @@ app-main-movies-directory, app-movies, app-genres, app-search{
     padding-bottom: 2rem;
     border-bottom: 1px solid #6d6d6d24;
 }
+/*Section*/
+.section{
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+/*Section END*/
 .section-header {
     margin-bottom: 5px;
     padding: 1rem;
     background: rgba(0, 0, 0, 0.15);
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 /* .section-header{
     padding: 0rem 0.2rem 1rem;
@@ -81,14 +86,6 @@ app-home .section-header{
     margin-top: 0;
 }
 /*App Wrapper END*/
-/*Section*/
-.section{
-    padding: 2rem;
-}
-app-home .section, app-movie-details .section{
-    padding-top: 0;
-}
-/*Section END*/
 /*Material Cards*/
 mat-card{
     margin-bottom: 8px;
@@ -141,7 +138,6 @@ mat-card-title h2 a{
 #movie-poster{
     display: block;
     height: 100%;
-    width: 100%;
     content: " ";
 }
 .mat-card-image {
@@ -302,7 +298,7 @@ app-footer {
   
   footer#colophon .widget-title {
     color: #DDD;
-    font-size: 1rem;
+    font-size: 100%;
     margin-bottom: 1.5em;
     text-transform: uppercase;
     font-weight: normal;
@@ -384,9 +380,10 @@ app-footer {
         max-height: inherit;
         height: auto;
     }
-    
+    #movie-content-info{
+        margin-right: -5px;
+    }
 }
-
 @media (min-width: 544px) {
     .movie-list {
         display: flex;
@@ -398,7 +395,6 @@ app-footer {
         flex-direction: column;
         justify-content: space-between;
     }
-    
     .mat-card-content {
       flex: 1 1 auto;
     }

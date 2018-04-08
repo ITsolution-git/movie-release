@@ -1,7 +1,7 @@
 <!-- Jumbotron-->
 <app-jumbotron></app-jumbotron>
 <!-- Now Playng Movies -->
-<section *ngIf="!loading" id="now-playing" class="now-playing-movies-container section" label="Now Playing Movies">
+<section *ngIf="!loading" id="now-playing" class="now-playing-movies-container section border" label="Now Playing Movies">
   <div class="section-header wrapper" fxLayout="column">
     <div class="section-description" fxLayout="column">
       <h2 class="section-title">Current Movie Releases - Now playing movies in theaters near you</h2>
@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div class="wrapper border movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+  <div class="wrapper movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
     <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card" tabindex="0">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
@@ -45,7 +45,7 @@
       </div>
     </div>
   </div>
-  <div class="wrapper border movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+  <div class="wrapper movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
     <mat-card *ngFor="let movie of upcomingMovies; let i = index" class="movie-card" tabindex="0">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>

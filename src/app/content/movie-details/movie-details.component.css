@@ -1,4 +1,4 @@
-div{
+section#movie-details div{
     margin: 5px;
 }
 h1{
@@ -13,11 +13,39 @@ h1{
     margin: 0;
 }
 .mat-tab-body-wrapper{
-    padding: 1% 5%;
+    padding: 1% 2%;
 }
-#articles{
+#articles .article-inner{
     font-size: 80%;
+    background: #0000003d;
+    padding: 2.5rem 1rem 0.5rem 1rem;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.49) 0px 5px 10px inset;
+    margin-top: 0;
+    position: relative;
 }
+#articles .section-header {
+    margin-bottom: 0;
+    background: #a42d2d85;
+    display: block;
+    padding: 1px 1rem;
+}
+.article-data {
+    padding: 0.5rem 9% 0.5rem 1rem;
+    background: #942e2e6b;
+    position: absolute;
+    width: 90%;
+    top: 0px;
+    left: 0;
+    font-size: 80%;
+    vertical-align: middle;
+    box-sizing: content-box;
+}
+.post-date.updated mat-icon.mat-icon.material-icons {
+    font-size: 150%;
+    height: auto;
+}
+/*Jumbotron*/
 #jumbotron.moviebg{
     z-index: -1;
     box-shadow: rgb(0, 0, 0) 0px -50px 100px inset;
@@ -27,20 +55,13 @@ h1{
     padding: 13rem 0;
     display: block;
 }
-.wrapper{
-    max-width: 1220px;
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 9;
-}
+/*Jumbotron END*/
 #movie-content-info{
     background: rgba(0, 0, 0, 0.60);
     border-radius: 3px;
     position: relative;
     padding: 0 1%;
     text-shadow: 1px 1px 1px #000;
-    margin-right: -5px;
 }
 .movie-poster-image{
     max-width: 100%;
@@ -93,6 +114,6 @@ mat-icon.rating{
 @media (max-width: 1100px) {
     #user-actions{
         position: inherit;
-        margin-top: 30px;
+        margin-top: 30px !important;
     }
 }

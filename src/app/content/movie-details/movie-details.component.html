@@ -1,8 +1,8 @@
 <div id="jumbotron" role="banner" class="moviebg mat-elevation-z6" *ngIf="movieDetails?.backdrop_path" [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
 <!-- Movie Details & Posters -->
-<div class="wrapper" *ngIf="movieDetails" [id]="movieDetails.id">
+<div class="wrapper margin" *ngIf="movieDetails" [id]="movieDetails.id">
   <!-- Movie Details -->
-  <section id="movie-details" class="section" role="main" itemscope itemtype="http://schema.org/Movie">
+  <section id="movie-details" class="section border" role="main" itemscope itemtype="http://schema.org/Movie">
     <div id="movie-content-head" role="contentinfo" fxLayout="column" fxLayout.xs="column">
       <!-- Movie Title -->
       <h1 id="movie-title" itemprop="name">{{ movieDetails.title }}
@@ -13,9 +13,9 @@
       <!-- Movie Poster Image -->
       <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%">
         <img itemscope itemtype="http://schema.org/ImageObject" itemprop="image" itemprop="contentUrl" role="img" *ngIf="movieDetails.poster_path;"
-          class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]" width="242" height="362"
-          onError="this.src='assets/img/default-movie-poster.png';" [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'"
-          [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'" />
+          class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]" onError="this.src='assets/img/default-movie-poster.png';"
+          [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'" [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'"
+        />
       </div>
       <div id="movie-content-info" fxFlex="80" fxFlex.sm="80%" fxFlex.xs="80%">
         <!-- Movie Rating -->
@@ -131,10 +131,10 @@
             <span *ngIf="isFavorited === true" fxHide.sm="true" fxHide.xs="true">In My List</span>
             <span *ngIf="isFavorited === false" fxHide.sm="true" fxHide.xs="true">Add to Favorites</span>
           </button>
-          <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
+          <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
             <mat-icon>local_movies</mat-icon>
             <span fxHide.sm="true" fxHide.xs="true">Buy Ticket</span>
-          </button>
+          </button> -->
           <button mat-raised-button class="share-btn">
             <mat-icon>share</mat-icon>
             <span fxHide.sm="true" fxHide.xs="true">Share</span>
@@ -155,7 +155,7 @@
           dummy text ever since the 1500s</p>
       </div>
     </div>
-    <div id="movie-content-cast" class="border">
+    <div id="movie-content-cast">
       <mat-tab-group id="movie-content-details" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
         <mat-tab label="Cast ({{ movieCreditsCast?.length }})">
           <div class="cast-tab-content" *ngIf="movieCreditsCast?.length > 0" fxLayout="column">
@@ -212,20 +212,29 @@
       </mat-tab-group>
     </div>
   </section>
-  <section id="articles" class="section" role="article" *ngIf="movieArticles">
+  <section id="articles" class="section border" role="article" *ngIf="movieArticles">
     <div class="section-header">
       <div class="section-description">
-        <h2 class="section-title">Movie Review</h2>
-        <p>The description of our Movie Review Section</p>
+        <h2 class="section-title">
+          <mat-icon class="mat-icon material-icons">note_add</mat-icon> Movie Review</h2>
       </div>
     </div>
-    <article class="article border" role="article" *ngFor="let article of movieArticles">
+    <article class="article" role="article" *ngFor="let article of movieArticles" itemscope itemtype="http://schema.org/Article">
       <div class="article-inner" *ngIf="article.article_status === 'public'">
-        <div class="article-subtitle">
-          <h3>{{ article.article_title }}</h3>
+        <div class="article-data">
+          <span class="post-date updated">
+            <mat-icon class="mat-icon material-icons">face</mat-icon>Review added on:
+            <span itemprop="datePublished">{{ article.article_date | date: 'long' }}</span> by:
+            <span class="vcard author post-author author_name">
+              <span class="fn">
+                <a href="https://plus.google.com/+Currentmoviereleases" rel="author" target="_blank" itemprop="author"> +Currentmoviereleases</a>
+              </span>
+            </span>
+          </span>
         </div>
-        <span>
-          <mat-icon>textsms</mat-icon>{{ article.article_date | date: 'short' }}</span>
+        <div class="article-subtitle">
+          <h3 itemprop="name">{{ article.article_title }}</h3>
+        </div>
         <div class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
       </div>
     </article>
@@ -248,45 +257,29 @@
       </div>
     </div>
     <div class="movies-list" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-      <mat-card class="movie-card" *ngFor="let movie of similarMovies" tabindex="0" (click)="this.as.goToMovieDetails(movie.id)">
-        <mat-card-header>
-          <mat-card-title>
-            <h2>{{ movie.title }}</h2>
-          </mat-card-title>
-          <mat-card-subtitle>
-            <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-          </mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
-          [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'">
-        <ng-template #defaultMovieImage>
-          <img mat-card-image class="movie-img" src="assets/img/default-movie-poster.png" [alt]="movie.title + ' Current Movie Releases'"
-            [title]="movie.title + ' Current Movie Releases'">
-        </ng-template>
+      <mat-card *ngFor="let movie of similarMovies; let i = index" class="movie-card" tabindex="0">
+        <app-movie-card [movie]="movie"></app-movie-card>
       </mat-card>
     </div>
-    <div id="single-ad-widget2" class="border advert-widget">
+    <div id="single-ad-widget2" class="advert-widget">
       <p>Here comes the advertisment widget</p>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
         dummy text ever since the 1500s</p>
     </div>
   </section>
-  <section id="release-dates" class="section">
-    <!-- Release Dates Tab -->
-    <!-- <mat-card label="Release Dates" id="release-dates">
+  <!-- Release Dates -->
+  <!-- <section id="release-dates" class="section">
+    <mat-card label="Release Dates" id="release-dates">
       <div class="release-dates">
         <mat-table #table [dataSource]="releaseDatesSource" matSort>
-
           <ng-container matColumnDef="date">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element?.release_dates[0].release_date | date}} </mat-cell>
           </ng-container>
-
           <ng-container matColumnDef="certification">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Certification </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element?.release_dates[0].certification}} </mat-cell>
           </ng-container>
-
           <ng-container matColumnDef="country">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element?.iso_3166_1 }} </mat-cell>
@@ -295,6 +288,6 @@
           <mat-row *matRowDef="let row; columns: releaseDatesColumns;"></mat-row>
         </mat-table>
       </div>
-    </mat-card> -->
-  </section>
+    </mat-card>
+  </section> -->
 </div>
