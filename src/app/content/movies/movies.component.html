@@ -48,32 +48,7 @@
     <section *ngIf="!loading" id="Upcoming" class="upcoming-movies-tab-content section">
       <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
         <mat-card *ngFor="let movie of upcomingMovies; let i = index" class="movie-card" tabindex="0">
-          <mat-card-header>
-            <mat-card-title>
-              <h2>{{ movie.title }}</h2>
-            </mat-card-title>
-            <mat-card-subtitle>
-              <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-            </mat-card-subtitle>
-          </mat-card-header>
-
-          <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
-            [alt]="movie.title">
-          <ng-template #defaultMovieImage>
-            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-          </ng-template>
-          <mat-card-content>
-            <p>{{ movie.overview | slice:0:300 }}</p>
-          </mat-card-content>
-          <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-            <button mat-button>
-              <mat-icon class="rating">star</mat-icon>
-              <span>{{ movie.vote_average / 2 }}</span>
-            </button>
-            <button mat-button>
-              <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-            </button>
-          </mat-card-actions>
+          <app-movie-card [movie]="movie"></app-movie-card>
         </mat-card>
       </div>
     </section>
@@ -101,35 +76,7 @@
     <section *ngIf="!loading" id="now-playing" class="now-playing-movies-tab-content section">
       <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
         <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card" tabindex="0">
-          <mat-card-header>
-            <mat-card-title>
-              <h2>{{ movie.title }}</h2>
-            </mat-card-title>
-            <mat-card-subtitle>
-              <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-            </mat-card-subtitle>
-          </mat-card-header>
-
-          <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
-            [alt]="movie.title">
-          <ng-template #defaultMovieImage>
-            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-          </ng-template>
-          <mat-card-content>
-            <!-- <p>{{ movie.overview }}</p> -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur
-              sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque
-              tincidunt, facilisis faucibus leo. Donec placerat egestas risus, Limit this text to 323 characters...</p>
-          </mat-card-content>
-          <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-            <button mat-button>
-              <mat-icon class="rating">star</mat-icon>
-              <span>{{ movie.vote_average / 2 }}</span>
-            </button>
-            <button mat-button>
-              <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-            </button>
-          </mat-card-actions>
+          <app-movie-card [movie]="movie"></app-movie-card>
         </mat-card>
       </div>
     </section>
@@ -157,35 +104,7 @@
     <section *ngIf="!loading" id="most-popular" class="popular-movies-tab-content section">
       <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
         <mat-card *ngFor="let movie of popularMovies; let i = index" class="movie-card" tabindex="0">
-          <mat-card-header>
-            <mat-card-title>
-              <h2>{{ movie.title }}</h2>
-            </mat-card-title>
-            <mat-card-subtitle>
-              <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-            </mat-card-subtitle>
-          </mat-card-header>
-
-          <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
-            [alt]="movie.title">
-          <ng-template #defaultMovieImage>
-            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="movie-img">
-          </ng-template>
-          <mat-card-content>
-            <!-- <p>{{ movie.overview }}</p> -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pharetra nunc felis, quis viverra libero efficitur
-              sit amet. Morbi et ante bibendum, malesuada tortor non, iaculis orci. Fusce sapien diam, sollicitudin ut neque
-              tincidunt, facilisis faucibus leo. Donec placerat egestas risus, Limit this text to 323 characters...</p>
-          </mat-card-content>
-          <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-            <button mat-button>
-              <mat-icon class="rating">star</mat-icon>
-              <span>{{ movie.vote_average / 2 }}</span>
-            </button>
-            <button mat-button>
-              <mat-icon class="mat-icon material-icons">favorite</mat-icon>
-            </button>
-          </mat-card-actions>
+          <app-movie-card [movie]="movie"></app-movie-card>
         </mat-card>
       </div>
     </section>

@@ -60,6 +60,7 @@ export class AppService {
     const seoText = text.replace(/-/g, ' ');
     return seoText;
   }
+
   scrollToTop(): void {
     window.scrollTo(0, 0);
   }
@@ -90,12 +91,14 @@ export class AppService {
         console.log('There was an error while getting the movie URL! ', error);
       });
   }
+
   goToMovieGenresPage(genre: string): void {
     this.urlOptimizeText(genre)
       .then(res => {
         this.router.navigate(['/movies/genre/' + res]);
       });
   }
+
   getMovieUrlById(movieId: number): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afDb.list(`${DB_COL.MOVIES_RESULTS}`, ref => ref.orderByChild('id').equalTo(movieId)).valueChanges()
@@ -116,6 +119,7 @@ export class AppService {
         console.log('There was an error while getting the celeb URL! ', error);
       });
   }
+
   getCelebUrlById(celebId: number): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.afDb.list(`${DB_COL.CELEBS_RESULTS}`, ref => ref.orderByChild('id').equalTo(celebId)).valueChanges()
@@ -124,4 +128,5 @@ export class AppService {
         });
     });
   }
+
 }

@@ -263,19 +263,6 @@ export class MovieDetailsComponent implements OnInit {
       });
   }
 
-  checkIfMovieFavorited(): void {
-    // Check if movies is already favorited
-    this.favMoviesObsRef
-      .subscribe(resp => {
-        this.isFavorited = false;
-        resp.forEach(fav => {
-          if (fav['id'] === this.movieId) {
-            this.isFavorited = true;
-          }
-        });
-      });
-  }
-
   getMovieDetails(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apis.getMovieDetails(this.movieId)
@@ -479,6 +466,19 @@ export class MovieDetailsComponent implements OnInit {
         this.as.openLoginDialog();
       }
     });
+  }
+
+  checkIfMovieFavorited(): void {
+    // Check if movies is already favorited
+    this.favMoviesObsRef
+      .subscribe(resp => {
+        this.isFavorited = false;
+        resp.forEach(fav => {
+          if (fav['id'] === this.movieId) {
+            this.isFavorited = true;
+          }
+        });
+      });
   }
 
   // Add / Remove movie from Favorites

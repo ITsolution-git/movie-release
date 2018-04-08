@@ -16,27 +16,7 @@
   <!-- Movies List -->
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="result-list" *ngIf="!loading && moviesList">
     <mat-card *ngFor="let movie of moviesList" class="result-card">
-      <a (click)="this.as.goToMovieDetails(movie.id)">
-        <!-- Movie Poster -->
-        <div>
-          <img *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]" [alt]="movie.title"
-            class="result-img">
-          <ng-template #defaultMovieImage>
-            <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="result-img">
-          </ng-template>
-        </div>
-        <!-- Movie Info -->
-        <div class="result-info">
-          <h3>{{ movie.title }}
-            <span class="year">({{ movie.release_date | date: 'y' }})</span>
-          </h3>
-          <div class="result-info-sub" fxLayout="row" fxLayoutAlign="center center">
-            <!-- <span class="genre">{{ this.as.getGenreName(movie.genre_ids[0]) }}</span> -->
-            <span class="result-rating">
-              <mat-icon class="rating">star</mat-icon>{{ movie.vote_average / 2 }}</span>
-          </div>
-        </div>
-      </a>
+      <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
   </div>
   <!-- More Loader -->
