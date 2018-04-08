@@ -32,7 +32,9 @@ export const detectBot = (userAgent: string): boolean => {
         'W3C_Validator',
         // SEO Tools
         'screaming frog seo spider',
-        'Pingdom.com_bot_version_1.4_(http://www.pingdom.com/)'
+        'pingdom.com_bot_version_1.4_(http://www.pingdom.com/)',
+        'google structured data testing tool',
+        'google-structured-data-testing-tool'
     ];
 
     const agent = userAgent.toLowerCase();
