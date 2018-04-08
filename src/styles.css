@@ -91,7 +91,6 @@ app-home .section{
 /*Material Cards*/
 mat-card{
     margin-bottom: 8px;
-    cursor: pointer;
     padding: 10px !important;
     background: rgba(0, 0, 0, 0.15) !important;
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -122,6 +121,9 @@ mat-card-title h2{
     font-weight: normal;
     margin: 0;
     font-size: 1em;
+}
+mat-card-title h2 a{
+    text-decoration: none;
 }
 .mat-card-subtitle{
     color: #999;
