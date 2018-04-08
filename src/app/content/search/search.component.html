@@ -1,39 +1,43 @@
-<!-- Page Title -->
-<section id="search-header">
-  <h2>Search results for "{{ pageTitle }}"</h2>
-
-  <!-- Results Counter -->
-  <div>Showing :
-    <span *ngIf="currentPageIndex === totalPages">{{ totalResults }}</span>
-    <span *ngIf="currentPageIndex !== totalPages">{{ currentPageIndex * 20 }}</span> / {{ totalResults }}
-  </div>
-</section>
-
-<!-- Movies -->
-<div *ngIf="moviesList">
-  <div *ngIf="!loading" class="result-content">
-    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="result-list">
-      <mat-card *ngFor="let movie of moviesList" class="result-card" [id]="movie.id">
-        <app-movie-card [movie]="movie"></app-movie-card>
-      </mat-card>
+<div id="jumbotron" class="mat-elevation-z6">
+  <div class="container">
+    <h1>Search results for "{{ pageTitle }}"</h1>
+    <h2 class="page-description">{{ pageSeoDescr }}</h2>
+    <!-- <div class="advanced_filters"></div> -->
+    <!-- <div class="page-taxonomy-list"></div> -->
+    <!-- <div id="breadcrumbs"></div> -->
+    <!-- Results Counter -->
+    <div id="page-header" fxLayout="row">
+      <div id="header-left" fxFlex>
+        <div *ngIf="moviesList" id="results-counter">Showing:
+          <span *ngIf="currentPageIndex === totalPages">{{ totalResults }}</span>
+          <span *ngIf="currentPageIndex !== totalPages">{{ currentPageIndex * 20 }}</span> / {{ totalResults }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- Loader -->
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-</div>
-
+<section *ngIf="!loading && moviesList" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="result-list">
+  <div class="wrapper movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+    <mat-card *ngFor="let movie of moviesList; let i = index" class="movie-card" tabindex="0" [id]="movie.id">
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </mat-card>
+  </div>
+</section>
+<section *ngIf="!loading && moviesList?.length < 1">
+  <div class="wrapper movies-list mat-padding" fxLayout="column" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+    <p>Sorry, nothing found for your search criteria.</p>
+    <p>Try searching for movie titles, or use the left navigation to find your preffered genres.</p>
+  </div>
+</section>
 <!-- More Loader -->
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+<div fxLayout="column" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
-
 <!-- Load More Button -->
 <div id="load-more" *ngIf="!loading && currentPageIndex !== totalPages">
   <button mat-raised-button color="primary" (click)="loadMoreResults(currentPageIndex + 1)">LOAD MORE...</button>
 </div>
-
-<!-- No Results -->
-<div *ngIf="!loading && moviesList?.length < 1">NO RESULTS FOR THIS SEARCH CRITERIA.</div>
+<!-- Loader -->
+<div fxLayout="column" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

@@ -31,14 +31,9 @@ h1, h2, h3, h4, h5, h6{
     text-align: right;
 }
 /*App Wrapper*/
-app-main-movies-directory, app-movies, app-search{
+app-main-movies-directory, app-movies, app-genres, app-search{
     display: block;
     padding: 1rem;
-}
-app-genres{
-    max-width: 1100px;
-    margin: auto;
-    display: block;
 }
 .mat-sidenav-content a:hover, .mat-sidenav-content a:focus, .mat-sidenav-content a:active{
     color: #c62828;
@@ -109,7 +104,7 @@ mat-card:hover{
     background: rgba(0, 0, 0, 0.66) !important;
     filter: grayscale(0%);
 }
-app-home mat-card, app-movies mat-card, app-main-movies-directory mat-card, #similar-movies mat-card{
+app-home mat-card, app-movies mat-card, app-main-movies-directory mat-card, #similar-movies mat-card, app-genres mat-card, app-search mat-card{
     max-width: 215px;
 }
 .mat-card-header-text{
@@ -202,9 +197,8 @@ mat-icon.rating{
     -webkit-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     position: relative;
     background-size: cover;
-    min-height: 300px;
 }
-app-movies #jumbotron, app-main-movies-directory #jumbotron{
+app-movies #jumbotron, app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron{
     margin: -1rem -1rem 0rem -1rem;
 }
 /*Jumbotron END*/
