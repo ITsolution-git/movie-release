@@ -61,7 +61,7 @@ export class MovieDetailsComponent implements OnInit {
   movieLinks: any[];
   movieImages: any[];
   movieImagesLength: number;
-  movieKeywords: any[];
+  // movieKeywords: any[];
   movieReleaseDates: any[];
   movieTrailers: any[];
   movieTrailersLength: number;
@@ -176,7 +176,7 @@ export class MovieDetailsComponent implements OnInit {
                     this.getMovieReleaseDates();
                     this.getSimilarMovies();
                     this.getMovieTrailers();
-                    this.getMovieKeywords();
+                    // this.getMovieKeywords();
                     // Initialize Firebase Ratings
                     this.movieRatingsObsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId).valueChanges();
                     this.movieRatingsRef = this.afDb.list(DB_COL.MOVIE_RATINGS + '/' + this.movieId);
@@ -298,12 +298,12 @@ export class MovieDetailsComponent implements OnInit {
         this.movieImagesLength = this.movieImages.length;
       });
   }
-  getMovieKeywords(): void {
-    this.apis.getMovieKeywords(this.movieId)
-      .subscribe((res) => {
-        this.movieKeywords = res['keywords'];
-      });
-  }
+  // getMovieKeywords(): void {
+  //   this.apis.getMovieKeywords(this.movieId)
+  //     .subscribe((res) => {
+  //       this.movieKeywords = res['keywords'];
+  //     });
+  // }
   getMovieReleaseDates(): void {
     this.apis.getMovieReleaseDates(this.movieId)
       .subscribe((res) => {
@@ -393,6 +393,10 @@ export class MovieDetailsComponent implements OnInit {
 
   onInfoTabChange($event): void {
     this.currentInfoTab = $event.index;
+    if (this.currentInfoTab === 1 && !this.movieAltTitles && !this.movieLinks && !this.movieTranslations) {
+      this.isLoadingInfo = true;
+      this.getMoreMovieDetails();
+    }
     // if (this.currentInfoTab === 3 && !this.movieReleaseDates) {
     //   this.isLoadingInfo = true;
     //   this.getMovieReleaseDates();

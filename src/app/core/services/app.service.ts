@@ -62,7 +62,8 @@ export class AppService {
   }
 
   scrollToTop(): void {
-    window.scrollTo(0, 0);
+    console.log('MUKODIK');
+    document.querySelector('.mat-sidenav-content').scrollTo(0, 0);
   }
 
   openLoginDialog(): void {

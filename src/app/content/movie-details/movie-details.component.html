@@ -111,10 +111,16 @@
             </span>
           </span>
           <span id="crew" class="detail-castcrew" fxLayout="column">
-            <span>Crew:
+            <!-- <span>Crew:
               <span *ngFor="let person of movieCreditsCrew | slice:0:7" itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <a itemprop="name" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
               </span>
+            </span> -->
+            <span>Directors:
+              <span *ngFor="let person of movieCreditsCrew" itemprop="director" itemscope itemtype="http://schema.org/Person"><a itemprop="name" *ngIf="person.job==='Director'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a></span>
+            </span>
+            <span>Producers:
+              <span *ngFor="let person of movieCreditsCrew" itemprop="author" itemscope itemtype="http://schema.org/Person"><a itemprop="name" *ngIf="person.job==='Producer'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a></span>
             </span>
           </span>
         </div>
@@ -201,18 +207,48 @@
         </mat-tab>
         <mat-tab label="Technical Details">
           <div class="mat-tab-body-wrapper">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-              standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-              make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-              Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
-              of Lorem Ipsum.</p>
+            <!-- More Info loader -->
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingInfo" class="loader">
+              <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+            </div>
+            <div class="more-info">
+              <!-- More Info Content-->
+              <p *ngIf="movieAltTitles?.length && !isLoadingInfo">Alternative Titles:
+                <span *ngFor="let altTitle of movieAltTitles; let i = index">
+                  {{ altTitle.title }}
+                  <span *ngIf="i < movieAltTitles?.length - 1">,</span>
+                </span>
+              </p>
+              <p *ngIf="movieDetails.budget !== 0 && !isLoadingInfo">Budget: {{ movieDetails.budget | number: '1.0-0' }} USD</p>
+              <p *ngIf="movieDetails.revenue !== 0 && !isLoadingInfo">Revenue: {{ movieDetails.revenue | number: '1.0-0' }} USD</p>
+              <p *ngIf="movieDetails.spoken_languages?.length && !isLoadingInfo">Movie Languages:
+                <span *ngFor="let lang of movieDetails.spoken_languages; let i = index">
+                  {{ lang.name }}
+                  <span *ngIf="i < movieDetails.spoken_languages?.length - 1">,</span>
+                </span>
+              </p>
+              <p *ngIf="movieTranslations?.length && !isLoadingInfo">Translations:
+                <span *ngFor="let translation of movieTranslations; let i = index">
+                  {{ translation.name }}
+                  <span *ngIf="i < movieTranslations?.length - 1">,</span>
+                </span>
+              </p>
+              <p *ngIf="movieDetails.homepage && !isLoadingInfo">Homepage:
+                <a [href]="movieDetails.homepage" target="_blank">{{ movieDetails.homepage }}</a>
+              </p>
+              <div *ngIf="movieLinks && !isLoadingInfo" id="movie-links">
+                <div *ngIf="movieLinks.facebook_id">facebook: {{ movieLinks.facebook_id }}</div>
+                <div *ngIf="movieLinks.imdb_id">imdb: {{ movieLinks.imdb_id }}</div>
+                <div *ngIf="movieLinks.instagram_id">instagram: {{ movieLinks.instagram_id }}</div>
+                <div *ngIf="movieLinks.twitter_id">twitter: {{ movieLinks.twitter_id }}</div>
+              </div>
+            </div>
           </div>
         </mat-tab>
       </mat-tab-group>
     </div>
   </section>
-  <section id="articles" class="section border" role="article" *ngIf="movieArticles">
+  <section *ngIf="movieArticles?.length" id="articles" class="section border" role="article">
     <div class="section-header">
       <div class="section-description">
         <h2 class="section-title">
