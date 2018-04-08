@@ -22,37 +22,8 @@
   </div>
   <div class="wrapper border movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
     <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card" tabindex="0">
-      <mat-card-header>
-        <mat-card-title>
-          <h2><a (click)="this.as.goToMovieDetails(movie.id)">{{ movie.title }}</a></h2>
-        </mat-card-title>
-        <mat-card-subtitle>
-          <span>Movie Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-        </mat-card-subtitle>
-      </mat-card-header>
-      <a (click)="this.as.goToMovieDetails(movie.id)">
-        <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]"
-          [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'" />
-        <ng-template #defaultMovieImage>
-          <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="mat-card-image">
-        </ng-template>
-      </a>
-      <mat-card-content>
-        <h4 class="short-story">Short Story: </h4>
-        <p>{{ movie.overview | slice:0:100 }} […] </p>
-      </mat-card-content>
-      <mat-card-footer>
-        <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-          <button mat-button>
-            <mat-icon class="rating">star</mat-icon>
-            <span class="rating-number">{{ movie.vote_average / 2 }}</span>
-          </button>
-          <button mat-button>
-            <mat-icon class="mat-icon material-icons">favorite_border</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card-footer>
-    </mat-card>
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </mat-card> 
   </div>
 </section>
 <section *ngIf="!loading" id="upcoming" class="now-playing-movies-container section" label="Now Playing Movies">

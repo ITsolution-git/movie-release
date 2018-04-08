@@ -14,7 +14,8 @@
       <!-- Movie Poster Image -->
       <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%">
         <img *ngIf="movieDetails.poster_path;" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
-          onError="this.src='assets/img/default-movie-poster.png';" [alt]="movieDetails.title + ' Official Movie Poster'" [title]="movieDetails.title + ' Official Movie Poster'" />
+          onError="this.src='assets/img/default-movie-poster.png';" [alt]="movieDetails.title + ' Official Movie Poster'" [title]="movieDetails.title + ' Official Movie Poster'"
+        />
       </div>
       <div id="movie-content-info" fxFlex="80" fxFlex.sm="80%" fxFlex.xs="80%">
         <!-- Movie Rating -->
@@ -227,21 +228,8 @@
     <!-- Similar Movies Tab-->
     <section label="Similar Movies" *ngIf="!loading" id="similar-movies" class="similar-movies-container section">
       <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
-        <mat-card class="movie-card" *ngFor="let movie of similarMovies" tabindex="0" (click)="this.as.goToMovieDetails(movie.id)">
-          <mat-card-header>
-            <mat-card-title>
-              <h2>{{ movie.title }}</h2>
-            </mat-card-title>
-            <mat-card-subtitle>
-              <span>Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
-            </mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + movie.poster_path]"
-            [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'">
-          <ng-template #defaultMovieImage>
-            <img mat-card-image class="movie-img" src="assets/img/default-movie-poster.png" [alt]="movie.title + ' Current Movie Releases'"
-              [title]="movie.title + ' Current Movie Releases'">
-          </ng-template>
+        <mat-card class="movie-card" *ngFor="let movie of similarMovies" tabindex="0">
+          <app-movie-card [movie]="movie"></app-movie-card>
         </mat-card>
       </div>
     </section>
