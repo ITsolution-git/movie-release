@@ -137,12 +137,7 @@
                   <span *ngIf="i < movieDetails.production_companies?.length - 1">,</span>
                 </span>
               </p>
-              <p *ngIf="movieDetails.production_countries?.length && !isLoadingInfo">Production Countries:
-                <span *ngFor="let country of movieDetails.production_countries; let i = index">
-                  {{ country.name }}
-                  <span *ngIf="i < movieDetails.production_countries?.length - 1">,</span>
-                </span>
-              </p>
+
               <p *ngIf="movieDetails.spoken_languages?.length && !isLoadingInfo">Spoken Languages:
                 <span *ngFor="let lang of movieDetails.spoken_languages; let i = index">
                   {{ lang.name }}

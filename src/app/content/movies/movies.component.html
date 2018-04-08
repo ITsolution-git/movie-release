@@ -36,6 +36,7 @@
   </div>
 </div>
 <!-- Movie Tabs Container -->
+<div class="wrapper">
 <mat-tab-group (selectChange)="onMovieTabChange($event)" [selectedIndex]="currentMovieTab" mat-stretch-tabs="true" id="movies-tab-group">
   <!-- Upcoming Movies Tab-->
   <mat-tab label="Upcoming">
@@ -177,3 +178,4 @@
     </div>
   </mat-tab>
 </mat-tab-group>
+</div>
