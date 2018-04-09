@@ -2,7 +2,7 @@
 <!-- Movie Details & Posters -->
 <div class="wrapper margin" *ngIf="movieDetails" [id]="movieDetails.id">
   <!-- Movie Details -->
-  <section id="movie-details" class="section border" role="main" itemscope itemtype="http://schema.org/Movie">
+  <section id="movie-details" class="section margin padding border" role="main" itemscope itemtype="http://schema.org/Movie">
     <div id="movie-content-head" role="contentinfo" fxLayout="column" fxLayout.xs="column">
       <!-- Movie Title -->
       <h1 id="movie-title" itemprop="name">{{ movieDetails.title }}
@@ -73,13 +73,11 @@
             </span>
           </div>
         </div>
-        <!-- Movie Tagline -->
-        <div id="movie-tagline" fxLayout="row" *ngIf="movieDetails.tagline">
-          <span>Movie Tagline:
+        <!-- Movie Details -->
+        <div id="movie-tech-details" fxLayoutWrap="wrap" fxLayout="column" fxLayout.xs="column">
+          <span id="movie-tagline" *ngIf="movieDetails.tagline">Movie Tagline:
             <span>{{ movieDetails.tagline }}</span>
           </span>
-        </div>
-        <div id="movie-tech-details" fxLayoutWrap="wrap" fxLayout="column" fxLayout.xs="column">
           <span id="year" class="detail-release-date" *ngIf="movieDetails.release_date">Release Date:
             <span itemprop="datePublished" content="movieDetails.release_date">{{ movieDetails.release_date | date:'longDate' }}</span>
           </span>
@@ -99,8 +97,7 @@
           </span>
           <span id="prod-comp" *ngIf="movieDetails.production_companies?.length">Production Companies:
             <span *ngFor="let company of movieDetails.production_companies; let i = index" itemprop="productionCompany" itemscope itemtype="http://schema.org/Organization">
-              <span class="company-link" itemprop="name">{{ company.name }}</span>
-              <span *ngIf="i < movieDetails.production_companies?.length - 1">,</span>
+              <span class="company-link" itemprop="name">{{ company.name }}</span><span *ngIf="i < movieDetails.production_companies?.length - 1">,</span>
             </span>
           </span>
           <span id="cast" class="detail-castcrew" fxLayout="column">
@@ -117,10 +114,16 @@
               </span>
             </span> -->
             <span>Directors:
-              <span *ngFor="let person of movieCreditsCrew" itemprop="director" itemscope itemtype="http://schema.org/Person"><a itemprop="name" *ngIf="person.job==='Director'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a></span>
+              <span *ngFor="let person of movieCreditsCrew" itemprop="director" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="name" *ngIf="person.job==='Director'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
+              </span>
             </span>
+          </span>
+          <span id="crew1" class="detail-castcrew" fxLayout="column">
             <span>Producers:
-              <span *ngFor="let person of movieCreditsCrew" itemprop="author" itemscope itemtype="http://schema.org/Person"><a itemprop="name" *ngIf="person.job==='Producer'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a></span>
+              <span *ngFor="let person of movieCreditsCrew" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="name" *ngIf="person.job==='Producer'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
+              </span>
             </span>
           </span>
         </div>
@@ -155,10 +158,13 @@
           <p itemprop="description">{{ movieDetails.overview }}</p>
         </div>
       </div>
-      <div id="single-ad-widget1" class="advert-widget">
-        <p>Here comes the advertisment widget</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-          dummy text ever since the 1500s</p>
+      <div *ngIf="adsbygoogle?.length" id="single-ad-widget1" class="advert-widget">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- CMR - Movie Details - Responsive -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1194632820323385" data-ad-slot="8145249147" data-ad-format="auto"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
     </div>
     <div id="movie-content-cast">
@@ -275,21 +281,21 @@
       </div>
     </article>
   </section>
-  <!-- <section id="merchandising" class="section">
+  <!-- <section id="merchandising" *ngIf="merchandise?.length" class="section">
     <div class="section-header">
       <div class="section-description">
         <h3 class="section-title">{{ movieDetails.title }} - Merchandising</h3>
       </div>
     </div>
     <div class="merchan-list border">
-      <p>THIS IS THE MECHANDISING TABLE</p>
+      <span id="merchandise"></span>
     </div>
   </section> -->
   <section id="similar-movies" class="section similar-movies-container" label="Similar Movies" *ngIf="!loading">
     <div class="section-header">
       <div class="section-description">
         <h3 class="section-title">Similar Movies - Our Recommendations</h3>
-        <p>These movies recommendations shown by the related keywords and genres of the current movie</p>
+        <p>The movie recommendations related to <em>{{ movieDetails.title }}</em>. List provided with a combination of the related keywords and genres of the current movie.</p>
       </div>
     </div>
     <div class="movies-list" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
@@ -297,10 +303,13 @@
         <app-movie-card [movie]="movie"></app-movie-card>
       </mat-card>
     </div>
-    <div id="single-ad-widget2" class="advert-widget">
-      <p>Here comes the advertisment widget</p>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-        dummy text ever since the 1500s</p>
+    <div *ngIf="adsbygoogle?.length" id="single-ad-widget2" class="advert-widget">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- CMR - Single Ad Widget - Responsive -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1194632820323385" data-ad-slot="4009347956" data-ad-format="auto"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
   </section>
   <!-- Release Dates -->

@@ -1,10 +1,14 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto","Helvetica Neue Light","Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
-  height: 100%;
-  width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto","Helvetica Neue Light","Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
+    height: 100%;
+    width: 100%;
+}
+mat-sidenav-content{
+    scroll-behavior: auto;
+    scroll-behavior: smooth;
 }
 *{
     box-sizing: border-box;
@@ -17,8 +21,33 @@ a{
     cursor: pointer;
     text-decoration: underline;
 }
+h1, h2, h3, h4, h5, h6{
+    font-weight: normal;
+}
+/*Default styling elements */
 .border-top-grey{
     border-top: 1px solid rgba(48, 48, 48, 0.50);
+}
+.page-title.entry-title {
+    font-size: 150%;
+    text-shadow: 1px 1px 1px #000;
+}
+.page-description {
+    font-size: 100%;
+    text-shadow: 1px 1px 1px #000;
+}
+/*Default styling elements END*/
+.section-details .view-all{
+    text-align: right;
+}
+.result-counter, .section-details{
+    color: #999;
+    font-size: 0.8em;
+}
+div#results-counter {
+    font-size: 80%;
+    color: #CCC;
+    margin-top: 10px;
 }
 .mat-list-item.active{
     background: rgba(255, 255, 255, 0.04);
@@ -28,16 +57,6 @@ mat-list-item span{
     display: inline-block;
     font-size: 80%;
     width: 110px;
-}
-h1, h2, h3, h4, h5, h6{
-    font-weight: normal;
-}
-.result-counter, .section-details{
-    color: #999;
-    font-size: 0.8em;
-}
-.section-details .view-all{
-    text-align: right;
 }
 /*App Wrapper*/
 app-main-movies-directory, app-movies, app-genres, app-search{
@@ -70,13 +89,19 @@ app-main-movies-directory, app-movies, app-genres, app-search{
     margin-top: 5%;
 }
 .border{
-    padding-bottom: 2rem;
     border-bottom: 1px solid rgba(48, 48, 48, 0.50);
 }
 /*Section*/
-.section{
+.section.margin.padding{
     padding-bottom: 2rem;
     margin-bottom: 2rem;
+}
+.section.padding{
+    padding-bottom: 2rem;
+}
+app-movies .section{
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 /*Section END*/
 .section-header {
@@ -194,16 +219,20 @@ mat-icon.rating{
 /*Material Cards END*/
 /*Jumbotron*/
 #jumbotron{
-    padding: 1rem 2rem 3rem 2rem;
+    padding: 1rem 3rem;
     margin: 0;
     box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     -moz-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     -webkit-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     position: relative;
     background-size: cover;
+    min-height: 186px;
 }
-app-movies #jumbotron, app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron{
+app-movies #jumbotron{
     margin: -1rem -1rem 0rem -1rem;
+}
+app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron{
+    margin: -1rem -1rem 2rem -1rem;
 }
 /*Jumbotron END*/
 #load-more{
@@ -356,10 +385,13 @@ app-footer {
     border-bottom: 1px solid #333;
   }
   .scrolltotop {
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.35);
-    border: none;
-    color: #FFF;
+    background: rgba(0, 0, 0, 0.35) !important;
+    z-index: 999;
+    position: fixed !important;
+    bottom: 20px;
+    right: 30px;
+    min-width: 40px !important;
+    padding: 0 !important;
   }
   .scrolltotop .mat-icon {
     padding: 15% 5%;
