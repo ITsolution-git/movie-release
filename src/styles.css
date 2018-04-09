@@ -18,7 +18,7 @@ a{
     text-decoration: underline;
 }
 .border-top-grey{
-    border-top: 1px solid #30303080;
+    border-top: 1px solid rgba(48, 48, 48, 0.50);
 }
 .mat-list-item.active{
     background: rgba(255, 255, 255, 0.04);
@@ -71,7 +71,7 @@ app-main-movies-directory, app-movies, app-genres, app-search{
 }
 .border{
     padding-bottom: 2rem;
-    border-bottom: 1px solid #6d6d6d24;
+    border-bottom: 1px solid rgba(48, 48, 48, 0.50);
 }
 /*Section*/
 .section{
@@ -133,7 +133,7 @@ mat-card-title h2 a{
 }
 .mat-card-subtitle{
     color: #999;
-    border-top: 1px solid #6d6d6d24;
+    border-top: 1px solid rgba(48, 48, 48, 0.50);
     padding-top: 5px;
     margin-bottom: 6px !important;
 }
@@ -162,7 +162,7 @@ mat-card-title h2 a{
     margin-right: 0 !important;
     margin-bottom: -10px !important;
     padding: 0 !important;
-    border-top: 1px solid #6d6d6d24;
+    border-top: 1px solid rgba(48, 48, 48, 0.50);
 }
 /*Tabs*/
 .mat-tab-group{
@@ -343,7 +343,7 @@ app-footer {
     color: #CCC;
   }
   #sitemap ul li a:hover {
-    background: #44444469;
+    background: rgba(68, 68, 68, 0.40);
     color: #FFF;
   }
   #credits,
@@ -353,11 +353,11 @@ app-footer {
     font-size: 0.8em;
   }
   #disclaimer {
-    border-bottom: 1px solid #4444449e;
+    border-bottom: 1px solid #333;
   }
   .scrolltotop {
     cursor: pointer;
-    background: #00000059;
+    background: rgba(0, 0, 0, 0.35);
     border: none;
     color: #FFF;
   }

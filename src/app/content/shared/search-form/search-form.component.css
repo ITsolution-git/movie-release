@@ -13,7 +13,7 @@ mat-select,
   padding-left: 1rem;
   outline: none;
   border: none;
-  background: #0000005e;
+  background: rgba(0,0,0,.66);
   color: #FFF;
 }
 .input-container input:focus{
