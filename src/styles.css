@@ -17,8 +17,17 @@ a{
     cursor: pointer;
     text-decoration: underline;
 }
+.border-top-grey{
+    border-top: 1px solid #30303080;
+}
 .mat-list-item.active{
     background: rgba(255, 255, 255, 0.04);
+}
+mat-list-item span{
+    margin: 0 10px;
+    display: inline-block;
+    font-size: 80%;
+    width: 110px;
 }
 h1, h2, h3, h4, h5, h6{
     font-weight: normal;
@@ -46,8 +55,7 @@ app-main-movies-directory, app-movies, app-genres, app-search{
     color: #FFF;
 }
 .sidenav-footer{
-    border-top: 1px solid #30303080;
-    padding: 15px 0;
+    padding: 0 !important;
 }
 .mat-drawer-container{
     overflow-y: auto !important;
@@ -262,22 +270,21 @@ mat-toolbar .mat-button.docs-button{
     color: #2A2A2A;
     text-align: center;
     width: 100%;
-    margin-top: 10px;
+    padding: 10px 0;
 }
 /*Nice Scrollbar*/
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px #000;
     box-shadow: inset 0 0 6px #000;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-      background: #000;
-  }
+}
 
+::-webkit-scrollbar-thumb {
+    background: #000;
+}
 /*Footer*/
 app-footer {
     background-color: #2A2A2A;
@@ -289,13 +296,11 @@ app-footer {
     font-size: 0.8em;
     display: block;
   }
-  
   app-footer footer#colophon {
     margin: 0 auto;
     display: block;
     padding: 0 10%;
   }
-  
   footer#colophon .widget-title {
     color: #DDD;
     font-size: 100%;
@@ -303,18 +308,15 @@ app-footer {
     text-transform: uppercase;
     font-weight: normal;
   }
-  
   footer#colophon .footer-inner {
     display: block;
     min-height: 250px;
     padding: 30px 0px;
     border-bottom: 1px solid #111;
   }
-  
   footer#colophon .footer-inner .footer-widget {
     margin: 0 3%;
   }
-  
   #sitemap {
     margin: auto;
     border-top: 1px solid #333;
@@ -323,17 +325,14 @@ app-footer {
     display: inline-block;
     width: 100%;
   }
-  
   #sitemap ul {
     margin: 0;
     padding: 0;
   }
-  
   #sitemap ul li {
     display: inline-block;
     list-style: none;
   }
-  
   #sitemap ul li a {
     display: block;
     position: relative;
@@ -343,30 +342,25 @@ app-footer {
     text-decoration: none;
     color: #CCC;
   }
-  
   #sitemap ul li a:hover {
     background: #44444469;
     color: #FFF;
   }
-  
   #credits,
   #disclaimer {
     padding: 15px 0px;
     color: #666;
     font-size: 0.8em;
   }
-  
   #disclaimer {
     border-bottom: 1px solid #4444449e;
   }
-  
   .scrolltotop {
     cursor: pointer;
     background: #00000059;
     border: none;
     color: #FFF;
   }
-  
   .scrolltotop .mat-icon {
     padding: 15% 5%;
   }

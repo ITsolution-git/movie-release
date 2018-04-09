@@ -1,4 +1,4 @@
-<div class="main-sidenav-container">
+<div class="main-sidenav-container" (backdropClick)="close()">
     <mat-toolbar class="sidenav-toolbar mat-elevation-z6">
         <button mat-icon-button (click)="sidebar.toggle()">
             <mat-icon>menu</mat-icon>
@@ -18,11 +18,11 @@
             <mat-nav-list role="list">
                 <app-sidenav></app-sidenav>
             </mat-nav-list>
-            <div class="sidenav-footer" fxLayoutAlign="center center" fxLayout="column">
-                <button mat-button (click)="sidebar.toggle()">
-                    <mat-icon>chevron_left</mat-icon> Collapse Sidebar
-                </button>
-                <em class="version">CMR - App version 0.1 | 2018</em>
+            <mat-nav-list class="sidenav-footer border-top-grey">
+                <mat-list-item role="listitem" tabindex="0" (click)="sidebar.toggle()"><mat-icon class="mat-icon material-icons">chevron_left</mat-icon><span>Close Sidebar</span></mat-list-item>
+            </mat-nav-list>
+            <div class="version border-top-grey">
+                <em>CMR - App version 0.1 | 2018</em>
             </div>
         </mat-sidenav>
         <mat-sidenav-content class="dashboard-container">
