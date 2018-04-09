@@ -61,6 +61,7 @@ export const processURL = (request: express.Request, response: express.Response)
     const isBot = detectBot(request.headers['user-agent'] as string);
     const genratedUrl = generateUrl(request);
     if (isBot) {
+        console.log(`Rendering: ${RENDER_URL}/${genratedUrl}`);
         // If Bot, fetch url via rendertron
         fetch(`${RENDER_URL}/${genratedUrl}`).then(res => res.text())
             .then(body => {
@@ -68,11 +69,13 @@ export const processURL = (request: express.Request, response: express.Response)
                 response.set('Cache-Control', CACHE_CONTROL_VALUE);
                 response.set('Vary', 'User-Agent');
                 response.send(body.toString());
+            })
+            .catch(error => {
+                console.log('!Error While Rendering URL: ', error);
             });
     } else {
         // Not a bot, fetch the regular Angular app
-        // fetch(`https://${APP_URL}`) // PROD
-        fetch(`${APP_URL}`) // DEV
+        fetch(APP_URL)
             .then(res => res.text())
             .then(body => {
                 response.send(body.toString());
