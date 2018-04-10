@@ -3,7 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // Material
-import { MatIconModule, MatTabsModule, MatButtonModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {
+  MatIconModule,
+  MatTabsModule,
+  MatButtonModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCardModule
+} from '@angular/material';
 // Routing Module
 import { ToolsRoutingModule } from './tools-routing.module';
 // Components
@@ -11,6 +19,7 @@ import { DuplicateCheckerToolComponent } from './duplicate-checker-tool/duplicat
 import { SitemapsGeneratorToolComponent } from './sitemaps-generator-tool/sitemaps-generator-tool.component';
 import { ToolsComponent } from './tools.component';
 import { ApiToolsComponent } from './api-tools/api-tools.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,7 +32,8 @@ import { ApiToolsComponent } from './api-tools/api-tools.component';
     MatTabsModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
   ],
   declarations: [
     ApiToolsComponent,

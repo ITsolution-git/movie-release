@@ -1,7 +1,3 @@
-a {
-  color: #000;
-}
-
 ul {
   margin: 0;
   padding: 0;
@@ -13,11 +9,13 @@ li {
 
 h1 mat-icon {
   cursor: pointer;
+  color: #ddd;
 }
 
 mat-icon {
   position: relative;
   top: 5px;
+  color: #fff;
 }
 
 .loader {
@@ -64,7 +62,7 @@ mat-icon {
 
 .fixed-box {
   position: fixed;
-  background: #fff;
+  /* background: #fff; */
   padding: 1rem 2rem 1rem 0rem;
   box-shadow: 1px 1px 1px 2px #ddd;
 }
