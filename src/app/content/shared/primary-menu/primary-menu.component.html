@@ -8,7 +8,7 @@
   </button>
   <!-- My Account -->
   <button mat-button class="account-button" [matMenuTriggerFor]="account" *ngIf="this.aus.isLoggedIn === true">
-    <mat-icon class="mat-icon material-icons">perm_identity</mat-icon>
+    <mat-icon class="mat-icon material-icons">face</mat-icon>
   </button>
   <mat-menu #account="matMenu" [overlapTrigger]="false">
     <a mat-menu-item routerLink="/my-account" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Account</a>
