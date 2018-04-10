@@ -1,5 +1,5 @@
 // CORE
-export const APP_ROOT_URL = 'https://currentmoviereleases.com/';
+export const APP_ROOT_URL = 'https://currentmoviereleases.com';
 // export const APP_URL = 'https://currentmoviereleases.com'; // PROD
 export const APP_URL = 'http://localhost:5001'; // DEV
 export const RENDER_URL = 'https://render-tron.appspot.com/render';

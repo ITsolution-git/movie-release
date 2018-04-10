@@ -68,13 +68,13 @@ app.listen(PORT, () => {
 
 // Sitemap Files Location
 app.get('/sitemap-movies-xml', (req, res) => {
-    res.sendFile(path.join(__dirname, './sitemaps/movies-sitemap.xml'));
+    res.sendFile(path.join(__dirname, './movies-sitemap.xml'));
 });
 app.get('/sitemap-movie-genres-xml', (req, res) => {
-    res.sendFile(path.join(__dirname, './sitemaps/movie-genres-sitemap.xml'));
+    res.sendFile(path.join(__dirname, './movie-genres-sitemap.xml'));
 });
 app.get('/sitemap-celebs-xml', (req, res) => {
-    res.sendFile(path.join(__dirname, './sitemaps/celebs-sitemap.xml'));
+    res.sendFile(path.join(__dirname, './celebs-sitemap.xml'));
 });
 
 // Sitemap Endpoints

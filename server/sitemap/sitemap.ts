@@ -141,7 +141,7 @@ const generateSitemap = (data: Array<any>, type: string) => {
 
 const saveXMLFile = (xml: any, type: string) => {
     const date = Date.now();
-    fs.appendFile('sitemaps/' + type + '-sitemap-' + date + '.xml', xml, function (err) {
+    fs.appendFile(type + '-sitemap-' + date + '.xml', xml, function (err) {
         if (err) {
             throw err;
         }
