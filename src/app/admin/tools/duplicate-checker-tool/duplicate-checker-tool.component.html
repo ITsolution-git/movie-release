@@ -1,13 +1,10 @@
 <mat-tab-group>
   <mat-tab label="Movies">
     <!-- Movies Duplicate Checker -->
-    <mat-card>
-      <mat-card-title>
-        <h1>Duplicate Movie URLs
+    <div class="wrapper">
+        <h2>Duplicate Movie URLs
           <mat-icon (click)="getAllMoviesResults()">refresh</mat-icon>
-        </h1>
-      </mat-card-title>
-
+        </h2>
       {{ currentMoviesStatus }}
 
       <div *ngIf="fbDuplicateMovieTitles?.length && !loadingMovies">
@@ -50,17 +47,15 @@
       <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMovies" class="loader">
         <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
       </div>
-    </mat-card>
+    </div>
   </mat-tab>
 
   <mat-tab label="Persons">
     <!-- Persons Duplicate Checker -->
-    <mat-card>
-      <mat-card-title>
-        <h1>Duplicate Person URLs
+    <div class="wrapper">
+        <h2>Duplicate Person URLs
           <mat-icon (click)="getAllPersonsResults()">refresh</mat-icon>
-        </h1>
-      </mat-card-title>
+        </h2>
 
       {{ currentPersonsStatus }}
 
@@ -104,6 +99,6 @@
       <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingPersons" class="loader">
         <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
       </div>
-    </mat-card>
+    </div>
   </mat-tab>
 </mat-tab-group>
