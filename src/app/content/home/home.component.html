@@ -1,13 +1,11 @@
 <!-- Jumbotron-->
 <app-jumbotron></app-jumbotron>
 <!-- Now Playng Movies -->
-<section *ngIf="!loading" id="now-playing" class="now-playing-movies-container section border" label="Now Playing Movies">
+<section *ngIf="!loading" id="now-playing" class="now-playing-movies-container section padding" label="Now Playing Movies">
   <div class="section-header wrapper" fxLayout="column">
     <div class="section-description" fxLayout="column">
-      <h2 class="section-title">Current Movie Releases - Now playing movies in theaters near you</h2>
-      <p>Native and elements are always used in order to provide the most straightforward and accessible experience for users.
-        A element should be used whenever some action is performed. An element should be used whenever the user will navigate
-        to another view.</p>
+      <h2 class="section-title">Now playing movies in theaters near you</h2>
+      <p>Top 20 picks of now playing movies in theaters near you. Browse the list of the current releases and the new movies playing with release dates and rating.</p>
     </div>
     <div class="section-details" fxLayout="row">
       <div class="results-counter" fxFlex="50">
@@ -16,23 +14,21 @@
         <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 20 }}</span> / {{ nowPlayingMoviesTotalResults }}
       </div>
       <div class="view-all" fxFlex="50">
-        <a href="/movies/now-playing/">View All Now Playing Movies</a>
+        <a href="/movies/now-playing/">Now Playing Movies - Full list</a>
       </div>
     </div>
   </div>
-  <div class="wrapper movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+  <div class="wrapper movies-list mat-padding border" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
     <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card" tabindex="0">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
   </div>
 </section>
-<section *ngIf="!loading" id="upcoming" class="now-playing-movies-container section" label="Now Playing Movies">
+<section *ngIf="!loading" id="upcoming" class="now-playing-movies-container section padding" label="Now Playing Movies">
   <div class="section-header wrapper" fxLayout="column">
     <div class="section-description" fxLayout="column">
-      <h2 class="section-title">Upcoming Movies - Movies comming soon to theaters near you</h2>
-      <p>Native and elements are always used in order to provide the most straightforward and accessible experience for users.
-        A element should be used whenever some action is performed. An element should be used whenever the user will navigate
-        to another view.</p>
+      <h2 class="section-title">Upcoming Movies - Comming Soon</h2>
+      <p>Top 20 picks of upcoming movies coming soon to theaters. Find the freshest list of new releases with releases dates, watch movie trailers, vote your favorites, see cast and crew list and more.</p>
     </div>
     <div class="section-details" fxLayout="row">
       <div class="results-counter" fxFlex="50">
@@ -41,7 +37,7 @@
         <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 20 }}</span> / {{ upcomingMoviesTotalResults }}
       </div>
       <div class="view-all" fxFlex="50">
-        <a href="/movies/upcoming/">View All Upcoming Movies</a>
+        <a href="/movies/upcoming/">Upcoming Movies - Full list</a>
       </div>
     </div>
   </div>

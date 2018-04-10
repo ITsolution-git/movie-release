@@ -17,7 +17,7 @@ h1{
 }
 #articles .article-inner{
     font-size: 80%;
-    background: #0000003d;
+    background: rgba(0, 0, 0, 0.25);
     padding: 2.5rem 1rem 0.5rem 1rem;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.49) 0px 5px 10px inset;
@@ -26,13 +26,13 @@ h1{
 }
 #articles .section-header {
     margin-bottom: 0;
-    background: #a42d2d85;
+    background: rgba(164, 45, 45, 0.52);
     display: block;
     padding: 1px 1rem;
 }
 .article-data {
     padding: 0.5rem 9% 0.5rem 1rem;
-    background: #942e2e6b;
+    background: rgba(148, 46, 46, 0.42);
     position: absolute;
     width: 90%;
     top: 0px;
@@ -78,9 +78,9 @@ h1{
     z-index: -1;
     box-sizing: border-box;
 }
-span#year.detail-release-date, span#status.detail-pg-rating, span#genres.detail-genre, span#duration.detail-runtime, span#prod-comp.detail-prod-comp, span#cast.detail-castcrew{
-    display: block;
+span#year.detail-release-date, span#status.detail-pg-rating, span#genres.detail-genre, span#duration.detail-runtime, span#prod-comp.detail-prod-comp, span#cast.detail-castcrew, span#crew.detail-castcrew, span#crew1.detail-castcrew, span#prod-comp, #movie-tagline span, span#movie-tagline{
     margin: 5px 0;
+    font-size: 85%;
 }
 .advert-widget{
     background: #000;

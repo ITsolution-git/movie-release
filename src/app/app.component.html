@@ -5,7 +5,7 @@
         </button>
         <a href="/" aria-label="Current Movie Releases" class="docs-button mat-button" tabindex="0" aria-disabled="false" routerlink="/">
             <span class="mat-button-wrapper">
-                <img alt="Current Movie Releases" class="docs-cmr-logo" src="../assets/img/currentmoviereleases_logo_v2.svg">
+                <img alt="Looking for your next favorite movie? - Current Movie Releases" class="docs-cmr-logo" src="../assets/img/currentmoviereleases_logo_v2.svg">
                 <span class="sidenav-app-name" fxHide.xs="true">Current Movie Releases</span>
             </span>
             <div class="mat-button-ripple mat-ripple" matripple=""></div>
@@ -18,11 +18,11 @@
             <mat-nav-list role="list">
                 <app-sidenav></app-sidenav>
             </mat-nav-list>
-            <div class="sidenav-footer" fxLayoutAlign="center center" fxLayout="column">
-                <button mat-button (click)="sidebar.toggle()">
-                    <mat-icon>chevron_left</mat-icon> Collapse Sidebar
-                </button>
-                <em class="version">CMR - App version 0.1 | 2018</em>
+            <mat-nav-list class="sidenav-footer border-top-grey">
+                <mat-list-item role="listitem" tabindex="0" (click)="sidebar.toggle()"><mat-icon class="mat-icon material-icons">chevron_left</mat-icon><span>Close Sidebar</span></mat-list-item>
+            </mat-nav-list>
+            <div class="version border-top-grey">
+                <em>CMR - App version 0.1 | 2018</em>
             </div>
         </mat-sidenav>
         <mat-sidenav-content class="dashboard-container">

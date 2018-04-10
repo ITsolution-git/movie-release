@@ -38,7 +38,7 @@ export class HomeComponent {
     private apis: ApiService
   ) {
     // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle(' What is your next best movie? | ' + APP_SEO_NAME);
+    this.title.setTitle('Looking for your next favorite movie? | ' + APP_SEO_NAME);
     this.meta
       .updateTag(
         {
