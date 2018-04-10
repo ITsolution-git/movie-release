@@ -37,18 +37,22 @@ export class HomeComponent {
     public as: AppService,
     private apis: ApiService
   ) {
-    // Set SEO Title, Keywords and Description Meta tags
-    this.title.setTitle('Looking for your next favorite movie? | ' + APP_SEO_NAME);
-    this.meta
-      .updateTag(
-        {
-          name: 'description',
-          content: APP_SEO_NAME + ' the best source for Movie, TV Show, Celebrity content, Cinema Tickets and more! - ' + APP_SEO_NAME
-        }
-      );
-    this.meta.updateTag(
-      { name: 'keywords', content: 'movies, tv shows, celebrities, production companies, cinema tickets,  actors, actresses' },
-    );
+    // // Set SEO Title, Keywords and Description Meta tags
+    // this.title.setTitle('Looking for your next favorite movie? | ' + APP_SEO_NAME);
+    // this.meta
+    //   .updateTag(
+    //     {
+    //       name: 'description',
+    //       // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:max-line-length
+    //       content: APP_SEO_NAME + ' in 2018. Looking for your next favorite movie? Try the best selection of the current movie releases listed in their respective movie genres. Feel free to browse our wide selection of now playing Movies and upcoming movies to find the right movie that is playing near you right now!'
+    //     }
+    //   );
+    // this.meta.updateTag(
+    //   // tslint:disable-next-line:max-line-length
+    // tslint:disable-next-line:max-line-length
+    //   { name: 'keywords', content: 'current movie releases, current movies, movie releases, now playing movies, new releases, tv shows, celebrities, directors, producers, production companies, actors, actresses' },
+    // );
 
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
