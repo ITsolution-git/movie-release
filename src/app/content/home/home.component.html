@@ -14,7 +14,7 @@
         <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 20 }}</span> / {{ nowPlayingMoviesTotalResults }}
       </div>
       <div class="view-all" fxFlex="50">
-        <a href="/movies/now-playing/">Now Playing Movies - Full list</a>
+        <a href="/movies/now-playing/" routerlink="/movies/now-playing/">Now Playing Movies - Full list</a>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
         <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 20 }}</span> / {{ upcomingMoviesTotalResults }}
       </div>
       <div class="view-all" fxFlex="50">
-        <a href="/movies/upcoming/">Upcoming Movies - Full list</a>
+        <a href="/movies/upcoming/" routerlink="/movies/upcoming/">Upcoming Movies - Full list</a>
       </div>
     </div>
   </div>

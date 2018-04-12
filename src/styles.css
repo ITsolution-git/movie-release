@@ -32,6 +32,9 @@ h1, h2, h3, h4, h5, h6{
     font-size: 150%;
     text-shadow: 1px 1px 1px #000;
 }
+app-home .page-title.entry-title{
+    font-size: 200%;
+}
 .page-description {
     font-size: 100%;
     text-shadow: 1px 1px 1px #000;
@@ -119,6 +122,11 @@ app-home .section-header{
     margin-top: 0;
 }
 /*App Wrapper END*/
+/*Not found*/
+app-page-not-found {
+    text-align: center;
+    display: block;
+}
 /*Material Cards*/
 mat-card{
     margin-bottom: 8px;
@@ -219,6 +227,7 @@ mat-icon.rating{
 /*Material Cards END*/
 /*Jumbotron*/
 #jumbotron{
+    background-image: url("/assets/img/currentmoviereleases_new_releases_2018.jpg");
     padding: 1rem 2rem;
     margin: 0;
     box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
@@ -228,11 +237,17 @@ mat-icon.rating{
     background-size: cover;
     min-height: 186px;
 }
+app-home #jumbotron{
+    padding: 20% 15%;
+    margin: 0rem 0rem 1rem 0rem;
+    text-align: center;
+}
 app-movies #jumbotron{
     margin: -1rem -1rem 0rem -1rem;
 }
 app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron{
     margin: -1rem -1rem 2rem -1rem;
+    background-position: bottom;
 }
 /*Jumbotron END*/
 #load-more{
@@ -254,17 +269,6 @@ app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotr
 /*Mat Dark Theme*/
 mat-dark-theme #jumbotron{
     background-color: #2A2A2A;
-}
-app-home #jumbotron{
-    background-image: url("/assets/img/background.png");
-    background-size: 100%;
-    padding: 20% 15%;
-    margin: 0rem 0rem 1rem 0rem;
-    text-align: center;
-}
-app-movies #jumbotron{
-    background-image: url("https://www.themoviedb.org/static_cache/v4/footers_v2/Furious7-d0f17d0793c58d83056a64d22157c9aff5ffb4c179b60048264e5158916fec22.jpg");
-    background-size: cover;
 }
 mat-dark-theme a{
     color: #FFF;
@@ -400,14 +404,17 @@ app-footer {
 /*Material Extras END*/
 @media (max-width: 599px) {
     mat-card{
-        max-width: 90% !important;
+        max-width: 40% !important;
     }
     .mat-card-image{
         max-height: inherit;
-        height: auto;
+        min-height: auto !important;
     }
     #movie-content-info{
         margin-right: -5px;
+    }
+    .mat-card-content p, .mat-card-subtitle, .short-story{
+        font-size: 0.6em !important;
     }
 }
 @media (min-width: 544px) {
