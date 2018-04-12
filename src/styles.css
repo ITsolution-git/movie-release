@@ -197,6 +197,9 @@ mat-card-title h2 a{
     padding: 0 !important;
     border-top: 1px solid rgba(48, 48, 48, 0.50);
 }
+mat-card .mat-card-actions .mat-button, mat-card .mat-card-actions .mat-raised-button{
+    min-width: auto !important;
+}
 /*Tabs*/
 .mat-tab-group{
     margin: 0rem -1rem;

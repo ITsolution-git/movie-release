@@ -2,9 +2,10 @@
 export const APP_SEO_NAME = 'Current Movie Releases';
 export const APP_BASE_URL = 'https://www.currentmoviereleases.com';
 export const DEFAULT_USER_IMG = '/assets/img/default-user.png';
-export const DEFAULT_POSTER_IMG = '';
-export const DEFAULT_PROFILE_IMG = '';
+export const DEFAULT_POSTER_IMG = '/assets/img/default-poster.png';
+export const DEFAULT_PROFILE_IMG = '/assets/img/default-poster1.png';
 export const DEFAULT_USER_ROLE = 'subscriber';
+export const DEFAULT_FB_IMAGE = '/assets/img/currentmoviereleases_logo_v2.svg';
 
 // Database Collections
 export const DB_COL = {
