@@ -119,6 +119,11 @@ app-home .section-header{
     margin-top: 0;
 }
 /*App Wrapper END*/
+/*Not found*/
+app-page-not-found {
+    text-align: center;
+    display: block;
+}
 /*Material Cards*/
 mat-card{
     margin-bottom: 8px;
