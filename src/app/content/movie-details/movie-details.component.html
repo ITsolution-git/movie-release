@@ -181,12 +181,12 @@
               <ng-container matColumnDef="actorImg">
                 <mat-header-cell *matHeaderCellDef> Picture </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  <a (click)="this.as.goToCelebDetails(person.id)">
+                  <a (click)="this.as.goToCelebDetails(element.id)">
                     <img *ngIf="element?.profile_path; else defaultCastImage" class="person-img" [src]="[TMDB_IMAGES_BASE_URL + IMG_45 + element?.profile_path]"
                       [alt]="[element?.name + ' alias ' + element?.character]" [title]="[element?.name + ' alias ' + element?.character]">
                   </a>
                   <ng-template #defaultCastImage>
-                    <a (click)="this.as.goToCelebDetails(person.id)">
+                    <a (click)="this.as.goToCelebDetails(element.id)">
                       <img class="person-img" src="assets/img/default-movie-poster.png" [alt]="[element?.name + ' alias ' + element?.character]"
                         [title]="[element?.name + ' alias ' + element?.character]">
                     </a>
@@ -197,7 +197,7 @@
               <ng-container matColumnDef="actorName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Actor Name </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  <a (click)="this.as.goToCelebDetails(person.id)">{{ element?.name }}</a>
+                  <a (click)="this.as.goToCelebDetails(element?.id)">{{ element?.name }}</a>
                 </mat-cell>
               </ng-container>
               <!-- Character Column -->
