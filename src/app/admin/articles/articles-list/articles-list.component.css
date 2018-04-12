@@ -4,9 +4,7 @@
 
 .page-header {
     padding: 0 1rem;
-    box-shadow: 0px 0px 3px 1px #ddd;
     margin-bottom: 1rem;
-    background: #fff;
 }
 
 .mat-column-date,
@@ -32,5 +30,4 @@
 
 .no-results {
     padding: 2rem;
-    background: #f5f5f5;
 }
