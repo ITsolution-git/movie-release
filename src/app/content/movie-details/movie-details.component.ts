@@ -17,7 +17,7 @@ import { ApiService } from '../../core/services/api/api.service';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME, DB_COL } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME, DB_COL, APP_BASE_URL } from '../../constants';
 // Component
 import { TrailersDialogComponent } from '../shared/trailers-dialog/trailers-dialog.component';
 import { AuthDialogComponent } from '../shared/auth-dialog/auth-dialog.component';
@@ -156,6 +156,7 @@ export class MovieDetailsComponent implements OnInit {
       // Get the movie title and ID from the URL
       this.routeParamsSubscription = this.ar.params
         .subscribe(params => {
+          console.log('PARAMS:', params);
           this.pageKey = params['title'];
           ++this.getMovieDetailsCounter;
           if (this.getMovieDetailsCounter === 1) {
@@ -170,6 +171,8 @@ export class MovieDetailsComponent implements OnInit {
                     this.pageSeoDescr = this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie. ' + this.movieDetails.overview;
                     this.pageSeoKeywords = this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0].name + ' movie';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+                    // tslint:disable-next-line:max-line-length
+                    seoS.setFacebookMetaTags(this.movieDetails.title, APP_BASE_URL + '/movies/' + params['title'], this.movieDetails.overview, TMDB_IMAGES_BASE_URL + IMG_500 + this.movieDetails.poster_path);
                     // Get Additional API Data
                     this.getMovieImages();
                     this.getMovieCredits();

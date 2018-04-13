@@ -20,25 +20,26 @@ export class SeoService {
       { name: 'description', content: description.substring(0, 300) + ' | ' + APP_SEO_NAME }
     );
     this.meta.updateTag(
-      { name: 'keywords', content: description + ' | ' + APP_SEO_NAME },
+      { name: 'keywords', content: keywords + ' | ' + APP_SEO_NAME },
+    );
+  }
+
+  setFacebookMetaTags(title: string, pageURL: string, description: string, thumbImg: string) {
+    // Facebook OG Tags
+    this.meta.updateTag(
+      { property: 'og:title', content: title + ' | ' + APP_SEO_NAME },
     );
     this.meta.updateTag(
-      { property: 'og:title',  content: APP_SEO_NAME },
+      { property: 'og:url', content: pageURL },
     );
     this.meta.updateTag(
-      { property: 'og:url',  content: APP_BASE_URL },
+      { property: 'og:type', content: 'website' },
     );
     this.meta.updateTag(
-      { property: 'og:type',  content: 'website'},
+      { property: 'og:description', content: description.substring(0, 300) + ' | ' + APP_SEO_NAME },
     );
     this.meta.updateTag(
-      { property: 'og:title',  content: APP_SEO_NAME },
-    );
-    this.meta.updateTag(
-      { property: 'og:description',  content: description.substring(0, 300) + ' | ' + APP_SEO_NAME },
-    );
-    this.meta.updateTag(
-      { property: 'og:image',  content: DEFAULT_POSTER_IMG },
+      { property: 'og:image', content: thumbImg },
     );
   }
 }

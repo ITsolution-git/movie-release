@@ -10,7 +10,7 @@ import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
 import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_185, IMG_500, APP_SEO_NAME, DB_COL } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_185, IMG_500, APP_SEO_NAME, DB_COL, APP_BASE_URL } from '../../constants';
 
 @Component({
   selector: 'app-celeb-details',
@@ -88,6 +88,8 @@ export class CelebDetailsComponent implements OnInit {
                     this.pageSeoDescr = this.actorDetails.biography;
                     this.pageSeoKeywords = this.actorDetails.name + ', celebrity, actor, actress, person, popular';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+                    // tslint:disable-next-line:max-line-length
+                    seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path);
                     // Get Additional API Data
                     this.getActorImages();
                     this.getActorTaggedImages();
