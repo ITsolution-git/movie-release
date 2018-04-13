@@ -5,7 +5,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
-import {HttpModule} from '@angular/http';
+import { HttpModule } from '@angular/http';
+// Environments
+import { environment } from '../environments/environment';
+// Service Worker
+import { ServiceWorkerModule } from '@angular/service-worker';
 // Material Modules
 import {
   MatInputModule,
@@ -68,6 +72,7 @@ import { LayoutModule } from '@angular/cdk/layout';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [], // Regsiters Service Worker
     MatInputModule,
     MatButtonModule,
     MatIconModule,
