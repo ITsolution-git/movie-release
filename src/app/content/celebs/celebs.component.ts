@@ -11,7 +11,7 @@ import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
 import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL, DEFAULT_FB_CAT_IMG, APP_BASE_URL } from '../../constants';
 
 @Component({
   selector: 'app-celebs',
@@ -52,6 +52,7 @@ export class CelebsComponent implements OnInit {
         this.pageSeoDescr = res._celebs_main.descr;
         this.pageSeoKeywords = this.pageSeoTitle + ', celebrities, actors, actresses, persons, most popular';
         seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+        seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrities', this.pageSeoDescr, DEFAULT_FB_CAT_IMG);
       });
 
     // Initialize Constants

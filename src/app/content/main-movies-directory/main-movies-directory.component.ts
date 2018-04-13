@@ -9,7 +9,7 @@ import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
 import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_300, APP_SEO_NAME, DB_COL } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_300, APP_SEO_NAME, DB_COL, APP_BASE_URL, DEFAULT_FB_CAT_IMG } from '../../constants';
 
 @Component({
   selector: 'app-main-movies-directory',
@@ -52,6 +52,8 @@ export class MainMoviesDirectoryComponent implements OnInit {
         this.pageSeoDescr = res._movies_main.descr;
         this.pageSeoKeywords = 'movies, movie directory, movie filter';
         seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+        // tslint:disable-next-line:max-line-length
+        seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/movies', this.pageSeoDescr, DEFAULT_FB_CAT_IMG);
       });
 
     // Initialize Constants

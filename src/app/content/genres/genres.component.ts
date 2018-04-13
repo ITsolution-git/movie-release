@@ -11,7 +11,7 @@ import { AppService } from '../../core/services/app.service';
 import { ApiService } from '../../core/services/api/api.service';
 import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_185, APP_SEO_NAME, DB_COL, APP_BASE_URL, DEFAULT_FB_CAT_IMG } from '../../constants';
 
 @Component({
   selector: 'app-genres',
@@ -62,6 +62,8 @@ export class GenresComponent implements OnInit {
         params => {
           this.genreType = params[0].path;
           this.pageKey = params[2].path;
+          console.log(this.genreType);
+          console.log(this.pageKey);
           if (this.genreType === 'movies') {
             this.moviesList = [];
             this.getMovieGenres()
@@ -76,6 +78,8 @@ export class GenresComponent implements OnInit {
                         this.pageSeoDescr = res[dbKey].descr;
                         this.pageSeoKeywords = this.pageSeoTitle + ',' + this.as.seoOptimizeText(this.genreType);
                         seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+                        // tslint:disable-next-line:max-line-length
+                        seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/movies/genre/' + this.pageKey, this.pageSeoDescr, DEFAULT_FB_CAT_IMG);
                       })
                       .catch(error => {
                         console.log('There was an error while URL Optimizing the text.', error);
