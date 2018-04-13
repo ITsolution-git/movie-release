@@ -24,7 +24,6 @@
                     "/assets/**"
                 ],
                 "urls": [
-                    "https://cdn.ckeditor.com/4.6.1/full-all/ckeditor.js",
                     "https://fonts.googleapis.com/css?family=Roboto",
                     "https://fonts.googleapis.com/icon?family=Material+Icons"
                 ]
