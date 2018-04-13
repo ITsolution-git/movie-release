@@ -5,7 +5,8 @@ export const DEFAULT_USER_IMG = '/assets/img/default-user.png';
 export const DEFAULT_POSTER_IMG = '/assets/img/default-poster.png';
 export const DEFAULT_PROFILE_IMG = '/assets/img/default-poster1.png';
 export const DEFAULT_USER_ROLE = 'subscriber';
-export const DEFAULT_FB_IMAGE = '/assets/img/currentmoviereleases_logo_v2.svg';
+export const DEFAULT_FB_IMG = '/assets/img/currentmoviereleases_logo_v2.svg';
+export const DEFAULT_FB_CAT_IMG = 'https://www.currentmoviereleases.com/assets/img/current_movie_releases_fb_cat.jpg';
 
 // Database Collections
 export const DB_COL = {

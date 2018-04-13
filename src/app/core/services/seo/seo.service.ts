@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 // Constants
-import { APP_SEO_NAME } from '../../../constants';
-import { APP_BASE_URL } from '../../../constants';
-import { DEFAULT_POSTER_IMG } from '../../../constants';
+import { APP_SEO_NAME, APP_BASE_URL, DEFAULT_POSTER_IMG, DEFAULT_FB_CAT_IMG } from '../../../constants';
 @Injectable()
 export class SeoService {
 
