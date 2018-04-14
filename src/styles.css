@@ -136,6 +136,7 @@ mat-card{
     border: 1px solid rgba(0, 0, 0, 0.15);
     filter: grayscale(20%);
     box-sizing: content-box;
+    position: relative;
 }
 mat-card:hover{
     -webkit-box-shadow: 0px 12px 19px -7px #000;
@@ -166,13 +167,21 @@ mat-card-title h2 a{
     text-decoration: none;
 }
 .mat-card-subtitle{
-    color: #999;
     border-top: 1px solid rgba(48, 48, 48, 0.50);
     padding-top: 5px;
     margin-bottom: 6px !important;
 }
 .mat-card-subtitle h4{
     margin: 0;
+}
+.mat-card-content{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: rgba(11, 11, 11, 0.77);
+    padding: 15px;
+    bottom: 35px;
+    margin-bottom: 0px !important;
 }
 .short-story{
     margin-bottom: 0;
@@ -199,7 +208,6 @@ mat-card-title h2 a{
     margin-right: 0 !important;
     margin-bottom: -10px !important;
     padding: 0 !important;
-    border-top: 1px solid rgba(48, 48, 48, 0.50);
 }
 mat-card .mat-card-actions .mat-button, mat-card .mat-card-actions .mat-raised-button{
     min-width: auto !important;
@@ -230,6 +238,14 @@ mat-icon.rating{
 }
 .favorite mat-icon.active{
     color: #c62828;
+}
+mat-card span.rating-number{
+    font-size: 0.8em;
+    vertical-align: text-top !important;
+    position: absolute;
+    left: 21px;
+    top: 6px;
+    height: 25px;
 }
 /*Material Cards END*/
 /*Jumbotron*/
@@ -300,6 +316,7 @@ mat-toolbar .mat-button{
 }
 .mat-button-wrapper{
     display: block;
+    position: relative;
 }
 mat-toolbar .mat-button.docs-button{
     margin: 0 10px;
@@ -421,9 +438,6 @@ app-footer {
     }
     #movie-content-info{
         margin-right: -5px;
-    }
-    .mat-card-content p, .mat-card-subtitle, .short-story{
-        font-size: 0.6em !important;
     }
 }
 @media (min-width: 544px) {
