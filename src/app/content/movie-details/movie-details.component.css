@@ -8,12 +8,16 @@ h1{
 .content-head{
     position: relative;
 }
+#movie-content-cast{
+    width: 98%;
+    margin: auto !important;
+}
 .mat-tab-group, .mat-tab-header{
     width: 100%;
     margin: 0;
 }
 .mat-tab-body-wrapper{
-    padding: 1% 2%;
+    padding: 1%;
 }
 #articles .article-inner{
     font-size: 80%;
@@ -92,8 +96,8 @@ span#year.detail-release-date, span#status.detail-pg-rating, span#genres.detail-
     bottom: 8px;
 }
 img.person-img{
-    max-width: inherit;
-    min-width: inherit;
+    max-width: 40px;
+    width: 100%;
 }
 .mat-card-image{
     display: block;

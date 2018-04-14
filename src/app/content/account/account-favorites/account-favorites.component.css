@@ -3,8 +3,6 @@
 }
 
 .tab-content {
-  background: #fff;
-  padding: 1.2rem 1rem;
 }
 
 /* Results List */
@@ -28,18 +26,18 @@
   position: absolute;
   opacity: 0;
   width: 100%;
-  max-width: 165px;
   bottom: 0;
+  left: 0;
   padding: 0.4rem 10px;
   text-align: center;
-  background: #fff;
-  color: #333;
+  background: #000;
+  color: #fff;
 }
 
 .fav-info h3 {
   font-size: 1rem;
   padding: 0 0 0.3rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #2A2A2A;
   margin: 0;
 }
 

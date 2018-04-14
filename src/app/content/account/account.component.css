@@ -7,7 +7,9 @@ mat-drawer-container {
 /* Nav */
 
 mat-drawer {
-  border-right: 1px solid #ddd;
+  box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
+  -webkit-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
+  background-color: #2A2A2A;
 }
 
 mat-drawer-content {

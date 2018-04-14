@@ -22,13 +22,13 @@
 
   <div fxLayout="row">
     <!-- Account Left -->
-    <div id="account-left" fxFlex="30">
+    <div id="account-left" fxFlex="20">
       <!-- User Image -->
       <img *ngIf="userDetails?.photoURL || this.aus.authState.photoURL" [src]="userDetails?.photoURL" [alt]="userDetails?.displayName"
         class="user-img">
     </div>
     <!-- Account Right -->
-    <div id="account-right" fxFlex="70">
+    <div id="account-right" fxFlex="80">
       <form fxLayout="column" fxLayoutAlign="center center">
         <!-- Name -->
         <mat-form-field>

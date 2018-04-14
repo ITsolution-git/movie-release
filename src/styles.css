@@ -174,15 +174,6 @@ mat-card-title h2 a{
 .mat-card-subtitle h4{
     margin: 0;
 }
-.mat-card-content{
-    position: absolute;
-    left: 0;
-    width: 100%;
-    background: rgba(11, 11, 11, 0.77);
-    padding: 15px;
-    bottom: 35px;
-    margin-bottom: 0px !important;
-}
 .short-story{
     margin-bottom: 0;
 }
@@ -202,6 +193,7 @@ mat-card-title h2 a{
 }
 .mat-card-footer{
     margin: 0 !important;
+    border-top: 1px solid rgba(48, 48, 48, 0.50);
 }
 .mat-card-actions {
     margin-left: 0 !important;
@@ -213,9 +205,6 @@ mat-card .mat-card-actions .mat-button, mat-card .mat-card-actions .mat-raised-b
     min-width: auto !important;
 }
 /*Tabs*/
-.mat-tab-group{
-    margin: 0rem -1rem;
-}
 .mat-tab-label{
     padding: 0 !important;
 }
@@ -226,6 +215,10 @@ mat-card .mat-card-actions .mat-button, mat-card .mat-card-actions .mat-raised-b
     margin: 0;
     line-height: 3rem;
 }
+.mat-table {
+    background: #1a1a1a !important;
+}
+/*Tab END*/
 #movie-rating mat-icon.active{
     color: #E4BB24;
 }

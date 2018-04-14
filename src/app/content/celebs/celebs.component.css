@@ -20,13 +20,8 @@
 
 .actor-card {
   position: relative;
-  max-height: 278px;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 0;
   cursor: pointer;
   overflow: hidden;
-  background: #000;
 }
 
 .actor-card img {
@@ -37,12 +32,12 @@
   position: absolute;
   opacity: 0;
   width: 100%;
-  max-width: 165px;
+  left: 0;
   bottom: 0;
   padding: 0.4rem 10px;
   text-align: center;
-  background: #fff;
-  color: #333;
+  background: #1a1a1a;
+  color: #FFF;
 }
 
 .actor-info h3 {

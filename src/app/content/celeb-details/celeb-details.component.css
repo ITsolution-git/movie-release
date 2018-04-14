@@ -19,8 +19,8 @@
 
 .more-info-btn {
   margin: 1rem 0;
-  border: 1px solid #333;
   border-radius: 2px;
+  background: #0b0b0b;
 }
 
 .more-info-btn mat-icon {
@@ -81,7 +81,6 @@
 
 .prev mat-icon,
 .next mat-icon {
-  padding: 1rem 0.5rem;
   background: rgba(255, 255, 255, .2);
 }
 
@@ -124,12 +123,12 @@ h2.tab-title {
   position: absolute;
   opacity: 0;
   width: 100%;
-  max-width: 165px;
   bottom: 0;
+  left: 0;
   padding: 0.4rem 10px;
   text-align: center;
-  background: #fff;
-  color: #333;
+  background: #101010;
+  color: #fff;
 }
 
 .credit-info h3 {

@@ -3,11 +3,12 @@
 }
 
 .tab-content {
-  background: #fff;
+  background: #2A2A2A;
 }
 
 .no-results {
   padding: 1.2rem 1rem;
+  background: #2A2A2A;
 }
 
 /* Table Columns */
@@ -18,7 +19,7 @@
 }
 
 .mat-row:hover {
-  background: #fafafa;
+  background: #2a2a2a;
 }
 
 /* Poster */
@@ -39,8 +40,6 @@
 .mat-column-movieTitle a,
 .mat-column-tvTitle a {
   text-decoration: none;
-  font-size: 1rem;
-  color: #333;
 }
 
 .mat-column-movieTitle a:hover,

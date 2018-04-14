@@ -1,6 +1,6 @@
 <mat-tab-group mat-stretch-tabs="true">
   <!-- Rated Movies -->
-  <mat-tab label="Rated Movies">
+  <mat-tab label="My Rated Movies">
     <div *ngIf="!loading" class="tab-content">
       <mat-table #ratedMovies [dataSource]="movieRatingsSource" matSort>
         <!-- Poster Column -->

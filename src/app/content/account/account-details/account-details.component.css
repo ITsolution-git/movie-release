@@ -19,9 +19,8 @@ mat-form-field {
 }
 
 img.user-img {
-  width: 100%;
+  max-width: 100%;
   margin-bottom: 1rem;
-  box-shadow: 1px 1px 6px 1px #ccc;
 }
 
 .error-message {

@@ -2,7 +2,7 @@
 <div *ngIf="actorDetails">
   <!-- Actor Details -->
   <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="actor-details">
-    <div fxFlex="70%" fxFlex.sm="75%" fxFlex.xs="90%" id="main-right">
+    <div fxFlex="80%" fxFlex.sm="85%" fxFlex.xs="90%" id="main-right">
       <!-- Actor Name -->
       <div id="title" fxLayout="row" fxLayoutAlign="start stretch">
         <h1>{{ actorDetails.name }}</h1>
@@ -105,7 +105,7 @@
     </div>
 
     <!-- Actor Profile Image -->
-    <div fxFlex="30%" fxFlex.sm="25%" fxFlex.xs="90%" id="main-left">
+    <div fxFlex="20%" fxFlex.sm="15%" fxFlex.xs="80%" id="main-left">
       <div id="profile-pic-container">
 
         <!-- Profile Pics List -->
@@ -135,7 +135,7 @@
 </div>
 
 <!-- Tagged Photos -->
-<section>
+<!-- <section>
   <h3>Tagged Photos</h3>
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" id="tagged-photos">
     <mat-card *ngFor="let img of actorTaggedImages" class="photo-card">
@@ -143,7 +143,7 @@
       <div>{{ img.media.title }}</div>
     </mat-card>
   </div>
-</section>
+</section> -->
 
 <!-- <section>
   <h3>Tagged Photos</h3>
