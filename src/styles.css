@@ -264,8 +264,8 @@ app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotr
     justify-content: center;
     align-items: center;
     position: relative !important;
-    width: 65% !important;
-    height: 75% !important;
+    width: 80% !important;
+    height: 80% !important;
     margin: 4% auto;
 }
 /*Login Overlay END*/
