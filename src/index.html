@@ -1,19 +1,16 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-9011937-10"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
     gtag('config', 'UA-9011937-10');
   </script>
-
   <meta charset="utf-8">
   <title>Looking for your next favorite movie? | Current Movie Releases</title>
   <base href="/">
@@ -36,12 +33,21 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto" as="style">
   <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style">
 </head>
 
 <body>
+  <app-root></app-root>
+  <!-- If JavaScript is disabled in browser -->
+  <noscript>
+    For full functionality of this site it is necessary to enable JavaScript. Here are the
+    <a href="https://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto" as="style">
+  </noscript>
+  <!-- CKeditor -->
+  <script src="https://cdn.ckeditor.com/4.6.1/full-all/ckeditor.js"></script>
   <div id="fb-root"></div>
   <script>
     (function (d, s, id) {
@@ -49,19 +55,11 @@
       if (d.getElementById(id)) return;
       js = d.createElement(s);
       js.id = id;
+      js.onload = function() { fbAsyncInit(); }
       js.src =
         'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=243016965727111&autoLogAppEvents=1';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
-  <app-root></app-root>
-  <!-- If JavaScript is disabled in browser -->
-  <noscript>
-    For full functionality of this site it is necessary to enable JavaScript. Here are the
-    <a href="https://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.
-  </noscript>
-  <!-- CKeditor -->
-  <script src="https://cdn.ckeditor.com/4.6.1/full-all/ckeditor.js"></script>
 </body>
-
 </html>

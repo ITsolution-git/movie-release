@@ -1,19 +1,8 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.11, written by Peter Selinger 2001-2013
-</metadata>
-<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M1140 5113 c-211 -23 -451 -118 -619 -243 -255 -191 -427 -462 -497
--780 -18 -81 -19 -156 -19 -1530 0 -1374 1 -1449 19 -1530 57 -261 178 -481
-362 -662 179 -176 390 -289 644 -344 81 -18 156 -19 1530 -19 1374 0 1449 1
-1530 19 261 57 481 178 662 362 176 179 289 390 344 644 18 81 19 156 19 1530
-0 1374 -1 1449 -19 1530 -111 509 -471 875 -986 1003 -84 21 -94 21 -1510 23
--784 0 -1441 -1 -1460 -3z"/>
-</g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<image overflow="visible" width="512" height="512" xlink:href="android-chrome-512x512.png"  transform="matrix(1 0 0 1 0 -1)">
+</image>
 </svg>
