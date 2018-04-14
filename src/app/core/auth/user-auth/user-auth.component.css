@@ -6,25 +6,21 @@
     height: 100%;
     display: block;
 }
-a{
-  color: #333;
-}
 a:hover{
   color: #F00;
 }
-.cdk-overlay-backdrop mat-dialog-container.mat-dialog-container {
-  background: #ffffff !important;
-  color: black !important;
-  height: auto !important;
+.buttons-area {
+  background: #1f1f1f;
+  padding: 5px 15px 10px;
+  border-radius: 3px;
 }
 mat-form-field,
-button {
-  width: 100%;
-  margin-bottom: 0.5rem;
-}
 h3{
   font-size: 100%;
 }
 p{
-  font-size: 12px;
+  font-size: 0.7em;
+}
+button{
+  margin-bottom: 0.5em;
 }

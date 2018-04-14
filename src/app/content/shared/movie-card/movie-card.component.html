@@ -3,7 +3,7 @@
     <h2><a (click)="this.as.goToMovieDetails(movie.id)">{{ movie.title }}</a></h2>
   </mat-card-title>
   <mat-card-subtitle>
-    <span>Movie Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</span>
+    <h4>Movie Release Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</h4>
   </mat-card-subtitle>
 </mat-card-header>
 <a (click)="this.as.goToMovieDetails(movie.id)">
@@ -14,11 +14,11 @@
   </ng-template>
 </a>
 <mat-card-content>
-  <h4 class="short-story">Short Story: </h4>
+  <h5 class="short-story">Short Story: </h5>
   <p>{{ movie.overview | slice:0:100 }} […] </p>
 </mat-card-content>
 <mat-card-footer>
-  <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+  <mat-card-actions fxLayout="row wrap" fxLayoutAlign="space-between strech">
     <button mat-button>
       <mat-icon class="rating">star</mat-icon>
       <span class="rating-number">{{ (movie.vote_average) / 2 }}</span>

@@ -171,10 +171,13 @@ mat-card-title h2 a{
     padding-top: 5px;
     margin-bottom: 6px !important;
 }
+.mat-card-subtitle h4{
+    margin: 0;
+}
 .short-story{
     margin-bottom: 0;
 }
-.mat-card-content p, .mat-card-subtitle, .short-story{
+.mat-card-content p, .mat-card-subtitle{
     font-size: 0.8em !important;
 }
 #movie-poster{
@@ -350,9 +353,6 @@ app-footer {
     min-height: 250px;
     padding: 30px 0px;
     border-bottom: 1px solid #111;
-  }
-  footer#colophon .footer-inner .footer-widget {
-    margin: 0 3%;
   }
   #sitemap {
     margin: auto;
