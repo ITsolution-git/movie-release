@@ -2,11 +2,11 @@
   <!-- Search Inputs Container -->
   <div class="input-container">
     <!-- Search Inputs -->
-    <input type="text" name="keyword" [(ngModel)]="keyword" placeholder="Search"
+    <input type="text" name="keyword" [(ngModel)]="keyword" placeholder="Search" aria-label="Search"
       (keyup.enter)="goToSearchPage(keyword)">
     <!-- Search button -->
     <button mat-button (click)="goToSearchPage(keyword)" class="search-btn">
-      <mat-icon>search</mat-icon>
+      <mat-icon aria-label="Search">search</mat-icon>
     </button>
   </div>
 </section>

@@ -1,4 +1,4 @@
-<footer id="colophon" role="doc-footnote" fxlayout="column">
+<footer id="colophon" fxlayout="column">
     <button mat-button class="scrolltotop" (click)="this.as.scrollToTop()">
         <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_up</mat-icon>
     </button>
@@ -19,20 +19,20 @@
                     to visit and follow us on your preferred social network Facebook, Twitter, Google+, Digg and Reddit.
                     RSS Feeds are always at your disposal too.</p>
                 <p>Are you curios to find out
-                    <a href="https://www.film-producer.info" target="_blank">what does a film producer do?</a>
+                    <a href="https://www.film-producer.info" target="_blank" rel="noopener">what does a film producer do?</a>
                 </p>
                 <p>Check out some of our Collection websites:
                     <br>
-                    <a href="http://www.king-movies.com" target="_blank">Stephen King Filmography</a>
+                    <a href="http://www.king-movies.com" target="_blank" rel="noopener">Stephen King Filmography</a>
                 </p>
                 <p>
-                    <a href="http://www.spielberg-movies.com" target="_blank">Steven Spielberg Filmography</a>
+                    <a href="http://www.spielberg-movies.com" target="_blank" rel="noopener">Steven Spielberg Filmography</a>
                 </p>
                 <p>The Team</p>
             </div>
             <div class="fb-share-button" data-href="https://www.currentmoviereleases.com/" data-layout="button_count" data-size="small"
                 data-mobile-iframe="true">
-                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.currentmoviereleases.com%2F&amp;src=sdkpreparse"
+                <a rel="noopener" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.currentmoviereleases.com%2F&amp;src=sdkpreparse"
                     class="fb-xfbml-parse-ignore">Share</a>
             </div>
         </div>
@@ -56,52 +56,63 @@
     </div>
     <div id="sitemap" fxlayout.sm="row" fxlayout.xs="row">
         <ul id="menu-footer-menu" class="nav navbar-nav">
-            <li id="menu-item-2724">
-                <a href="/">Home</a>
+            <li>
+                <a href="/" routerlink="/">Home</a>
             </li>
-            <li id="menu-item-4565">
-                <a href="/latest-movies/">Latest Movies</a>
+            <li>
+                <a href="/movies/now-playing" routerlink="/movies/now-playing">Now Playing Movies</a>
             </li>
-            <li id="menu-item-4564">
-                <a href="/upcoming-movies/">Upcoming Movies</a>
+            <li>
+                <a href="/movies/upcoming" routerlink="/movies/upcoming">Upcoming Movies</a>
             </li>
-            <li id="menu-item-133">
-                <a href="/movies/">Movies</a>
+            <li>
+                <a href="/movies" routerlink="/movies">Movies</a>
             </li>
-            <li id="menu-item-81">
-                <a href="/actors/">Actors</a>
+            <li>
+                <a href="/celebrities" routerlink="/celebrities">Celebrities</a>
             </li>
-            <li id="menu-item-82">
-                <a href="/genre/">Genres</a>
+            <li>
+                <a href="/movies/genres" routerlink="/movies/genre">Genres</a>
             </li>
-            <!-- <li id="menu-item-83"><a href="/collection/">Collections</a></li> -->
-            <li id="menu-item-97">
-                <a href="/topics/blog/" target="_blank">Blog Posts</a>
+            <li>
+                <a href="/privacy" routerlink="/privacy">Privacy Policy</a>
             </li>
-            <li id="menu-item-86">
-                <a href="https://www.facebook.com/currentmoviereleases" target="_blank">Facebook</a>
+            <li>
+                <a href="/terms" routerlink="/terms">Terms and Conditions</a>
             </li>
-            <li id="menu-item-85">
-                <a href="https://twitter.com/CmovieR" target="_blank">Twitter</a>
+            <li>
+                <a href="https://www.facebook.com/currentmoviereleases" target="_blank" rel="noopener">Facebook</a>
             </li>
-            <li id="menu-item-88">
-                <a href="https://plus.google.com/+Currentmoviereleases" target="_blank">Google+</a>
+            <li>
+                <a href="https://twitter.com/CmovieR" target="_blank" rel="noopener">Twitter</a>
             </li>
-            <li id="menu-item-4288">
-                <a href="https://www.pinterest.com/currentmoviereleases/" target="_blank">Pinterest</a>
+            <li>
+                <a href="https://plus.google.com/+Currentmoviereleases" target="_blank" rel="noopener">Google+</a>
             </li>
-            <li id="menu-item-87">
-                <a href="/feed/" target="_blank">RSS Feed</a>
+            <li>
+                <a href="https://www.pinterest.com/currentmoviereleases/" target="_blank" rel="noopener">Pinterest</a>
             </li>
         </ul>
     </div>
     <div id="disclaimer" fxlayout.sm="row" fxlayout.xs="row">
-        <h4>Disclaimer:</h4>
-        <p>The dates on this website are shown in UTC+2 timezone. The release dates are based on theatrical dates in the United
-            States of America. Movie ratings are calculated with data pulled from TMDB (tmdb.org) plus our user ratings combined.
-            <br> For more information please visit our development page.</p>
+        <u>Disclaimer:</u>
+        <p>The dates on this website are shown in GMT timezone. The release dates are based on the primary theatrical release
+            dates in the United States of America.</p>
+        <u>Movie Ratings:</u>
+        <p>The Total Movie Ratings is a sum of a calculation based on the TMDB (tmdb.org) Movie Rating, our Movie Critics Rating,
+            and our User Ratings.</p>
+        <u>Web Content and Copyright info:</u>
+        <p>All content, logos, movie titles, movie posters, movie images are copyrighted materials by their respective owners
+            / production companies. We (CMR) do not own any data provided for the listed movies. Our Film and Celebrities
+            data is provided by TMDB:
+            <a href="https://www.tmdb.org" target="_blank" rel="noopener" class="poweredbytmdb" aria-label="TMDB">
+                <img src="https://www.themoviedb.org/static_cache/v4/logos/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png" alt="The Movie Database" title="The Movie Database">
+            </a>
+        </p>
     </div>
-    <div id="credits" fxlayout.sm="row" fxlayout.xs="row">
-        <div class="site-description">Now Playing and Upcoming Movies | Current Movie Releases © 2011 - 2018</div>
+    <div id="credits" fxlayout="column" fxlayout.sm="row" fxlayout.xs="row">
+        <div class="site-description">Now Playing and Upcoming Movies by Current Movie Releases © 2011 - 2018 | All Rights Reserved. No content, logo,
+            image, web design, application code, or any other material of this web application may be copyrighted without
+            explicit permission.</div>
     </div>
 </footer>

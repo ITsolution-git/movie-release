@@ -392,6 +392,11 @@ app-footer {
   #disclaimer {
     border-bottom: 1px solid #333;
   }
+.poweredbytmdb img{
+    max-width: 60px;
+    vertical-align: middle;
+}
+  /*Scroll to top Button*/
   .scrolltotop {
     background: rgba(0, 0, 0, 0.35) !important;
     z-index: 999;
