@@ -5,6 +5,7 @@ body {
     font-family: "Roboto","Helvetica Neue Light","Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
     height: 100%;
     width: 100%;
+    background: #1f1f1f;
 }
 mat-sidenav-content{
     scroll-behavior: auto;

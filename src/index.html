@@ -34,7 +34,7 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- Google Fonts -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons">
 </head>
 
 <body>
@@ -45,7 +45,6 @@
       if (d.getElementById(id)) return;
       js = d.createElement(s);
       js.id = id;
-      js.onload = function () { fbAsyncInit(); }
       js.src =
         'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=243016965727111&autoLogAppEvents=1';
       fjs.parentNode.insertBefore(js, fjs);
@@ -56,10 +55,9 @@
   <noscript>
     For full functionality of this site it is necessary to enable JavaScript. Here are the
     <a href="https://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons">
   </noscript>
   <!-- CKeditor -->
-  <script src="https://cdn.ckeditor.com/4.6.1/full-all/ckeditor.js"></script>
+  <script async src="https://cdn.ckeditor.com/4.6.1/full-all/ckeditor.js"></script>
 </body>
 
 </html>
