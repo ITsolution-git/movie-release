@@ -1,4 +1,4 @@
-section#movie-details div{
+#movie-content-main div, #movie-overview div{
     margin: 5px;
 }
 h1{
@@ -110,7 +110,9 @@ img.person-img{
 }
 mat-icon.rating{
     text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.6);
-    font-size: 1.8rem;
+}
+#user-rating mat-icon, #average-rating mat-icon{
+    cursor: pointer;
 }
 .rating-number{
     vertical-align: text-top !important;

@@ -102,9 +102,10 @@
   font-size: 2rem;
 }
 
-#rate-text {
+.rate-text {
   align-self: center;
   margin-right: 1rem;
+  font-size: 1rem;
 }
 
 #rating mat-icon.active {
@@ -260,8 +261,7 @@ mat-row:hover {
 
 /* Cards */
 
-.person-card,
-.movie-card {
+.person-card {
   position: relative;
   margin-top: 0.5rem;
   margin-bottom: 0;
@@ -270,8 +270,7 @@ mat-row:hover {
   background: #000;
 }
 
-.person-card img,
-.movie-card img {
+.person-card img {
   max-width: 100%;
   width: 100%;
 }
@@ -380,10 +379,6 @@ h3 span.year {
     font-size: 1.5rem;
     width: 18px;
     height: 18px;
-  }
-  #rate-text {
-    margin-right: 0.5rem;
-    font-size: 1rem;
   }
   #share-icons {
     bottom: -47px;

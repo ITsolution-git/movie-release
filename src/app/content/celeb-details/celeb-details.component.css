@@ -39,6 +39,7 @@
 .profile-pics {
   position: relative;
   display: block;
+  border: 1px solid #1f1f1f;
 }
 
 .profile-pic {
@@ -64,6 +65,10 @@
 #slider-controls>div {
   cursor: pointer;
   z-index: 1;
+  padding: 1rem;
+  height: auto;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .prev {

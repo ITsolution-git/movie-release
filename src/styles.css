@@ -177,8 +177,9 @@ mat-card-title h2 a{
 .short-story{
     margin-bottom: 0;
 }
-.mat-card-content p, .mat-card-subtitle{
+.mat-card-content p, .mat-card-subtitle, .short-story{
     font-size: 0.8em !important;
+    color: #CCC;
 }
 #movie-poster{
     display: block;
@@ -190,6 +191,7 @@ mat-card-title h2 a{
     margin: 0 -10px 10px -10px !important;
     max-height: 360px;
     min-height: 360px;
+    display: block;
 }
 .mat-card-footer{
     margin: 0 !important;
@@ -209,9 +211,9 @@ mat-card .mat-card-actions .mat-button, mat-card .mat-card-actions .mat-raised-b
     padding: 0 !important;
 }
 .tab-heading{
-    display: inline-block;
+    display: flex;
     width: 100%;
-    padding: 3rem 0;
+    padding: 0 3rem;
     margin: 0;
     line-height: 3rem;
 }
@@ -265,6 +267,12 @@ app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotr
     margin: -1rem -1rem 2rem -1rem;
     background-position: bottom;
 }
+/*Search Button*/
+mat-toolbar .mat-button.search-btn, mat-toolbar .mat-button.login-btn{
+    color: #818181;
+}
+/*Search Button END*/
+
 /*Jumbotron END*/
 #load-more{
     text-align: center;
@@ -431,6 +439,10 @@ app-footer {
     }
     #movie-content-info{
         margin-right: -5px;
+    }
+    #sitemap ul li {
+        display: block;
+        list-style: none;
     }
 }
 @media (min-width: 544px) {
