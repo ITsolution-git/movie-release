@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { Meta, Title } from '@angular/platform-browser';
@@ -21,6 +21,7 @@ import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME,
 // Component
 import { TrailersDialogComponent } from '../shared/trailers-dialog/trailers-dialog.component';
 import { AuthDialogComponent } from '../shared/auth-dialog/auth-dialog.component';
+import { log } from 'util';
 
 export interface ICastData {
   actorImg: string;
@@ -544,4 +545,42 @@ export class MovieDetailsComponent implements OnInit {
     console.log('Open Add Review Dialog... You need to be logged in!');
   }
 
+}
+
+@Component({
+  moduleId: module.id,
+  selector: 'app-google-adsense',
+  template: `<div>
+  <!-- CMR - Single Ad Widget - Responsive -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1194632820323385"
+       data-ad-slot="4009347956"
+       data-ad-format="auto"></ins>
+         </div>
+  `,
+
+})
+export class TopBannerComponent implements AfterViewInit {
+
+  adsbygoogle: any;
+  constructor() {
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      console.log('A FASZOM');
+      try {
+        // TESTING
+        // console.log(document.querySelector('.adsbygoogle'));
+        // console.log(window.adsbygoogle.outerHTML);
+
+        // (adsbygoogle = window.adsbygoogle || []).push({});
+        (window['adsbygoogle'] = document.querySelector('.adsbygoogle') || []).push({});
+        console.log('GOOGLE HERE');
+      } catch (e) {
+        console.error(e);
+      }
+    }, 2000);
+  }
 }
