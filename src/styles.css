@@ -330,6 +330,13 @@ mat-toolbar .mat-button.docs-button{
     width: 100%;
     padding: 10px 0;
 }
+
+/*Account*/
+app-account-details, app-account-favorites, app-account-ratings{
+    padding: 0 1rem;
+    display: block;
+}
+/*Account END*/
 /*Nice Scrollbar*/
 ::-webkit-scrollbar {
     width: 10px;
