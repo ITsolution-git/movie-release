@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="wrapper movies-list mat-padding border" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-    <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
+    <mat-card *ngFor="let movie of nowPlayingMovies | slice:0:10; let i = index" class="movie-card mat-elevation-z" tabindex="0">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
   </div>
@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="wrapper movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-    <mat-card *ngFor="let movie of upcomingMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
+    <mat-card *ngFor="let movie of upcomingMovies | slice:0:10; let i = index" class="movie-card mat-elevation-z" tabindex="0">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
   </div>
