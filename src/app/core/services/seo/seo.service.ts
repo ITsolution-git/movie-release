@@ -11,7 +11,7 @@ export class SeoService {
   ) { }
 
   setSeoMetaTags(title: string, description: string, keywords: string): void {
-    console.log('SEO SERVICE TITLE: ' + title + ' DESCRIPTION: ' + description.substring(0, 300) + ' KEYWORDS: ' + keywords);
+    // console.log('SEO SERVICE TITLE: ' + title + ' DESCRIPTION: ' + description.substring(0, 300) + ' KEYWORDS: ' + keywords);
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle(title + ' | ' + APP_SEO_NAME);
     this.meta.updateTag(
