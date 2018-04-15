@@ -143,26 +143,22 @@
         <div id="user-actions" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
           <button *ngIf="movieTrailersLength > 0" mat-raised-button color="primary" (click)="openTrailersDialog()" class="watch-trailer">
             <mat-icon>play_circle_outline</mat-icon>
-            <span fxHide.sm="true" fxHide.xs="true">Watch Trailer</span>
+            <span fxHide.sm="true" fxHide.xs="false">Watch Trailer</span>
             <span *ngIf="movieTrailers?.length > 1">({{ movieTrailers.length }})</span>
           </button>
           <!-- Favorite Button -->
           <button mat-button (click)="toggleFavoriteMovie()" class="favorite" matTooltip="Add to Favorites!">
             <mat-icon [ngClass]="{'active': isFavorited === true}">favorite</mat-icon>
-            <span *ngIf="isFavorited === true" fxHide.sm="true" fxHide.xs="true">In My List</span>
-            <span *ngIf="isFavorited === false" fxHide.sm="true" fxHide.xs="true">Add to Favorites</span>
+            <span *ngIf="isFavorited === true" fxHide.sm="true" fxHide.xs="false">In My List</span>
+            <span *ngIf="isFavorited === false" fxHide.sm="true" fxHide.xs="false">Add to Favorites</span>
           </button>
           <!-- <button mat-raised-button color="accent" (click)="buyTickets()" class="ticket-btn">
             <mat-icon>local_movies</mat-icon>
             <span fxHide.sm="true" fxHide.xs="true">Buy Ticket</span>
           </button> -->
-          <button mat-raised-button class="share-btn">
+          <button mat-raised-button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse')" class="fb-xfbml-parse-ignore share-btn">
             <mat-icon>share</mat-icon>
-            <span class="fb-share-button" data-href="https://www.currentmoviereleases.com/" data-layout="button_count" data-size="small"
-              data-mobile-iframe="true">
-              <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.currentmoviereleases.com%2F&amp;src=sdkpreparse"
-                class="fb-xfbml-parse-ignore">Share</a>
-            </span>
+            <span>Share</span>
           </button>
         </div>
       </div>

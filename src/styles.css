@@ -206,6 +206,10 @@ mat-card-title h2 a{
 mat-card .mat-card-actions .mat-button, mat-card .mat-card-actions .mat-raised-button{
     min-width: auto !important;
 }
+.share-btn a, .share-btn a:hover .share-btn a:active{
+    text-decoration: none;
+    color: #FFF !important;
+}
 /*Tabs*/
 .mat-tab-label{
     padding: 0 !important;
