@@ -565,6 +565,7 @@ export class TopBannerComponent implements AfterViewInit {
 
   adsbygoogle: any;
   constructor() {
+
   }
 
   ngAfterViewInit() {
@@ -576,7 +577,7 @@ export class TopBannerComponent implements AfterViewInit {
         // console.log(window.adsbygoogle.outerHTML);
 
         // (adsbygoogle = window.adsbygoogle || []).push({});
-        (window['adsbygoogle'] = document.querySelector('.adsbygoogle') || []).push({});
+        (window['adsbygoogle'] = window['adsbygoogle'] || []).push({});
         console.log('GOOGLE HERE');
       } catch (e) {
         console.error(e);
