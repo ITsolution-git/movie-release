@@ -556,29 +556,17 @@ export class MovieDetailsComponent implements OnInit {
        style="display:block"
        data-ad-client="ca-pub-1194632820323385"
        data-ad-slot="4009347956"
-       data-ad-format="auto"></ins>
-         </div>
-  `,
-
+       data-ad-format="auto"></ins></div>`
 })
-export class TopBannerComponent implements AfterViewInit {
+export class GoogleAdOneComponent implements AfterViewInit {
 
   adsbygoogle: any;
-  constructor() {
-
-  }
+  constructor() { }
 
   ngAfterViewInit() {
     setTimeout(() => {
-      console.log('A FASZOM');
       try {
-        // TESTING
-        // console.log(document.querySelector('.adsbygoogle'));
-        // console.log(window.adsbygoogle.outerHTML);
-
-        // (adsbygoogle = window.adsbygoogle || []).push({});
         (window['adsbygoogle'] = window['adsbygoogle'] || []).push({});
-        console.log('GOOGLE HERE');
       } catch (e) {
         console.error(e);
       }

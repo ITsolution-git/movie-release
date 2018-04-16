@@ -7,12 +7,14 @@ import {
 } from '../constants';
 
 // Get Movies for Homepage (Diccover)
-const getMoviesForMainDirectory = (pageIndex: number): Promise<any> => {
+const getMoviesForMainDirectory = (pageIndex: number, sortType: string): Promise<any> => {
     // tslint:disable-next-line:max-line-length
     // const url = 'https://api.themoviedb.org/3/discover/movie?api_key=a3dbd5ed599caf75f52b2c5e84bd4af3&language=en-US&region=US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=2020';
     return new Promise<any>((resolve, reject) => {
         // tslint:disable-next-line:max-line-length
-        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'discover/movie' + TMDB_API_KEY + TMDB_API_LANG + '&region=US&sort_by=release_date.desc&include_adult=false&include_video=false&page=' + pageIndex + '&primary_release_date.lte=2019', (resp) => {
+        console.log('Server Calling Discover TMDB API:' + TMDB_API_URL_ROOT + TMDB_API_VER + 'discover/movie' + TMDB_API_KEY + TMDB_API_LANG + '&region=US&sort_by=' + sortType + '&include_adult=false&include_video=false&page=' + pageIndex + '&primary_release_date.lte=2018-06-06');
+        // tslint:disable-next-line:max-line-length
+        https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'discover/movie' + TMDB_API_KEY + TMDB_API_LANG + '&region=US&sort_by=' + sortType + '&include_adult=false&include_video=false&page=' + pageIndex + '&primary_release_date.lte=2018-06-06', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
@@ -30,17 +32,20 @@ const getMoviesForMainDirectory = (pageIndex: number): Promise<any> => {
             reject(err);
         });
     });
-}
+};
+
 export const tryGetMoviesForMainDirectory = (req, res) => {
     const pageIndex = req.params['pageIndex'];
-    getMoviesForMainDirectory(pageIndex)
+    const sortType = req.params['sortType'];
+    // console.log('Incoming Request Parameters: ', req.params);
+    getMoviesForMainDirectory(pageIndex, sortType)
         .then((result) => {
             res.send(result);
         })
         .catch((error) => {
             console.log(error);
         });
-}
+};
 
 // Get the list of movies by search keyword (paginated) OK
 const getMoviesListByKeyword = (keyword: string, pageIndex: number): Promise<any> => {
@@ -224,6 +229,7 @@ export const tryGetMovieReviewById = (req, res) => {
 const getPopularMovies = (pageIndex: number): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/movie/popular?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise<any>((resolve, reject) => {
+        // tslint:disable-next-line:max-line-length
         https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/popular' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
@@ -291,6 +297,7 @@ export const tryGetLatestMovies = (req, res) => {
 const getTopRatedMovies = (pageIndex: number): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise<any>((resolve, reject) => {
+        // tslint:disable-next-line:max-line-length
         https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/top_rated' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
@@ -325,6 +332,7 @@ export const tryGetTopRatedMovies = (req, res) => {
 const getUpcomingMovies = (pageIndex: number): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/movie/upcoming?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise<any>((resolve, reject) => {
+        // tslint:disable-next-line:max-line-length
         https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/upcoming' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.
@@ -359,6 +367,7 @@ export const tryGetUpcomingMovies = (req, res) => {
 const getNowPlayingMovies = (pageIndex): Promise<any> => {
     // const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=3df8259258e7a30cb15e76ae75259892&language=en-US&page=1';
     return new Promise<any>((resolve, reject) => {
+        // tslint:disable-next-line:max-line-length
         https.get(TMDB_API_URL_ROOT + TMDB_API_VER + 'movie/now_playing' + TMDB_API_KEY + TMDB_API_LANG + '&page=' + pageIndex + '&region=US', (resp) => {
             let data = '';
             // A chunk of data has been recieved.

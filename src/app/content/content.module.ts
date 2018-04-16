@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatTabsModule,
   MatCardModule,
@@ -13,7 +14,9 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
-  MatMenuModule
+  MatMenuModule,
+  MatOptionModule,
+  MatSelectModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 // Routing Module
@@ -25,7 +28,7 @@ import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { GenresComponent } from './genres/genres.component';
 import { SearchComponent } from './search/search.component';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { MovieDetailsComponent, TopBannerComponent } from './movie-details/movie-details.component';
 import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
@@ -38,6 +41,8 @@ import { UserButtonsComponent } from './shared/user-buttons/user-buttons.compone
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatTabsModule,
     MatCardModule,
     MatButtonModule,
@@ -51,11 +56,14 @@ import { UserButtonsComponent } from './shared/user-buttons/user-buttons.compone
     MatInputModule,
     MatDialogModule,
     MatMenuModule,
+    MatOptionModule,
+    MatSelectModule,
     FlexLayoutModule,
     ContentRoutingModule
   ],
   declarations: [
     HomeComponent,
+    TopBannerComponent,
     MoviesComponent,
     GenresComponent,
     SearchComponent,

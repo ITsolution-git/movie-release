@@ -108,7 +108,8 @@ app.get('/get-api-config', tryGetAPIConfig);
 app.get('/get-movie-genres', tryGetMovieGenresList);
 // Movie Endpoints
 // app.get('/advanced-movie-search/::', tryGetAdvancedSearchMovies);
-app.get('/get-movies-for-main-directory/:pageIndex', tryGetMoviesForMainDirectory);
+// app.get('/get-movies-for-main-directory/:pageIndex', tryGetMoviesForMainDirectory);
+app.get('/get-movies-for-main-directory/:pageIndex/:sortType', tryGetMoviesForMainDirectory);
 app.get('/get-movies-by-keyword/:keyword/:pageIndex', tryGetMoviesListByKeyword);
 app.get('/get-movies-by-genre/:id/:pageIndex', tryGetMoviesListByGenreId);
 app.get('/get-movies-popular/:pageIndex', tryGetPopularMovies);
