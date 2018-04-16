@@ -71,6 +71,8 @@ export class ApiService {
   personImages: any;
   personTaggedImages: any;
 
+  APICallIndex = 0;
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -136,7 +138,9 @@ export class ApiService {
     });
   }
 
-  callAPI(endpoint: string, id?: string, genre?: string, keyword?: string, pageIndex?: number): Observable<any[]> {
+  callAPI(endpoint: string, id?: string, genre?: string, keyword?: string, pageIndex?: number, sortType?: string): Observable<any[]> {
+    this.APICallIndex++;
+    // console.log('THE API WAS CALLED:' + this.APICallIndex + 'TIMES! IN a Single Run!');
     const resultSub = new Subject<any>();
     if (!id && !keyword && !pageIndex) {
       this.http.get(endpoint)
@@ -287,89 +291,99 @@ export class ApiService {
           resultSub.next(res);
         });
     } else if (!id && !keyword && pageIndex) {
-      this.http.get(endpoint + '/' + pageIndex)
-        .subscribe((res) => {
-          if (endpoint === 'get-movies-for-main-directory') {
-            this.mainDirectoryMovies = this.mainDirectoryMovies.concat(res['results']);
-            this.mainDirectoryMoviesLastIndex = res['page'];
-            this.mainDirectoryMoviesTotalPages = res['total_pages'];
-            this.mainDirectoryMoviesTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'MAIN DIRECTORY')
-              .then(movieObj => {
-                this.fbs.saveMoviesQueryResultsToDB(movieObj);
-              })
-              .catch(error => {
-                console.log('There was an error while creating movies query results object! ', error);
-              });
-            console.log('API HOMEPAGE MOVIES (' + pageIndex + '): ', res);
-          } else if (endpoint === 'get-movies-popular') {
-            this.moviesPopular = this.moviesPopular.concat(res['results']);
-            this.moviesPopularLastIndex = res['page'];
-            this.moviesPopularTotalPages = res['total_pages'];
-            this.moviesPopularTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'POPULAR')
-              .then(movieObj => {
-                this.fbs.saveMoviesQueryResultsToDB(movieObj);
-              })
-              .catch(error => {
-                console.log('There was an error while creating movies query results object! ', error);
-              });
-            console.log('API POPULAR MOVIES (' + pageIndex + '): ', res);
-          } else if (endpoint === 'get-movies-top-rated') {
-            this.moviesTopRated = this.moviesTopRated.concat(res['results']);
-            this.moviesTopRatedLastIndex = res['page'];
-            this.moviesTopRatedTotalPages = res['total_pages'];
-            this.moviesTopRatedTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'TOP RATED')
-              .then(movieObj => {
-                this.fbs.saveMoviesQueryResultsToDB(movieObj);
-              })
-              .catch(error => {
-                console.log('There was an error while creating movies query results object! ', error);
-              });
-            console.log('API TOP RATED MOVIES (' + pageIndex + '): ', res);
-          } else if (endpoint === 'get-movies-upcoming') {
-            this.moviesUpcoming = this.moviesUpcoming.concat(res['results']);
-            this.moviesUpcomingLastIndex = res['page'];
-            this.moviesUpcomingTotalPages = res['total_pages'];
-            this.moviesUpcomingTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'UPCOMING')
-              .then(movieObj => {
-                this.fbs.saveMoviesQueryResultsToDB(movieObj);
-              })
-              .catch(error => {
-                console.log('There was an error while creating movies query results object! ', error);
-              });
-            console.log('API UPCOMING MOVIES (' + pageIndex + '): ', res);
-          } else if (endpoint === 'get-movies-now-playing') {
-            this.moviesNowPlaying = this.moviesNowPlaying.concat(res['results']);
-            this.moviesNowPlayingLastIndex = res['page'];
-            this.moviesNowPlayingTotalPages = res['total_pages'];
-            this.moviesNowPlayingTotalResults = res['total_results'];
-            this.fbs.createMoviesQueryResultsObject(res['results'], 'NOW PLAYING')
-              .then(movieObj => {
-                this.fbs.saveMoviesQueryResultsToDB(movieObj);
-              })
-              .catch(error => {
-                console.log('There was an error while creating movies query results object! ', error);
-              });
-            console.log('API NOW PLAYING MOVIES (' + pageIndex + '): ', res);
-          } else if (endpoint === 'get-persons-popular') {
-            this.personsPopular = this.personsPopular.concat(res['results']);
-            this.personsPopularLastIndex = res['page'];
-            this.personsPopularTotalPages = res['total_pages'];
-            this.personsPopularTotalResults = res['total_results'];
-            this.fbs.createPersonsQueryResultsObject(res['results'], 'POPULAR')
-              .then(celebObj => {
-                this.fbs.savePersonsQueryResultsToDB(celebObj);
-              })
-              .catch(error => {
-                console.log('There was an error while creating person query results object! ', error);
-              });
-            console.log('API POPULAR ACTORS (' + pageIndex + '): ', res);
-          }
-          resultSub.next(res);
-        });
+      if (pageIndex && sortType) {
+        this.http.get(endpoint + '/' + pageIndex + '/' + sortType)
+          .subscribe((res) => {
+            if (endpoint === 'get-movies-for-main-directory') {
+              this.mainDirectoryMovies = this.mainDirectoryMovies.concat(res['results']);
+              this.mainDirectoryMoviesLastIndex = res['page'];
+              // this.mainDirectoryMoviesLastSortType = res['']
+              this.mainDirectoryMoviesTotalPages = res['total_pages'];
+              this.mainDirectoryMoviesTotalResults = res['total_results'];
+              this.fbs.createMoviesQueryResultsObject(res['results'], 'MAIN DIRECTORY')
+                .then(movieObj => {
+                  this.fbs.saveMoviesQueryResultsToDB(movieObj);
+                })
+                .catch(error => {
+                  console.error('There was an error while creating movies query results object! ', error);
+                });
+              console.log('API HOMEPAGE MOVIES (' + pageIndex + '): ', res);
+            }
+            resultSub.next(res);
+          });
+      } else if (pageIndex && !sortType) {
+        this.http.get(endpoint + '/' + pageIndex)
+          .subscribe((res) => {
+            if (endpoint === 'get-movies-popular') {
+              this.moviesPopular = this.moviesPopular.concat(res['results']);
+              this.moviesPopularLastIndex = res['page'];
+              this.moviesPopularTotalPages = res['total_pages'];
+              this.moviesPopularTotalResults = res['total_results'];
+              this.fbs.createMoviesQueryResultsObject(res['results'], 'POPULAR')
+                .then(movieObj => {
+                  this.fbs.saveMoviesQueryResultsToDB(movieObj);
+                })
+                .catch(error => {
+                  console.log('There was an error while creating movies query results object! ', error);
+                });
+              console.log('API POPULAR MOVIES (' + pageIndex + '): ', res);
+            } else if (endpoint === 'get-movies-top-rated') {
+              this.moviesTopRated = this.moviesTopRated.concat(res['results']);
+              this.moviesTopRatedLastIndex = res['page'];
+              this.moviesTopRatedTotalPages = res['total_pages'];
+              this.moviesTopRatedTotalResults = res['total_results'];
+              this.fbs.createMoviesQueryResultsObject(res['results'], 'TOP RATED')
+                .then(movieObj => {
+                  this.fbs.saveMoviesQueryResultsToDB(movieObj);
+                })
+                .catch(error => {
+                  console.log('There was an error while creating movies query results object! ', error);
+                });
+              console.log('API TOP RATED MOVIES (' + pageIndex + '): ', res);
+            } else if (endpoint === 'get-movies-upcoming') {
+              this.moviesUpcoming = this.moviesUpcoming.concat(res['results']);
+              this.moviesUpcomingLastIndex = res['page'];
+              this.moviesUpcomingTotalPages = res['total_pages'];
+              this.moviesUpcomingTotalResults = res['total_results'];
+              this.fbs.createMoviesQueryResultsObject(res['results'], 'UPCOMING')
+                .then(movieObj => {
+                  this.fbs.saveMoviesQueryResultsToDB(movieObj);
+                })
+                .catch(error => {
+                  console.log('There was an error while creating movies query results object! ', error);
+                });
+              console.log('API UPCOMING MOVIES (' + pageIndex + '): ', res);
+            } else if (endpoint === 'get-movies-now-playing') {
+              this.moviesNowPlaying = this.moviesNowPlaying.concat(res['results']);
+              this.moviesNowPlayingLastIndex = res['page'];
+              this.moviesNowPlayingTotalPages = res['total_pages'];
+              this.moviesNowPlayingTotalResults = res['total_results'];
+              this.fbs.createMoviesQueryResultsObject(res['results'], 'NOW PLAYING')
+                .then(movieObj => {
+                  this.fbs.saveMoviesQueryResultsToDB(movieObj);
+                })
+                .catch(error => {
+                  console.log('There was an error while creating movies query results object! ', error);
+                });
+              console.log('API NOW PLAYING MOVIES (' + pageIndex + '): ', res);
+            } else if (endpoint === 'get-persons-popular') {
+              this.personsPopular = this.personsPopular.concat(res['results']);
+              this.personsPopularLastIndex = res['page'];
+              this.personsPopularTotalPages = res['total_pages'];
+              this.personsPopularTotalResults = res['total_results'];
+              this.fbs.createPersonsQueryResultsObject(res['results'], 'POPULAR')
+                .then(celebObj => {
+                  this.fbs.savePersonsQueryResultsToDB(celebObj);
+                })
+                .catch(error => {
+                  console.log('There was an error while creating person query results object! ', error);
+                });
+              console.log('API POPULAR ACTORS (' + pageIndex + '): ', res);
+            }
+            resultSub.next(res);
+          });
+      }
+
     } else if (id && genre && pageIndex) {
       this.http.get(endpoint + '/' + id + '/' + pageIndex)
         .subscribe((res) => {
@@ -399,8 +413,8 @@ export class ApiService {
   }
 
   // Movie API Calls
-  getMoviesForMainDirectory(pageIndex: number): Observable<any[]> {
-    return this.callAPI('get-movies-for-main-directory', null, null, null, pageIndex);
+  getMoviesForMainDirectory(pageIndex: number, sortType: string): Observable<any[]> {
+    return this.callAPI('get-movies-for-main-directory', null, null, null, pageIndex, sortType);
   }
   searchMovieByKeyword(keyword: string, pageIndex: number): Observable<any[]> {
     return this.callAPI('get-movies-by-keyword', null, null, keyword, pageIndex);
