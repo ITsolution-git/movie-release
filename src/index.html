@@ -6,6 +6,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-9011937-10"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
+
     function gtag() {
       dataLayer.push(arguments);
     }
@@ -40,13 +41,16 @@
 <body>
   <!-- Load Facebook SDK for JavaScript -->
   <div id="fb-root"></div>
-  <script async>(function (d, s, id) {
+  <!-- <script async>
+    (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
+      js = d.createElement(s);
+      js.id = id;
       js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+  </script> -->
 
   <app-root></app-root>
   <!-- If JavaScript is disabled in browser -->
@@ -55,6 +59,7 @@
     <a href="https://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.
   </noscript>
   <!-- CKeditor -->
+  <script async src=//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js></script>
   <script async src="https://cdn.ckeditor.com/4.6.1/full-all/ckeditor.js"></script>
 </body>
 
