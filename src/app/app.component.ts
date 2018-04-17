@@ -2,6 +2,8 @@ import { Component, ViewContainerRef, ChangeDetectorRef, OnDestroy } from '@angu
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, NavigationEnd } from '@angular/router';
+// Third Party
+import { FacebookService, InitParams } from 'ngx-facebook';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,9 +20,15 @@ export class AppComponent implements OnDestroy {
     media: MediaMatcher,
     public toastr: ToastsManager,
     vRef: ViewContainerRef,
-    private router: Router
+    private router: Router,
+    private fb: FacebookService
   ) {
-
+    const initParams: InitParams = {
+      appId: '243016965727111',
+      xfbml: true,
+      version: 'v2.12'
+    };
+    fb.init(initParams);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         (<any>window).ga('set', 'page', event.urlAfterRedirects);
