@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import { HttpModule } from '@angular/http';
+// Third Party
+import { FacebookModule } from 'ngx-facebook';
 // Environments
 import { environment } from '../environments/environment';
 // Service Worker
@@ -97,7 +99,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatIconModule,
     ToastModule.forRoot(),
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+    FacebookModule.forRoot()
   ],
   providers: [
     AppService,
