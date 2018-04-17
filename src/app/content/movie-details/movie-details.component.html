@@ -156,10 +156,12 @@
             <mat-icon>local_movies</mat-icon>
             <span fxHide.sm="true" fxHide.xs="true">Buy Ticket</span>
           </button> -->
-          <button mat-raised-button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse')" class="fb-xfbml-parse-ignore share-btn">
-            <mat-icon>share</mat-icon>
-            <span>Share</span>
-          </button>
+          <button mat-raised-button (click)="toggleShare()" class="fb-xfbml-parse-ignore share-btn">
+              <mat-icon>share</mat-icon>
+            </button>
+            <div *ngIf="isShareOpen">
+                <div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=?src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+            </div>
         </div>
       </div>
     </div>
