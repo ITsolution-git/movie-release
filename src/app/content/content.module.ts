@@ -28,7 +28,7 @@ import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { GenresComponent } from './genres/genres.component';
 import { SearchComponent } from './search/search.component';
-import { MovieDetailsComponent, TopBannerComponent } from './movie-details/movie-details.component';
+import { MovieDetailsComponent, GoogleAdOneComponent } from './movie-details/movie-details.component';
 import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
@@ -63,7 +63,7 @@ import { UserButtonsComponent } from './shared/user-buttons/user-buttons.compone
   ],
   declarations: [
     HomeComponent,
-    TopBannerComponent,
+    GoogleAdOneComponent,
     MoviesComponent,
     GenresComponent,
     SearchComponent,
