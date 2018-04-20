@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-server": "tsc -p ./server/tsconfig.server.json"
+    "build-server": "tsc -p ./server/tsconfig.server.json",
+    "build-cmr-prod": "ng build --prod && tsc -p ./server/tsconfig.server.json"
   },
   "private": true,
   "dependencies": {
