@@ -547,30 +547,3 @@ export class MovieDetailsComponent implements OnInit {
   }
 
 }
-
-@Component({
-  moduleId: module.id,
-  selector: 'app-google-adsense',
-  template: `<div>
-  <!-- CMR - Single Ad Widget - Responsive -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1194632820323385"
-       data-ad-slot="4009347956"
-       data-ad-format="auto"></ins></div>`
-})
-export class GoogleAdOneComponent implements AfterViewInit {
-
-  adsbygoogle: any;
-  constructor() { }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      try {
-        (window['adsbygoogle'] = window['adsbygoogle'] || []).push({});
-      } catch (e) {
-        console.error(e);
-      }
-    }, 2000);
-  }
-}
