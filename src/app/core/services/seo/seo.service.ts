@@ -15,14 +15,14 @@ export class SeoService {
     // Set SEO Title, Keywords and Description Meta tags
     this.title.setTitle(title + ' | ' + APP_SEO_NAME);
     this.meta.updateTag(
-      { name: 'description', content: description.substring(0, 300) + ' | ' + APP_SEO_NAME }
+      { name: 'description', content: description.substring(0, 300) }
     );
     this.meta.updateTag(
       { name: 'keywords', content: keywords + ' | ' + APP_SEO_NAME },
     );
   }
 
-  setFacebookMetaTags(title: string, pageURL: string, description: string, thumbImg: string) {
+  setFacebookMetaTags(title: string, pageURL: string, description: string, thumbImg: string, OGtype?: string) {
     // Facebook OG Tags
     this.meta.updateTag(
       { property: 'og:title', content: title + ' | ' + APP_SEO_NAME },
@@ -30,11 +30,17 @@ export class SeoService {
     this.meta.updateTag(
       { property: 'og:url', content: pageURL },
     );
+    if (OGtype) {
+      this.meta.updateTag(
+        { property: 'og:type', content: OGtype },
+      );
+    } else {
     this.meta.updateTag(
       { property: 'og:type', content: 'website' },
     );
+    }
     this.meta.updateTag(
-      { property: 'og:description', content: description.substring(0, 300) + ' | ' + APP_SEO_NAME },
+      { property: 'og:description', content: description.substring(0, 300) },
     );
     this.meta.updateTag(
       { property: 'og:image', content: thumbImg },

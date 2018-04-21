@@ -84,12 +84,13 @@ export class CelebDetailsComponent implements OnInit {
                 this.getActorDetails()
                   .then(() => {
                     // Set SEO Meta Tags
-                    this.pageSeoTitle = this.actorDetails.name + ' Latest Movies, Biography';
-                    this.pageSeoDescr = this.actorDetails.biography;
+                    this.pageSeoTitle = this.actorDetails.name + ' - Filmography, Biography and Latest Movies';
+                     // tslint:disable-next-line:max-line-length
+                    this.pageSeoDescr = this.actorDetails.biography ? this.actorDetails.biography : 'This is the filmography and biography of ' + this.actorDetails.name;
                     this.pageSeoKeywords = this.actorDetails.name + ', celebrity, actor, actress, person, popular';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                     // tslint:disable-next-line:max-line-length
-                    seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path);
+                    seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path, 'profile');
                     // Get Additional API Data
                     this.getActorImages();
                     this.getActorTaggedImages();

@@ -173,7 +173,7 @@ export class MovieDetailsComponent implements OnInit {
                     this.pageSeoKeywords = this.movieDetails.title + ', movie, film, ' + this.movieDetails.genres[0].name + ' movie';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                     // tslint:disable-next-line:max-line-length
-                    seoS.setFacebookMetaTags(this.movieDetails.title, APP_BASE_URL + '/movies/' + params['title'], this.movieDetails.overview, TMDB_IMAGES_BASE_URL + IMG_500 + this.movieDetails.poster_path);
+                    seoS.setFacebookMetaTags(this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ') - ' + this.movieDetails.genres[0].name + ' Movie', APP_BASE_URL + '/movies/' + params['title'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.movieDetails.poster_path, 'video.movie');
                     // Get Additional API Data
                     this.getMovieImages();
                     this.getMovieCredits();
