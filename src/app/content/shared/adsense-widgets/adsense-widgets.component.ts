@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { AppService } from '../../../core/services/app.service';
 
 @Component({
   moduleId: module.id,
@@ -23,10 +24,41 @@ export class AdsenseWidgetsComponent implements OnInit, AfterViewInit {
     }
   ];
 
+  // loadIndex: number;
+
+  // sliceLow: number;
+  // slideHigh: number;
+  // slideHighLimit = 3;
+
 
   adsbygoogle: any;
 
-  constructor() { }
+  constructor(
+    public appService: AppService
+  ) {
+    // console.log(
+    //  this.adsenseWidget,
+    //  this.loadIndex,
+    //  '#################', this.loadIndex,
+    //  document.querySelector('.advert-widget')
+    // );
+
+    // this.loadIndex = this.appService.adLoadIndex + this.loadIndex;
+    // this.appService.adLoadIndex = this.loadIndex++;
+
+    // console.log(
+    //   this.adsenseWidget,
+    //   this.loadIndex,
+    //   '#################', this.loadIndex,
+    // );
+
+
+    // if (this.loadIndex === 0) {
+    //   this.sliceLow = this.loadIndex;
+    //   this.slideHigh = this.loadIndex + 1;
+    // };
+
+  }
 
   ngOnInit() {
 
