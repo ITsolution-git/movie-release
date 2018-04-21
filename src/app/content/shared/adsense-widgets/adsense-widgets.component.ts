@@ -8,24 +8,39 @@ import { Component, OnInit, AfterViewChecked, AfterViewInit } from '@angular/cor
 })
 export class AdsenseWidgetsComponent implements OnInit, AfterViewInit {
 
-      adslot = '8145249147';
-      adsbygoogle: any;
+  adsenseWidget = [
+    {
+      'name': 'CMR - Movie Details - Overview',
+      'id': '8145249147'
+    },
+    {
+      'name': 'CMR - Movie Details - Bottom',
+      'id': '7054872218'
+    },
+    {
+      'name': 'CMR - Footer - Responsive Links',
+      'id': '8891110759'
+    }
+  ];
 
-      constructor() { }
 
-ngOnInit() {
+  adsbygoogle: any;
 
-}
+  constructor() { }
 
-      ngAfterViewInit() {
-        setTimeout(() => {
-          try {
-            (window['adsbygoogle'] = window['adsbygoogle'] || []).push({});
-          } catch (e) {
-            console.error(e);
-          }
-        }, 2000);
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      try {
+        (window['adsbygoogle'] = window['adsbygoogle'] || []).push({});
+      } catch (e) {
+        console.error(e);
       }
+    }, 2000);
+  }
 
 
 }
