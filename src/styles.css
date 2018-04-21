@@ -225,6 +225,9 @@ mat-card .mat-card-actions .mat-button, mat-card .mat-card-actions .mat-raised-b
     background: #1a1a1a !important;
 }
 /*Tab END*/
+div.rating span{
+    display: inline-block;
+}
 #movie-rating mat-icon.active{
     color: #E4BB24;
 }

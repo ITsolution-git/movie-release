@@ -64,7 +64,7 @@ h1{
     background: rgba(0, 0, 0, 0.60);
     border-radius: 3px;
     position: relative;
-    padding: 0 1%;
+    padding: 1%;
     text-shadow: 1px 1px 1px #000;
 }
 .movie-poster-image{
@@ -107,6 +107,10 @@ img.person-img{
 #similar-movies mat-card-title{
     max-width: 145px !important;
     overflow: hidden;
+}
+/*Rating*/
+div#average-rating, div#user-rating, div#rating-result{
+    margin: 0 !important;
 }
 mat-icon.rating{
     text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.6);
