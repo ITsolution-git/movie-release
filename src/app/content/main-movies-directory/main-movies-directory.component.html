@@ -9,7 +9,7 @@
       <form [formGroup]="advancedFilteringForm">
         <mat-form-field class="select-container" *ngIf="sortTypes">
           <mat-select placeholder="Sort Results By" (change)="onSortTypeChange($event.value)">
-            <mat-option *ngFor="let sort of sortTypes" formControlName="releaseDateSort" [value]="sort.param">{{ sort.name }}</mat-option>
+            <mat-option *ngFor="let sort of sortTypes" [value]="sort.param">{{ sort.name }}</mat-option>
           </mat-select>
         </mat-form-field>
       </form>
