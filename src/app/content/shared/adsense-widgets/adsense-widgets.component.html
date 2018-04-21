@@ -1,5 +1,5 @@
-<p>{{ adsenseWidget[0].id }}</p>
-<div>
+<div *ngIf="adsenseWidget[0]">
+  <p>{{ adsenseWidget[0].id }}</p>
   <!-- CMR - Movie Details - Responsive -->
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1194632820323385" data-ad-slot="adsenseWidget[0].id" data-ad-format="auto"></ins>
 </div>
