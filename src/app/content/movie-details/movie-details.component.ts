@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { Meta, Title } from '@angular/platform-browser';
@@ -21,7 +21,6 @@ import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME,
 // Component
 import { TrailersDialogComponent } from '../shared/trailers-dialog/trailers-dialog.component';
 import { AuthDialogComponent } from '../shared/auth-dialog/auth-dialog.component';
-import { log } from 'util';
 
 export interface ICastData {
   actorImg: string;
@@ -43,6 +42,7 @@ export interface ICrewData {
 })
 export class MovieDetailsComponent implements OnInit {
 
+  @Output() slotId: number;
   pageSeoTitle: string;
   pageSeoDescr: string;
   pageSeoKeywords: string;
@@ -159,7 +159,7 @@ export class MovieDetailsComponent implements OnInit {
       // Get the movie title and ID from the URL
       this.routeParamsSubscription = this.ar.params
         .subscribe(params => {
-          console.log('PARAMS:', params);
+          // console.log('PARAMS:', params);
           this.pageKey = params['title'];
           ++this.getMovieDetailsCounter;
           if (this.getMovieDetailsCounter === 1) {

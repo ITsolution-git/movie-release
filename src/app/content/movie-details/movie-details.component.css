@@ -1,3 +1,7 @@
+#single-ad-widget1 {  /* FIXED GOOGLE ERROR with expected ad width */
+    min-width: 300px;
+}
+
 #movie-content-main div, #movie-overview div{
     margin: 5px;
 }

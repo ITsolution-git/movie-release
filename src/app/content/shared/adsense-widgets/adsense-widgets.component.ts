@@ -1,5 +1,8 @@
-import { Component, OnInit, AfterViewChecked, AfterViewInit } from '@angular/core';
-import { AppService } from '../../../core/services/app.service';
+import { Component, OnInit, AfterViewChecked, AfterViewInit, Input, OnDestroy } from '@angular/core';
+// AngularFire
+import { AngularFireDatabase } from 'angularfire2/database';
+// Constants
+import { DB_COL } from '../../../constants';
 
 @Component({
   moduleId: module.id,
@@ -7,62 +10,24 @@ import { AppService } from '../../../core/services/app.service';
   templateUrl: './adsense-widgets.component.html',
   styleUrls: ['./adsense-widgets.component.css']
 })
-export class AdsenseWidgetsComponent implements OnInit, AfterViewInit {
+export class AdsenseWidgetsComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  adsenseWidget = [
-    {
-      'name': 'CMR - Movie Details - Overview',
-      'id': '8145249147'
-    },
-    {
-      'name': 'CMR - Movie Details - Bottom',
-      'id': '7054872218'
-    },
-    {
-      'name': 'CMR - Footer - Responsive Links',
-      'id': '8891110759'
-    }
-  ];
-
-  // loadIndex: number;
-
-  // sliceLow: number;
-  // slideHigh: number;
-  // slideHighLimit = 3;
-
+  @Input() slotId: any;
 
   adsbygoogle: any;
+  // adsList: any
 
   constructor(
-    public appService: AppService
+    private afDb: AngularFireDatabase
   ) {
-    // console.log(
-    //  this.adsenseWidget,
-    //  this.loadIndex,
-    //  '#################', this.loadIndex,
-    //  document.querySelector('.advert-widget')
-    // );
-
-    // this.loadIndex = this.appService.adLoadIndex + this.loadIndex;
-    // this.appService.adLoadIndex = this.loadIndex++;
-
-    // console.log(
-    //   this.adsenseWidget,
-    //   this.loadIndex,
-    //   '#################', this.loadIndex,
-    // );
-
-
-    // if (this.loadIndex === 0) {
-    //   this.sliceLow = this.loadIndex;
-    //   this.slideHigh = this.loadIndex + 1;
-    // };
-
+    // this.afDb.list(DB_COL.SETTINGS_ADS).valueChanges().subscribe(
+    //   res => {
+    //     this.adsList = res;
+    //   }
+    // )
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -74,5 +39,9 @@ export class AdsenseWidgetsComponent implements OnInit, AfterViewInit {
     }, 2000);
   }
 
+  ngOnDestroy() {
+    console.log('DESTROY ADS');
+    window['adsbygoogle'] = [];
+  }
 
 }

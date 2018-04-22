@@ -1,0 +1,18 @@
+<form [formGroup]="adForm" *ngIf="ads">
+
+  <div *ngFor="let ad of ads; let i = index">
+    <!-- Movie Details Overview -->
+    <h2>{{ ad.name }}</h2>
+    <!-- <mat-form-field>
+      <input matInput [value]="ad.name" formControlName="name">
+    </mat-form-field> -->
+    <mat-form-field>
+      <input matInput [value]="ad.slot_id" formControlName="slot_id">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="saveAds(adForm.value, i)">Save</button>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="addNewAd()" disabled>Add New</button>
+
+</form>
