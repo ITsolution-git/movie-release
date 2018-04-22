@@ -91,7 +91,7 @@ export class AuthService {
   googleLogin(): void {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then((gUserData) => {
-        // console.log(guserData.user);
+        // console.log(gUserData.user);
         this.registerUserData(null, gUserData.user, null);
         // if () {
         // this.router.navigate(['/']);
@@ -106,7 +106,7 @@ export class AuthService {
   facebookLogin(): void {
     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then((fUserData) => {
-        // console.log(guserData.user);
+        // console.log(fUserData.user);
         this.registerUserData(null, null, fUserData.user);
         // if () {
         // this.router.navigate(['/']);

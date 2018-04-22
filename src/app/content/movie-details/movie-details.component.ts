@@ -52,6 +52,7 @@ export class MovieDetailsComponent implements OnInit {
   IMG_185: any;
   IMG_500: any;
   IMG_ORIG: any;
+  APP_BASE_URL: any;
 
   routeParamsSubscription: Subscription;
   pageKey: string;
@@ -135,6 +136,7 @@ export class MovieDetailsComponent implements OnInit {
     this.IMG_185 = IMG_185;
     this.IMG_500 = IMG_500;
     this.IMG_ORIG = IMG_ORIG;
+    this.APP_BASE_URL = APP_BASE_URL;
 
     this.ar.url.subscribe((res) => {
       // Reset Property Val;ues on Route Change
