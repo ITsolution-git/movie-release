@@ -1,4 +1,4 @@
-#single-ad-widget1 {  /* FIXED GOOGLE ERROR with expected ad width */
+.advert-widget {  /* FIXED GOOGLE ERROR with expected ad width */
     min-width: 300px;
 }
 
