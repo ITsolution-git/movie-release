@@ -18,9 +18,7 @@ export class AppService {
     private router: Router,
     private afDb: AngularFireDatabase
   ) { }
-
-  adLoadIndex: number;
-
+  
   urlOptimizeText(text: string): Promise<string> {
     // console.log('URL Optimize:', text);
     const noSpecial = text.replace(/\(|\)|\?|\!|\'|\.|\,|\:|\;|\<|\>|\[|\]|\*|\+/g, '');
@@ -64,7 +62,7 @@ export class AppService {
   }
 
   scrollToTop(): void {
-    console.log('Scrolled back to Top');
+    // console.log('Scrolled back to Top');
     document.querySelector('.mat-sidenav-content').scrollTop = 0;
   }
 

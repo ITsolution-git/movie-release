@@ -24,6 +24,7 @@ export const DB_COL = {
     SETTINGS_SEO_MOVIES: '/settings/seo/movies',
     SETTINGS_SEO_GENRE_MOVIES: '/settings/seo/genre_movies',
     SETTINGS_SEO_CELEBS: '/settings/seo/celebs',
+    SETTINGS_ADS: '/settings/ads',
     UPLOADS: '/uploads',
     USERS: '/users'
 };

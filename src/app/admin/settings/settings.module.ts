@@ -15,6 +15,7 @@ import { SettingsRoutingModule } from './settings-routing.module';
 // Components
 import { SettingsComponent } from './settings.component';
 import { SeoComponent } from './seo/seo.component';
+import { AdsComponent } from './ads/ads.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { SeoComponent } from './seo/seo.component';
   ],
   declarations: [
     SettingsComponent,
-    SeoComponent
+    SeoComponent,
+    AdsComponent
   ]
 })
 export class SettingsModule { }
