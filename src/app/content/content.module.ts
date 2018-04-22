@@ -38,6 +38,9 @@ import { CelebsComponent } from './celebs/celebs.component';
 import { CelebDetailsComponent } from './celeb-details/celeb-details.component';
 import { UserButtonsComponent } from './shared/user-buttons/user-buttons.component';
 import { AdsenseWidgetsComponent } from './shared/adsense-widgets/adsense-widgets.component';
+import { TermsComponent } from './terms/terms.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   imports: [
@@ -78,7 +81,10 @@ import { AdsenseWidgetsComponent } from './shared/adsense-widgets/adsense-widget
     CelebDetailsComponent,
     SafePipe,
     UserButtonsComponent,
-    AdsenseWidgetsComponent
+    AdsenseWidgetsComponent,
+    TermsComponent,
+    PrivacyComponent,
+    AboutComponent
   ],
   entryComponents: [
     TrailersDialogComponent

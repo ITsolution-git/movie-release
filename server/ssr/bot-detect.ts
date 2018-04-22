@@ -82,6 +82,6 @@ export const processURL = (request: express.Request, response: express.Response)
             })
             .catch(error => {
                 console.log('ERROR While Fetching URL: ', error);
-            });;
+            });
     }
 };

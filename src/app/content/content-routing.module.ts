@@ -15,6 +15,9 @@ import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
 import { CelebDetailsComponent } from './celeb-details/celeb-details.component';
 import { CelebsComponent } from './celebs/celebs.component';
+import { AboutComponent } from './about/about.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { TermsComponent } from './terms/terms.component';
 
 // Content Routes
 const contentRoutes = [
@@ -29,6 +32,10 @@ const contentRoutes = [
   { path: 'movies/upcoming', component: MoviesComponent },
   { path: 'movies/now-playing', component: MoviesComponent },
   { path: 'movies/:title', component: MovieDetailsComponent },
+  { path: 'about', component: AboutComponent},
+  { path: 'privacy', component: PrivacyComponent},
+  { path: 'terms', component: TermsComponent},
+
   // Persons
   { path: 'search/celebrities/:keyword', component: SearchComponent },
   { path: 'celebrities', component: CelebsComponent },
