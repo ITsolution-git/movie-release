@@ -82,6 +82,7 @@ export class MainMoviesDirectoryComponent implements OnInit {
       param: 'original_title.desc'
     }
   ];
+
   advancedFilteringForm: FormGroup;
   currentSortType: string;
 
@@ -112,10 +113,12 @@ export class MainMoviesDirectoryComponent implements OnInit {
     private seoS: SeoService,
     private fb: FormBuilder
   ) {
+
     this.advancedFilteringForm = fb.group({
       releaseDateSort: '',
     });
     this.currentSortType = this.sortTypes[1].param;
+    console.log(this.currentSortType);
 
     // Set SEO Meta Tags
     this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_MOVIES).valueChanges();

@@ -19,6 +19,8 @@ export class AppService {
     private afDb: AngularFireDatabase
   ) { }
 
+  adLoadIndex: number;
+
   urlOptimizeText(text: string): Promise<string> {
     // console.log('URL Optimize:', text);
     const noSpecial = text.replace(/\(|\)|\?|\!|\'|\.|\,|\:|\;|\<|\>|\[|\]|\*|\+/g, '');

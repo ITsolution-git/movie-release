@@ -28,7 +28,7 @@ import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { GenresComponent } from './genres/genres.component';
 import { SearchComponent } from './search/search.component';
-import { MovieDetailsComponent, GoogleAdOneComponent } from './movie-details/movie-details.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { TrailersDialogComponent } from './shared/trailers-dialog/trailers-dialog.component';
 import { GenresListComponent } from './genres-list/genres-list.component';
 import { MainMoviesDirectoryComponent } from './main-movies-directory/main-movies-directory.component';
@@ -37,6 +37,7 @@ import { MovieCardComponent } from './shared/movie-card/movie-card.component';
 import { CelebsComponent } from './celebs/celebs.component';
 import { CelebDetailsComponent } from './celeb-details/celeb-details.component';
 import { UserButtonsComponent } from './shared/user-buttons/user-buttons.component';
+import { AdsenseWidgetsComponent } from './shared/adsense-widgets/adsense-widgets.component';
 
 @NgModule({
   imports: [
@@ -63,7 +64,7 @@ import { UserButtonsComponent } from './shared/user-buttons/user-buttons.compone
   ],
   declarations: [
     HomeComponent,
-    GoogleAdOneComponent,
+    AdsenseWidgetsComponent,
     MoviesComponent,
     GenresComponent,
     SearchComponent,
@@ -76,7 +77,8 @@ import { UserButtonsComponent } from './shared/user-buttons/user-buttons.compone
     CelebsComponent,
     CelebDetailsComponent,
     SafePipe,
-    UserButtonsComponent
+    UserButtonsComponent,
+    AdsenseWidgetsComponent
   ],
   entryComponents: [
     TrailersDialogComponent

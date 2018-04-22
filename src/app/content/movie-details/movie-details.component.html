@@ -11,9 +11,9 @@
     </div>
     <div id="movie-content-main" fxLayout="row" fxLayout.xs="column">
       <!-- Movie Poster Image -->
-      <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%">
-        <img itemscope itemtype="http://schema.org/ImageObject" itemprop="image" itemprop="contentUrl" role="img" *ngIf="movieDetails.poster_path;"
-          class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]" onError="this.src='assets/img/default-movie-poster.png';"
+      <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+        <img itemprop="contentUrl url" role="img" *ngIf="movieDetails.poster_path;" class="movie-poster-image"
+          [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]" onError="this.src='assets/img/default-movie-poster.png';"
           [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'" [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'"
         />
       </div>
@@ -33,50 +33,61 @@
           <!-- Average Rating -->
           <div id="average-rating" class="rating">
             <span *ngIf="currentUserRating === 0">
-              <mat-icon (click)="rateMovie(1)" *ngIf="cobinedRatingAverage < 0.25">star_border</mat-icon>
+              <mat-icon (click)="rateMovie(1)" *ngIf="cobinedRatingAverage < 0.25" tabindex="0">star_border</mat-icon>
               <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage >= 0.25 && cobinedRatingAverage  < 0.75}" (click)="rateMovie(1)"
-                *ngIf="cobinedRatingAverage > 0.25 && cobinedRatingAverage  < 0.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(cobinedRatingAverage  < 0.75)">star</mat-icon>
-              <mat-icon (click)="rateMovie(2)" *ngIf="cobinedRatingAverage < 1.25">star_border</mat-icon>
+                *ngIf="cobinedRatingAverage > 0.25 && cobinedRatingAverage  < 0.75" tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(cobinedRatingAverage  < 0.75)"
+                tabindex="0">star</mat-icon>
+              <mat-icon (click)="rateMovie(2)" *ngIf="cobinedRatingAverage < 1.25" tabindex="0">star_border</mat-icon>
               <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 1.25 && cobinedRatingAverage  < 1.75}" (click)="rateMovie(2)"
-                *ngIf="cobinedRatingAverage >= 1.25 && cobinedRatingAverage  < 1.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(cobinedRatingAverage  < 1.75)">star</mat-icon>
-              <mat-icon (click)="rateMovie(3)" *ngIf="cobinedRatingAverage < 2.25">star_border</mat-icon>
+                *ngIf="cobinedRatingAverage >= 1.25 && cobinedRatingAverage  < 1.75" tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(cobinedRatingAverage  < 1.75)"
+                tabindex="0">star</mat-icon>
+              <mat-icon (click)="rateMovie(3)" *ngIf="cobinedRatingAverage < 2.25" tabindex="0">star_border</mat-icon>
               <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 2.25 && cobinedRatingAverage  < 2.75}" (click)="rateMovie(3)"
-                *ngIf="cobinedRatingAverage >= 2.25 && cobinedRatingAverage  < 2.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(cobinedRatingAverage  < 2.75)">star</mat-icon>
-              <mat-icon (click)="rateMovie(4)" *ngIf="cobinedRatingAverage < 3.25">star_border</mat-icon>
+                *ngIf="cobinedRatingAverage >= 2.25 && cobinedRatingAverage  < 2.75" tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(cobinedRatingAverage  < 2.75)"
+                tabindex="0">star</mat-icon>
+              <mat-icon (click)="rateMovie(4)" *ngIf="cobinedRatingAverage < 3.25" tabindex="0">star_border</mat-icon>
               <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 3.25 && cobinedRatingAverage  < 3.75}" (click)="rateMovie(4)"
-                *ngIf="cobinedRatingAverage >= 3.25 && cobinedRatingAverage  < 3.75">star_half</mat-icon>
+                *ngIf="cobinedRatingAverage >= 3.25 && cobinedRatingAverage  < 3.75" tabindex="0">star_half</mat-icon>
               <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(cobinedRatingAverage  < 3.75)">star</mat-icon>
-              <mat-icon (click)="rateMovie(5)" *ngIf="cobinedRatingAverage < 4.25">star_border</mat-icon>
+              <mat-icon (click)="rateMovie(5)" *ngIf="cobinedRatingAverage < 4.25" tabindex="0">star_border</mat-icon>
               <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 4.25 && cobinedRatingAverage  < 4.75}" (click)="rateMovie(5)"
-                *ngIf="cobinedRatingAverage >= 4.25 && cobinedRatingAverage  < 4.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(cobinedRatingAverage  < 4.75)">star</mat-icon>
+                *ngIf="cobinedRatingAverage >= 4.25 && cobinedRatingAverage  < 4.75" tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : cobinedRatingAverage  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(cobinedRatingAverage  < 4.75)"
+                tabindex="0">star</mat-icon>
               <span class="rating-number">What do you think?</span>
             </span>
           </div>
           <!-- User Rating -->
           <div id="user-rating" class="rating">
             <span *ngIf="currentUserRating !== 0">
-              <mat-icon (click)="rateMovie(1)" *ngIf="currentUserRating < 0.25">star_border</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : currentUserRating >= 0.25 && currentUserRating  < 0.75}" (click)="rateMovie(1)" *ngIf="currentUserRating > 0.25 && currentUserRating  < 0.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(currentUserRating  < 0.75)">star</mat-icon>
-              <mat-icon (click)="rateMovie(2)" *ngIf="currentUserRating < 1.25">star_border</mat-icon>
-              <mat-icon [ngClass]="{'active' : currentUserRating  >= 1.25 && currentUserRating  < 1.75}" (click)="rateMovie(2)" *ngIf="currentUserRating >= 1.25 && currentUserRating  < 1.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(currentUserRating  < 1.75)">star</mat-icon>
-              <mat-icon (click)="rateMovie(3)" *ngIf="currentUserRating < 2.25">star_border</mat-icon>
+              <mat-icon (click)="rateMovie(1)" *ngIf="currentUserRating < 0.25" tabindex="0">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : currentUserRating >= 0.25 && currentUserRating  < 0.75}" (click)="rateMovie(1)" *ngIf="currentUserRating > 0.25 && currentUserRating  < 0.75"
+                tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 0.75}" (click)="rateMovie(1)" *ngIf="!(currentUserRating  < 0.75)"
+                tabindex="0">star</mat-icon>
+              <mat-icon (click)="rateMovie(2)" *ngIf="currentUserRating < 1.25" tabindex="0">star_border</mat-icon>
+              <mat-icon [ngClass]="{'active' : currentUserRating  >= 1.25 && currentUserRating  < 1.75}" (click)="rateMovie(2)" *ngIf="currentUserRating >= 1.25 && currentUserRating  < 1.75"
+                tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 1.75}" (click)="rateMovie(2)" *ngIf="!(currentUserRating  < 1.75)"
+                tabindex="0">star</mat-icon>
+              <mat-icon (click)="rateMovie(3)" *ngIf="currentUserRating < 2.25" tabindex="0">star_border</mat-icon>
               <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 2.25 && currentUserRating  < 2.75}" (click)="rateMovie(3)"
-                *ngIf="currentUserRating >= 2.25 && currentUserRating  < 2.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(currentUserRating  < 2.75)">star</mat-icon>
-              <mat-icon (click)="rateMovie(4)" *ngIf="currentUserRating < 3.25">star_border</mat-icon>
+                *ngIf="currentUserRating >= 2.25 && currentUserRating  < 2.75" tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 2.75}" (click)="rateMovie(3)" *ngIf="!(currentUserRating  < 2.75)"
+                tabindex="0">star</mat-icon>
+              <mat-icon (click)="rateMovie(4)" *ngIf="currentUserRating < 3.25" tabindex="0">star_border</mat-icon>
               <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 3.25 && currentUserRating  < 3.75}" (click)="rateMovie(4)"
-                *ngIf="currentUserRating >= 3.25 && currentUserRating  < 3.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(currentUserRating  < 3.75)">star</mat-icon>
-              <mat-icon (click)="rateMovie(5)" *ngIf="currentUserRating < 4.25">star_border</mat-icon>
+                *ngIf="currentUserRating >= 3.25 && currentUserRating  < 3.75" tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 3.75}" (click)="rateMovie(4)" *ngIf="!(currentUserRating  < 3.75)"
+                tabindex="0">star</mat-icon>
+              <mat-icon (click)="rateMovie(5)" *ngIf="currentUserRating < 4.25" tabindex="0">star_border</mat-icon>
               <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 4.25 && currentUserRating  < 4.75}" (click)="rateMovie(5)"
-                *ngIf="currentUserRating >= 4.25 && currentUserRating  < 4.75">star_half</mat-icon>
-              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(currentUserRating  < 4.75)">star</mat-icon>
+                *ngIf="currentUserRating >= 4.25 && currentUserRating  < 4.75" tabindex="0">star_half</mat-icon>
+              <mat-icon [ngClass]="{'active rating' : currentUserRating  >= 4.75}" (click)="rateMovie(5)" *ngIf="!(currentUserRating  < 4.75)"
+                tabindex="0">star</mat-icon>
               <span class="rating-number">Your Rating</span>
               <span class="total-rating">
                 <a routerLink="/my-account/ratings" href="/my-account/ratings">(My Ratings)</a>
@@ -90,7 +101,7 @@
             <span>{{ movieDetails.tagline }}</span>
           </span>
           <span id="year" class="detail-release-date" *ngIf="movieDetails.release_date">Release Date:
-            <span itemprop="datePublished" content="movieDetails.release_date">{{ movieDetails.release_date | date:'longDate' }}</span>
+            <span itemprop="datePublished" datetime="movieDetails.release_date">{{ movieDetails.release_date | date:'longDate' }}</span>
           </span>
           <span id="status" class="detail-pg-rating">Movie Status:
             <span>{{ movieDetails.status }}</span>
@@ -106,36 +117,26 @@
             <span *ngIf="movieDetails.runtime > 60">{{ this.Math.floor(movieDetails.runtime / 60) }} hrs.</span>
             <span *ngIf="movieDetails.runtime > 0">{{ this.Math.floor(movieDetails.runtime % 60) }} mins.</span>
           </span>
-          <span id="prod-comp" *ngIf="movieDetails.production_companies?.length">Production Companies:
+          <span id="prod-comp">Production Companies:
             <span *ngFor="let company of movieDetails.production_companies; let i = index" itemprop="productionCompany" itemscope itemtype="http://schema.org/Organization">
-              <span class="company-link" itemprop="name">{{ company.name }}</span>
+              <span itemprop="name" class="company-link">{{ company.name }}</span>
               <span *ngIf="i < movieDetails.production_companies?.length - 1">,</span>
             </span>
           </span>
-          <span id="cast" class="detail-castcrew" fxLayout="column">
-            <span>Actors:
-              <span *ngFor="let person of movieCreditsCast | slice:0:7" itemprop="actor" itemscope itemtype="http://schema.org/Person">
-                <a itemprop="name" title="{{ person.name }} as {{ person.character }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
-              </span>
+          <span id="cast" class="detail-castcrew">Actors:
+            <span *ngFor="let person of movieCreditsCast; let i = index" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+              <a itemprop="name" class="person-link" title="{{ person.name }} as {{ person.character }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
+              <span *ngIf="i < movieCreditsCast?.length - 1">,</span>
             </span>
           </span>
-          <span id="crew" class="detail-castcrew" fxLayout="column">
-            <!-- <span>Crew:
-              <span *ngFor="let person of movieCreditsCrew | slice:0:7" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <a itemprop="name" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
-              </span>
-            </span> -->
-            <span>Directors:
-              <span *ngFor="let person of movieCreditsCrew" itemprop="director" itemscope itemtype="http://schema.org/Person">
-                <a itemprop="name" *ngIf="person.job==='Director'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
-              </span>
+          <span id="crew" *ngIf="movieCreditsCrew?.length" class="detail-castcrew">Directors:
+            <span *ngFor="let person of movieCreditsCrew | slice:0:1" itemprop="director" itemscope itemtype="http://schema.org/Person">
+              <a itemprop="name" *ngIf="person.job==='Director'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
             </span>
           </span>
-          <span id="crew1" class="detail-castcrew" fxLayout="column">
-            <span>Producers:
-              <span *ngFor="let person of movieCreditsCrew" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <a itemprop="name" *ngIf="person.job==='Producer'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
-              </span>
+          <span id="crew1" *ngIf="movieCreditsCrew?.length" class="detail-castcrew">Producers:
+            <span *ngFor="let person of movieCreditsCrew | slice:0:3" itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <a itemprop="name" *ngIf="person.job==='Producer'" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
             </span>
           </span>
         </div>
@@ -175,7 +176,7 @@
         </div>
       </div>
       <div id="single-ad-widget1" class="advert-widget">
-        <app-google-adsense></app-google-adsense>
+        <app-adsense-widgets></app-adsense-widgets>
       </div>
     </div>
     <div id="movie-content-cast">
@@ -283,7 +284,7 @@
         <div class="article-data">
           <span class="post-date updated">
             <mat-icon class="mat-icon material-icons">face</mat-icon>Review added on:
-            <span itemprop="datePublished">{{ article.article_date | date: 'long' }}</span> by:
+            <span itemprop="datePublished" datetime="article.article_date">{{ article.article_date | date: 'long' }}</span> by:
             <span class="vcard author post-author author_name">
               <span class="fn">
                 <a href="https://plus.google.com/+Currentmoviereleases" rel="author" target="_blank" itemprop="author"> +Currentmoviereleases</a>
@@ -324,8 +325,7 @@
       </mat-card>
     </div>
     <div id="single-ad-widget2" class="advert-widget">
-      <!-- CMR - Single Ad Widget - Responsive -->
-      <app-google-adsense></app-google-adsense>
+      <app-adsense-widgets></app-adsense-widgets>
     </div>
   </section>
   <!-- Release Dates -->
