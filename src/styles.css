@@ -128,9 +128,26 @@ app-page-not-found {
     text-align: center;
     display: block;
 }
+/*Adverts*/
+#advert-widget1{
+    max-width: 100%;
+}
+#advert-widget2{
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+.advert-widget{
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    padding: 5px 15px;
+    min-width: 300px;
+    max-height: 300px;
+}
+/*Adverts END*/
 /*Material Cards*/
 mat-card{
-    margin-bottom: 8px;
+    margin-bottom: 20px;
     padding: 10px !important;
     background: rgba(0, 0, 0, 0.15) !important;
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -145,7 +162,7 @@ mat-card:hover{
     filter: grayscale(0%);
 }
 app-home mat-card, app-movies mat-card, app-main-movies-directory mat-card, #similar-movies mat-card, app-genres mat-card, app-search mat-card{
-    max-width: 215px;
+    max-width: 185px;
 }
 .mat-card-header-text{
     margin: 0 !important;
@@ -190,7 +207,7 @@ mat-card-title h2 a{
     width: calc(100% + 20px) !important;
     margin: 0 -10px 10px -10px !important;
     max-height: 360px;
-    min-height: 360px;
+    min-height: auto;
     display: block;
 }
 .mat-card-footer{
@@ -213,6 +230,10 @@ mat-card .mat-card-actions .mat-button, mat-card .mat-card-actions .mat-raised-b
 /*Tabs*/
 .mat-tab-label{
     padding: 0 !important;
+}
+.mat-tab-label:focus, .mat-tab-label:active{
+    background-color: rgb(26, 26, 26) !important;
+    box-shadow: 0px 0px 7px #000 inset;
 }
 .tab-heading{
     display: flex;
@@ -237,6 +258,10 @@ mat-icon.rating{
 .total-rating, #total-votes{
     font-size:60%;
     color:#CCC;
+}
+#user-rating mat-icon:hover, #average-rating mat-icon:hover,
+#user-rating mat-icon.mat-icon.material-icons:hover {
+    color: #E4BB24;
 }
 .favorite mat-icon.active{
     color: #c62828;
@@ -286,6 +311,9 @@ mat-toolbar .mat-button.search-btn, mat-toolbar .mat-button.login-btn{
     margin: 3rem 0;
     display: inline-block;
     width: 100%;
+    border-top: 1px solid rgba(48,48,48,.5);
+    border-bottom: 1px solid rgba(48,48,48,.5);
+    padding: 10px 0px;
 }
 /*Login Overlay*/
 .cdk-global-overlay-wrapper{
@@ -446,10 +474,6 @@ app-footer {
 @media (max-width: 599px) {
     mat-card{
         max-width: 40% !important;
-    }
-    .mat-card-image{
-        max-height: inherit;
-        min-height: auto !important;
     }
     #movie-content-info{
         margin-right: -5px;

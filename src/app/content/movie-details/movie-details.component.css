@@ -1,8 +1,7 @@
-.advert-widget {  /* FIXED GOOGLE ERROR with expected ad width */
-    min-width: 300px;
-}
-
 #movie-content-main div, #movie-overview div{
+    margin: 5px;
+}
+#movie-content-head{
     margin: 5px;
 }
 h1{
@@ -90,11 +89,6 @@ span#year.detail-release-date, span#status.detail-pg-rating, span#genres.detail-
     margin: 5px 0;
     font-size: 85%;
 }
-.advert-widget{
-    background: #000;
-    border-radius: 3px;
-    padding: 5px 15px;
-}
 #user-actions{
     position: absolute;
     bottom: 8px;
@@ -111,6 +105,16 @@ img.person-img{
 #similar-movies mat-card-title{
     max-width: 145px !important;
     overflow: hidden;
+}
+/*Share*/
+.fb-share-span a{
+    text-decoration: none;
+}
+.fb-share-span a:hover{
+    color: #FFF;
+}
+.fb-share-span, .fb-share-span mat-icon.mat-icon.material-icons{
+    vertical-align: middle;
 }
 /*Rating*/
 div#average-rating, div#user-rating, div#rating-result{
