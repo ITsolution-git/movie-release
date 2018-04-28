@@ -75,7 +75,7 @@ app-main-movies-directory, app-movies, app-genres, app-search{
     background-color: #121212 !important;
     margin-top: 56px;
 }
-.mat-sidenav a:hover, .mat-sidenav a:focus, .mat-sidenav a:active, .page-taxonomy-list a:hover{
+.mat-sidenav a:hover, .mat-sidenav a:focus, .mat-sidenav a:active, a.mat-raised-button:hover{
     color: #FFF;
 }
 .sidenav-footer{
@@ -104,10 +104,10 @@ header {
     width: 100%;
     visibility: hidden;
 }
-header .mat-form-field-infix{
+header #main-search .mat-form-field-infix{
     background: #212121;
 }
-header button.search-btn.mat-button {
+header #main-search button.search-btn.mat-button {
     position: absolute;
     z-index: 9;
     bottom: 25px;
@@ -143,6 +143,10 @@ app-home .section-header{
 .section-title{
     text-transform: uppercase;
     letter-spacing: -1px;
+    font-size: 110%;
+}
+.section-title mat-icon{
+    font-size: 110%;
 }
 /*App Wrapper END*/
 /*Section END*/

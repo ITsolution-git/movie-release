@@ -33,11 +33,11 @@ export class PrimaryMenuComponent implements OnInit {
   }
 
   toggleSearch(): void {
-    const header = document.getElementById('header');
-      if (header.style.visibility === 'visible') {
-        header.style.visibility = 'hidden';
+    const mainsearch = document.getElementById('main-search');
+      if (mainsearch.style.visibility === 'visible') {
+        mainsearch.style.visibility = 'hidden';
       } else {
-        header.style.visibility = 'visible';
+        mainsearch.style.visibility = 'visible';
       }
     }
 }
