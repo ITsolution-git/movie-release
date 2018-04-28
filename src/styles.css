@@ -6,6 +6,7 @@ body {
     height: 100%;
     width: 100%;
     background: #1f1f1f;
+    font-weight: 300;
 }
 mat-sidenav-content{
     scroll-behavior: auto;
@@ -23,7 +24,7 @@ a{
     text-decoration: underline;
 }
 h1, h2, h3, h4, h5, h6{
-    font-weight: normal;
+    font-weight: 300;
 }
 /*Default styling elements */
 .border-top-grey{
@@ -74,7 +75,7 @@ app-main-movies-directory, app-movies, app-genres, app-search{
     background-color: #121212 !important;
     margin-top: 56px;
 }
-.mat-sidenav a:hover, .mat-sidenav a:focus, .mat-sidenav a:active{
+.mat-sidenav a:hover, .mat-sidenav a:focus, .mat-sidenav a:active, .page-taxonomy-list a:hover{
     color: #FFF;
 }
 .sidenav-footer{
@@ -95,6 +96,24 @@ app-main-movies-directory, app-movies, app-genres, app-search{
 .border{
     border-bottom: 1px solid rgba(48, 48, 48, 0.50);
 }
+/*Header*/
+header {
+    position: fixed;
+    top: 64px;
+    z-index: 999;
+    width: 100%;
+    visibility: hidden;
+}
+header .mat-form-field-infix{
+    background: #212121;
+}
+header button.search-btn.mat-button {
+    position: absolute;
+    z-index: 9;
+    bottom: 25px;
+    height: 35px;
+    text-align: center;
+}
 /*Section*/
 .section.margin.padding{
     padding-bottom: 2rem;
@@ -107,7 +126,6 @@ app-movies .section{
     padding-bottom: 0;
     margin-bottom: 0;
 }
-/*Section END*/
 .section-header {
     margin-bottom: 5px;
     padding: 1rem;
@@ -122,7 +140,12 @@ app-home .section-header{
 .section-header.wrapper p{
     margin-top: 0;
 }
+.section-title{
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
 /*App Wrapper END*/
+/*Section END*/
 /*Not found*/
 app-page-not-found {
     text-align: center;
@@ -131,11 +154,14 @@ app-page-not-found {
 /*Adverts*/
 #advert-widget1{
     max-width: 100%;
+    max-height: 300px;
 }
-#advert-widget2{
+#advert-widget2 {
     max-width: 100%;
     display: block;
     margin: auto;
+    height: 150px;
+    width: 97%;
 }
 .advert-widget{
     background: rgba(0, 0, 0, 0.15);
@@ -176,7 +202,6 @@ mat-card-title{
     overflow: hidden;
 }
 mat-card-title h2{
-    font-weight: normal;
     margin: 0;
     font-size: 1em;
 }
@@ -288,7 +313,7 @@ mat-card span.rating-number{
     min-height: 186px;
 }
 app-home #jumbotron{
-    padding: 20% 15%;
+    padding: 16% 15%;
     margin: 0rem 0rem 1rem 0rem;
     text-align: center;
 }
@@ -299,12 +324,19 @@ app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotr
     margin: -1rem -1rem 2rem -1rem;
     background-position: bottom;
 }
+/*Search Form*/
+app-search-form.main-search #searchcontainer.mat-input-container input {
+    width: 85%;
+}
+#searchcontainer label {
+    font-size: 80%;
+    margin-left: 20px;
+}
 /*Search Button*/
-mat-toolbar .mat-button.search-btn, mat-toolbar .mat-button.login-btn{
+mat-toolbar .mat-button.search-btn, mat-toolbar .mat-button.login-btn, .search-toggle mat-icon{
     color: #818181;
 }
 /*Search Button END*/
-
 /*Jumbotron END*/
 #load-more{
     text-align: center;
@@ -346,6 +378,7 @@ mat-toolbar{
 mat-toolbar .mat-button{
     min-width: auto;
 }
+.mat-toolbar-row, .mat-toolbar-single-row
 .docs-cmr-logo{
     width: 70px;
     padding: 6px 5px;
@@ -481,6 +514,20 @@ app-footer {
     #sitemap ul li {
         display: block;
         list-style: none;
+    }
+    app-search-form.main-search {
+        top: 55px;
+    }
+    app-home #jumbotron{
+        padding: 20% 5%;
+        margin: 0rem;
+    }
+    .section-details .view-all {
+        text-align: center;
+        margin-top: 15px;
+    }
+    header {
+        top: 56px;
     }
 }
 @media (min-width: 544px) {

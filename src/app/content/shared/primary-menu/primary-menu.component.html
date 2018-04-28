@@ -1,5 +1,7 @@
 <!-- Main Search -->
-<app-search-form class="main-search"></app-search-form>
+<button mat-button class="search-toggle" (click)="toggleSearch()" show="showSearch" tabindex="0">
+  <mat-icon class="mat-icon material-icons">search</mat-icon>
+</button>
 <!-- Account Menu -->
 <nav id="account-menu">
   <!-- Login -->

@@ -158,7 +158,7 @@
             <mat-icon>local_movies</mat-icon>
             <span fxHide.sm="true" fxHide.xs="true">Buy Ticket</span>
           </button> -->
-          <button mat-button (click)="shareOnFb(this)" class="fb-share-button sharer" matTooltip="Share this Movie" data-layout="button_count"
+          <button mat-button (click)="toggleShare()" class="fb-share-button sharer" matTooltip="Share this Movie" data-layout="button_count"
             data-size="large" data-mobile-iframe="true">
             <span class="fb-share-span">
               <a target="_blank" [href]="'https://www.facebook.com/sharer/sharer.php?u=' + APP_BASE_URL + '/movies/' + pageKey + '&amp;src=sdkpreparse'"
@@ -278,7 +278,7 @@
       </mat-tab-group>
     </div>
   </section>
-  <section *ngIf="movieArticles?.length" id="articles" class="section border" role="article">
+  <section *ngIf="movieArticles?.length" id="articles" class="section padding border" role="article">
     <div class="section-header">
       <div class="section-description">
         <h2 class="section-title">

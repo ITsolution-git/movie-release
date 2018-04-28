@@ -38,7 +38,7 @@ export class MainMoviesDirectoryComponent implements OnInit {
       param: 'primary_release_date.asc'
     },
     {
-      name: 'Prmary Release Date Descending',
+      name: 'Primary Release Date Descending',
       param: 'primary_release_date.desc'
     },
     {

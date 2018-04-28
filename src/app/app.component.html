@@ -11,7 +11,7 @@
             <div class="mat-button-ripple mat-ripple" matripple=""></div>
             <div class="mat-button-focus-overlay"></div>
         </a>
-        <app-primary-menu class="header-actions" fxLayoutAlign="end end" fxFlex="80"></app-primary-menu>
+        <app-primary-menu class="header-actions" fxLayoutAlign="end end" fxFlex="100"></app-primary-menu>
     </mat-toolbar>
     <mat-sidenav-container class="view-sidenav-container">
         <mat-sidenav #sidebar mode="over" opened="false" [fixedInViewport]="true">
@@ -19,7 +19,10 @@
                 <app-sidenav></app-sidenav>
             </mat-nav-list>
             <mat-nav-list class="sidenav-footer border-top-grey">
-                <mat-list-item role="listitem" tabindex="0" (click)="sidebar.toggle()"><mat-icon class="mat-icon material-icons">chevron_left</mat-icon><span>Close Sidebar</span></mat-list-item>
+                <mat-list-item role="listitem" tabindex="0" (click)="sidebar.toggle()">
+                    <mat-icon class="mat-icon material-icons">chevron_left</mat-icon>
+                    <span>Close Sidebar</span>
+                </mat-list-item>
             </mat-nav-list>
             <div class="version border-top-grey">
                 <em>CMR - App version 0.1 | 2018</em>

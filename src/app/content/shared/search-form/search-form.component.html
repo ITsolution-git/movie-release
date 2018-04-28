@@ -1,12 +1,21 @@
-<section id="search-form" fxLayout="column" fxFlex="100">
-  <!-- Search Inputs Container -->
-  <div class="input-container">
-    <!-- Search Inputs -->
-    <input type="text" name="keyword" [(ngModel)]="keyword" placeholder="Movie Title" aria-label="Movie Title"
-      (keyup.enter)="goToSearchPage(keyword)">
-    <!-- Search button -->
-    <button mat-button (click)="goToSearchPage(keyword)" class="search-btn">
-      <mat-icon aria-label="Search">search</mat-icon>
-    </button>
-  </div>
-</section>
+<!-- <mat-form-field id="search-form"> -->
+<!-- <button mat-button click="showSearch = !showSearch" aria-label="Back">
+    <mat-icon icon="arrow_back">back</mat-icon>
+  </button> -->
+
+<!-- Search Inputs Container -->
+<mat-input-container id="searchcontainer" class="input-container" fxLayout="column" fxFlex="100" flex aria-label="Search for a Movie" show="showSearch">
+  <!-- Search Inputs -->
+  <input matInput mat-theme="input" type="search" name="keyword" [(ngModel)]="keyword" (keyup.enter)="goToSearchPage(keyword)" placeholder="Search for a Movie">
+  <!-- Search button -->
+</mat-input-container>
+<button mat-button (click)="goToSearchPage(keyword)" class="search-btn" aria-label="Search" click="showSearch = !showSearch">
+    <mat-icon icon="search" aria-label="Search">search</mat-icon>
+  </button>
+<!-- </mat-form-field> -->
+
+
+
+<!-- <button mat-button aria-label="Open Settings" click="showListBottomSheet($event)">
+  <mat-icon icon="more_vert"></mat-icon>
+</button> -->

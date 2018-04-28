@@ -31,4 +31,13 @@ export class PrimaryMenuComponent implements OnInit {
       this.movieGenresList = res['genres'];
     });
   }
+
+  toggleSearch(): void {
+    const header = document.getElementById('header');
+      if (header.style.visibility === 'visible') {
+        header.style.visibility = 'hidden';
+      } else {
+        header.style.visibility = 'visible';
+      }
+    }
 }

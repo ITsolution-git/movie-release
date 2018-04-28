@@ -115,7 +115,7 @@ export class MovieDetailsComponent implements OnInit {
   cobinedRatingAverage: number;
 
   isFavorited = false;
-  isShareOpen = false;
+  isShareOpen = true;
   getMovieDetailsCounter = 0;
 
   constructor(
@@ -139,7 +139,7 @@ export class MovieDetailsComponent implements OnInit {
     this.APP_BASE_URL = APP_BASE_URL;
 
     this.ar.url.subscribe((res) => {
-      // Reset Property Val;ues on Route Change
+      // Reset Property Values on Route Change
       this.resetTabs(0);
       this.as.scrollToTop();
       this.isMoreInfoOpen = false;
