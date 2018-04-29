@@ -318,7 +318,6 @@ mat-card span.rating-number{
 }
 app-home #jumbotron{
     padding: 16% 15%;
-    margin: 0rem 0rem 1rem 0rem;
     text-align: center;
 }
 app-movies #jumbotron{
@@ -327,6 +326,10 @@ app-movies #jumbotron{
 app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron{
     margin: -1rem -1rem 2rem -1rem;
     background-position: bottom;
+}
+.page-taxonomy-list {
+    width: 50%;
+    margin: auto;
 }
 /*Search Form*/
 app-search-form.main-search #searchcontainer.mat-input-container input {
@@ -342,14 +345,17 @@ mat-toolbar .mat-button.search-btn, mat-toolbar .mat-button.login-btn, .search-t
 }
 /*Search Button END*/
 /*Jumbotron END*/
-#load-more{
+#load-more, .view-all{
     text-align: center;
-    margin: 3rem 0;
+    margin: 2rem 0;
     display: inline-block;
     width: 100%;
     border-top: 1px solid rgba(48,48,48,.5);
     border-bottom: 1px solid rgba(48,48,48,.5);
     padding: 10px 0px;
+}
+.view-all{
+    margin: 1rem 0;
 }
 /*Login Overlay*/
 .cdk-global-overlay-wrapper{
@@ -459,11 +465,11 @@ app-footer {
     display: inline-block;
     width: 100%;
   }
-  #sitemap ul {
+  .footer-links ul {
     margin: 0;
     padding: 0;
   }
-  #sitemap ul li {
+  .footer-links ul li {
     display: inline-block;
     list-style: none;
   }
@@ -479,6 +485,22 @@ app-footer {
   #sitemap ul li a:hover {
     background: rgba(68, 68, 68, 0.40);
     color: #FFF;
+  }
+  #footer-links, .site-description{
+    display: inline-block;
+  }
+  .site-description{
+      margin-right: 10px;
+  }
+  #footer-links ul li a{
+    padding-right: 5px;
+    color: #CCC;
+    text-decoration: none;
+    line-height: 2em;
+  }
+  #footer-links ul li a:hover{
+      color: #FFF;
+      text-decoration: underline;
   }
   #credits,
   #disclaimer {
@@ -524,7 +546,6 @@ app-footer {
     }
     app-home #jumbotron{
         padding: 20% 5%;
-        margin: 0rem;
     }
     .section-details .view-all {
         text-align: center;
@@ -532,6 +553,9 @@ app-footer {
     }
     header {
         top: 56px;
+    }
+    .page-taxonomy-list {
+        width: 100%;
     }
 }
 @media (min-width: 544px) {

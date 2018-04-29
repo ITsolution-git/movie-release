@@ -41,6 +41,8 @@ import { AdsenseWidgetsComponent } from './shared/adsense-widgets/adsense-widget
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { AboutComponent } from './about/about.component';
+import { SitemapComponent } from './sitemap/sitemap.component';
+import { BuyingComponent } from './buying/buying.component';
 
 @NgModule({
   imports: [
@@ -84,7 +86,9 @@ import { AboutComponent } from './about/about.component';
     AdsenseWidgetsComponent,
     TermsComponent,
     PrivacyComponent,
-    AboutComponent
+    AboutComponent,
+    SitemapComponent,
+    BuyingComponent
   ],
   entryComponents: [
     TrailersDialogComponent

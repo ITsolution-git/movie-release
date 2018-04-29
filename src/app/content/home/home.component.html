@@ -6,8 +6,8 @@
     <div class="section-description" fxLayout="column">
       <h2 class="section-title">
         <mat-icon class="mat-icon material-icons">schedule</mat-icon> Now playing movies in theaters near you</h2>
-      <p>Top 10 now playing movies in theaters near you. Browse the list of the current releases and the new movies
-        playing with release dates and rating.</p>
+      <p>Top 10 now playing movies in theaters near you. Browse the list of the current releases and the new movies playing
+        with release dates and rating.</p>
     </div>
     <div class="section-details" fxLayout="column">
       <div class="results-counter" fxFlex="row">
@@ -15,15 +15,15 @@
         <span *ngIf="nowPlayingMoviesCurrentIndex === nowPlayingMoviesTotalPages">{{ nowPlayingMoviesTotalResults }}</span>
         <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 10 }}</span> / {{ nowPlayingMoviesTotalResults }}
       </div>
-      <div class="view-all" fxFlex="row">
-        <a class="mat-raised-button mat-primary" href="/movies/now-playing/" routerlink="/movies/now-playing/" tabindex="0">Now Playing Movies - Full list</a>
-      </div>
     </div>
   </div>
-  <div class="wrapper movies-list mat-padding border" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+  <div class="wrapper movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
     <mat-card *ngFor="let movie of nowPlayingMovies | slice:0:10; let i = index" class="movie-card mat-elevation-z" tabindex="0">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
+    <div class="view-all" fxFlex="row">
+      <a class="mat-raised-button mat-primary" href="/movies/now-playing/" routerlink="/movies/now-playing/" tabindex="0">Now Playing Movies - Full list</a>
+    </div>
   </div>
 </section>
 <section *ngIf="!loading" id="upcoming" class="now-playing-movies-container section padding" label="Now Playing Movies">
@@ -31,8 +31,8 @@
     <div class="section-description" fxLayout="column">
       <h2 class="section-title">
         <mat-icon class="mat-icon material-icons">schedule</mat-icon> Upcoming Movies - Comming Soon</h2>
-      <p>Top 10 upcoming movies coming soon to theaters. Find the freshest list of new releases with releases dates,
-        watch movie trailers, vote your favorites, see cast and crew list and more.</p>
+      <p>Top 10 upcoming movies coming soon to theaters. Find the freshest list of new releases with releases dates, watch movie
+        trailers, vote your favorites, see cast and crew list and more.</p>
     </div>
     <div class="section-details" fxLayout="column">
       <div class="results-counter" fxFlex="row">
@@ -40,14 +40,14 @@
         <span *ngIf="upcomingMoviesCurrentIndex === upcomingMoviesTotalPages">{{ upcomingMoviesTotalResults }}</span>
         <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 10 }}</span> / {{ upcomingMoviesTotalResults }}
       </div>
-      <div class="view-all" fxFlex="row">
-        <a class="mat-raised-button mat-primary" href="/movies/upcoming/" routerlink="/movies/upcoming/" tabindex="0">Upcoming Movies - Full list</a>
-      </div>
     </div>
   </div>
   <div class="wrapper movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
     <mat-card *ngFor="let movie of upcomingMovies | slice:0:10; let i = index" class="movie-card mat-elevation-z" tabindex="0">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
+    <div class="view-all" fxFlex="row">
+      <a class="mat-raised-button mat-primary" href="/movies/upcoming/" routerlink="/movies/upcoming/" tabindex="0">Upcoming Movies - Full list</a>
+    </div>
   </div>
 </section>

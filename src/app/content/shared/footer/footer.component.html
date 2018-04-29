@@ -53,8 +53,8 @@
             <app-adsense-widgets [slotId]="8891110759"></app-adsense-widgets>
         </div> -->
     </div>
-    <div id="sitemap" fxlayout.sm="row" fxlayout.xs="row">
-        <ul id="menu-footer-menu" class="nav navbar-nav">   
+    <div id="sitemap" class="footer-links" fxlayout.sm="row" fxlayout.xs="row">
+        <ul id="menu-footer-menu" class="nav navbar-nav">
             <li>
                 <a routerLink="/">Home</a>
             </li>
@@ -74,28 +74,19 @@
                 <a href="/movies" routerLink="/movies">Movies</a>
             </li>
             <li>
+                <a href="/tv-shows" routerLink="/tv-shows">Movies</a>
+            </li>
+            <li>
                 <a href="/celebrities" routerLink="/celebrities">Celebrities</a>
             </li>
             <li>
                 <a href="/movies/genres" routerLink="/movies/genres">Genres</a>
             </li>
-            <!-- <li>
-                <a href="/privacy" routerLink="/privacy">Privacy Policy</a>
-            </li> -->
-            <!-- <li>
-                <a href="/terms" routerLink="/terms">Terms and Conditions</a>
-            </li> -->
             <li>
-                <a href="https://www.facebook.com/currentmoviereleases" target="_blank" rel="noopener">Facebook</a>
+                <a href="/dvd" routerLink="/dvd">DVD Releases</a>
             </li>
             <li>
-                <a href="https://twitter.com/CmovieR" target="_blank" rel="noopener">Twitter</a>
-            </li>
-            <li>
-                <a href="https://plus.google.com/+Currentmoviereleases" target="_blank" rel="noopener">Google+</a>
-            </li>
-            <li>
-                <a href="https://www.pinterest.com/currentmoviereleases/" target="_blank" rel="noopener">Pinterest</a>
+                <a href="/merchandising" routerLink="/merchandising">Merchandising</a>
             </li>
         </ul>
     </div>
@@ -107,15 +98,42 @@
         <p>The Total Movie Ratings is a sum of a calculation based on the TMDB (tmdb.org) Movie Rating, our Movie Critics Rating,
             and our User Ratings.</p>
         <em>Web Content and Copyright info:</em>
-        <p>All content, logos, movie titles, movie posters, movie images are copyrighted materials by their respective owners
-            / production companies. We (CMR) do not own any data provided for the listed movies. Our Film and Celebrities
-            data is provided by The Movie Database Organization -
+        <p>All content, logos, movie titles, movie posters, movie images are copyrighted materials by their respective owners.
+            No content, logo, image, web design, application code, or any other material of this web application may be copyrighted
+            without explicit permission. We (CMR) do not own any data provided for the listed movies or celebrities. Our
+            Film and Celebrities data is provided by The Movie Database Organization -
             <a href="https://www.tmdb.org" target="_blank" rel="noopener" class="poweredbytmdb" aria-label="TMDB">TMDB</a>
         </p>
     </div>
-    <div id="credits" fxlayout="column" fxlayout.sm="row" fxlayout.xs="row">
-        <div class="site-description">Now Playing and Upcoming Movies by Current Movie Releases © 2011 - 2018 | All Rights Reserved. No content, logo,
-            image, web design, application code, or any other material of this web application may be copyrighted without
-            explicit permission.</div>
+    <div id="credits" fxlayout="row">
+        <div class="site-description">Now Playing and Upcoming Movies by Current Movie Releases © 2011 - 2018 | All Rights Reserved.</div>
+        <div id="footer-links" class="footer-links">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/privacy" routerLink="/privacy">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="/terms" routerLink="/terms">Terms of Use</a>
+                </li>
+                <li>
+                    <a href="/buying" routerLink="/buying">How to Buy</a>
+                </li>
+                <li>
+                    <a href="/sitemap" routerLink="/sitemap">Site Map</a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/currentmoviereleases" target="_blank" rel="noopener">Facebook</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/CmovieR" target="_blank" rel="noopener">Twitter</a>
+                </li>
+                <li>
+                    <a href="https://plus.google.com/+Currentmoviereleases" target="_blank" rel="noopener">Google+</a>
+                </li>
+                <li>
+                    <a href="https://www.pinterest.com/currentmoviereleases/" target="_blank" rel="noopener">Pinterest</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </footer>
