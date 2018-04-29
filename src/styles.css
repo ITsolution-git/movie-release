@@ -89,6 +89,11 @@ app-main-movies-directory, app-movies, app-genres, app-search, app-privacy, app-
     margin-left: auto;
     margin-right: auto;
     z-index: 9;
+    white-space: normal;
+    word-wrap: break-word;
+}
+.wrapper.marginfix{
+    margin-right: inherit;
 }
 .wrapper.margin{
     margin-top: 5%;
@@ -327,9 +332,15 @@ app-home #jumbotron{
 app-movies #jumbotron, app-celebs #jumbotron{
     margin: -1rem -1rem 0rem -1rem;
 }
-app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron{
+app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron, app-privacy #jumbotron, app-terms #jumbotron{
     margin: -1rem -1rem 2rem -1rem;
     background-position: bottom;
+}
+app-privacy #jumbotron, app-terms #jumbotron{
+    min-height: auto;
+}
+.staticpage h3{
+    color: #666;
 }
 .page-taxonomy-list {
     width: 50%;
@@ -448,7 +459,7 @@ app-footer {
     display: block;
     padding: 0 10%;
   }
-  footer#colophon .widget-title {
+.widget-title {
     color: #DDD;
     font-size: 100%;
     margin-bottom: 1.5em;
@@ -585,6 +596,9 @@ app-footer {
     }
     .page-taxonomy-list {
         width: 100%;
+    }
+    .wrapper.marginfix{
+        display: block !important;
     }
 }
 @media (min-width: 544px) {
