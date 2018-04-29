@@ -4,21 +4,21 @@
     <em>Sunday, April 29, 2018</em>
   </h2>
 </div>
-<div class="page-with-sidebar wrapper marginfix" fxLayout="row" fxLayoutAlign="center start" fxLayoutWrap="wrap">
-  <section class="staticpage" fxlayout="column" fxFlex.sm="row" fxFlex.xs="row">
+<div class="page-with-sidebar wrapper displayfix" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutWrap="wrap">
+  <section class="staticpage displayfix" fxFlex="60" fxLayout="column" fxFlex.sm="100" fxFlex.xs="100">
     <div class="wrapper">
-      <h3>1. Introduction</h3>
+      <h3 id="introduction">1. Introduction</h3>
       <p>These Website Standard Terms and Conditions written on this webpage shall manage your use of this website. These Terms
         will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms
         and conditions written in here. You must not use this Website if you disagree with any of these Website Standard
         Terms and Conditions.</p>
       <p>We do not display any sexual, violent or harmful material by default. You will need to log in to see this information.
         Minors or people below 13 years old are not allowed to use this Website.</p>
-      <h3>2. Intellectual Property Rights</h3>
+      <h3 id="intellectual-property-rights">2. Intellectual Property Rights</h3>
       <p>Other than the content you own, under these Terms, CMR Inc. and/or its licensors own all the intellectual property
         rights and materials contained in this Website.</p>
       <p>You are granted limited license only for purposes of viewing the material contained on this Website.</p>
-      <h3>3. Restrictions</h3>
+      <h3 id="restrictions">3. Restrictions</h3>
       <p>You are specifically restricted from all of the following</p>
       <ul>
         <li>publishing any Website material in any other media;</li>
@@ -34,7 +34,7 @@
       <p>Certain areas of this Website are restricted from being access by you and CMR Inc. may further restrict access by you
         to any areas of this Website, at any time, in absolute discretion. Any user ID and password you may have for this
         Website are confidential and you must maintain confidentiality as well.</p>
-      <h3>4. Your Content</h3>
+      <h3 id="your-content">4. Your Content</h3>
       <p>In these Website Standard Terms and Conditions, “Your Content” shall mean any audio, video text, images or other material
         you choose to display on this Website. By displaying Your Content, you grant CMR Inc. a non-exclusive, worldwide
         irrevocable, sub licensable license to use, reproduce, adapt, publish, translate and distribute it in any and all
@@ -42,47 +42,104 @@
       </p>
       <p>Your Content must be your own and must not be invading any third-party’s rights. CMR Inc. reserves the right to remove
         any of Your Content from this Website at any time without notice.</p>
-      <h3>5. No warranties</h3>
+      <h3 id="no-warranties">5. No warranties</h3>
       <p>This Website is provided “as is,” with all faults, and CMR Inc. express no representations or warranties, of any kind
         related to this Website or the materials contained on this Website. Also, nothing contained on this Website shall
         be interpreted as advising you.</p>
-      <h3>6. Limitation of liability</h3>
+      <h3 id="limitation-of-liability">6. Limitation of liability</h3>
       <p>In no event shall CMR Inc., nor any of its officers, directors and employees, shall be held liable for anything arising
         out of or in any way connected with your use of this Website whether such liability is under contract. CMR Inc.,
         including its officers, directors and employees shall not be held liable for any indirect, consequential or special
         liability arising out of or in any way related to your use of this Website.</p>
-      <h3>7. Indemnification</h3>
+      <h3 id="indemnification">7. Indemnification</h3>
       <p>You hereby indemnify to the fullest extent CMR Inc. from and against any and/or all liabilities, costs, demands, causes
         of action, damages and expenses arising in any way related to your breach of any of the provisions of these Terms.</p>
-      <h3>8. Severability</h3>
+      <h3 id="severability">8. Severability</h3>
       <p>If any provision of these Terms is found to be invalid under any applicable law, such provisions shall be deleted without
         affecting the remaining provisions herein.</p>
-      <h3>9. Variation of Terms</h3>
+      <h3 id="variation-of-terms">9. Variation of Terms</h3>
       <p>CMR Inc. is permitted to revise these Terms at any time as it sees fit, and by using this Website you are expected
         to review these Terms on a regular basis.</p>
-      <h3>10. Assignment</h3>
+      <h3 id="assignment">10. Assignment</h3>
       <p>The CMR Inc. is allowed to assign, transfer, and subcontract its rights and/or obligations under these Terms without
         any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations
         under these Terms.</p>
-      <h3>11. Entire Agreement</h3>
+      <h3 id="entire-agreement">11. Entire Agreement</h3>
       <p>These Terms constitute the entire agreement between CMR Inc. and you in relation to your use of this Website, and supersede
         all prior agreements and understandings.</p>
-      <h3>12. Governing Law &amp; Jurisdiction</h3>
+      <h3 id="governing-law-and-jurisdiction">12. Governing Law &amp; Jurisdiction</h3>
       <p>These Terms will be governed by and interpreted in accordance with the laws of the State of California, and you submit
         to the non-exclusive jurisdiction of the state and federal courts located in California for the resolution of any
         disputes.
       </p>
     </div>
   </section>
-  <section class="rightsidenav" fxlayout="column" fxFlex.sm="row" fxFlex.xs="row">
-    <h3 class="widget-title">Legal Documentation</h3>
-    <ul>
-      <li>
-        <a href="/privacy" tabindex="0" routerLink="/privacy">Privacy Policy</a>
-      </li>
-      <li>
-        <a href="/terms" tabindex="0" routerLink="/terms">Terms and Conditions</a>
-      </li>
-    </ul>
+  <section class="rightsidenav displayfix" fxFlex="25" fxLayout="column" fxFlex.sm="100" fxFlex.xs="100">
+    <div class="section-sidebar">
+      <h3 class="widget-title">Legal Documentation</h3>
+      <ul>
+        <li id="#privacy">
+          <a href="/privacy" tabindex="0" routerLink="/privacy">Privacy Policy</a>
+          <ul>
+            <li>
+              <a href="/privacy#when-do-we-collect-information" tabindex="0">When do we collect information?</a>
+            </li>
+            <li>
+              <a href="/privacy#how-do-we-use-your-information" tabindex="0">How do we use your information?</a>
+            </li>
+            <li>
+              <a href="/privacy#do-we-use-cookies" tabindex="0">Do we use 'cookies'?</a>
+            </li>
+            <li>
+              <a href="/privacy#opting-out" tabindex="0">Opting out</a>
+            </li>
+            <li>
+              <a href="/privacy#do-not-track-signals" tabindex="0">Do Not Track signals?</a>
+            </li>
+          </ul>
+        </li>
+        <li id="#terms">
+          <a href="/terms" tabindex="0" routerLink="/terms">Terms and Conditions</a>
+          <ul>
+            <li>
+              <a href="/terms#introduction" tabindex="0">Introduction</a>
+            </li>
+            <li>
+              <a href="/terms#intellectual-property-rights" tabindex="0">Intellectual Property Rights</a>
+            </li>
+            <li>
+              <a href="/terms#restrictions" tabindex="0">Restrictions</a>
+            </li>
+            <li>
+              <a href="/terms#your-content" tabindex="0">Your Content</a>
+            </li>
+            <li>
+              <a href="/terms#no-warranties" tabindex="0">No warranties</a>
+            </li>
+            <li>
+              <a href="/terms#limitation-of-liability" tabindex="0">Limitation of liability</a>
+            </li>
+            <li>
+              <a href="/terms#indemnification" tabindex="0">Indemnification</a>
+            </li>
+            <li>
+              <a href="/terms#severability" tabindex="0">Severability</a>
+            </li>
+            <li>
+              <a href="/terms#variation-of-terms" tabindex="0">Variation of Terms</a>
+            </li>
+            <li>
+              <a href="/terms#assignment" tabindex="0">Assignment</a>
+            </li>
+            <li>
+              <a href="/terms#entire-agreement" tabindex="0">Entire Agreement</a>
+            </li>
+            <li>
+              <a href="/terms#governing-law-and-jurisdiction" tabindex="0">Governing Law &amp; Jurisdiction</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </section>
 </div>

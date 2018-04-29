@@ -92,9 +92,6 @@ app-main-movies-directory, app-movies, app-genres, app-search, app-privacy, app-
     white-space: normal;
     word-wrap: break-word;
 }
-.wrapper.marginfix{
-    margin-right: inherit;
-}
 .wrapper.margin{
     margin-top: 5%;
 }
@@ -131,7 +128,7 @@ app-movies .section{
     padding-bottom: 0;
     margin-bottom: 0;
 }
-.section-header {
+.section-header, .section-sidebar {
     margin-bottom: 5px;
     padding: 1rem;
     background: rgba(0, 0, 0, 0.15);
@@ -152,6 +149,19 @@ app-home .section-header{
 }
 .section-title mat-icon{
     font-size: 110%;
+}
+.section-sidebar{
+    font-size: 90%;
+}
+.rightsidenav ul, .rightsidenav ol{
+    padding-left: 3%;
+    margin-bottom: 10px;
+}
+.rightsidenav ul li, .rightsidenav ol li{
+    list-style: none;
+}
+.rightsidenav ul li a{
+    text-decoration: none;
 }
 /*App Wrapper END*/
 /*Section END*/
@@ -337,7 +347,9 @@ app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotr
     background-position: bottom;
 }
 app-privacy #jumbotron, app-terms #jumbotron{
+    background-image: url("/assets/img/film-producer-info.jpg");
     min-height: auto;
+    background-size: contain;
 }
 .staticpage h3{
     color: #666;
@@ -597,7 +609,7 @@ app-footer {
     .page-taxonomy-list {
         width: 100%;
     }
-    .wrapper.marginfix{
+    .wrapper .displayfix{
         display: block !important;
     }
 }
