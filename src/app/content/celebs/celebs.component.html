@@ -9,8 +9,8 @@
   </div>
 </div>
 <!-- Celebrities -->
-<div *ngIf="!loading" class="popular-actors-tab-content wrapper">
-  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="actors-list">
+<section *ngIf="!loading" class="popular-actors-tab-content">
+  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="actors-list wrapper">
     <mat-card *ngFor="let actor of popularActors" class="actor-card">
       <a (click)="this.as.goToCelebDetails(actor.id)">
         <div>
@@ -27,19 +27,18 @@
       </a>
     </mat-card>
   </div>
-</div>
-
-<!-- Loader -->
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-</div>
-
-<!-- More Loader -->
-<div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-</div>
-
-<!-- Load More Button -->
-<div id="load-more" *ngIf="!loading && currentPageIndex !== totalPages">
-  <button mat-raised-button color="primary" (click)="loadMoreResults(currentPageIndex + 1)">LOAD MORE...</button>
+</section>
+<div class="loaders wrapper">
+  <!-- Loader -->
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <!-- More Loader -->
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loadingMore" class="loader">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <!-- Load More Button -->
+  <div id="load-more" *ngIf="!loading && currentPageIndex !== totalPages">
+    <button mat-raised-button color="primary" (click)="loadMoreResults(currentPageIndex + 1)">LOAD MORE...</button>
+  </div>
 </div>

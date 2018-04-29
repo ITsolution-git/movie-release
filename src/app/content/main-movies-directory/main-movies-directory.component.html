@@ -46,7 +46,7 @@
     </mat-card>
   </div>
 </section>
-<section>
+<div class="loaders wrapper">
   <!-- Loader -->
   <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading" class="loader">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
@@ -59,4 +59,4 @@
   <div id="load-more" *ngIf="!loading && mainDirectoryCurrentIndex !== mainDirectoryTotalPages">
     <button mat-raised-button color="primary" (click)="loadMoreResults(mainDirectoryCurrentIndex + 1)">LOAD MORE...</button>
   </div>
-</section>
+</div>
