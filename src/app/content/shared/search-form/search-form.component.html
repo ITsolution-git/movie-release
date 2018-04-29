@@ -4,17 +4,15 @@
   </button> -->
 
 <!-- Search Inputs Container -->
-<mat-input-container id="searchcontainer" class="input-container" fxLayout="column" fxFlex="100" flex aria-label="Search for a Movie" show="showSearch">
+<mat-input-container id="searchcontainer" class="input-container" fxLayout="column" fxFlex="100" fxFlex aria-label="Search for a Movie" show="showSearch">
   <!-- Search Inputs -->
-  <input matInput mat-theme="input" type="search" name="keyword" [(ngModel)]="keyword" (keyup.enter)="goToSearchPage(keyword)" placeholder="Search for a Movie">
+  <input id="searchinput" name="searchinput" matInput mat-theme="input" type="search" name="keyword" [(ngModel)]="keyword" (keyup.enter)="goToSearchPage(keyword)" placeholder="Search for a Movie">
   <!-- Search button -->
 </mat-input-container>
 <button mat-button (click)="goToSearchPage(keyword)" class="search-btn" aria-label="Search" click="showSearch = !showSearch">
     <mat-icon icon="search" aria-label="Search">search</mat-icon>
   </button>
 <!-- </mat-form-field> -->
-
-
 
 <!-- <button mat-button aria-label="Open Settings" click="showListBottomSheet($event)">
   <mat-icon icon="more_vert"></mat-icon>

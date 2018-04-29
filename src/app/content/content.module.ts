@@ -83,7 +83,6 @@ import { BuyingComponent } from './buying/buying.component';
     CelebDetailsComponent,
     SafePipe,
     UserButtonsComponent,
-    AdsenseWidgetsComponent,
     TermsComponent,
     PrivacyComponent,
     AboutComponent,

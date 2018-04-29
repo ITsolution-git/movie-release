@@ -156,23 +156,27 @@ app-page-not-found {
     display: block;
 }
 /*Adverts*/
-#advert-widget1{
-    max-width: 100%;
-    max-height: 300px;
+#advert-widget-300 {
+    min-width: 300px;
+    max-height: 250px;
 }
-#advert-widget2 {
+#advert-widget-400{
+    min-width: 300px;
+    max-width: 400px;
+    max-height: 250px;
+}
+#advert-widget-full {
     max-width: 100%;
     display: block;
-    margin: auto;
-    height: 150px;
+    max-height: 100px;
     width: 97%;
 }
 .advert-widget{
     background: rgba(0, 0, 0, 0.15);
     border-radius: 3px;
     padding: 5px 15px;
-    min-width: 300px;
-    max-height: 300px;
+    margin: auto;
+    overflow: hidden;
 }
 /*Adverts END*/
 /*Material Cards*/
@@ -332,8 +336,8 @@ app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotr
     margin: auto;
 }
 /*Search Form*/
-app-search-form.main-search #searchcontainer.mat-input-container input {
-    width: 85%;
+app-search-form  input#searchinput {
+    width: 80%;
 }
 #searchcontainer label {
     font-size: 80%;
@@ -465,7 +469,7 @@ app-footer {
     display: inline-block;
     width: 100%;
   }
-  .footer-links ul {
+  .footer-links ul, ul#actors-list, ul#genre-list{
     margin: 0;
     padding: 0;
   }
@@ -473,21 +477,46 @@ app-footer {
     display: inline-block;
     list-style: none;
   }
-  #sitemap ul li a {
+  #sitemap ul li a{
     display: block;
     position: relative;
-    display: block;
     padding: 10px 20px;
     line-height: 2.5em;
     text-decoration: none;
     color: #CCC;
   }
-  #sitemap ul li a:hover {
+  #sitemap ul li a:hover, ul#actors-list li a:hover, ul#genre-list li a:hover {
     background: rgba(68, 68, 68, 0.40);
     color: #FFF;
   }
+  ul#actors-list li, ul#genre-list li{
+      list-style: none;
+  }
+  ul#actors-list li a{
+    display: block;
+    position: relative;
+    padding: 2.5px 10px;
+    line-height: 2.5em;
+    text-decoration: none;
+    color: #CCC;
+    border-bottom: 1px solid rgba(68, 68, 68, 0.40);
+  }
+  ul#genre-list li{
+      display: inline-block;
+      margin: 0px 0px 5px 5px;
+  }
+    ul#genre-list li a{
+        display: block;
+        position: relative;
+        padding: 2.5px 10px;
+        line-height: 2.5em;
+        text-decoration: none;
+        color: #CCC;
+        border: 1px solid rgba(68, 68, 68, 0.40);
+    }
   #footer-links, .site-description{
     display: inline-block;
+    line-height: 2em;
   }
   .site-description{
       margin-right: 10px;
