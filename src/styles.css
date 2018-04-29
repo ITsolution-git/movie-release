@@ -64,7 +64,7 @@ mat-list-item span{
     width: 110px;
 }
 /*App Wrapper*/
-app-main-movies-directory, app-movies, app-genres, app-search{
+app-main-movies-directory, app-movies, app-genres, app-search, app-privacy, app-terms, app-buying, app-sitemap, app-about, app-celebs{
     display: block;
     padding: 1rem;
 }
@@ -320,7 +320,7 @@ app-home #jumbotron{
     padding: 16% 15%;
     text-align: center;
 }
-app-movies #jumbotron{
+app-movies #jumbotron, app-celebs #jumbotron{
     margin: -1rem -1rem 0rem -1rem;
 }
 app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron{
