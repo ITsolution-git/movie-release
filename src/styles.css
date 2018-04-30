@@ -514,6 +514,10 @@ app-footer {
   }
   ul#actors-list li, ul#genre-list li{
       list-style: none;
+      display: inline-block;
+  }
+  ul#actors-list li{
+      width: 100%;
   }
   ul#actors-list li a{
     display: block;
@@ -525,7 +529,6 @@ app-footer {
     border-bottom: 1px solid rgba(68, 68, 68, 0.40);
   }
   ul#genre-list li{
-      display: inline-block;
       margin: 0px 0px 5px 5px;
   }
     ul#genre-list li a{
@@ -590,8 +593,9 @@ app-footer {
         margin-right: -5px;
     }
     #sitemap ul li {
-        display: block;
+        display: inline-block;
         list-style: none;
+        width: 100%;
     }
     app-search-form.main-search {
         top: 55px;
