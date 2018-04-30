@@ -39,7 +39,7 @@ export class AdsComponent implements OnInit {
       res => {
         this.ads = res;
       }
-    )
+    );
   }
 
   ngOnInit(): void { }
@@ -48,7 +48,7 @@ export class AdsComponent implements OnInit {
     console.log(formValues);
     this.adSettings.update((i).toString(), formValues).then(
       () => {
-        this.toast.success('Ad Saved!')
+        this.toast.success('Ad Saved!');
       }
     );
   }

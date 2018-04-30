@@ -25,7 +25,7 @@ export class SeoService {
   setFacebookMetaTags(title: string, pageURL: string, description: string, thumbImg: string, OGtype?: string) {
     // Facebook OG Tags
     this.meta.updateTag(
-      { property: 'og:title', content: title + ' | ' + APP_SEO_NAME },
+      { property: 'og:title', content: title },
     );
     this.meta.updateTag(
       { property: 'og:url', content: pageURL },

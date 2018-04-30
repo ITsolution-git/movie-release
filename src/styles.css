@@ -99,17 +99,17 @@ app-main-movies-directory, app-movies, app-genres, app-search, app-privacy, app-
     border-bottom: 1px solid rgba(48, 48, 48, 0.50);
 }
 /*Header*/
-header {
+#header #main-search {
     position: fixed;
     top: 64px;
     z-index: 999;
     width: 100%;
     visibility: hidden;
 }
-header #main-search .mat-form-field-infix{
+#header #main-search .mat-form-field-infix{
     background: #212121;
 }
-header #main-search button.search-btn.mat-button {
+#header #main-search button.search-btn.mat-button {
     position: absolute;
     z-index: 9;
     bottom: 25px;
@@ -148,7 +148,7 @@ app-home .section-header{
     font-size: 110%;
 }
 .section-title mat-icon{
-    font-size: 110%;
+    vertical-align: bottom;
 }
 .section-sidebar{
     font-size: 90%;
@@ -580,9 +580,18 @@ app-footer {
     min-width: 40px !important;
     padding: 0 !important;
   }
-  .scrolltotop .mat-icon {
-    padding: 15% 5%;
+  .scrolltotop1{
+    bottom: 60px;
   }
+  .scrolltotop2{
+    bottom: 100px;
+  }
+  .scrolltotop3{
+    bottom: 140px;
+}
+.scrolltotop .cdk-focused .cdk-mouse-focused{
+    color: red;
+}
 /*Footer END*/
 /*Material Extras END*/
 @media (max-width: 599px) {
@@ -607,7 +616,7 @@ app-footer {
         text-align: center;
         margin-top: 15px;
     }
-    header {
+    #header #main-search {
         top: 56px;
     }
     .page-taxonomy-list {

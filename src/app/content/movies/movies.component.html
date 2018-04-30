@@ -1,32 +1,24 @@
-<div id="jumbotron" class="mat-elevation-z6">
+<div id="jumbotron" class="mat-elevation-z6" role="banner">
   <div class="container">
     <h1 class="page-title entry-title">{{ pageSeoTitle }}</h1>
     <h2 class="page-description">{{ pageSeoDescr }}</h2>
-    <!-- <div class="advanced_filters">
-    </div> -->
-    <!-- <div class="page-taxonomy-list"></div> -->
-    <!-- <div id="breadcrumbs"></div> -->
     <div id="page-header" fxLayout="row">
       <div id="header-left" fxFlex>
-
         <!-- Upcoming Results Counter -->
         <div *ngIf="pageKey === 'upcoming'" id="results-counter">Showing:
           <span *ngIf="upcomingMoviesCurrentIndex === upcomingMoviesTotalPages">{{ upcomingMoviesTotalResults }}</span>
           <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 20 }}</span> / {{ upcomingMoviesTotalResults }}
         </div>
-
         <!-- Now Playing Results Counter -->
         <div *ngIf="pageKey === 'now-playing'" id="results-counter">Showing:
           <span *ngIf="nowPlayingMoviesCurrentIndex === nowPlayingMoviesTotalPages">{{ nowPlayingMoviesTotalResults }}</span>
           <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 20 }}</span> / {{ nowPlayingMoviesTotalResults }}
         </div>
-
         <!-- Popular Results Counter -->
         <div *ngIf="pageKey === 'most-popular'" id="results-counter">Showing:
           <span *ngIf="popularMoviesCurrentIndex === popularMoviesTotalPages">{{ popularMoviesTotalResults }}</span>
           <span *ngIf="popularMoviesCurrentIndex !== popularMoviesTotalPages">{{ popularMoviesCurrentIndex * 20 }}</span> / {{ popularMoviesTotalResults }}
         </div>
-
         <!-- Top Rated Results Counter -->
         <div *ngIf="pageKey === 'top-rated'" id="results-counter">Showing:
           <span *ngIf="topRatedMoviesCurrentIndex === topRatedMoviesTotalPages">{{ topRatedMoviesTotalResults }}</span>
@@ -34,6 +26,11 @@
         </div>
       </div>
     </div>
+    <!-- <div class="advanced_filters">
+    </div> -->
+    <!-- <div class="page-taxonomy-list"></div> -->
+    <!-- <div id="breadcrumbs"></div> -->
+    <!-- <div class="page-tabs"></div> -->
   </div>
 </div>
 <!-- Movie Tabs Container -->
