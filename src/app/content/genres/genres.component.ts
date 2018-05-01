@@ -63,7 +63,6 @@ export class GenresComponent implements OnInit {
         params => {
           // Scroll To Top
           this.as.scrollToTop();
-          
           this.genreType = params[0].path;
           this.pageKey = params[2].path;
 
