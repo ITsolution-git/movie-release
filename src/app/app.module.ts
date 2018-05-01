@@ -7,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import { HttpModule } from '@angular/http';
 // Third Party
-import { FacebookModule } from 'ngx-facebook';
+// import { FacebookModule } from 'ngx-facebook';
 // Environments
 import { environment } from '../environments/environment';
 // Service Worker
@@ -58,6 +58,7 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
 import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
 import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ShareModule } from '@ngx-share/core';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     ToastModule.forRoot(),
     AppRoutingModule,
     LayoutModule,
-    FacebookModule.forRoot()
+    // FacebookModule.forRoot(),
+    ShareModule.forRoot()
   ],
   providers: [
     AppService,
