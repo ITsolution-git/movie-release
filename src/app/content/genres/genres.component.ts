@@ -59,46 +59,45 @@ export class GenresComponent implements OnInit {
 
     // Get the current genre name from the URL
     this.routeParamsSubscription = this.ar.url
-      .subscribe(
-        params => {
-          // Scroll To Top
-          this.as.scrollToTop();
-          
-          this.genreType = params[0].path;
-          this.pageKey = params[2].path;
+      .subscribe(params => {
+        // Scroll To Top
+        this.as.scrollToTop();
 
-          // console.log(this.genreType);
-          // console.log(this.pageKey);
+        this.genreType = params[0].path;
+        this.pageKey = params[2].path;
 
-          if (this.genreType === 'movies') {
-            this.moviesList = [];
+        // console.log(this.genreType);
+        // console.log(this.pageKey);
 
-            this.getMovieGenres()
-              .then(() => {
-                this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_GENRE_MOVIES).valueChanges();
-                this.seoMetaDetailsObsRef
-                  .subscribe(res => {
-                    this.as.urlOptimizeText(this.pageKey)
-                      .then(key => {
-                        const dbKey = 'genre_' + key.replace('-', '_') + '_movies';
-                        this.pageSeoTitle = res[dbKey].title;
-                        this.pageSeoDescr = res[dbKey].descr;
-                        this.pageSeoKeywords = this.pageSeoTitle + ',' + this.as.seoOptimizeText(this.genreType);
-                        seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
-                        // tslint:disable-next-line:max-line-length
-                        seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/movies/genre/' + this.pageKey, this.pageSeoDescr, DEFAULT_FB_CAT_IMG);
-                      })
-                      .catch(error => {
-                        console.log('There was an error while URL Optimizing the text.', error);
-                      });
-                  });
-                this.getMovieGenreId(this.pageKey);
-              })
-              .catch(error => {
-                console.log('There was an error while getting the Movie Genres! ', error);
-              });
-          }
-        });
+        if (this.genreType === 'movies') {
+          this.moviesList = [];
+
+          this.getMovieGenres()
+            .then(() => {
+              this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_GENRE_MOVIES).valueChanges();
+              this.seoMetaDetailsObsRef
+                .subscribe(res => {
+                  this.as.urlOptimizeText(this.pageKey)
+                    .then(key => {
+                      const dbKey = 'genre_' + key.replace('-', '_') + '_movies';
+                      this.pageSeoTitle = res[dbKey].title;
+                      this.pageSeoDescr = res[dbKey].descr;
+                      this.pageSeoKeywords = this.pageSeoTitle + ',' + this.as.seoOptimizeText(this.genreType);
+                      seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+                      // tslint:disable-next-line:max-line-length
+                      seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/movies/genre/' + this.pageKey, this.pageSeoDescr, DEFAULT_FB_CAT_IMG);
+                    })
+                    .catch(error => {
+                      console.log('There was an error while URL Optimizing the text.', error);
+                    });
+                });
+              this.getMovieGenreId(this.pageKey);
+            })
+            .catch(error => {
+              console.log('There was an error while getting the Movie Genres! ', error);
+            });
+        }
+      });
   }
 
   ngOnInit(): void { }

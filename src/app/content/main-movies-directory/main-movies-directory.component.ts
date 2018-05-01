@@ -148,7 +148,9 @@ export class MainMoviesDirectoryComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.as.scrollToTop();
+  }
 
   onSortTypeChange(type: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
