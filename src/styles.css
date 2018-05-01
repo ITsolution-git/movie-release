@@ -171,27 +171,40 @@ app-page-not-found {
     display: block;
 }
 /*Adverts*/
+.adsbygoogle{
+    display: inline-block;
+    background: #f00;
+}
 #advert-widget-300 {
-    min-width: 300px;
-    max-height: 250px;
+    min-width: 310px;
+    max-height: 260px;
+}
+#advert-widget-300 .adsbygoogle{
+    width: 300px;
+    height: 250px;
 }
 #advert-widget-400{
     min-width: 300px;
-    max-width: 400px;
     max-height: 250px;
+}
+#advert-widget-400 .adsbygoogle{
+    height: 90px;
 }
 #advert-widget-full {
     max-width: 100%;
     display: block;
-    max-height: 100px;
     width: 97%;
+    padding-top: 8px;
+}
+#advert-widget-full .adsbygoogle{
+    width: 728px;
+    height: 90px;
 }
 .advert-widget{
     background: rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
-    padding: 5px 15px;
-    margin: auto;
+    padding: 5px;
     overflow: hidden;
+    text-align: center;
 }
 /*Adverts END*/
 /*Material Cards*/
@@ -594,6 +607,7 @@ app-footer {
 }
 /*Footer END*/
 /*Material Extras END*/
+/*Medie Querys*/
 @media (max-width: 599px) {
     mat-card{
         max-width: 40% !important;
@@ -625,6 +639,14 @@ app-footer {
     .wrapper .displayfix{
         display: block !important;
     }
+    #advert-widget-300 .adsbygoogle {
+        width: 468px;
+        height: 60px;
+    }
+    #advert-widget-full .adsbygoogle {
+        width: 336px;
+        height: 280px;
+    }
 }
 @media (min-width: 544px) {
     .movie-list {
@@ -641,3 +663,9 @@ app-footer {
       flex: 1 1 auto;
     }
   }
+@media (min-width:800px) {
+    #advert-widget-full .adsbygoogle {
+        width: 970px;
+        height: 90px;
+    }
+}

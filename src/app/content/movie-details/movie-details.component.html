@@ -127,14 +127,14 @@
             </span>
           </span>
           <span id="crew" class="detail-castcrew">Directors:
-            <span *ngFor="let person of movieCreditsCrew | slice:0:3; let i = index" itemprop="director" itemscope itemtype="http://schema.org/Person">
+            <span *ngFor="let person of movieCreditsCrew; let i = index" itemprop="director" itemscope itemtype="http://schema.org/Person">
               <span *ngIf="person.job==='Director'">
                 <a itemprop="name" class="person-link" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
               </span>
             </span>
           </span>
           <span id="crew1" class="detail-castcrew">Producers:
-            <span *ngFor="let person of movieCreditsCrew | slice:0:3; let i = index" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span *ngFor="let person of movieCreditsCrew; let i = index" itemprop="author" itemscope itemtype="http://schema.org/Person">
               <span *ngIf="person.job==='Producer'">
                 <a itemprop="name" class="person-link" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
               </span>

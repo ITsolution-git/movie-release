@@ -20,7 +20,6 @@ export class FooterComponent implements OnInit {
   toggleSearch(): void {
     const mainsearch = document.getElementById('main-search');
     const mainsearchinput = document.getElementById('searchinput');
-    const activebutton = document.getElementsByClassName('scrolltotop');
       if (mainsearch.style.visibility === 'visible') {
         mainsearch.style.visibility = 'hidden';
       } else {
