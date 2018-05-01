@@ -17,7 +17,7 @@
 </div>
 <section *ngIf="!loading && moviesList" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="result-list">
   <div class="wrapper movies-list mat-padding" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-    <mat-card *ngFor="let movie of moviesList; let i = index" class="movie-card" tabindex="0" [id]="movie.id">
+    <mat-card *ngFor="let movie of moviesList; let i = index" class="movie-card mat-elevation-z" tabindex="0" [id]="movie.id">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
   </div>

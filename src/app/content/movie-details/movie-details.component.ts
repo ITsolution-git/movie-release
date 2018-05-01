@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit, Input, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit, Input, Output, Type } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { Meta, Title } from '@angular/platform-browser';
@@ -29,9 +29,10 @@ export interface ICastData {
 }
 
 export interface ICrewData {
+  id: string;
   crewImg: string;
-  crewName: string;
-  crewJob: string;
+  name: string;
+  job: string;
   department: string;
 }
 
@@ -60,6 +61,8 @@ export class MovieDetailsComponent implements OnInit {
   movieDetails: any;
   movieCreditsCast: ICastData[];
   movieCreditsCrew: ICrewData[];
+  movieCreditsDirectors = [];
+  movieCreditsProducers = [];
   movieLinks: any[];
   movieImages: any[];
   movieImagesLength: number;
@@ -172,7 +175,7 @@ export class MovieDetailsComponent implements OnInit {
                     this.pageSeoTitle = this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ')' + (this.movieDetails.genres.length === 0 ? '' : ' - ' + this.movieDetails.genres[0].name);
                     // tslint:disable-next-line:max-line-length
                     this.pageSeoDescr = this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ')' + (this.movieDetails.genres.length === 0 ? '' : ' - ' + this.movieDetails.genres[0].name) + ' Movie. ' + this.movieDetails.overview;
-                     // tslint:disable-next-line:max-line-length
+                    // tslint:disable-next-line:max-line-length
                     this.pageSeoKeywords = this.movieDetails.title + ', movie, film, release date, ' + (this.movieDetails.genres.length === 0 ? '' : this.movieDetails.genres[0].name) + ' movie';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                     // tslint:disable-next-line:max-line-length
@@ -286,6 +289,29 @@ export class MovieDetailsComponent implements OnInit {
         this.movieCreditsCast = res['cast'];
         this.movieCreditsCrew = res['crew'];
         if (this.movieCreditsCast && this.movieCreditsCrew) {
+          for (let index = 0; index < this.movieCreditsCrew.length; index++) {
+            if (this.movieCreditsCrew[index].job === 'Director') {
+              this.movieCreditsDirectors.push(
+                {
+                  id: this.movieCreditsCrew[index].id,
+                  name: this.movieCreditsCrew[index].name
+                }
+              );
+            }
+          }
+          for (let index = 0; index < this.movieCreditsCrew.length; index++) {
+            if (this.movieCreditsCrew[index].job === 'Producer') {
+              this.movieCreditsProducers.push(
+                {
+                  id: this.movieCreditsCrew[index].id,
+                  name: this.movieCreditsCrew[index].name
+                }
+              );
+            }
+          }
+          console.log('AA:', this.movieCreditsDirectors);
+          console.log('AA:', this.movieCreditsProducers);
+
           this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, 5));
           this.crewSource = new MatTableDataSource(this.movieCreditsCrew.slice(0, 5));
           if (this.castSource && this.crewSource) {

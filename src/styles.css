@@ -16,7 +16,7 @@ mat-sidenav-content{
     box-sizing: border-box;
 }
 *:hover{
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 a{
     color: #FFF;
@@ -173,7 +173,6 @@ app-page-not-found {
 /*Adverts*/
 .adsbygoogle{
     display: inline-block;
-    background: #f00;
 }
 #advert-widget-300 {
     min-width: 310px;
@@ -181,7 +180,7 @@ app-page-not-found {
 }
 #advert-widget-300 .adsbygoogle{
     width: 300px;
-    height: 250px;
+    height: 250px !important;
 }
 #advert-widget-400{
     min-width: 300px;
@@ -363,6 +362,7 @@ app-privacy #jumbotron, app-terms #jumbotron{
     background-image: url("/assets/img/film-producer-info.jpg");
     min-height: auto;
     background-size: contain;
+    padding: 1% 15%;
 }
 .staticpage h3{
     color: #666;
@@ -641,7 +641,7 @@ app-footer {
     }
     #advert-widget-300 .adsbygoogle {
         width: 468px;
-        height: 60px;
+        height: 60px !important;
     }
     #advert-widget-full .adsbygoogle {
         width: 336px;

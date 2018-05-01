@@ -41,7 +41,7 @@
 <!-- Main Directory -->
 <section *ngIf="!loading" id="now-playing" class="movies-directory-content section">
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="wrapper movies-list mat-padding">
-    <mat-card *ngFor="let movie of mainDirectoryMovies; let i = index" class="movie-card" tabindex="0">
+    <mat-card *ngFor="let movie of mainDirectoryMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
       <app-movie-card [movie]="movie"></app-movie-card>
     </mat-card>
   </div>
