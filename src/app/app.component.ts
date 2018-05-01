@@ -31,8 +31,8 @@ export class AppComponent implements OnDestroy {
     fb.init(initParams);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        (<any>window).ga('set', 'page', event.urlAfterRedirects);
-        (<any>window).ga('send', 'pageview');
+        (<any>window).gtag('config', 'UA-9011937-10', {'page_path': event.urlAfterRedirects});
+        (<any>window).gtag('event', 'page_view', { 'send_to': 'UA-9011937-10' });
       }
     });
 
