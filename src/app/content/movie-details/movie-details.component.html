@@ -141,8 +141,8 @@
           </span>
           <span *ngIf="movieCreditsProducers.length" id="crew1" class="detail-castcrew">Producers:
             <span *ngFor="let person of movieCreditsProducers">
-              <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <a class="person-link" title="{{ person.name }} as Producer" (click)="this.as.goToCelebDetails(person.id)" itemprop="name">
+              <span itemprop="producer" itemscope itemtype="http://schema.org/Person">
+                <a class="person-link" title="{{ person.name }} as Producer" (click)="this.as.goToCelebDetails(person.id)">
                   <span itemprop="name">{{ person.name }}</span>
                 </a>
               </span>
