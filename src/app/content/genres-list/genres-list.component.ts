@@ -51,6 +51,8 @@ export class GenresListComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.as.scrollToTop();
+  }
 
 }

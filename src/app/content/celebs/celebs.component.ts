@@ -73,7 +73,9 @@ export class CelebsComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.as.scrollToTop();
+  }
 
   getPopularActors(pageIndex: number): void {
     this.loading = true;

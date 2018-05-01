@@ -52,6 +52,7 @@ export class GenresComponent implements OnInit {
     private ar: ActivatedRoute,
     private seoS: SeoService
   ) {
+
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
     this.IMG_185 = IMG_185;
@@ -60,12 +61,17 @@ export class GenresComponent implements OnInit {
     this.routeParamsSubscription = this.ar.url
       .subscribe(
         params => {
+          // Scroll To Top
+          this.as.scrollToTop();
           this.genreType = params[0].path;
           this.pageKey = params[2].path;
-          console.log(this.genreType);
-          console.log(this.pageKey);
+
+          // console.log(this.genreType);
+          // console.log(this.pageKey);
+
           if (this.genreType === 'movies') {
             this.moviesList = [];
+
             this.getMovieGenres()
               .then(() => {
                 this.seoMetaDetailsObsRef = afDb.object(DB_COL.SETTINGS_SEO_GENRE_MOVIES).valueChanges();
