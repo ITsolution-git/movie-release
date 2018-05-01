@@ -97,7 +97,7 @@
         <!-- Movie Details -->
         <div id="movie-tech-details" fxLayoutWrap="wrap" fxLayout="column" fxLayout.xs="column">
           <span id="movie-tagline" *ngIf="movieDetails.tagline">Movie Tagline:
-            <span itemprop="keywords">{{ movieDetails.tagline }}</span>
+            <span itemprop="alternativeHeadline">{{ movieDetails.tagline }}</span>
           </span>
           <span id="year" class="detail-release-date" *ngIf="movieDetails.release_date">Release Date:
             <span itemprop="datePublished" datetime="movieDetails.release_date">{{ movieDetails.release_date | date:'longDate' }}</span>
