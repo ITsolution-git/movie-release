@@ -126,17 +126,17 @@
               <a itemprop="name" class="person-link" title="{{ person.name }} as {{ person.character }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
             </span>
           </span>
-          <span id="crew" class="detail-castcrew">Directors:
-            <span *ngFor="let person of movieCreditsCrew; let i = index" itemprop="director" itemscope itemtype="http://schema.org/Person">
-              <span *ngIf="person.job==='Director'">
-                <a itemprop="name" class="person-link" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
+          <span *ngIf="movieCreditsDirectors.length" id="crew" class="detail-castcrew">Directors:
+            <span *ngFor="let person of movieCreditsDirectors">
+              <span itemprop="director" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="name" class="person-link" title="{{ person.name }} as Director" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
               </span>
             </span>
           </span>
-          <span id="crew1" class="detail-castcrew">Producers:
-            <span *ngFor="let person of movieCreditsCrew; let i = index" itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span *ngIf="person.job==='Producer'">
-                <a itemprop="name" class="person-link" title="{{ person.name }} as {{ person.job }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
+          <span *ngIf="movieCreditsProducers.length" id="crew1" class="detail-castcrew">Producers:
+            <span *ngFor="let person of movieCreditsProducers">
+              <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <a itemprop="name" class="person-link" title="{{ person.name }} as Producer" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
               </span>
             </span>
           </span>

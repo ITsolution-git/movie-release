@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../../core/services/app.service';
 
 @Component({
   selector: 'app-terms',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TermsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private as: AppService
+  ) { }
 
-  ngOnInit() {
+   ngOnInit(): void {
+    this.as.scrollToTop();
   }
 
 }

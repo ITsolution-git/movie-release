@@ -173,7 +173,6 @@ app-page-not-found {
 /*Adverts*/
 .adsbygoogle{
     display: inline-block;
-    background: #f00;
 }
 #advert-widget-300 {
     min-width: 310px;
