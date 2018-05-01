@@ -82,6 +82,8 @@ export class MainMoviesDirectoryComponent implements OnInit {
       param: 'original_title.desc'
     }
   ];
+  
+  defaultValue = this.sortTypes[1].param;
 
   advancedFilteringForm: FormGroup;
   currentSortType: string;
