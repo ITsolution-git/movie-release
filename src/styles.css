@@ -16,7 +16,7 @@ mat-sidenav-content{
     box-sizing: border-box;
 }
 *:hover{
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 a{
     color: #FFF;
@@ -362,6 +362,7 @@ app-privacy #jumbotron, app-terms #jumbotron{
     background-image: url("/assets/img/film-producer-info.jpg");
     min-height: auto;
     background-size: contain;
+    padding: 1% 15%;
 }
 .staticpage h3{
     color: #666;

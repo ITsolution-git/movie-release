@@ -45,7 +45,7 @@
       <!-- Upcoming Movies List -->
       <section *ngIf="!loading" id="Upcoming" class="upcoming-movies-tab-content section">
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
-          <mat-card *ngFor="let movie of upcomingMovies; let i = index" class="movie-card" tabindex="0">
+          <mat-card *ngFor="let movie of upcomingMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
             <app-movie-card [movie]="movie"></app-movie-card>
           </mat-card>
         </div>
@@ -73,7 +73,7 @@
       <!-- Now Playing Movies List -->
       <section *ngIf="!loading" id="now-playing" class="now-playing-movies-tab-content section">
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
-          <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card" tabindex="0">
+          <mat-card *ngFor="let movie of nowPlayingMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
             <app-movie-card [movie]="movie"></app-movie-card>
           </mat-card>
         </div>
@@ -101,7 +101,7 @@
       <!-- Most Popular Movies List -->
       <section *ngIf="!loading" id="most-popular" class="popular-movies-tab-content section">
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
-          <mat-card *ngFor="let movie of popularMovies; let i = index" class="movie-card" tabindex="0">
+          <mat-card *ngFor="let movie of popularMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
             <app-movie-card [movie]="movie"></app-movie-card>
           </mat-card>
         </div>
@@ -129,7 +129,7 @@
       <!-- Most Popular Movies List -->
       <section *ngIf="!loading" id="top-rated" class="top-rated-movies-tab-content section">
         <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="movies-list mat-padding">
-          <mat-card *ngFor="let movie of topRatedMovies; let i = index" class="movie-card" tabindex="0">
+          <mat-card *ngFor="let movie of topRatedMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
             <app-movie-card [movie]="movie"></app-movie-card>
           </mat-card>
         </div>

@@ -12,7 +12,7 @@
     <div id="movie-content-main" fxLayout="row" fxLayout.xs="column">
       <!-- Movie Poster Image -->
       <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-        <img itemprop="contentUrl url" role="img" *ngIf="movieDetails.poster_path;" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
+        <img itemprop="url" role="img" *ngIf="movieDetails.poster_path;" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
           onError="this.src='assets/img/default-movie-poster.png';" [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies + ' | Current Movie Releases'"
           [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'" />
       </div>
@@ -97,7 +97,7 @@
         <!-- Movie Details -->
         <div id="movie-tech-details" fxLayoutWrap="wrap" fxLayout="column" fxLayout.xs="column">
           <span id="movie-tagline" *ngIf="movieDetails.tagline">Movie Tagline:
-            <span>{{ movieDetails.tagline }}</span>
+            <span itemprop="keywords">{{ movieDetails.tagline }}</span>
           </span>
           <span id="year" class="detail-release-date" *ngIf="movieDetails.release_date">Release Date:
             <span itemprop="datePublished" datetime="movieDetails.release_date">{{ movieDetails.release_date | date:'longDate' }}</span>
@@ -108,11 +108,13 @@
           <span id="genres" class="detail-genre">Genres:
             <span *ngFor="let genre of movieDetails.genres; let i = index">
               <span>
-                <a (click)="this.as.goToMovieGenresPage(genre.name)" class="genre-link">{{ genre.name }}</a>
+                <a (click)="this.as.goToMovieGenresPage(genre.name)" class="genre-link">
+                  <span itemprop="genre">{{ genre.name }}</span>
+                </a>
               </span>
             </span>
           </span>
-          <span id="duration" class="detail-runtime" *ngIf="movieDetails.runtime > 0">Runtime:
+          <span id="duration" class="detail-runtime" *ngIf="movieDetails.runtime > 0" itemprop="duration" itemscope itemtype="http://schema.org/Duration">Runtime:
             <span *ngIf="movieDetails.runtime > 60">{{ this.Math.floor(movieDetails.runtime / 60) }} hrs.</span>
             <span *ngIf="movieDetails.runtime > 0">{{ this.Math.floor(movieDetails.runtime % 60) }} mins.</span>
           </span>
@@ -122,21 +124,27 @@
             </span>
           </span>
           <span id="cast" class="detail-castcrew">Actors:
-            <span *ngFor="let person of movieCreditsCast | slice:0:7; let i = index" itemprop="actor" itemscope itemtype="http://schema.org/Person">
-              <a itemprop="name" class="person-link" title="{{ person.name }} as {{ person.character }}" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
+            <span *ngFor="let person of movieCreditsCast | slice:0:7; let i = index" itemprop="actors" itemscope itemtype="http://schema.org/Person">
+              <a class="person-link" title="{{ person.name }} as {{ person.character }}" (click)="this.as.goToCelebDetails(person.id)">
+                <span itemprop="name">{{ person.name }}</span>
+              </a>
             </span>
           </span>
           <span *ngIf="movieCreditsDirectors.length" id="crew" class="detail-castcrew">Directors:
             <span *ngFor="let person of movieCreditsDirectors">
               <span itemprop="director" itemscope itemtype="http://schema.org/Person">
-                <a itemprop="name" class="person-link" title="{{ person.name }} as Director" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
+                <a class="person-link" title="{{ person.name }} as Director" (click)="this.as.goToCelebDetails(person.id)">
+                  <span itemprop="name">{{ person.name }}</span>
+                </a>
               </span>
             </span>
           </span>
           <span *ngIf="movieCreditsProducers.length" id="crew1" class="detail-castcrew">Producers:
             <span *ngFor="let person of movieCreditsProducers">
               <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <a itemprop="name" class="person-link" title="{{ person.name }} as Producer" (click)="this.as.goToCelebDetails(person.id)">{{ person.name }}</a>
+                <a class="person-link" title="{{ person.name }} as Producer" (click)="this.as.goToCelebDetails(person.id)" itemprop="name">
+                  <span itemprop="name">{{ person.name }}</span>
+                </a>
               </span>
             </span>
           </span>
@@ -175,7 +183,7 @@
       </div>
     </div>
     <div id="movie-overview" fxLayout="row" fxLayout.xs="column">
-      <div class="section-header">
+      <div class="section-header" fxFlex="73%">
         <div class="section-description">
           <h2 class="section-title">Movie Overview</h2>
           <p itemprop="description">{{ movieDetails.overview }}</p>
@@ -326,7 +334,7 @@
       </div>
     </div>
     <div class="movies-list" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-      <mat-card *ngFor="let movie of similarMovies; let i = index" class="movie-card" tabindex="0">
+      <mat-card *ngFor="let movie of similarMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
         <app-movie-card [movie]="movie"></app-movie-card>
       </mat-card>
       <div id="advert-widget-full" class="advert-widget">
