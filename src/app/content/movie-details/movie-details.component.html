@@ -12,9 +12,13 @@
     <div id="movie-content-main" fxLayout="row" fxLayout.xs="column">
       <!-- Movie Poster Image -->
       <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-        <img itemprop="url" role="img" *ngIf="movieDetails.poster_path;" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
-          onError="this.src='assets/img/default-movie-poster.png';" [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies + ' | Current Movie Releases'"
-          [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'" />
+        <img itemprop="url" role="img" *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
+          [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies + ' | Current Movie Releases'"
+          [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'">
+        <ng-template #defaultMoviePoster>
+          <img class="movie-poster-image" src="assets/img/default-movie-poster.png" alt="No movie poster available - Current Movie Releases"
+            title="No movie poster available - Current Movie Releases">
+        </ng-template>
       </div>
       <div id="movie-content-info" fxFlex="80" fxFlex.sm="80%" fxFlex.xs="80%">
         <!-- Movie Rating -->
