@@ -115,6 +115,7 @@ export class AuthService {
       .catch((err) => {
         this.resetMessages();
         this.authError = err.message;
+        console.error('Auth Error:', err.message);
       });
   }
 
