@@ -158,6 +158,8 @@ export class MovieDetailsComponent implements OnInit {
       this.movieTranslations = undefined;
       this.movieAltTitles = undefined;
       this.movieId = undefined;
+      this.movieCreditsDirectors = [];
+      this.movieCreditsProducers = [];
 
       // Get the movie title and ID from the URL
       this.routeParamsSubscription = this.ar.params
