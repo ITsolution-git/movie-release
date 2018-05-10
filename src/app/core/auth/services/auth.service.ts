@@ -67,7 +67,7 @@ export class AuthService {
     this.user = this.afAuth.authState
       .switchMap(user => {
         if (user) {
-          // console.log('User UID: ', user.uid)
+          console.log('User UID: ', user.uid)
           return this.afDb.object('users/' + user.uid).valueChanges();
         } else {
           return Observable.of(null);

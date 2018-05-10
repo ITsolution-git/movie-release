@@ -26,7 +26,9 @@ export class AccountComponent implements OnInit {
     private afDb: AngularFireDatabase,
   ) {
     this.afAuth.authState.subscribe(res => {
-      this.userObsRef = afDb.object(DB_COL.USERS + '/' + res.uid).valueChanges();
+      if (res) {
+        this.userObsRef = afDb.object(DB_COL.USERS + '/' + res.uid).valueChanges();
+      }
       this.getUserRole();
     });
   }
@@ -36,8 +38,10 @@ export class AccountComponent implements OnInit {
   getUserRole(): void {
     // console.log('GET USER ROLE');
     this.userObsRef.subscribe(res => {
-      console.log(res['role']);
-      this.userRole = res['role'];
+      console.log('getUserRole()',res);
+      if (res) {
+        this.userRole = res['role'];
+      }
     });
   }
 

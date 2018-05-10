@@ -65,9 +65,11 @@ export class AccountRatingsComponent implements OnInit {
     this.IMG_92 = IMG_92;
 
     this.afAuth.authState.subscribe(res => {
-      // Movie DB References
-      this.movieRatingsObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/movie_ratings').valueChanges();
-      this.userMovieRatingsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/movie_ratings');
+      if (res) {
+        // Movie DB References
+        this.movieRatingsObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/movie_ratings').valueChanges();
+        this.userMovieRatingsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/movie_ratings');
+      }
       this.getUserMovieRatings();
     });
   }
