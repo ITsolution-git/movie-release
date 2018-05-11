@@ -44,10 +44,11 @@ export class AuthService {
     public afAuth: AngularFireAuth,
     private afDb: AngularFireDatabase
   ) {
+
     // Runs When Change Happens in Authorization State (#Runs Twice)
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
-        console.log('Logged In as: ', user.email, '/', user.uid);
+        console.log('Logged In as: ', 'Name: ', user.displayName, ' Email: ', user.email, 'UID: ', user.uid);
         this.authState = user;
         this.isLoggedIn = true;
         if (this.returnUrl) {
@@ -63,7 +64,9 @@ export class AuthService {
         this.authorChanged.emit(false);
       }
     });
+
     this.resetMessages();
+
     this.user = this.afAuth.authState
       .switchMap(user => {
         if (user) {
@@ -78,7 +81,7 @@ export class AuthService {
 
   emailLogin(email: string, password: string): any {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((userData) => {
+      .then(userData => {
         this.updateUserData(userData);
         this.router.navigate(['/my-account/details']);
       })
@@ -93,9 +96,6 @@ export class AuthService {
       .then((gUserData) => {
         // console.log(gUserData.user);
         this.registerUserData(null, gUserData.user, null);
-        // if () {
-        // this.router.navigate(['/']);
-        // }
       })
       .catch((err) => {
         this.resetMessages();
@@ -105,26 +105,22 @@ export class AuthService {
 
   facebookLogin(): void {
     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then((fUserData) => {
-        // console.log(fUserData.user);
+      .then(fUserData => {
         this.registerUserData(null, null, fUserData.user);
-        // if () {
-        // this.router.navigate(['/']);
-        // }
       })
-      .catch((err) => {
+      .catch(err => {
         this.resetMessages();
         this.authError = err.message;
         console.error('Auth Error:', err.message);
       });
   }
 
-  registerUserData(userData: User, gUserData: User, fUserData: User): void {
+  registerUserData(userData: User, gUserData: User, fUserData: any): void {
+
     // if userData is initialized
     if (userData) {
-      // console.log('Email Login UID: ', userData.uid);
-      this.afDb.object('users/' + userData.uid).set(
-        {
+      this.afDb.object('users/' + userData.uid)
+        .set({
           uid: userData.uid,
           email: userData.email,
           photoURL: DEFAULT_USER_IMG,
@@ -132,9 +128,24 @@ export class AuthService {
           lastLogin: Date.now(),
           regDate: Date.now()
         }
-      ).catch((err) => {
-        console.log('DB not Updated:', err);
-      });
+        ).catch((err) => {
+          console.log('DB not Updated:', err);
+        });
+    } else if (fUserData) {
+      this.afDb.object('users/' + fUserData.uid)
+        .set({
+          uid: fUserData.uid,
+          email: fUserData.providerData[0].email,
+          photoURL: fUserData.providerData[0].photoURL,
+          displayName: fUserData.providerData[0].displayName,
+          phoneNumber: fUserData.providerData[0].phoneNumber,
+          role: DEFAULT_USER_ROLE,
+          lastLogin: Date.now(),
+          regDate: Date.now()
+        }
+        ).catch((err) => {
+          console.log('DB not Updated:', err);
+        });
     }
   }
 
