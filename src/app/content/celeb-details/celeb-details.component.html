@@ -109,8 +109,8 @@
 
         <!-- Profile Pics List -->
         <span class="profile-pics" *ngIf="actorImages?.length > 0; else defaultProfilePic">
-          <img itemprop="image" *ngFor="let img of actorImages; let i = index" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + img.file_path]" [alt]="actorDetails?.name"
-            [title]="actorDetails?.name" [ngClass]="i === 0 ? 'active profile-pic' : 'profile-pic'">
+          <img itemprop="image" *ngFor="let img of actorImages; let i = index" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + img.file_path]" [alt]="actorDetails?.name; 'Filmography'"
+            [title]="actorDetails?.name; 'Filmography'" [ngClass]="i === 0 ? 'active profile-pic' : 'profile-pic'">
 
           <!-- Slider Controls -->
           <div id="slider-controls" fxLayout="row" *ngIf="actorImages?.length > 1">
