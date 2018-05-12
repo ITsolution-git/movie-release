@@ -1,4 +1,5 @@
-<div id="jumbotron" role="banner" class="moviebg mat-elevation-z6" itemprop itemprop="ImageObject" *ngIf="movieDetails?.backdrop_path" [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
+<div id="jumbotron" role="banner" class="moviebg mat-elevation-z6" itemprop itemprop="ImageObject" *ngIf="movieDetails?.backdrop_path"
+  [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
 <!-- Movie Details & Posters -->
 <div class="wrapper margin" *ngIf="movieDetails" [id]="movieDetails.id">
   <!-- Movie Details -->
@@ -297,14 +298,17 @@
           <mat-icon class="mat-icon material-icons">note_add</mat-icon> Movie Review</h2>
       </div>
     </div>
-    <article class="article" role="article" *ngFor="let article of movieArticles" itemscope itemtype="http://schema.org/Article">
+    <article class="article" role="article" *ngFor="let article of movieArticles" itemprop="review" itemscope itemtype="http://schema.org/Review">
       <div class="article-inner" *ngIf="article.article_status === 'public'">
         <div class="article-data">
           <span class="post-date updated">
             <mat-icon class="mat-icon material-icons">face</mat-icon>Review added on:
             <span itemprop="datePublished" datetime="article.article_date">{{ article.article_date | date: 'long' }}</span> by:
             <span class="vcard author post-author author_name">
-              <span class="fn" itemprop="publisher">
+              <span class="fn" itemprop itemprop="author">
+                <span rel="author" itemprop="name">Matthew E. Owen</span>
+              </span>
+              <span class="fn" itemprop itemprop="publisher">
                 <a href="https://plus.google.com/+Currentmoviereleases" rel="noopener" target="_blank" itemprop="name"> +Currentmoviereleases</a>
               </span>
             </span>
@@ -313,7 +317,12 @@
         <div class="article-subtitle" itemprop itemprop="headline">
           <h3 itemprop="name">{{ article.article_title }}</h3>
         </div>
-        <div itemprop="description" class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
+        <div itemprop="description" class="article-content" [innerHTML]="article?.article_content | safe: 'html'">
+          <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">Critic Rating:
+            <span class="rating-number" itemprop="ratingValue">3</span>
+            <span class="total-rating" itemprop="bestRating"> /5</span>
+          </span>
+        </div>
       </div>
     </article>
   </section>
