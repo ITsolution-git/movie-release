@@ -1,4 +1,4 @@
-<div id="jumbotron" role="banner" class="moviebg mat-elevation-z6" *ngIf="movieDetails?.backdrop_path" [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
+<div id="jumbotron" role="banner" class="moviebg mat-elevation-z6" itemprop itemprop="ImageObject" *ngIf="movieDetails?.backdrop_path" [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
 <!-- Movie Details & Posters -->
 <div class="wrapper margin" *ngIf="movieDetails" [id]="movieDetails.id">
   <!-- Movie Details -->
@@ -304,16 +304,16 @@
             <mat-icon class="mat-icon material-icons">face</mat-icon>Review added on:
             <span itemprop="datePublished" datetime="article.article_date">{{ article.article_date | date: 'long' }}</span> by:
             <span class="vcard author post-author author_name">
-              <span class="fn">
-                <a href="https://plus.google.com/+Currentmoviereleases" rel="author" target="_blank" itemprop="author"> +Currentmoviereleases</a>
+              <span class="fn" itemprop="publisher">
+                <a href="https://plus.google.com/+Currentmoviereleases" rel="noopener" target="_blank" itemprop="name"> +Currentmoviereleases</a>
               </span>
             </span>
           </span>
         </div>
-        <div class="article-subtitle">
+        <div class="article-subtitle" itemprop itemprop="headline">
           <h3 itemprop="name">{{ article.article_title }}</h3>
         </div>
-        <div class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
+        <div itemprop="description" class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
       </div>
     </article>
   </section>
