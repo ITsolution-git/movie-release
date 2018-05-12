@@ -1,5 +1,5 @@
 <!-- Actor Details & Posters -->
-<div *ngIf="actorDetails">
+<div *ngIf="actorDetails" class="wrapper">
   <!-- Actor Details -->
   <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="actor-details" itemprop="actor" itemscope itemtype="http://schema.org/Person">
     <div fxFlex="80%" fxFlex.sm="85%" fxFlex.xs="90%" id="main-right">
@@ -16,7 +16,7 @@
           </ng-template>
           <div class="biography-tab-content">
             <!-- Biography -->
-            <p>{{ actorDetails.biography }}</p>
+            <p title="{{ actorDetails.name }} + ' Biography'">{{ actorDetails.biography }}</p>
             <!-- Actor Details -->
             <p *ngIf="actorDetails.also_known_as">Also known as:
               <span *ngFor="let altName of actorDetails?.also_known_as; let i = index">{{ altName }}
