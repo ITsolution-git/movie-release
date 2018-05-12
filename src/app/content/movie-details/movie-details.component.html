@@ -12,8 +12,8 @@
     </div>
     <div id="movie-content-main" fxLayout="row" fxLayout.xs="column">
       <!-- Movie Poster Image -->
-      <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-        <img itemprop="url" role="img" *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
+      <div id="movie-poster" fxFlex="20" fxHide.xs="true" fxFlex.sm="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+        <img itemprop="url" role="img" *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movieDetails.poster_path]"
           [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies + ' | Current Movie Releases'"
           [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'">
         <ng-template #defaultMoviePoster>
@@ -291,38 +291,40 @@
       </mat-tab-group>
     </div>
   </section>
-  <section *ngIf="movieArticles?.length" id="articles" class="section padding border" role="article">
+  <section *ngIf="movieArticles?.length" id="articles" class="section padding border" role="article" itemprop="review" itemscope itemtype="http://schema.org/Review">
     <div class="section-header">
       <div class="section-description">
         <h2 class="section-title">
           <mat-icon class="mat-icon material-icons">note_add</mat-icon> Movie Review</h2>
       </div>
     </div>
-    <article class="article" role="article" *ngFor="let article of movieArticles" itemprop="review" itemscope itemtype="http://schema.org/Review">
+    <article class="article" role="article" *ngFor="let article of movieArticles">
       <div class="article-inner" *ngIf="article.article_status === 'public'">
         <div class="article-data">
           <span class="post-date updated">
             <mat-icon class="mat-icon material-icons">face</mat-icon>Review added on:
-            <span itemprop="datePublished" datetime="article.article_date">{{ article.article_date | date: 'long' }}</span> by:
+            <span itemprop="datePublished" datetime="article.article_date">{{ article.article_date | date: 'long' }}</span> Author:
             <span class="vcard author post-author author_name">
-              <span class="fn" itemprop itemprop="author">
-                <span rel="author" itemprop="name">Matthew E. Owen</span>
-              </span>
-              <span class="fn" itemprop itemprop="publisher">
-                <a href="https://plus.google.com/+Currentmoviereleases" rel="noopener" target="_blank" itemprop="name"> +Currentmoviereleases</a>
+              <span class="fn">
+                <span rel="author" itemprop itemprop="author">Matthew E. Owen</span>,
+              </span> Published:
+              <span class="fn" itemprop itemprop="publisher" itemtype="http://schema.org/Corporation">
+                <a href="https://plus.google.com/+Currentmoviereleases" rel="noopener" target="_blank">+Currentmoviereleases</a>
               </span>
             </span>
           </span>
         </div>
-        <div class="article-subtitle" itemprop itemprop="headline">
-          <h3 itemprop="name">{{ article.article_title }}</h3>
+        <div class="article-subtitle">
+          <h3 itemprop itemprop="headline">{{ article.article_title }}</h3>
         </div>
-        <div itemprop="description" class="article-content" [innerHTML]="article?.article_content | safe: 'html'">
-          <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">Critic Rating:
-            <span class="rating-number" itemprop="ratingValue">3</span>
-            <span class="total-rating" itemprop="bestRating"> /5</span>
-          </span>
-        </div>
+        <div itemprop="reviewBody" class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
+        <span class="criticrating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+          <span>Reviewer Rating of <em itemprop="name">{{ movieDetails.title }}</em> movie: </span>
+          <meta itemprop="worstRating" content = "1"/>
+          <mat-icon class="active rating">star</mat-icon>
+          <span class="rating-number" itemprop="ratingValue">3</span> /
+          <span class="total-rating" itemprop="bestRating">5</span>
+        </span>
       </div>
     </article>
   </section>

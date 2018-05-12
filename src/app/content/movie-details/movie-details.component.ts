@@ -17,7 +17,7 @@ import { ApiService } from '../../core/services/api/api.service';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME, DB_COL, APP_BASE_URL } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_300, IMG_500, IMG_ORIG, APP_SEO_NAME, DB_COL, APP_BASE_URL } from '../../constants';
 // Component
 import { TrailersDialogComponent } from '../shared/trailers-dialog/trailers-dialog.component';
 import { AuthDialogComponent } from '../shared/auth-dialog/auth-dialog.component';
@@ -52,6 +52,7 @@ export class MovieDetailsComponent implements OnInit {
   TMDB_IMAGES_BASE_URL: any;
   IMG_45: any;
   IMG_185: any;
+  IMG_300: any;
   IMG_500: any;
   IMG_ORIG: any;
   APP_BASE_URL: any;
@@ -139,6 +140,7 @@ export class MovieDetailsComponent implements OnInit {
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
     this.IMG_45 = IMG_45;
     this.IMG_185 = IMG_185;
+    this.IMG_300 = IMG_300;
     this.IMG_500 = IMG_500;
     this.IMG_ORIG = IMG_ORIG;
     this.APP_BASE_URL = APP_BASE_URL;
@@ -183,7 +185,7 @@ export class MovieDetailsComponent implements OnInit {
                     this.pageSeoKeywords = this.movieDetails.title + ', movie, film, release date, ' + (this.movieDetails.genres.length === 0 ? '' : this.movieDetails.genres[0].name) + ' movie';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                     // tslint:disable-next-line:max-line-length
-                    seoS.setFacebookMetaTags(this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ')' + (this.movieDetails.genres.length === 0 ? '' : ' - ' + this.movieDetails.genres[0].name) + ' Movie', APP_BASE_URL + '/movies/' + params['title'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.movieDetails.poster_path, 'video.movie');
+                    seoS.setFacebookMetaTags(this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ')' + (this.movieDetails.genres.length === 0 ? '' : ' - ' + this.movieDetails.genres[0].name) + ' Movie', APP_BASE_URL + '/movies/' + params['title'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_300 + this.movieDetails.poster_path, 'video.movie');
                     // Get Additional API Data
                     this.getMovieImages();
                     this.getMovieCredits();
