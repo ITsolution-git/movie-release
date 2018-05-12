@@ -24,3 +24,9 @@ p{
 button{
   margin-bottom: 0.5em;
 }
+.error-auth{
+  background-color: rgb(158, 0, 0);
+  border: #F00 1px solid;
+  margin: 1em 0;
+  padding: 1em;
+}

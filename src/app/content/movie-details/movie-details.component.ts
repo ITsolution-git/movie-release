@@ -21,6 +21,7 @@ import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME,
 // Component
 import { TrailersDialogComponent } from '../shared/trailers-dialog/trailers-dialog.component';
 import { AuthDialogComponent } from '../shared/auth-dialog/auth-dialog.component';
+import { ShareButtons } from '@ngx-share/core';
 
 export interface ICastData {
   actorImg: string;
@@ -131,7 +132,8 @@ export class MovieDetailsComponent implements OnInit {
     public dialog: MatDialog,
     private afDb: AngularFireDatabase,
     private afAuth: AngularFireAuth,
-    private seoS: SeoService
+    private seoS: SeoService,
+    public share: ShareButtons
   ) {
     // Initialize Constants
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
