@@ -321,8 +321,6 @@ export class MovieDetailsComponent implements OnInit {
               );
             }
           }
-          console.log('AA:', this.movieCreditsDirectors);
-          console.log('AA:', this.movieCreditsProducers);
 
           this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, this.castSourceLimit));
           this.crewSource = new MatTableDataSource(this.movieCreditsCrew);
@@ -447,7 +445,6 @@ export class MovieDetailsComponent implements OnInit {
 
   showAllActors() {
     this.castSourceLimit = this.castSourceLength;
-    console.log(this.castSourceLimit);
     this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, this.castSourceLimit));
   }
 
