@@ -132,6 +132,18 @@ mat-icon.rating{
 .genre-link, .person-link{
     margin-right: 5px;
 }
+span.criticrating {
+    background: #1a1a1a;
+    width: 100%;
+    display: inline-block;
+    padding: 5px 10px;
+    margin-top: 15px;
+}
+span.criticrating mat-icon{
+    height: auto;
+    width: auto;
+    font-size: inherit;
+}
 @media (max-width: 1100px) {
     #user-actions{
         position: inherit;

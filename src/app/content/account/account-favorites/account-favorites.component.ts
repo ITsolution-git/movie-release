@@ -53,12 +53,14 @@ export class AccountFavoritesComponent implements OnInit {
     this.IMG_185 = IMG_185;
     // Initialize Databse Collections References
     this.afAuth.authState.subscribe(res => {
-      this.favMoviesRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_movies');
-      this.favMoviesObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_movies').valueChanges();
-      this.favTvShowsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_tv_shows');
-      this.favTvShowsObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_tv_shows').valueChanges();
-      this.favCelebsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_celebs');
-      this.favCelebsObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_celebs').valueChanges();
+      if (res){
+        this.favMoviesRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_movies');
+        this.favMoviesObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_movies').valueChanges();
+        this.favTvShowsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_tv_shows');
+        this.favTvShowsObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_tv_shows').valueChanges();
+        this.favCelebsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_celebs');
+        this.favCelebsObsRef = this.afDb.list(DB_COL.USERS + '/' + res.uid + '/fav_celebs').valueChanges();
+      }
       this.getFavoriteMovies();
     });
   }

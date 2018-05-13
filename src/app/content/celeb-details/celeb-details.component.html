@@ -1,11 +1,11 @@
 <!-- Actor Details & Posters -->
-<div *ngIf="actorDetails">
+<div *ngIf="actorDetails" class="wrapper">
   <!-- Actor Details -->
-  <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="actor-details">
+  <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="actor-details" itemprop="actor" itemscope itemtype="http://schema.org/Person">
     <div fxFlex="80%" fxFlex.sm="85%" fxFlex.xs="90%" id="main-right">
       <!-- Actor Name -->
       <div fxLayout="row" fxLayoutAlign="start stretch">
-        <h1 class="page-title entry-title">{{ actorDetails.name }} Filmography</h1>
+        <h1 class="page-title entry-title"><span itemprop="name">{{ actorDetails.name }}</span> Filmography</h1>
       </div>
       <!-- Actor Detail Tabs -->
       <mat-tab-group id="main-tab-group" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
@@ -16,7 +16,7 @@
           </ng-template>
           <div class="biography-tab-content">
             <!-- Biography -->
-            <p>{{ actorDetails.biography }}</p>
+            <p title="{{ actorDetails.name }} + ' Biography'">{{ actorDetails.biography }}</p>
             <!-- Actor Details -->
             <p *ngIf="actorDetails.also_known_as">Also known as:
               <span *ngFor="let altName of actorDetails?.also_known_as; let i = index">{{ altName }}
@@ -109,9 +109,7 @@
 
         <!-- Profile Pics List -->
         <span class="profile-pics" *ngIf="actorImages?.length > 0; else defaultProfilePic">
-          <img *ngFor="let img of actorImages; let i = index" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + img.file_path]" [alt]="actorDetails?.name"
-            [title]="actorDetails?.name" [ngClass]="i === 0 ? 'active profile-pic' : 'profile-pic'">
-
+          <img itemprop="image" *ngFor="let img of actorImages; let i = index" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + img.file_path]" [alt]="actorDetails?.name + ' Filmography | Current Movie Releases'" [title]="actorDetails?.name + ' Filmography | Current Movie Releases'" [ngClass]="i === 0 ? 'active profile-pic' : 'profile-pic'">
           <!-- Slider Controls -->
           <div id="slider-controls" fxLayout="row" *ngIf="actorImages?.length > 1">
             <div class="prev" (click)="prevProfilePic()" fxFlex="50">

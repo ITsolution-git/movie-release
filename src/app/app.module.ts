@@ -6,8 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import { HttpModule } from '@angular/http';
+import { LayoutModule } from '@angular/cdk/layout';
 // Third Party
-import { FacebookModule } from 'ngx-facebook';
+// import { FacebookModule } from 'ngx-facebook';
+import { ShareModule } from '@ngx-share/core';
 // Environments
 import { environment } from '../environments/environment';
 // Service Worker
@@ -58,7 +60,6 @@ import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
 import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
 import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
-import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [], // Regsiters Service Worker
     CdkTableModule,
     FlexLayoutModule,
+    LayoutModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -98,7 +100,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatToolbarModule,
     MatIconModule,
     ToastModule.forRoot(),
-    FacebookModule.forRoot(),
+    ShareModule.forRoot(),
+    // FacebookModule.forRoot(),
     AppRoutingModule,
     CoreModule,
     AuthModule,
