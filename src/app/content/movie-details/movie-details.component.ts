@@ -95,8 +95,12 @@ export class MovieDetailsComponent implements OnInit {
 
   releaseDatesColumns = ['date', 'certification', 'country'];
   releaseDatesSource: MatTableDataSource<any>;
+
   castColumns = ['actorImg', 'actorName', 'character'];
   castSource: MatTableDataSource<ICastData>;
+  castSourceLength: number;
+  castSourceLimit = 5;
+
   crewColumns = ['crewImg', 'crewName', 'crewJob', 'department'];
   crewSource: MatTableDataSource<ICrewData>;
 
@@ -154,6 +158,7 @@ export class MovieDetailsComponent implements OnInit {
       this.movieCreditsCast = undefined;
       this.movieCreditsCrew = undefined;
       this.castSource = undefined;
+      this.castSourceLength = null;
       this.crewSource = undefined;
       this.movieReviews = undefined;
       this.movieReleaseDates = undefined;
@@ -289,6 +294,7 @@ export class MovieDetailsComponent implements OnInit {
     });
 
   }
+
   getMovieCredits(): void {
     this.apis.getMovieCredits(this.movieId)
       .subscribe((res) => {
@@ -318,9 +324,10 @@ export class MovieDetailsComponent implements OnInit {
           console.log('AA:', this.movieCreditsDirectors);
           console.log('AA:', this.movieCreditsProducers);
 
-          this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, 5));
-          this.crewSource = new MatTableDataSource(this.movieCreditsCrew.slice(0, 5));
+          this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, this.castSourceLimit));
+          this.crewSource = new MatTableDataSource(this.movieCreditsCrew);
           if (this.castSource && this.crewSource) {
+            this.castSourceLength = this.movieCreditsCast.length;
             this.castSource.sort = this.castSort;
             this.castSource.paginator = this.castPaginator;
             this.crewSource.sort = this.crewSort;
@@ -330,6 +337,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
+
   getMovieImages(): void {
     this.apis.getMovieImages(this.movieId)
       .subscribe((res) => {
@@ -337,12 +345,14 @@ export class MovieDetailsComponent implements OnInit {
         this.movieImagesLength = this.movieImages.length;
       });
   }
+
   // getMovieKeywords(): void {
   //   this.apis.getMovieKeywords(this.movieId)
   //     .subscribe((res) => {
   //       this.movieKeywords = res['keywords'];
   //     });
   // }
+
   getMovieReleaseDates(): void {
     this.apis.getMovieReleaseDates(this.movieId)
       .subscribe((res) => {
@@ -354,6 +364,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
+
   getMovieTrailers(): void {
     this.apis.getMovieTrailers(this.movieId)
       .subscribe((res) => {
@@ -361,6 +372,7 @@ export class MovieDetailsComponent implements OnInit {
         this.movieTrailersLength = this.movieTrailers.length;
       });
   }
+
   getSimilarMovies(): void {
     this.isLoadingMovies = true;
     this.apis.getSimilarMovies(this.movieId, 1)
@@ -371,6 +383,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
+
   // getRecommemdedMovies(): void {
   //   this.isLoadingMovies = true;
   //   this.apis.getRecommendedMovies(this.movieId, 1)
@@ -381,6 +394,7 @@ export class MovieDetailsComponent implements OnInit {
   //       }
   //     });
   // }
+
   getMovieReviews(): void {
     this.isLoadingInfo = true;
     this.apis.getMovieReviews(this.movieId, 1)
@@ -391,6 +405,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
+
   getMoreMovieDetails(): void {
     this.isLoadingInfo = true;
     let movieLinksTemp;
@@ -428,6 +443,12 @@ export class MovieDetailsComponent implements OnInit {
       this.getMoreMovieDetails();
     }
     this.isMoreInfoOpen = !this.isMoreInfoOpen;
+  }
+
+  showAllActors() {
+    this.castSourceLimit = this.castSourceLength;
+    console.log(this.castSourceLimit);
+    this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, this.castSourceLimit));
   }
 
   onInfoTabChange($event): void {

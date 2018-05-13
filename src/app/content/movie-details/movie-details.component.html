@@ -199,7 +199,8 @@
       </div>
     </div>
     <div id="movie-content-cast">
-      <mat-tab-group id="movie-content-details" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
+      <mat-tab-group *ngIf="movieCreditsCast && castSource && castColumns" id="movie-content-details" (selectChange)="onInfoTabChange($event)"
+        [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
         <mat-tab label="Cast ({{ movieCreditsCast?.length }})">
           <ng-template mat-tab-label>
             <h3 class="tab-heading">Cast ({{ movieCreditsCast?.length }})</h3>
@@ -239,10 +240,14 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Character </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{ element?.character }} </mat-cell>
               </ng-container>
+
               <mat-header-row *matHeaderRowDef="castColumns"></mat-header-row>
               <mat-row *matRowDef="let row; columns: castColumns;"></mat-row>
             </mat-table>
-            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="movieCreditsCast?.length"></mat-paginator> -->
+            <!-- Show All Actors -->
+            <button mat-raised-button *ngIf="castSourceLimit !== castSourceLength" (click)="showAllActors()">Show all Actors</button>
+            <!-- Paginator -->
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator> -->
           </div>
         </mat-tab>
         <mat-tab label="Technical Details">
