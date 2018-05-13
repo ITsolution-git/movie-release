@@ -1,106 +1,64 @@
 <!-- Actor Details & Posters -->
 <div *ngIf="actorDetails" class="wrapper">
+
   <!-- Actor Details -->
-  <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="actor-details" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+  <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="actor-details" itemprop="actor"
+    itemscope itemtype="http://schema.org/Person">
     <div fxFlex="80%" fxFlex.sm="85%" fxFlex.xs="90%" id="main-right">
+
       <!-- Actor Name -->
       <div fxLayout="row" fxLayoutAlign="start stretch">
-        <h1 class="page-title entry-title"><span itemprop="name">{{ actorDetails.name }}</span> Filmography</h1>
+        <h1 class="page-title entry-title">
+          <span itemprop="name">{{ actorDetails.name }}</span> Filmography</h1>
       </div>
-      <!-- Actor Detail Tabs -->
-      <mat-tab-group id="main-tab-group" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
-        <!-- Biography Tab -->
-        <mat-tab label="Biography">
-          <ng-template mat-tab-label>
-            <h3 class="tab-heading">Biography</h3>
-          </ng-template>
-          <div class="biography-tab-content">
-            <!-- Biography -->
-            <p title="{{ actorDetails.name }} + ' Biography'">{{ actorDetails.biography }}</p>
-            <!-- Actor Details -->
-            <p *ngIf="actorDetails.also_known_as">Also known as:
-              <span *ngFor="let altName of actorDetails?.also_known_as; let i = index">{{ altName }}
-                <span *ngIf="i < (actorDetails?.also_known_as).length - 1">,</span>
-              </span>
-            </p>
-            <p *ngIf="actorDetails.popularity">Popularity: {{ actorDetails.popularity | number }}</p>
-            <p *ngIf="actorDetails.birthday">Birthday: {{ actorDetails.birthday | date }}</p>
-            <p *ngIf="actorDetails.place_of_birth">Place of birth: {{ actorDetails.place_of_birth }}</p>
-            <p *ngIf="actorDetails.deathday">Deathday: {{ actorDetails.deathday | date }}</p>
-            <p *ngIf="actorDetails.gender">Gender:
-              <span *ngIf="actorDetails.gender === 1">female</span>
-              <span *ngIf="actorDetails.gender === 2">male</span>
-              <span *ngIf="actorDetails.gender === 3">other</span>
-            </p>
-            <!-- More Info -->
-            <div class="more-info" *ngIf="isMoreInfoOpen">
-              <!-- More Info loader -->
-              <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingInfo" class="loader">
-                <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-              </div>
-              <!-- More Info Content-->
-              <p *ngIf="actorDetails.homepage  && !isLoadingInfo">Homepage:
-                <a [href]="actorDetails.homepage" target="_blank">{{ actorDetails.homepage }}</a>
-              </p>
-              <div class="actor-links" *ngIf="actorLinks && !isLoadingInfo">
-                <span *ngIf="actorLinks.facebook_id">{{ actorLinks.facebook_id }} | </span>
-                <span *ngIf="actorLinks.freebase_id">{{ actorLinks.freebase_id }} | </span>
-                <span *ngIf="actorLinks.freebase_mid">{{ actorLinks.freebase_mid }} | </span>
-                <span *ngIf="actorLinks.imdb_id">{{ actorLinks.imdb_id }} | </span>
-                <span *ngIf="actorLinks.instagram_id">{{ actorLinks.instagram_id }} | </span>
-                <span *ngIf="actorLinks.tvrage_id">{{ actorLinks.tvrage_id }} | </span>
-                <span *ngIf="actorLinks.twitter_id">{{ actorLinks.twitter_id }}</span>
-              </div>
-            </div>
-            <!-- More Info Button -->
-            <button mat-button (click)="toggleMoreInfo()" class="more-info-btn">
-              <span *ngIf="!isMoreInfoOpen">Show More Info
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </span>
-              <span *ngIf="isMoreInfoOpen">Hide More Info
-                <mat-icon>keyboard_arrow_up</mat-icon>
-              </span>
-            </button>
-          </div>
-        </mat-tab>
 
-        <!-- Movies Tab -->
-        <mat-tab label="Movies">
-          <ng-template mat-tab-label>
-            <h3 class="tab-heading">Movies <span *ngIf="movieCasts?.length > 0" class="counter">({{ movieCreditsLength }})</span></h3>
-          </ng-template>
-          <!-- Loader -->
-          <div fxLayout="row" fxLayoutAlign="center center" *ngIf="isLoadingInfo" class="loader">
-            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      <!-- Actor Detail-->
+      <h2>Biography</h2>
+      <div class="biography-content">
+        <!-- Biography -->
+        <p title="{{ actorDetails.name }} + ' Biography'">{{ actorDetails.biography }}</p>
+        <!-- Actor Details -->
+        <p *ngIf="actorDetails.also_known_as">Also known as:
+          <span *ngFor="let altName of actorDetails?.also_known_as; let i = index">{{ altName }}
+            <span *ngIf="i < (actorDetails?.also_known_as).length - 1">,</span>
+          </span>
+        </p>
+        <p *ngIf="actorDetails.popularity">Popularity: {{ actorDetails.popularity | number }}</p>
+        <p *ngIf="actorDetails.birthday">Birthday: {{ actorDetails.birthday | date }}</p>
+        <p *ngIf="actorDetails.place_of_birth">Place of birth: {{ actorDetails.place_of_birth }}</p>
+        <p *ngIf="actorDetails.deathday">Deathday: {{ actorDetails.deathday | date }}</p>
+        <p *ngIf="actorDetails.gender">Gender:
+          <span *ngIf="actorDetails.gender === 1">female</span>
+          <span *ngIf="actorDetails.gender === 2">male</span>
+          <span *ngIf="actorDetails.gender === 3">other</span>
+        </p>
+        <!-- More Info -->
+        <div class="more-info" *ngIf="isMoreInfoOpen">
+          <!-- More Info Content-->
+          <p *ngIf="actorDetails.homepage  && !isLoadingInfo">Homepage:
+            <a [href]="actorDetails.homepage" target="_blank">{{ actorDetails.homepage }}</a>
+          </p>
+          <div class="actor-links" *ngIf="actorLinks && !isLoadingInfo">
+            <span *ngIf="actorLinks.facebook_id">{{ actorLinks.facebook_id }} | </span>
+            <span *ngIf="actorLinks.freebase_id">{{ actorLinks.freebase_id }} | </span>
+            <span *ngIf="actorLinks.freebase_mid">{{ actorLinks.freebase_mid }} | </span>
+            <span *ngIf="actorLinks.imdb_id">{{ actorLinks.imdb_id }} | </span>
+            <span *ngIf="actorLinks.instagram_id">{{ actorLinks.instagram_id }} | </span>
+            <span *ngIf="actorLinks.tvrage_id">{{ actorLinks.tvrage_id }} | </span>
+            <span *ngIf="actorLinks.twitter_id">{{ actorLinks.twitter_id }}</span>
           </div>
+        </div>
 
-          <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="credits-tab-content" *ngIf="!isLoadingInfo">
-            <mat-card *ngFor="let credit of movieCasts" class="credit-card">
-              <a (click)="this.as.goToMovieDetails(credit?.id)">
-                <div>
-                  <img *ngIf="credit.poster_path; else defaultCreditImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + credit.poster_path]" [alt]="credit.title">
-                  <ng-template #defaultCreditImage>
-                    <img src="assets/img/default-movie-poster.png" [alt]="credit.title" [title]="credit.title" class="credit-img">
-                  </ng-template>
-                </div>
-                <div class="credit-info">
-                  <div class="credit-title">
-                    <h3>{{ credit.title }}
-                      <span class="year">({{ credit.release_date | date: 'y' }})</span>
-                    </h3>
-                  </div>
-                  <div class="credit-info-sub" fxLayout="row" fxLayoutAlign="center center">
-                    <!-- <span class="genre">{{ this.as.getGenreName(credit.genre_ids[0]) }}</span> -->
-                    <span class="credit-rating">
-                      <mat-icon>star</mat-icon>{{ credit.vote_average / 2 }}
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </mat-card>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
+        <!-- More Info Button -->
+        <button mat-button (click)="toggleMoreInfo()" class="more-info-btn">
+          <span *ngIf="!isMoreInfoOpen">Show More Info
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </span>
+          <span *ngIf="isMoreInfoOpen">Hide More Info
+            <mat-icon>keyboard_arrow_up</mat-icon>
+          </span>
+        </button>
+      </div>
     </div>
 
     <!-- Actor Profile Image -->
@@ -109,12 +67,16 @@
 
         <!-- Profile Pics List -->
         <span class="profile-pics" *ngIf="actorImages?.length > 0; else defaultProfilePic">
-          <img itemprop="image" *ngFor="let img of actorImages; let i = index" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + img.file_path]" [alt]="actorDetails?.name + ' Filmography | Current Movie Releases'" [title]="actorDetails?.name + ' Filmography | Current Movie Releases'" [ngClass]="i === 0 ? 'active profile-pic' : 'profile-pic'">
+          <img itemprop="image" *ngFor="let img of actorImages; let i = index" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + img.file_path]"
+            [alt]="actorDetails?.name + ' Filmography | Current Movie Releases'" [title]="actorDetails?.name + ' Filmography | Current Movie Releases'"
+            [ngClass]="i === 0 ? 'active profile-pic' : 'profile-pic'">
+
           <!-- Slider Controls -->
           <div id="slider-controls" fxLayout="row" *ngIf="actorImages?.length > 1">
             <div class="prev" (click)="prevProfilePic()" fxFlex="50">
               <mat-icon>navigate_before</mat-icon>
             </div>
+
             <div class="next" (click)="nextProfilePic()" fxFlex="50">
               <mat-icon>navigate_next</mat-icon>
             </div>
@@ -130,6 +92,39 @@
     </div>
   </section>
 </div>
+
+<section *ngIf="movieCasts">
+  <!-- Movie Details -->
+  <h2>Movies</h2>
+  <span *ngIf="movieCasts?.length > 0" class="counter">({{ movieCreditsLength }})</span>
+
+  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="credits-tab-content">
+    <mat-card *ngFor="let credit of movieCasts" class="credit-card">
+      <a (click)="this.as.goToMovieDetails(credit?.id)">
+        <div>
+          <img *ngIf="credit.poster_path; else defaultCreditImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + credit.poster_path]" [alt]="credit.title">
+          <ng-template #defaultCreditImage>
+            <img src="assets/img/default-movie-poster.png" [alt]="credit.title" [title]="credit.title" class="credit-img">
+          </ng-template>
+        </div>
+
+        <div class="credit-info">
+          <div class="credit-title">
+            <h3>{{ credit.title }}
+              <span class="year">({{ credit.release_date | date: 'y' }})</span>
+            </h3>
+          </div>
+          <div class="credit-info-sub" fxLayout="row" fxLayoutAlign="center center">
+            <!-- <span class="genre">{{ this.as.getGenreName(credit.genre_ids[0]) }}</span> -->
+            <span class="credit-rating">
+              <mat-icon>star</mat-icon>{{ credit.vote_average / 2 }}
+            </span>
+          </div>
+        </div>
+      </a>
+    </mat-card>
+  </div>
+</section>
 
 <!-- Tagged Photos -->
 <!-- <section>

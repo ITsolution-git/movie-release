@@ -67,7 +67,7 @@ export class CelebDetailsComponent implements OnInit {
     this.routeParamsSubscription = this.ar.params.subscribe(
       params => {
         // Reset Variables
-        this.resetTabs(0);
+        // this.resetTabs(0);
         this.as.scrollToTop();
         this.celebCounter = 0;
         this.currentProfilePic = 0;
@@ -92,6 +92,7 @@ export class CelebDetailsComponent implements OnInit {
                   // tslint:disable-next-line:max-line-length
                   seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path, 'profile');
                   // Get Additional API Data
+                  this.getActorMovieCredits();
                   this.getActorImages();
                   this.getActorTaggedImages();
                 })
@@ -185,13 +186,13 @@ export class CelebDetailsComponent implements OnInit {
     this.isMoreInfoOpen = !this.isMoreInfoOpen;
   }
 
-  onInfoTabChange($event): void {
-    this.currentInfoTab = $event.index;
-    if (this.currentInfoTab === 1 && !this.movieCasts) {
-      this.isLoadingInfo = true;
-      this.getActorMovieCredits();
-    }
-  }
+  // onInfoTabChange($event): void {
+  //   this.currentInfoTab = $event.index;
+  //   if (this.currentInfoTab === 1 && !this.movieCasts) {
+  //     this.isLoadingInfo = true;
+  //     
+  //   }
+  // }
 
   prevProfilePic(): void {
     // console.log('IN: ', this.currentProfilePic);
@@ -227,9 +228,9 @@ export class CelebDetailsComponent implements OnInit {
     }
   }
 
-  resetTabs(i: number): void {
-    this.currentInfoTab = i;
-  }
+  // resetTabs(i: number): void {
+  //   this.currentInfoTab = i;
+  // }
 
   openImageGallery(imgPath: string): void {
     console.log(imgPath);
