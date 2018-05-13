@@ -1,17 +1,27 @@
-<!-- Actor Details & Posters -->
-<div *ngIf="actorDetails" class="wrapper">
-
-  <!-- Actor Details -->
-  <section fxLayout="row-reverse" fxLayout.xs="column-reverse" fxLayoutAlign="space-evenly stretch" id="actor-details" itemprop="actor"
-    itemscope itemtype="http://schema.org/Person">
-    <div fxFlex="80%" fxFlex.sm="85%" fxFlex.xs="90%" id="main-right">
-
-      <!-- Actor Name -->
-      <div fxLayout="row" fxLayoutAlign="start stretch">
-        <h1 class="page-title entry-title">
-          <span itemprop="name">{{ actorDetails.name }}</span> Filmography</h1>
+<div id="jumbotron" class="mat-elevation-z6" role="banner">
+  <div class="container">
+    <h1 class="page-title entry-title">
+      <span itemprop="name">{{ actorDetails.name }}</span> Filmography, Biography and Latest Movies</h1>
+    <h2 class="page-description"></h2>
+    <!-- <div class="advanced_filters"></div> -->
+    <!-- <div class="page-taxonomy-list"></div> -->
+    <div id="page-header" fxLayout="row">
+      <div id="header-left" fxFlex>
+        <div id="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">Jump To:
+          <a [routerLink]="" fragment="biography" class="mat-raised-button" tabindex="0" href="#biography">Biography</a>
+          <a [routerLink]="" fragment="movies" class="mat-raised-button" tabindex="0" href="#movies">Filmography</a>
+        </div>
       </div>
-
+    </div>
+  </div>
+</div>
+<!-- Actor Details & Posters -->
+<div *ngIf="actorDetails">
+  <!-- Actor Details -->
+  <section id="biography" class="wrapper" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch" id="actor-details" itemprop="actor" itemscope
+    itemtype="http://schema.org/Person">
+    <!-- Actor Profile Image -->
+    <div id="main-left" fxFlex="80%">
       <!-- Actor Detail-->
       <h2>Biography</h2>
       <div class="biography-content">
@@ -60,17 +70,13 @@
         </button>
       </div>
     </div>
-
-    <!-- Actor Profile Image -->
-    <div fxFlex="20%" fxFlex.sm="15%" fxFlex.xs="80%" id="main-left">
+    <div id="main-right" fxFlex="20%">
       <div id="profile-pic-container">
-
         <!-- Profile Pics List -->
         <span class="profile-pics" *ngIf="actorImages?.length > 0; else defaultProfilePic">
           <img itemprop="image" *ngFor="let img of actorImages; let i = index" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + img.file_path]"
             [alt]="actorDetails?.name + ' Filmography | Current Movie Releases'" [title]="actorDetails?.name + ' Filmography | Current Movie Releases'"
             [ngClass]="i === 0 ? 'active profile-pic' : 'profile-pic'">
-
           <!-- Slider Controls -->
           <div id="slider-controls" fxLayout="row" *ngIf="actorImages?.length > 1">
             <div class="prev" (click)="prevProfilePic()" fxFlex="50">
@@ -82,7 +88,6 @@
             </div>
           </div>
         </span>
-
         <!-- Default Profile Pic -->
         <ng-template #defaultProfilePic>
           <img src="assets/img/default-movie-poster.png" [alt]="actorDetails.title" [title]="actorDetails.title" class="actor-profile-pic">
@@ -91,43 +96,48 @@
       </div>
     </div>
   </section>
-</div>
-
-<section *ngIf="movieCasts">
-  <!-- Movie Details -->
-  <h2>Movies</h2>
-  <span *ngIf="movieCasts?.length > 0" class="counter">({{ movieCreditsLength }})</span>
-
-  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="credits-tab-content">
-    <mat-card *ngFor="let credit of movieCasts" class="credit-card">
-      <a (click)="this.as.goToMovieDetails(credit?.id)">
-        <div>
-          <img *ngIf="credit.poster_path; else defaultCreditImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + credit.poster_path]" [alt]="credit.title">
-          <ng-template #defaultCreditImage>
-            <img src="assets/img/default-movie-poster.png" [alt]="credit.title" [title]="credit.title" class="credit-img">
-          </ng-template>
-        </div>
-
-        <div class="credit-info">
-          <div class="credit-title">
-            <h3>{{ credit.title }}
-              <span class="year">({{ credit.release_date | date: 'y' }})</span>
-            </h3>
+  <section *ngIf="movieCasts" id="movies" class="section wrapper padding played-movies-container" label="Latest Movies">
+    <div class="section-header">
+      <div class="section-description">
+        <h2 class="section-title">Filmography - Latest Movies</h2>
+        <p>{{ actorDetails.name }} has
+          <span *ngIf="movieCasts?.length > 0" class="counter">{{movieCreditsLength }}</span> movies</p>
+      </div>
+    </div>
+    <div class="movies-list" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="credits-tab-content">
+      <mat-card *ngFor="let credit of movieCasts" class="credit-card mat-elevation-z" tabindex="0">
+        <a (click)="this.as.goToMovieDetails(credit?.id)">
+          <div>
+            <img *ngIf="credit.poster_path; else defaultCreditImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + credit.poster_path]" [alt]="credit.release_date | date: 'y' + credit.title + ' movie'" [title]="credit.release_date | date: 'y' + credit.title + ' movie'">
+            <ng-template #defaultCreditImage>
+              <img src="assets/img/default-movie-poster.png" [alt]="credit.title" [title]="credit.title" class="credit-img">
+            </ng-template>
           </div>
-          <div class="credit-info-sub" fxLayout="row" fxLayoutAlign="center center">
-            <!-- <span class="genre">{{ this.as.getGenreName(credit.genre_ids[0]) }}</span> -->
-            <span class="credit-rating">
-              <mat-icon>star</mat-icon>{{ credit.vote_average / 2 }}
-            </span>
+          <div class="credit-info">
+            <div class="credit-title">
+              <h3>{{ credit.title }}
+                <span class="year">({{ credit.release_date | date: 'y' }})</span>
+              </h3>
+            </div>
+            <div class="credit-info-sub" fxLayout="row" fxLayoutAlign="center center">
+              <span class="credit-rating">
+                <mat-icon>star</mat-icon>{{ credit.vote_average / 2 }}
+              </span>
+            </div>
           </div>
-        </div>
-      </a>
-    </mat-card>
-  </div>
-</section>
+        </a>
+      </mat-card>
+      <!-- <mat-card *ngFor="let credit of movieCasts" class="movie-card mat-elevation-z" tabindex="0">
+        <app-movie-card [movie]="movie"></app-movie-card>
+      </mat-card> -->
+      <div id="advert-widget-full" class="advert-widget">
+        <app-adsense-widgets [slotId]="7054872218"></app-adsense-widgets>
+      </div>
+    </div>
+  </section>
 
-<!-- Tagged Photos -->
-<!-- <section>
+  <!-- Tagged Photos -->
+  <!-- <section>
   <h3>Tagged Photos</h3>
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" id="tagged-photos">
     <mat-card *ngFor="let img of actorTaggedImages" class="photo-card">
@@ -137,7 +147,7 @@
   </div>
 </section> -->
 
-<!-- <section>
+  <!-- <section>
   <h3>Tagged Photos</h3>
   <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="20px">
 
@@ -148,3 +158,4 @@
 
   </div>
 </section> -->
+</div>

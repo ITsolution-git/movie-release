@@ -5,7 +5,7 @@
 }
 
 #main-right {
-  padding-left: 2rem;
+  margin-left: 2rem;
 }
 
 #title h1 {
@@ -118,8 +118,8 @@ h2.tab-title {
   padding: 0;
   cursor: pointer;
   background: #000;
+  overflow: hidden;
 }
-
 .credit-card img {
   width: 100%;
 }
@@ -132,14 +132,14 @@ h2.tab-title {
   left: 0;
   padding: 0.4rem 10px;
   text-align: center;
-  background: #101010;
+  background: rgb(11, 11, 11);
   color: #fff;
 }
 
 .credit-info h3 {
   font-size: 1rem;
   padding: 0 0 0.3rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(68, 68, 68, 0.40);
   margin: 0;
 }
 

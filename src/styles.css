@@ -49,7 +49,7 @@ app-home .page-title.entry-title{
     color: #999;
     font-size: 0.8em;
 }
-div#results-counter {
+div#results-counter, div#breadcrumbs {
     font-size: 80%;
     color: #CCC;
     margin-top: 10px;

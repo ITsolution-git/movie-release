@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 // AngularFire
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -19,6 +19,7 @@ import { TMDB_IMAGES_BASE_URL, IMG_185, IMG_500, APP_SEO_NAME, DB_COL, APP_BASE_
 })
 export class CelebDetailsComponent implements OnInit {
 
+  routerLink: Router;
   pageSeoTitle: string;
   pageSeoDescr: string;
   pageSeoKeywords: string;
@@ -103,6 +104,21 @@ export class CelebDetailsComponent implements OnInit {
             .catch(error => {
               console.log('There was an error while getting the Celeb ID! ', error);
             });
+        }
+        class MyAppComponent {
+          constructor(routerLink: Router) {
+
+            router.events.subscribe(s => {
+              if (s instanceof NavigationEnd) {
+                const tree = router.parseUrl(router.url);
+                if (tree.fragment) {
+                  const element = document.querySelector('#' + tree.fragment);
+                  if (element) { element.scrollIntoView(true); }
+                }
+              }
+            });
+
+          }
         }
       });
   }
@@ -190,7 +206,7 @@ export class CelebDetailsComponent implements OnInit {
   //   this.currentInfoTab = $event.index;
   //   if (this.currentInfoTab === 1 && !this.movieCasts) {
   //     this.isLoadingInfo = true;
-  //     
+  //
   //   }
   // }
 
