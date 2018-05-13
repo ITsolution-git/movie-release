@@ -1,4 +1,4 @@
-<div id="jumbotron" class="mat-elevation-z6" role="banner">
+<div id="jumbotron" class="mat-elevation-z6" role="banner" itemprop="actor" itemscope itemtype="http://schema.org/Person">
   <div class="container">
     <h1 class="page-title entry-title">
       <span itemprop="name">{{ actorDetails.name }}</span> Filmography, Biography and Latest Movies</h1>
@@ -18,8 +18,7 @@
 <!-- Actor Details & Posters -->
 <div *ngIf="actorDetails">
   <!-- Actor Details -->
-  <section id="biography" class="wrapper" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch" id="actor-details" itemprop="actor" itemscope
-    itemtype="http://schema.org/Person">
+  <section id="biography" class="wrapper" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch" id="actor-details">
     <!-- Actor Profile Image -->
     <div id="main-left" fxFlex="80%">
       <!-- Actor Detail-->
