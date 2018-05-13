@@ -63,47 +63,47 @@ export class CelebDetailsComponent implements OnInit {
     this.IMG_185 = IMG_185;
     this.IMG_500 = IMG_500;
 
-    this.ar.url.subscribe(() => {
-      this.resetTabs(0);
-      this.as.scrollToTop();
-      this.currentProfilePic = 0;
-      this.isMoreInfoOpen = false;
-      this.movieCasts = undefined;
-      this.actorLinks = undefined;
-    });
-
     // Get the genre name from the URL
-    this.routeParamsSubscription = this.ar.params
-      .subscribe(
-        params => {
-          this.pageKey = params['name'];
-          ++this.celebCounter;
-          if (this.celebCounter === 1) {
-            this.convertCelebNameToId(this.pageKey)
-              .then(() => {
-                this.getActorDetails()
-                  .then(() => {
-                    // Set SEO Meta Tags
-                    this.pageSeoTitle = this.actorDetails.name + ' - Filmography, Biography and Latest Movies';
-                     // tslint:disable-next-line:max-line-length
-                    this.pageSeoDescr = this.actorDetails.biography ? this.actorDetails.biography : 'This is the filmography and biography of ' + this.actorDetails.name;
-                    this.pageSeoKeywords = this.actorDetails.name + ', celebrity, actor, actress, person, popular';
-                    seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
-                    // tslint:disable-next-line:max-line-length
-                    seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path, 'profile');
-                    // Get Additional API Data
-                    this.getActorImages();
-                    this.getActorTaggedImages();
-                  })
-                  .catch(error => {
-                    console.log('There was an error while grtting the Celeb Details! ', error);
-                  });
-              })
-              .catch(error => {
-                console.log('There was an error while getting the Celeb ID! ', error);
-              });
-          }
-        });
+    this.routeParamsSubscription = this.ar.params.subscribe(
+      params => {
+        // Reset Variables
+        this.resetTabs(0);
+        this.as.scrollToTop();
+        this.celebCounter = 0;
+        this.currentProfilePic = 0;
+        this.isMoreInfoOpen = false;
+        this.movieCasts = undefined;
+        this.actorLinks = undefined;
+        this.actorDetails = undefined;
+
+        this.pageKey = params['name'];
+        ++this.celebCounter;
+        if (this.celebCounter === 1) {
+          this.convertCelebNameToId(this.pageKey)
+            .then(() => {
+              this.getActorDetails()
+                .then(() => {
+                  // Set SEO Meta Tags
+                  this.pageSeoTitle = this.actorDetails.name + ' - Filmography, Biography and Latest Movies';
+                  // tslint:disable-next-line:max-line-length
+                  this.pageSeoDescr = this.actorDetails.biography ? this.actorDetails.biography : 'This is the filmography and biography of ' + this.actorDetails.name;
+                  this.pageSeoKeywords = this.actorDetails.name + ', celebrity, actor, actress, person, popular';
+                  seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+                  // tslint:disable-next-line:max-line-length
+                  seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path, 'profile');
+                  // Get Additional API Data
+                  this.getActorImages();
+                  this.getActorTaggedImages();
+                })
+                .catch(error => {
+                  console.log('There was an error while grtting the Celeb Details! ', error);
+                });
+            })
+            .catch(error => {
+              console.log('There was an error while getting the Celeb ID! ', error);
+            });
+        }
+      });
   }
 
   ngOnInit(): void { }

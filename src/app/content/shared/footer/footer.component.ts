@@ -1,5 +1,7 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+// Services
 import { AppService } from '../../../core/services/app.service';
+// Components
 import { AdsenseWidgetsComponent } from '../adsense-widgets/adsense-widgets.component';
 @Component({
   selector: 'app-footer',
@@ -14,18 +16,17 @@ export class FooterComponent implements OnInit {
     public as: AppService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit(): void { }
 
   toggleSearch(): void {
     const mainsearch = document.getElementById('main-search');
     const mainsearchinput = document.getElementById('searchinput');
-      if (mainsearch.style.visibility === 'visible') {
-        mainsearch.style.visibility = 'hidden';
-      } else {
-        mainsearch.style.visibility = 'visible';
-        mainsearchinput.focus();
-      }
+    if (mainsearch.style.visibility === 'visible') {
+      mainsearch.style.visibility = 'hidden';
+    } else {
+      mainsearch.style.visibility = 'visible';
+      mainsearchinput.focus();
     }
+  }
 
 }

@@ -9,7 +9,7 @@
   </div>
 </div>
 <!-- Celebrities -->
-<section *ngIf="!loading" class="popular-actors-tab-content">THIS
+<section *ngIf="!loading" class="popular-actors-tab-content">
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="actors-list wrapper">
     <mat-card *ngFor="let actor of popularActors" class="actor-card">
       <a (click)="this.as.goToCelebDetails(actor.id)">
