@@ -38,6 +38,7 @@ import { RolesGuardService } from './core/auth/services/guards/roles-guard.servi
 // Modules
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './core/auth/auth.module';
+import { ContentModule } from './content/content.module';
 // Routing Modules
 import { AppRoutingModule } from './app-routing.module';
 // Services
@@ -75,6 +76,12 @@ import { LayoutModule } from '@angular/cdk/layout';
     BrowserModule,
     BrowserAnimationsModule,
     environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [], // Regsiters Service Worker
+    CdkTableModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    LayoutModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
@@ -88,19 +95,14 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatDialogModule,
     MatSidenavModule,
     MatListModule,
-    CdkTableModule,
-    FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    CoreModule,
-    AuthModule,
     MatToolbarModule,
     MatIconModule,
     ToastModule.forRoot(),
+    FacebookModule.forRoot(),
     AppRoutingModule,
-    LayoutModule,
-    FacebookModule.forRoot()
+    CoreModule,
+    AuthModule,
+    ContentModule
   ],
   providers: [
     AppService,

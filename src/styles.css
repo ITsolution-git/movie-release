@@ -187,6 +187,7 @@ app-page-not-found {
     max-height: 250px;
 }
 #advert-widget-400 .adsbygoogle{
+    width: 100%;
     height: 90px;
 }
 #advert-widget-full {

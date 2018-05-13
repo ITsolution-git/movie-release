@@ -91,6 +91,9 @@ import { BuyingComponent } from './buying/buying.component';
   ],
   entryComponents: [
     TrailersDialogComponent
+  ],
+  exports: [
+    AdsenseWidgetsComponent
   ]
 })
 export class ContentModule { }
