@@ -14,8 +14,8 @@
       <!-- Movie Poster Image -->
       <div id="movie-poster" fxFlex="20" fxHide.xs="true" fxFlex.sm="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
         <img itemprop="url" role="img" *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movieDetails.poster_path]"
-          [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0].name + ' | Current Movie Releases'"
-          [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0].name + ' | Current Movie Releases'">
+          [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0]?.name + ' | Current Movie Releases'"
+          [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0]?.name + ' | Current Movie Releases'">
         <ng-template #defaultMoviePoster>
           <img class="movie-poster-image" src="assets/img/default-movie-poster.png" alt="No movie poster available - Current Movie Releases"
             title="No movie poster available - Current Movie Releases">
