@@ -49,6 +49,12 @@ export class CelebDetailsComponent implements OnInit {
   profilePicsList: NodeListOf<Element>;
   profilePicsLength: number;
 
+  actorMovieCreditsLength: number;
+  actorMovieCreditLimit = 10;
+
+  currentFilmographyRoute: string;
+  currentBiographyRoute: string;
+
   constructor(
     public meta: Meta,
     public title: Title,
@@ -67,6 +73,11 @@ export class CelebDetailsComponent implements OnInit {
     // Get the genre name from the URL
     this.routeParamsSubscription = this.ar.params.subscribe(
       params => {
+        
+        // Initialize Biography & Filmography links
+        this.currentFilmographyRoute = APP_BASE_URL + '/celebrity/' + params.name + '#movies';
+        this.currentBiographyRoute = APP_BASE_URL + '/celebrity/' + params.name + '#biography';
+  
         // Reset Variables
         // this.resetTabs(0);
         this.as.scrollToTop();
@@ -76,6 +87,8 @@ export class CelebDetailsComponent implements OnInit {
         this.movieCasts = undefined;
         this.actorLinks = undefined;
         this.actorDetails = undefined;
+        this.actorMovieCreditsLength = null;
+        this.actorMovieCreditLimit = 10;
 
         this.pageKey = params['name'];
         ++this.celebCounter;
@@ -153,6 +166,9 @@ export class CelebDetailsComponent implements OnInit {
     this.apis.getActorMovieCredits(this.actorId)
       .subscribe((res) => {
         this.movieCasts = res['cast'];
+        this.actorMovieCreditsLength = this.movieCasts.length;
+        console.log();
+
         this.movieCrew = res['crew'];
         this.movieCreditsLength = (res['cast']).length;
         // console.log(res);
@@ -200,6 +216,11 @@ export class CelebDetailsComponent implements OnInit {
       this.getMoreActorDetails();
     }
     this.isMoreInfoOpen = !this.isMoreInfoOpen;
+  }
+
+
+  showAllMovies() {
+    this.actorMovieCreditLimit = this.actorMovieCreditsLength;
   }
 
   // onInfoTabChange($event): void {
