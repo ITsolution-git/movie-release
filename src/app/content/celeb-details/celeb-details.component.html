@@ -1,6 +1,6 @@
 <div id="jumbotron" class="mat-elevation-z6" role="banner" itemprop="actor" itemscope itemtype="http://schema.org/Person">
   <div class="container">
-    <h1 class="page-title entry-title">
+    <h1 class="page-title entry-title" *ngIf="actorDetails">
       <span itemprop="name">{{ actorDetails.name }}</span> Filmography, Biography and Latest Movies</h1>
     <h2 class="page-description"></h2>
     <!-- <div class="advanced_filters"></div> -->
@@ -107,7 +107,7 @@
       <mat-card *ngFor="let credit of movieCasts" class="credit-card mat-elevation-z" tabindex="0">
         <a (click)="this.as.goToMovieDetails(credit?.id)">
           <div>
-            <img *ngIf="credit.poster_path; else defaultCreditImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + credit.poster_path]" [alt]="credit.release_date | date: 'y' + credit.title + ' movie'" [title]="credit.release_date | date: 'y' + credit.title + ' movie'">
+            <img *ngIf="credit.poster_path; else defaultCreditImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + credit.poster_path]" [alt]="credit.title + ' movie'" [title]="credit.title + ' movie'">
             <ng-template #defaultCreditImage>
               <img src="assets/img/default-movie-poster.png" [alt]="credit.title" [title]="credit.title" class="credit-img">
             </ng-template>
