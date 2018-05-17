@@ -6,8 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import { HttpModule } from '@angular/http';
+import { LayoutModule } from '@angular/cdk/layout';
 // Third Party
 // import { FacebookModule } from 'ngx-facebook';
+import { ShareModule } from '@ngx-share/core';
 // Environments
 import { environment } from '../environments/environment';
 // Service Worker
@@ -38,6 +40,7 @@ import { RolesGuardService } from './core/auth/services/guards/roles-guard.servi
 // Modules
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './core/auth/auth.module';
+import { ContentModule } from './content/content.module';
 // Routing Modules
 import { AppRoutingModule } from './app-routing.module';
 // Services
@@ -57,7 +60,10 @@ import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
 import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
 import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
+<<<<<<< HEAD
 import { LayoutModule } from '@angular/cdk/layout';
+=======
+>>>>>>> master
 
 @NgModule({
   declarations: [
@@ -75,6 +81,13 @@ import { LayoutModule } from '@angular/cdk/layout';
     BrowserModule,
     BrowserAnimationsModule,
     environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [], // Regsiters Service Worker
+    CdkTableModule,
+    FlexLayoutModule,
+    LayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    LayoutModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
@@ -88,19 +101,15 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatDialogModule,
     MatSidenavModule,
     MatListModule,
-    CdkTableModule,
-    FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    CoreModule,
-    AuthModule,
     MatToolbarModule,
     MatIconModule,
     ToastModule.forRoot(),
-    AppRoutingModule,
-    LayoutModule,
+    ShareModule.forRoot(),
     // FacebookModule.forRoot(),
+    AppRoutingModule,
+    CoreModule,
+    AuthModule,
+    ContentModule
   ],
   providers: [
     AppService,

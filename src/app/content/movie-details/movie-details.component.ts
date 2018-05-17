@@ -17,7 +17,7 @@ import { ApiService } from '../../core/services/api/api.service';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { SeoService } from '../../core/services/seo/seo.service';
 // Constants
-import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_500, IMG_ORIG, APP_SEO_NAME, DB_COL, APP_BASE_URL } from '../../constants';
+import { TMDB_IMAGES_BASE_URL, IMG_45, IMG_185, IMG_300, IMG_500, IMG_ORIG, APP_SEO_NAME, DB_COL, APP_BASE_URL } from '../../constants';
 // Component
 import { TrailersDialogComponent } from '../shared/trailers-dialog/trailers-dialog.component';
 import { AuthDialogComponent } from '../shared/auth-dialog/auth-dialog.component';
@@ -52,6 +52,7 @@ export class MovieDetailsComponent implements OnInit {
   TMDB_IMAGES_BASE_URL: any;
   IMG_45: any;
   IMG_185: any;
+  IMG_300: any;
   IMG_500: any;
   IMG_ORIG: any;
   APP_BASE_URL: any;
@@ -94,8 +95,12 @@ export class MovieDetailsComponent implements OnInit {
 
   releaseDatesColumns = ['date', 'certification', 'country'];
   releaseDatesSource: MatTableDataSource<any>;
+
   castColumns = ['actorImg', 'actorName', 'character'];
   castSource: MatTableDataSource<ICastData>;
+  castSourceLength: number;
+  castSourceLimit = 5;
+
   crewColumns = ['crewImg', 'crewName', 'crewJob', 'department'];
   crewSource: MatTableDataSource<ICrewData>;
 
@@ -139,6 +144,7 @@ export class MovieDetailsComponent implements OnInit {
     this.TMDB_IMAGES_BASE_URL = TMDB_IMAGES_BASE_URL;
     this.IMG_45 = IMG_45;
     this.IMG_185 = IMG_185;
+    this.IMG_300 = IMG_300;
     this.IMG_500 = IMG_500;
     this.IMG_ORIG = IMG_ORIG;
     this.APP_BASE_URL = APP_BASE_URL;
@@ -152,6 +158,7 @@ export class MovieDetailsComponent implements OnInit {
       this.movieCreditsCast = undefined;
       this.movieCreditsCrew = undefined;
       this.castSource = undefined;
+      this.castSourceLength = null;
       this.crewSource = undefined;
       this.movieReviews = undefined;
       this.movieReleaseDates = undefined;
@@ -160,6 +167,8 @@ export class MovieDetailsComponent implements OnInit {
       this.movieTranslations = undefined;
       this.movieAltTitles = undefined;
       this.movieId = undefined;
+      this.movieCreditsDirectors = [];
+      this.movieCreditsProducers = [];
 
       // Get the movie title and ID from the URL
       this.routeParamsSubscription = this.ar.params
@@ -181,7 +190,7 @@ export class MovieDetailsComponent implements OnInit {
                     this.pageSeoKeywords = this.movieDetails.title + ', movie, film, release date, ' + (this.movieDetails.genres.length === 0 ? '' : this.movieDetails.genres[0].name) + ' movie';
                     seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                     // tslint:disable-next-line:max-line-length
-                    seoS.setFacebookMetaTags(this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ')' + (this.movieDetails.genres.length === 0 ? '' : ' - ' + this.movieDetails.genres[0].name) + ' Movie', APP_BASE_URL + '/movies/' + params['title'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.movieDetails.poster_path, 'video.movie');
+                    seoS.setFacebookMetaTags(this.movieDetails.title + ' (' + this.movieDetails.release_date.substr(0, 4) + ')' + (this.movieDetails.genres.length === 0 ? '' : ' - ' + this.movieDetails.genres[0].name) + ' Movie', APP_BASE_URL + '/movies/' + params['title'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_300 + this.movieDetails.poster_path, 'video.movie');
                     // Get Additional API Data
                     this.getMovieImages();
                     this.getMovieCredits();
@@ -285,6 +294,7 @@ export class MovieDetailsComponent implements OnInit {
     });
 
   }
+
   getMovieCredits(): void {
     this.apis.getMovieCredits(this.movieId)
       .subscribe((res) => {
@@ -311,12 +321,11 @@ export class MovieDetailsComponent implements OnInit {
               );
             }
           }
-          console.log('AA:', this.movieCreditsDirectors);
-          console.log('AA:', this.movieCreditsProducers);
 
-          this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, 5));
-          this.crewSource = new MatTableDataSource(this.movieCreditsCrew.slice(0, 5));
+          this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, this.castSourceLimit));
+          this.crewSource = new MatTableDataSource(this.movieCreditsCrew);
           if (this.castSource && this.crewSource) {
+            this.castSourceLength = this.movieCreditsCast.length;
             this.castSource.sort = this.castSort;
             this.castSource.paginator = this.castPaginator;
             this.crewSource.sort = this.crewSort;
@@ -326,6 +335,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
+
   getMovieImages(): void {
     this.apis.getMovieImages(this.movieId)
       .subscribe((res) => {
@@ -333,12 +343,14 @@ export class MovieDetailsComponent implements OnInit {
         this.movieImagesLength = this.movieImages.length;
       });
   }
+
   // getMovieKeywords(): void {
   //   this.apis.getMovieKeywords(this.movieId)
   //     .subscribe((res) => {
   //       this.movieKeywords = res['keywords'];
   //     });
   // }
+
   getMovieReleaseDates(): void {
     this.apis.getMovieReleaseDates(this.movieId)
       .subscribe((res) => {
@@ -350,6 +362,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
+
   getMovieTrailers(): void {
     this.apis.getMovieTrailers(this.movieId)
       .subscribe((res) => {
@@ -357,6 +370,7 @@ export class MovieDetailsComponent implements OnInit {
         this.movieTrailersLength = this.movieTrailers.length;
       });
   }
+
   getSimilarMovies(): void {
     this.isLoadingMovies = true;
     this.apis.getSimilarMovies(this.movieId, 1)
@@ -367,6 +381,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
+
   // getRecommemdedMovies(): void {
   //   this.isLoadingMovies = true;
   //   this.apis.getRecommendedMovies(this.movieId, 1)
@@ -377,6 +392,7 @@ export class MovieDetailsComponent implements OnInit {
   //       }
   //     });
   // }
+
   getMovieReviews(): void {
     this.isLoadingInfo = true;
     this.apis.getMovieReviews(this.movieId, 1)
@@ -387,6 +403,7 @@ export class MovieDetailsComponent implements OnInit {
         }
       });
   }
+
   getMoreMovieDetails(): void {
     this.isLoadingInfo = true;
     let movieLinksTemp;
@@ -424,6 +441,11 @@ export class MovieDetailsComponent implements OnInit {
       this.getMoreMovieDetails();
     }
     this.isMoreInfoOpen = !this.isMoreInfoOpen;
+  }
+
+  showAllActors() {
+    this.castSourceLimit = this.castSourceLength;
+    this.castSource = new MatTableDataSource(this.movieCreditsCast.slice(0, this.castSourceLimit));
   }
 
   onInfoTabChange($event): void {

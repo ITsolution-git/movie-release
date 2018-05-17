@@ -13,15 +13,15 @@
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch" class="actors-list wrapper">
     <mat-card *ngFor="let actor of popularActors" class="actor-card">
       <a (click)="this.as.goToCelebDetails(actor.id)">
-        <div>
-          <img *ngIf="actor.profile_path; else defaulActorImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + actor.profile_path]" [alt]="actor.name"
+        <div itemscope="" itemtype="http://schema.org/Person">
+          <img *ngIf="actor.profile_path; else defaulActorImage" itemprop="image" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + actor.profile_path]" [alt]="actor.name"
             [title]="actor.name" class="actor-img">
           <ng-template #defaultActorImage>
             <img src="assets/img/default-movie-poster.png" [alt]="actor.name" [title]="actor.name" class="actor-img">
           </ng-template>
         </div>
         <div class="actor-info">
-          <h3>{{ actor.name }}</h3>
+          <h3 itemprop="name">{{ actor.name }}</h3>
           <div class="actor-rating">Popularity: {{ actor.popularity | number }}</div>
         </div>
       </a>

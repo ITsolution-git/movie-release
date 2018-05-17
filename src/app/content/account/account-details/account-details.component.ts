@@ -44,15 +44,17 @@ export class AccountDetailsComponent {
     this.meta.removeTag('name = "keywords"');
 
     this.afAuth.authState.subscribe(res => {
-      this.userRef = afDb.list(DB_COL.USERS + '/');
-      this.userObsRef = afDb.object(DB_COL.USERS + '/' + res.uid).valueChanges();
+      if (res) {
+        this.userRef = afDb.list(DB_COL.USERS + '/');
+        this.userObsRef = afDb.object(DB_COL.USERS + '/' + res.uid).valueChanges();
+      }
       this.getUserDetails();
     });
   }
 
   getUserDetails(): void {
-    // console.log('GET USER DETAILS');
     this.userObsRef.subscribe(res => {
+      console.log('getUserDetails()', res);
       this.userDetails = res;
       if (this.userDetails) {
         this.loading = false;

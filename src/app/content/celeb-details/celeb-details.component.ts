@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 // AngularFire
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -19,6 +19,7 @@ import { TMDB_IMAGES_BASE_URL, IMG_185, IMG_500, APP_SEO_NAME, DB_COL, APP_BASE_
 })
 export class CelebDetailsComponent implements OnInit {
 
+  routerLink: Router;
   pageSeoTitle: string;
   pageSeoDescr: string;
   pageSeoKeywords: string;
@@ -48,6 +49,12 @@ export class CelebDetailsComponent implements OnInit {
   profilePicsList: NodeListOf<Element>;
   profilePicsLength: number;
 
+  actorMovieCreditsLength: number;
+  actorMovieCreditLimit = 10;
+
+  currentFilmographyRoute: string;
+  currentBiographyRoute: string;
+
   constructor(
     public meta: Meta,
     public title: Title,
@@ -63,47 +70,70 @@ export class CelebDetailsComponent implements OnInit {
     this.IMG_185 = IMG_185;
     this.IMG_500 = IMG_500;
 
-    this.ar.url.subscribe(() => {
-      this.resetTabs(0);
-      this.as.scrollToTop();
-      this.currentProfilePic = 0;
-      this.isMoreInfoOpen = false;
-      this.movieCasts = undefined;
-      this.actorLinks = undefined;
-    });
-
     // Get the genre name from the URL
-    this.routeParamsSubscription = this.ar.params
-      .subscribe(
-        params => {
-          this.pageKey = params['name'];
-          ++this.celebCounter;
-          if (this.celebCounter === 1) {
-            this.convertCelebNameToId(this.pageKey)
-              .then(() => {
-                this.getActorDetails()
-                  .then(() => {
-                    // Set SEO Meta Tags
-                    this.pageSeoTitle = this.actorDetails.name + ' - Filmography, Biography and Latest Movies';
-                     // tslint:disable-next-line:max-line-length
-                    this.pageSeoDescr = this.actorDetails.biography ? this.actorDetails.biography : 'This is the filmography and biography of ' + this.actorDetails.name;
-                    this.pageSeoKeywords = this.actorDetails.name + ', celebrity, actor, actress, person, popular';
-                    seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
-                    // tslint:disable-next-line:max-line-length
-                    seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path, 'profile');
-                    // Get Additional API Data
-                    this.getActorImages();
-                    this.getActorTaggedImages();
-                  })
-                  .catch(error => {
-                    console.log('There was an error while grtting the Celeb Details! ', error);
-                  });
-              })
-              .catch(error => {
-                console.log('There was an error while getting the Celeb ID! ', error);
-              });
+    this.routeParamsSubscription = this.ar.params.subscribe(
+      params => {
+        
+        // Initialize Biography & Filmography links
+        this.currentFilmographyRoute = APP_BASE_URL + '/celebrity/' + params.name + '#movies';
+        this.currentBiographyRoute = APP_BASE_URL + '/celebrity/' + params.name + '#biography';
+  
+        // Reset Variables
+        // this.resetTabs(0);
+        this.as.scrollToTop();
+        this.celebCounter = 0;
+        this.currentProfilePic = 0;
+        this.isMoreInfoOpen = false;
+        this.movieCasts = undefined;
+        this.actorLinks = undefined;
+        this.actorDetails = undefined;
+        this.actorMovieCreditsLength = null;
+        this.actorMovieCreditLimit = 10;
+
+        this.pageKey = params['name'];
+        ++this.celebCounter;
+        if (this.celebCounter === 1) {
+          this.convertCelebNameToId(this.pageKey)
+            .then(() => {
+              this.getActorDetails()
+                .then(() => {
+                  // Set SEO Meta Tags
+                  this.pageSeoTitle = this.actorDetails.name + ' - Filmography, Biography and Latest Movies';
+                  // tslint:disable-next-line:max-line-length
+                  this.pageSeoDescr = this.actorDetails.biography ? this.actorDetails.biography : 'This is the filmography and biography of ' + this.actorDetails.name;
+                  this.pageSeoKeywords = this.actorDetails.name + ', celebrity, actor, actress, person, popular';
+                  seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
+                  // tslint:disable-next-line:max-line-length
+                  seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path, 'profile');
+                  // Get Additional API Data
+                  this.getActorMovieCredits();
+                  this.getActorImages();
+                  this.getActorTaggedImages();
+                })
+                .catch(error => {
+                  console.log('There was an error while grtting the Celeb Details! ', error);
+                });
+            })
+            .catch(error => {
+              console.log('There was an error while getting the Celeb ID! ', error);
+            });
+        }
+        class MyAppComponent {
+          constructor(routerLink: Router) {
+
+            router.events.subscribe(s => {
+              if (s instanceof NavigationEnd) {
+                const tree = router.parseUrl(router.url);
+                if (tree.fragment) {
+                  const element = document.querySelector('#' + tree.fragment);
+                  if (element) { element.scrollIntoView(true); }
+                }
+              }
+            });
+
           }
-        });
+        }
+      });
   }
 
   ngOnInit(): void { }
@@ -136,6 +166,9 @@ export class CelebDetailsComponent implements OnInit {
     this.apis.getActorMovieCredits(this.actorId)
       .subscribe((res) => {
         this.movieCasts = res['cast'];
+        this.actorMovieCreditsLength = this.movieCasts.length;
+        console.log();
+
         this.movieCrew = res['crew'];
         this.movieCreditsLength = (res['cast']).length;
         // console.log(res);
@@ -185,13 +218,18 @@ export class CelebDetailsComponent implements OnInit {
     this.isMoreInfoOpen = !this.isMoreInfoOpen;
   }
 
-  onInfoTabChange($event): void {
-    this.currentInfoTab = $event.index;
-    if (this.currentInfoTab === 1 && !this.movieCasts) {
-      this.isLoadingInfo = true;
-      this.getActorMovieCredits();
-    }
+
+  showAllMovies() {
+    this.actorMovieCreditLimit = this.actorMovieCreditsLength;
   }
+
+  // onInfoTabChange($event): void {
+  //   this.currentInfoTab = $event.index;
+  //   if (this.currentInfoTab === 1 && !this.movieCasts) {
+  //     this.isLoadingInfo = true;
+  //
+  //   }
+  // }
 
   prevProfilePic(): void {
     // console.log('IN: ', this.currentProfilePic);
@@ -227,9 +265,9 @@ export class CelebDetailsComponent implements OnInit {
     }
   }
 
-  resetTabs(i: number): void {
-    this.currentInfoTab = i;
-  }
+  // resetTabs(i: number): void {
+  //   this.currentInfoTab = i;
+  // }
 
   openImageGallery(imgPath: string): void {
     console.log(imgPath);

@@ -93,6 +93,9 @@ import { ShareModule } from '@ngx-share/core';
   ],
   entryComponents: [
     TrailersDialogComponent
+  ],
+  exports: [
+    AdsenseWidgetsComponent
   ]
 })
 export class ContentModule { }

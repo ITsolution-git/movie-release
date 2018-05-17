@@ -1,4 +1,5 @@
-<div id="jumbotron" role="banner" class="moviebg mat-elevation-z6" *ngIf="movieDetails?.backdrop_path" [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
+<div id="jumbotron" role="banner" class="moviebg mat-elevation-z6" itemprop itemprop="ImageObject" *ngIf="movieDetails?.backdrop_path"
+  [style.background-image]="'url(' + TMDB_IMAGES_BASE_URL + IMG_ORIG + movieDetails.backdrop_path + ')'"></div>
 <!-- Movie Details & Posters -->
 <div class="wrapper margin" *ngIf="movieDetails" [id]="movieDetails.id">
   <!-- Movie Details -->
@@ -11,10 +12,10 @@
     </div>
     <div id="movie-content-main" fxLayout="row" fxLayout.xs="column">
       <!-- Movie Poster Image -->
-      <div id="movie-poster" fxFlex="20" fxFlex.sm="20%" fxFlex.xs="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-        <img itemprop="url" role="img" *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_500 + movieDetails.poster_path]"
-          [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies + ' | Current Movie Releases'"
-          [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by | Current Movie Releases'">
+      <div id="movie-poster" fxFlex="20" fxHide.xs="true" fxFlex.sm="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+        <img itemprop="url" role="img" *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movieDetails.poster_path]"
+          [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0]?.name + ' | Current Movie Releases'"
+          [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0]?.name + ' | Current Movie Releases'">
         <ng-template #defaultMoviePoster>
           <img class="movie-poster-image" src="assets/img/default-movie-poster.png" alt="No movie poster available - Current Movie Releases"
             title="No movie poster available - Current Movie Releases">
@@ -189,7 +190,8 @@
       </div>
     </div>
     <div id="movie-content-cast">
-      <mat-tab-group id="movie-content-details" (selectChange)="onInfoTabChange($event)" [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
+      <mat-tab-group *ngIf="movieCreditsCast && castSource && castColumns" id="movie-content-details" (selectChange)="onInfoTabChange($event)"
+        [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
         <mat-tab label="Cast ({{ movieCreditsCast?.length }})">
           <ng-template mat-tab-label>
             <h3 class="tab-heading">Cast ({{ movieCreditsCast?.length }})</h3>
@@ -229,10 +231,14 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Character </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{ element?.character }} </mat-cell>
               </ng-container>
+
               <mat-header-row *matHeaderRowDef="castColumns"></mat-header-row>
               <mat-row *matRowDef="let row; columns: castColumns;"></mat-row>
             </mat-table>
-            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" [length]="movieCreditsCast?.length"></mat-paginator> -->
+            <!-- Show All Actors -->
+            <button mat-raised-button *ngIf="castSourceLimit !== castSourceLength" (click)="showAllActors()">Show Full Cast List</button>
+            <!-- Paginator -->
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"></mat-paginator> -->
           </div>
         </mat-tab>
         <mat-tab label="Technical Details">
@@ -281,30 +287,44 @@
       </mat-tab-group>
     </div>
   </section>
-  <section *ngIf="movieArticles?.length" id="articles" class="section padding border" role="article">
+  <section *ngIf="movieArticles?.length" id="articles" class="section padding border" role="article" itemprop="review" itemscope
+    itemtype="http://schema.org/Review">
     <div class="section-header">
       <div class="section-description">
         <h2 class="section-title">
           <mat-icon class="mat-icon material-icons">note_add</mat-icon> Movie Review</h2>
       </div>
     </div>
-    <article class="article" role="article" *ngFor="let article of movieArticles" itemscope itemtype="http://schema.org/Article">
+    <article class="article" role="article" *ngFor="let article of movieArticles">
       <div class="article-inner" *ngIf="article.article_status === 'public'">
         <div class="article-data">
           <span class="post-date updated">
             <mat-icon class="mat-icon material-icons">face</mat-icon>Review added on:
-            <span itemprop="datePublished" datetime="article.article_date">{{ article.article_date | date: 'long' }}</span> by:
+            <span itemprop="datePublished" datetime="article.article_date">{{ article.article_date | date: 'long' }}</span> Author:
             <span class="vcard author post-author author_name">
               <span class="fn">
-                <a href="https://plus.google.com/+Currentmoviereleases" rel="author" target="_blank" itemprop="author"> +Currentmoviereleases</a>
+                <span rel="author" itemprop itemprop="author">Matthew E. Owen</span>,
+              </span> Published by:
+              <span class="fn" itemprop itemprop="publisher" itemtype="http://schema.org/Corporation">
+                <a href="https://plus.google.com/+Currentmoviereleases" rel="noopener" target="_blank">+Currentmoviereleases</a>
               </span>
             </span>
           </span>
         </div>
         <div class="article-subtitle">
-          <h3 itemprop="name">{{ article.article_title }}</h3>
+          <h3 itemprop itemprop="headline">{{ article.article_title }}</h3>
         </div>
-        <div class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
+        <div itemprop="reviewBody" class="article-content" [innerHTML]="article?.article_content | safe: 'html'"></div>
+        <span class="criticrating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+          <span>Reviewer Rating of
+            <em itemprop="name">{{ movieDetails.title }}</em> movie: </span>
+          <meta itemprop="worstRating" content="1" />
+          <mat-icon class="active rating">star</mat-icon>
+          <span class="rating-number" itemprop="ratingValue">3</span>
+          <span class="total-rating"> /
+            <span itemprop="bestRating">5</span>
+          </span>
+        </span>
       </div>
     </article>
   </section>

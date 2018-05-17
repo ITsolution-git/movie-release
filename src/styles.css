@@ -49,7 +49,7 @@ app-home .page-title.entry-title{
     color: #999;
     font-size: 0.8em;
 }
-div#results-counter {
+div#results-counter, div#breadcrumbs {
     font-size: 80%;
     color: #CCC;
     margin-top: 10px;
@@ -184,9 +184,10 @@ app-page-not-found {
 }
 #advert-widget-400{
     min-width: 300px;
-    max-height: 250px;
+    max-height: 300px;
 }
 #advert-widget-400 .adsbygoogle{
+    width: 100%;
     height: 90px;
 }
 #advert-widget-full {
@@ -200,7 +201,6 @@ app-page-not-found {
     height: 90px;
 }
 .advert-widget{
-    background: rgba(0, 0, 0, 0.15);
     padding: 5px;
     overflow: hidden;
     text-align: center;

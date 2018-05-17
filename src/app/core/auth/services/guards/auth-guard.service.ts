@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
-        return this.as.user
+        /* return this.as.user
             .take(1)
             .map(user => !!user)
             .do(loggedIn => {
@@ -30,6 +30,7 @@ export class AuthGuard implements CanActivate {
                     console.log('Access Denied! Please Login First.');
                     this.router.navigate(['/auth/login']);
                 }
-            });
+            }); */
+        return !!this.as.authState;
     }
 }

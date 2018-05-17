@@ -88,6 +88,7 @@
     <mat-header-row *matHeaderRowDef="adminColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: adminColumns;"></mat-row>
   </mat-table>
+  
   <!-- No Results -->
   <div *ngIf="articlesList?.length < 1" fxFlex fxLayoutAlign="center center" class="no-results">No Articles found!</div>
 
