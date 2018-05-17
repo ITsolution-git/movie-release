@@ -60,10 +60,6 @@ import { PrimaryMenuComponent } from './content/shared/primary-menu/primary-menu
 import { SearchFormComponent } from './content/shared/search-form/search-form.component';
 import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
 import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
-<<<<<<< HEAD
-import { LayoutModule } from '@angular/cdk/layout';
-=======
->>>>>>> master
 
 @NgModule({
   declarations: [
