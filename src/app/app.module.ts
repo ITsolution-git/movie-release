@@ -58,7 +58,6 @@ import { SearchFormComponent } from './content/shared/search-form/search-form.co
 import { SidenavComponent } from '../app/content/shared/sidenav/sidenav.component';
 import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { ShareModule } from '@ngx-share/core';
 
 @NgModule({
   declarations: [
@@ -102,7 +101,6 @@ import { ShareModule } from '@ngx-share/core';
     AppRoutingModule,
     LayoutModule,
     // FacebookModule.forRoot(),
-    ShareModule.forRoot()
   ],
   providers: [
     AppService,
