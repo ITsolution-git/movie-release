@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.APP_ROOT_URL = 'https://www.currentmoviereleases.com';
 exports.APP_URL = 'www.currentmoviereleases.com'; // PROD
 // export const APP_URL = 'http://localhost:5001'; // DEV
-exports.RENDER_URL = 'https://render-tron.appspot.com/render';
-// export const RENDER_URL = 'https://renderer.currentmoviereleases.com';
+// export const RENDER_URL = 'https://render-tron.appspot.com/render';
+exports.RENDER_URL = 'https://renderer.currentmoviereleases.com';
 exports.CACHE_CONTROL_VALUE = 'public, max-age=300, s-maxage=600';
 // TMDB
 exports.TMDB_API_URL_ROOT = 'https://api.themoviedb.org/';
