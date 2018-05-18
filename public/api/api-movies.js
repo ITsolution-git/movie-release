@@ -342,6 +342,8 @@ exports.tryGetUpcomingMovies = (req, res) => {
     const pageIndex = req.params['pageIndex'];
     getUpcomingMovies(pageIndex)
         .then((result) => {
+        res.set("Cache-Control", "public, max-age=" + constants_1.MAX_AGE);
+        res.set("Expires", new Date(Date.now() + constants_1.MAX_AGE * 1000).toUTCString());
         res.send(result);
     })
         .catch((error) => {
@@ -376,6 +378,8 @@ exports.tryGetNowPlayingMovies = (req, res) => {
     const pageIndex = req.params['pageIndex'];
     getNowPlayingMovies(pageIndex)
         .then((result) => {
+        res.set("Cache-Control", "public, max-age=" + constants_1.MAX_AGE);
+        res.set("Expires", new Date(Date.now() + constants_1.MAX_AGE * 1000).toUTCString());
         res.send(result);
     })
         .catch((error) => {

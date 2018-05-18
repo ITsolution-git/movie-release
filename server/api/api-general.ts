@@ -3,7 +3,8 @@ import {
     TMDB_API_URL_ROOT,
     TMDB_API_KEY,
     TMDB_API_VER,
-    TMDB_API_LANG
+    TMDB_API_LANG,
+    MAX_AGE
 } from '../constants';
 
 // General API  Calls
@@ -32,6 +33,8 @@ const getAPIConfig = (): Promise<any> => {
 export const tryGetAPIConfig = (req, res) => {
     getAPIConfig()
         .then(result => {
+            res.set("Cache-Control", "public, max-age="+MAX_AGE);
+            res.set("Expires", new Date(Date.now() + MAX_AGE * 1000).toUTCString());
             res.send(result);
         })
         .catch((error) => {
@@ -64,6 +67,8 @@ const getMovieGenresList = (): Promise<any> => {
 export const tryGetMovieGenresList = (req, res) => {
     getMovieGenresList()
         .then(result => {
+            res.set("Cache-Control", "public, max-age="+MAX_AGE);
+            res.set("Expires", new Date(Date.now() + MAX_AGE * 1000).toUTCString());
             res.send(result);
         })
         .catch((error) => {

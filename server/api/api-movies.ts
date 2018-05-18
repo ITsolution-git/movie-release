@@ -3,7 +3,8 @@ import {
     TMDB_API_URL_ROOT,
     TMDB_API_KEY,
     TMDB_API_VER,
-    TMDB_API_LANG
+    TMDB_API_LANG,
+    MAX_AGE
 } from '../constants';
 
 // Get Movies for Homepage (Diccover)
@@ -356,6 +357,8 @@ export const tryGetUpcomingMovies = (req, res) => {
     const pageIndex = req.params['pageIndex'];
     getUpcomingMovies(pageIndex)
         .then((result) => {
+            res.set("Cache-Control", "public, max-age="+MAX_AGE);
+            res.set("Expires", new Date(Date.now() + MAX_AGE * 1000).toUTCString());
             res.send(result);
         })
         .catch((error) => {
@@ -391,6 +394,8 @@ export const tryGetNowPlayingMovies = (req, res) => {
     const pageIndex = req.params['pageIndex'];
     getNowPlayingMovies(pageIndex)
         .then((result) => {
+            res.set("Cache-Control", "public, max-age="+MAX_AGE);
+            res.set("Expires", new Date(Date.now() + MAX_AGE * 1000).toUTCString());
             res.send(result);
         })
         .catch((error) => {

@@ -28,6 +28,8 @@ const getAPIConfig = () => {
 exports.tryGetAPIConfig = (req, res) => {
     getAPIConfig()
         .then(result => {
+        res.set("Cache-Control", "public, max-age=" + constants_1.MAX_AGE);
+        res.set("Expires", new Date(Date.now() + constants_1.MAX_AGE * 1000).toUTCString());
         res.send(result);
     })
         .catch((error) => {
@@ -59,6 +61,8 @@ const getMovieGenresList = () => {
 exports.tryGetMovieGenresList = (req, res) => {
     getMovieGenresList()
         .then(result => {
+        res.set("Cache-Control", "public, max-age=" + constants_1.MAX_AGE);
+        res.set("Expires", new Date(Date.now() + constants_1.MAX_AGE * 1000).toUTCString());
         res.send(result);
     })
         .catch((error) => {
