@@ -7,9 +7,7 @@ import { APP_URL, APP_ROOT_URL, RENDER_URL, CACHE_CONTROL_VALUE } from '../const
 
 // Bot detect
 export const detectBot = (userAgent: string): boolean => {
-    // List of bots to target, add more if you'd like
     const bots = [
-        // crawler bots
         'googlebot',
         'bingbot',
         'yandexbot',
@@ -17,7 +15,6 @@ export const detectBot = (userAgent: string): boolean => {
         'slurp',
         'baiduspider',
         'ia_archiver',
-        // link bots
         'twitterbot',
         'facebookexternalhit',
         'facebot',
@@ -30,7 +27,6 @@ export const detectBot = (userAgent: string): boolean => {
         'facebot',
         'outbrain',
         'W3C_Validator',
-        // SEO Tools
         'screaming frog seo spider',
         'pingdom.com_bot_version_1.4_(http://www.pingdom.com/)',
         'google-structured-data-testing-tool'
@@ -75,8 +71,7 @@ export const processURL = (request: express.Request, response: express.Response)
             });
     } else {
         // Not a bot, fetch the regular Angular app
-        // fetch(APP_ROOT_URL) // PROD
-        fetch(APP_URL) // dev
+        fetch(APP_URL)
             .then(res => res.text())
             .then(body => {
                 response.send(body.toString());
