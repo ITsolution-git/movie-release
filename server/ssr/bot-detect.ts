@@ -2,7 +2,7 @@ import * as express from 'express';
 // import * as path from 'path';
 import * as urlLib from 'url';
 import * as fs from 'fs';
-// import fetch from 'node-fetch';
+import fetch from 'node-fetch';
 import { APP_URL, APP_ROOT_URL, RENDER_URL, CACHE_CONTROL_VALUE } from '../constants';
 
 // Bot detect
@@ -48,7 +48,7 @@ export const detectBot = (userAgent: string): boolean => {
 
 const generateUrl = (req: express.Request): string => {
     return urlLib.format({
-        protocol: req.protocol,
+        protocol: 'https',
         host: APP_URL,
         pathname: req.originalUrl
     });
@@ -65,7 +65,7 @@ export const processURL = (request: express.Request, response: express.Response)
         console.log(`Rendering: ${RENDER_URL}/${genratedUrl}`);
 
         // If Bot, fetch url via rendertron
-        fetch(`${RENDER_URL}/${genratedUrl}`)
+        fetch(`${RENDER_URL}/render/${genratedUrl}`)
             .then(res => res.text())
             .then(body => {
                 // Set the Vary header to cache the user agent, based on code from:

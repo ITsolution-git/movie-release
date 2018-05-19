@@ -167,6 +167,7 @@ export class MovieDetailsComponent implements OnInit {
       this.movieTranslations = undefined;
       this.movieAltTitles = undefined;
       this.movieId = undefined;
+      this.movieDetails = undefined;
       this.movieCreditsDirectors = [];
       this.movieCreditsProducers = [];
 
