@@ -2,7 +2,7 @@ import * as express from 'express';
 // import * as path from 'path';
 import * as urlLib from 'url';
 import * as fs from 'fs';
-// import fetch from 'node-fetch';
+import fetch from 'node-fetch';
 import { APP_URL, APP_ROOT_URL, RENDER_URL, CACHE_CONTROL_VALUE } from '../constants';
 
 // Bot detect
