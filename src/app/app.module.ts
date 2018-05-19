@@ -9,7 +9,6 @@ import { HttpModule } from '@angular/http';
 import { LayoutModule } from '@angular/cdk/layout';
 // Third Party
 // import { FacebookModule } from 'ngx-facebook';
-import { ShareModule } from '@ngx-share/core';
 // Environments
 import { environment } from '../environments/environment';
 // Service Worker
@@ -97,7 +96,6 @@ import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.co
     MatSidenavModule,
     MatListModule,
     ToastModule.forRoot(),
-    ShareModule.forRoot(),
     AppRoutingModule,
     CoreModule,
     AuthModule,

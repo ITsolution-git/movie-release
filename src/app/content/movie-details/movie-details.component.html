@@ -171,10 +171,14 @@
             <mat-icon>local_movies</mat-icon>
             <span fxHide.sm="true" fxHide.xs="true">Buy Ticket</span>
           </button> -->
-          <button mat-button shareButton="facebook" getCount="true" [style.backgroundColor]="share.prop.facebook.color" title="Share this Movie on Facebook">Facebook</button>
-          <button mat-button shareButton="twitter" getCount="true" tags="movierecommendation, movie, CMR" [style.backgroundColor]="share.prop.twitter.color" title="Share this Movie on Twitter">Twitter</button>
-          <button mat-button shareButton="google" getCount="true" [style.backgroundColor]="share.prop.google.color" title="Share this Movie on Google Plus">Google+</button>
-          <button mat-button shareButton="pinterest" getCount="true" [style.backgroundColor]="share.prop.pinterest.color" title="Share this Movie on Pinterest">Pinterest</button>
+          <share-buttons 
+            [theme]="'modern-dark'"
+            [include]="['facebook','twitter','google','linkedin','pinterest','reddit','tumblr','whatsapp','messenger','telegram','vk','stumble','xing','sms','email','copy','print']"
+            [show]="2"
+            [showCount]="true"
+            [url]="'https://twitter.com/'"
+            [autoSetMeta]="false"
+          ></share-buttons>
         </div>
       </div>
     </div>
