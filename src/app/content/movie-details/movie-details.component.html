@@ -171,10 +171,10 @@
             <mat-icon>local_movies</mat-icon>
             <span fxHide.sm="true" fxHide.xs="true">Buy Ticket</span>
           </button> -->
-          <button mat-button shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">Facebook</button>
-          <button mat-button shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">Twitter</button>
-          <button mat-button shareButton="google" [style.backgroundColor]="share.prop.google.color">Google+</button>
-          <button mat-button shareButton="pinterest" [style.backgroundColor]="share.prop.pinterest.color">Pinterest</button>
+          <button mat-button shareButton="facebook" getCount="true" [style.backgroundColor]="share.prop.facebook.color" title="Share this Movie on Facebook">Facebook</button>
+          <button mat-button shareButton="twitter" getCount="true" [style.backgroundColor]="share.prop.twitter.color" title="Share this Movie on Twitter">Twitter</button>
+          <button mat-button shareButton="google" getCount="true" [style.backgroundColor]="share.prop.google.color" title="Share this Movie on Google Plus">Google+</button>
+          <button mat-button shareButton="pinterest" getCount="true" [style.backgroundColor]="share.prop.pinterest.color" title="Share this Movie on Pinterest">Pinterest</button>
         </div>
       </div>
     </div>
