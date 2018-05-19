@@ -20,7 +20,7 @@
 <div *ngIf="actorDetails">
 
   <!-- Actor Details -->
-  <section id="biography" class="wrapper" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch" id="actor-details">
+  <section id="biography" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly stretch" class="actor-details">
     <!-- Actor Profile Image -->
     <div id="main-left" fxFlex="80%">
       <!-- Actor Detail-->
@@ -99,7 +99,7 @@
   </section>
 
   <!-- Movie Credits -->
-  <section *ngIf="movieCasts" id="movies" class="section wrapper padding played-movies-container" label="Latest Movies">
+  <section *ngIf="movieCasts" id="movies" class="section actor-details padding played-movies-container" label="Latest Movies">
 
     <div class="section-header">
       <div class="section-description">

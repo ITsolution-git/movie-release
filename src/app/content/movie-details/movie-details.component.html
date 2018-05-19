@@ -14,8 +14,8 @@
       <!-- Movie Poster Image -->
       <div id="movie-poster" fxFlex="20" fxHide.xs="true" fxFlex.sm="20%" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
         <img itemprop="url" role="img" *ngIf="movieDetails.poster_path; else defaultMoviePoster" class="movie-poster-image" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movieDetails.poster_path]"
-          [alt]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0]?.name + ' | Current Movie Releases'"
-          [title]="'Official Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0]?.name + ' | Current Movie Releases'">
+          [alt]="'Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0]?.name + ' | Current Movie Releases'"
+          [title]="'Movie Poster of ' + movieDetails.title + ' -  &copy; by ' + movieDetails.production_companies[0]?.name + ' | Current Movie Releases'">
         <ng-template #defaultMoviePoster>
           <img class="movie-poster-image" src="assets/img/default-movie-poster.png" alt="No movie poster available - Current Movie Releases"
             title="No movie poster available - Current Movie Releases">
@@ -171,19 +171,10 @@
             <mat-icon>local_movies</mat-icon>
             <span fxHide.sm="true" fxHide.xs="true">Buy Ticket</span>
           </button> -->
-          <!-- <button shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">
-            Share Twitter
-          </button>
-          <button shareButton="google" [style.backgroundColor]="share.prop.google.color">
-            Share Google+
-          </button>
-          <button shareButton="pinterest" [style.backgroundColor]="share.prop.pinterest.color">
-            Share Pinterest
-          </button>
-          <button shareButton="facebook">FB share</button> -->
-          <!-- <div class="gp-share-button"></div>
-            <div class="tw-share-button"></div> -->
-
+          <button mat-button shareButton="facebook" getCount="true" [style.backgroundColor]="share.prop.facebook.color" title="Share this Movie on Facebook">Facebook</button>
+          <button mat-button shareButton="twitter" getCount="true" tags="#CurrentMovieReleases" [style.backgroundColor]="share.prop.twitter.color" title="Share this Movie on Twitter">Twitter</button>
+          <button mat-button shareButton="google" getCount="true" [style.backgroundColor]="share.prop.google.color" title="Share this Movie on Google Plus">Google+</button>
+          <button mat-button shareButton="pinterest" getCount="true" [style.backgroundColor]="share.prop.pinterest.color" title="Share this Movie on Pinterest">Pinterest</button>
         </div>
       </div>
     </div>
@@ -194,7 +185,7 @@
           <p itemprop="description">{{ movieDetails.overview }}</p>
         </div>
       </div>
-      <div id="advert-widget-300" class="advert-widget">
+      <div id="advert-widget-300" class="advert-widget adsbygoogle">
         <app-adsense-widgets [slotId]="8145249147"></app-adsense-widgets>
       </div>
     </div>
@@ -361,7 +352,7 @@
       <mat-card *ngFor="let movie of similarMovies; let i = index" class="movie-card mat-elevation-z" tabindex="0">
         <app-movie-card [movie]="movie"></app-movie-card>
       </mat-card>
-      <div id="advert-widget-full" class="advert-widget">
+      <div id="advert-widget-full" class="advert-widget adsbygoogle">
         <app-adsense-widgets [slotId]="7054872218"></app-adsense-widgets>
       </div>
     </div>

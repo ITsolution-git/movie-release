@@ -43,6 +43,7 @@ import { TermsComponent } from './terms/terms.component';
 import { AboutComponent } from './about/about.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { BuyingComponent } from './buying/buying.component';
+import { ShareModule } from '@ngx-share/core';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import { BuyingComponent } from './buying/buying.component';
     MatOptionModule,
     MatSelectModule,
     FlexLayoutModule,
-    ContentRoutingModule
+    ContentRoutingModule,
+    ShareModule.forRoot()
   ],
   declarations: [
     HomeComponent,
