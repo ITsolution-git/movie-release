@@ -30,7 +30,8 @@ export const detectBot = (userAgent: string): boolean => {
         'W3C_Validator',
         'screaming frog seo spider',
         'pingdom.com_bot_version_1.4_(http://www.pingdom.com/)',
-        'google-structured-data-testing-tool'
+        'google-structured-data-testing-tool',
+        'Google (+https://developers.google.com/+/web/snippet/)'
     ];
 
     const agent = userAgent.toLowerCase();
@@ -54,15 +55,15 @@ const generateUrl = (req: express.Request): string => {
 };
 
 export const processURL = (request: express.Request, response: express.Response) => {
-    
+
     const isBot = detectBot(request.headers['user-agent'] as string);
 
     if (isBot) {
-        
+
         const genratedUrl = generateUrl(request);
 
         console.log(`Rendering: ${RENDER_URL}/${genratedUrl}`);
-        
+
         // If Bot, fetch url via rendertron
         fetch(`${RENDER_URL}/${genratedUrl}`)
             .then(res => res.text())
