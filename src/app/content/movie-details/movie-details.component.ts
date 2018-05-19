@@ -127,10 +127,12 @@ export class MovieDetailsComponent implements OnInit {
   isShareOpen = true;
   getMovieDetailsCounter = 0;
 
+  pageUrl: string;
+
   constructor(
     public meta: Meta,
     public title: Title,
-    private router: Router,
+    public router: Router,
     public as: AppService,
     private apis: ApiService,
     private ar: ActivatedRoute,
@@ -148,6 +150,8 @@ export class MovieDetailsComponent implements OnInit {
     this.IMG_500 = IMG_500;
     this.IMG_ORIG = IMG_ORIG;
     this.APP_BASE_URL = APP_BASE_URL;
+
+    this.pageUrl = this.router.url;
 
     this.ar.url.subscribe((res) => {
       // Reset Property Values on Route Change
