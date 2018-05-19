@@ -643,12 +643,12 @@ app-footer {
         display: block !important;
     }
     #advert-widget-300 .adsbygoogle {
-        width: 468px;
-        height: 60px !important;
+        width: 300px;
+        height: 250px !important;
+        
     }
     #advert-widget-300{
         max-width: 310px;
-        background: #CCC;
         text-align: center;
         margin: auto auto 20px !important;
         display: block;

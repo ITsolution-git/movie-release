@@ -1,7 +1,7 @@
 <!-- Jumbotron-->
 <app-jumbotron></app-jumbotron>
 <!-- Now Playng Movies -->
-<section *ngIf="!loading" id="now-playing" class="now-playing-movies-container section padding" label="Now Playing Movies">
+<section *ngIf="!loading" id="now-playing" class="wrapper now-playing-movies-container section padding" label="Now Playing Movies">
   <div class="section-header wrapper" fxLayout="column">
     <div class="section-description" fxLayout="column">
       <h2 class="section-title">
@@ -26,7 +26,7 @@
     </div>
   </div>
 </section>
-<section *ngIf="!loading" id="upcoming" class="now-playing-movies-container section padding" label="Now Playing Movies">
+<section *ngIf="!loading" id="upcoming" class="wrapper now-playing-movies-container section padding" label="Now Playing Movies">
   <div class="section-header wrapper" fxLayout="column">
     <div class="section-description" fxLayout="column">
       <h2 class="section-title">

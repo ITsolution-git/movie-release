@@ -41,25 +41,9 @@
           <mat-form-field>
             <input matInput type="email" placeholder="Email" formControlName="email" [(ngModel)]="user.email">
           </mat-form-field>
-          <!-- Gender -->
-          <mat-form-field class="select-container">
-            <mat-select placeholder="Gender" formControlName="gender" [(ngModel)]="user.gender">
-              <mat-option value="female">female</mat-option>
-              <mat-option value="male">male</mat-option>
-              <mat-option value="other">other</mat-option>
-            </mat-select>
-          </mat-form-field>
           <!-- Age -->
           <mat-form-field>
             <input matInput type="text" placeholder="Age" formControlName="age" [(ngModel)]="user.age">
-          </mat-form-field>
-          <!-- Phone -->
-          <mat-form-field>
-            <input matInput type="text" placeholder="Phone" formControlName="phone" [(ngModel)]="user.phone">
-          </mat-form-field>
-          <!-- Address -->
-          <mat-form-field>
-            <input matInput type="text" placeholder="Address" [value]="" formControlName="address" [(ngModel)]="user.address">
           </mat-form-field>
           <!-- User Role -->
           <mat-form-field class="select-container">
