@@ -1,13 +1,13 @@
 import * as express from 'express';
-import * as path from 'path';
+// import * as path from 'path';
 import * as urlLib from 'url';
 import * as fs from 'fs';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 import { APP_URL, APP_ROOT_URL, RENDER_URL, CACHE_CONTROL_VALUE } from '../constants';
 
 // Bot detect
 export const detectBot = (userAgent: string): boolean => {
-    // List of bots to target, add more if you'd like
+    // List of bots
     const bots = [
         // crawler bots
         'googlebot',
@@ -50,17 +50,22 @@ export const detectBot = (userAgent: string): boolean => {
 
 const generateUrl = (req: express.Request): string => {
     return urlLib.format({
-        protocol: 'https',
+        protocol: req.protocol,
         host: APP_URL,
         pathname: req.originalUrl
     });
 };
 
 export const processURL = (request: express.Request, response: express.Response) => {
+    
     const isBot = detectBot(request.headers['user-agent'] as string);
-    const genratedUrl = generateUrl(request);
+
     if (isBot) {
+        
+        const genratedUrl = generateUrl(request);
+
         console.log(`Rendering: ${RENDER_URL}/${genratedUrl}`);
+        
         // If Bot, fetch url via rendertron
         fetch(`${RENDER_URL}/${genratedUrl}`)
             .then(res => res.text())
@@ -75,8 +80,7 @@ export const processURL = (request: express.Request, response: express.Response)
             });
     } else {
         // Not a bot, fetch the regular Angular app
-        // fetch(APP_ROOT_URL) // PROD
-        fetch(APP_URL) // dev
+        fetch(`https://${APP_URL}`)
             .then(res => res.text())
             .then(body => {
                 response.send(body.toString());
