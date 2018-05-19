@@ -144,4 +144,4 @@ app.get('/get-person-tagged-images/:id/:pageIndex', tryGetPersonTaggedImagesById
 // app.get('**', processURL);
 app.get('**', (req, res) => {
     res.sendFile(path.join(__dirname, './dist/index.html'));
-})
+});
