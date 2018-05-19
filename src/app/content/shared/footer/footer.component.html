@@ -12,7 +12,7 @@
         <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_up</mat-icon>
     </button>
     <div class="footer-inner" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
-        <div class="footer-widget" fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">
+        <div class="footer-widget" fxFlex="30" fxFlex.sm="100" fxFlex.xs="100" fxHide.sm="true" fxHide.xs="true">
             <h3 class="widget-title">About Current Movie Releases</h3>
             <div class="textwidget">
                 <p>Current Movie Releases is a progressive web application about movies for movie lovers.</p>
@@ -36,8 +36,9 @@
                     to follow us on all of our social media platforms for great posts relating to new movies and industry
                     buzz.
                     <br>
-                    <br>Take some time and explore the web application, and let us know what you think are the best movies of all time!
-                    </p>
+                    <br>Take some time and explore the web application, and let us know what you think are the best movies of
+                    all time!
+                </p>
                 <p>Check out some of our movies collection websites:
                     <br>
                     <a href="http://www.king-movies.com" target="_blank" rel="noopener">Stephen King Filmography</a>
@@ -82,9 +83,6 @@
                     <a mat-list-item href="/celebrity/chris-hemsworth" routerLink="/celebrity/chris-hemsworth">Chris Hemsworth (30)</a>
                 </li>
             </ul>
-            <div id="advert-widget-400" class="advert-widget adsbygoogle">
-                <app-adsense-widgets [slotId]="8891110759"></app-adsense-widgets>
-            </div>
         </div>
         <div class="footer-widget" fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">
             <h3 class="widget-title">Movies by Genre</h3>
@@ -147,6 +145,9 @@
                     <a href="/movies/genre/western" routerLink="/movies/genre/western">Western</a>
                 </li>
             </ul>
+            <div id="advert-widget-400" class="advert-widget adsbygoogle">
+                <app-adsense-widgets [slotId]="8891110759"></app-adsense-widgets>
+            </div>
         </div>
     </div>
     <div id="sitemap" class="footer-links" fxLayout.sm="row" fxLayout.xs="row">

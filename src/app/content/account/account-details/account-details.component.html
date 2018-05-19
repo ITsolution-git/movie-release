@@ -42,22 +42,6 @@
         <mat-form-field>
           <input matInput type="text" name="email" [value]="userDetails.email" placeholder="Email" #email>
         </mat-form-field>
-        <!-- Gender -->
-        <mat-form-field class="select-container">
-          <mat-select placeholder="Gender" [value]="userDetails.gender" #gender>
-            <mat-option value="female">female</mat-option>
-            <mat-option value="male">male</mat-option>
-            <mat-option value="other">other</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <!-- Phone -->
-        <mat-form-field>
-          <input matInput type="text" name="phone" [value]="userDetails.phone || ''" placeholder="Phone" #phone>
-        </mat-form-field>
-        <!-- Address -->
-        <mat-form-field>
-          <input matInput type="text" name="address" [value]="userDetails.address || ''" placeholder="Address" #address>
-        </mat-form-field>
       </form>
     </div>
   </div>
