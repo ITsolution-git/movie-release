@@ -151,8 +151,6 @@ export class MovieDetailsComponent implements OnInit {
     this.IMG_ORIG = IMG_ORIG;
     this.APP_BASE_URL = APP_BASE_URL;
 
-    this.pageUrl = this.router.url;
-
     this.ar.url.subscribe((res) => {
       // Reset Property Values on Route Change
       this.resetTabs(0);
