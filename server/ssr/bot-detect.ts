@@ -9,7 +9,6 @@ import { APP_URL, APP_ROOT_URL, RENDER_URL, CACHE_CONTROL_VALUE } from '../const
 export const detectBot = (userAgent: string): boolean => {
     // List of bots
     const bots = [
-        // crawler bots
         'googlebot',
         'bingbot',
         'yandexbot',
@@ -17,7 +16,6 @@ export const detectBot = (userAgent: string): boolean => {
         'slurp',
         'baiduspider',
         'ia_archiver',
-        // link bots
         'twitterbot',
         'facebookexternalhit',
         'facebot',
@@ -30,7 +28,6 @@ export const detectBot = (userAgent: string): boolean => {
         'facebot',
         'outbrain',
         'W3C_Validator',
-        // SEO Tools
         'screaming frog seo spider',
         'pingdom.com_bot_version_1.4_(http://www.pingdom.com/)',
         'google-structured-data-testing-tool'

@@ -2,8 +2,8 @@
 export const APP_ROOT_URL = 'https://www.currentmoviereleases.com';
 export const APP_URL = 'www.currentmoviereleases.com'; // PROD
 // export const APP_URL = 'http://localhost:5001'; // DEV
-export const RENDER_URL = 'https://render-tron.appspot.com/render';
-// export const RENDER_URL = 'https://renderer.currentmoviereleases.com';
+// export const RENDER_URL = 'https://render-tron.appspot.com/render';
+export const RENDER_URL = 'https://renderer.currentmoviereleases.com';
 export const CACHE_CONTROL_VALUE = 'public, max-age=300, s-maxage=600';
 
 // TMDB

@@ -141,4 +141,7 @@ app.get('/get-person-external-links/:id', tryGetPersonExternalLinksById);
 app.get('/get-person-images/:id', tryGetPersonImagesById);
 app.get('/get-person-tagged-images/:id/:pageIndex', tryGetPersonTaggedImagesById);
 // All other endpoints will be processed by bot detector
-app.get('**', processURL);
+// app.get('**', processURL);
+app.get('**', (req, res) => {
+     res.sendFile(path.join(__dirname, './dist/index.html'));
+ });
