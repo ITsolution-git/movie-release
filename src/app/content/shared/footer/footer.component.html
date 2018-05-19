@@ -50,9 +50,6 @@
         </div>
         <div class="footer-widget" fxFlex="34" fxFlex.sm="100" fxFlex.xs="100">
             <h3 class="widget-title">Top actors by movies count</h3>
-            <div id="advert-widget-400" class="advert-widget">
-                <app-adsense-widgets [slotId]="8891110759"></app-adsense-widgets>
-            </div>
             <ul id="actors-list" class="nav navbar-nav">
                 <li>
                     <a mat-list-item href="/celebrity/dwayne-johnson" routerLink="/celebrity/dwayne-johnson">Dwayne Johnson (193)</a>
@@ -85,6 +82,9 @@
                     <a mat-list-item href="/celebrity/chris-hemsworth" routerLink="/celebrity/chris-hemsworth">Chris Hemsworth (30)</a>
                 </li>
             </ul>
+            <div id="advert-widget-400" class="advert-widget adsbygoogle">
+                <app-adsense-widgets [slotId]="8891110759"></app-adsense-widgets>
+            </div>
         </div>
         <div class="footer-widget" fxFlex="30" fxFlex.sm="100" fxFlex.xs="100">
             <h3 class="widget-title">Movies by Genre</h3>

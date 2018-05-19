@@ -484,6 +484,9 @@ app-footer {
     display: block;
     padding: 0 10%;
   }
+  .footer-widget{
+    width: 100%;
+  }
 .widget-title {
     color: #DDD;
     font-size: 100%;
@@ -642,6 +645,16 @@ app-footer {
     #advert-widget-300 .adsbygoogle {
         width: 468px;
         height: 60px !important;
+    }
+    #advert-widget-300{
+        max-width: 310px;
+        background: #CCC;
+        text-align: center;
+        margin: auto auto 20px !important;
+        display: block;
+    }
+    #advert-widget-400 .adsbygoogle{
+        max-width: 300px;
     }
     #advert-widget-full .adsbygoogle {
         width: 336px;
