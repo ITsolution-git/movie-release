@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { LayoutModule } from '@angular/cdk/layout';
 // Third Party
 // import { FacebookModule } from 'ngx-facebook';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // Environments
 import { environment } from '../environments/environment';
 // Service Worker
@@ -27,7 +28,7 @@ import {
   MatSelectModule,
   MatDialogModule,
   MatSidenavModule,
-  MatListModule,
+  MatListModule
 } from '@angular/material';
 // Toastr
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
@@ -99,7 +100,8 @@ import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.co
     AppRoutingModule,
     CoreModule,
     AuthModule,
-    ContentModule
+    ContentModule,
+    LoadingBarRouterModule
   ],
   providers: [
     AppService,
