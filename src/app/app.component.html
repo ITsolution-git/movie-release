@@ -1,7 +1,7 @@
 <mat-progress-bar class="pageload-progressbar" *ngIf="loadPercent != 0" mode="determinate" [value]="loader.progress$|async" aria-label="Loading"></mat-progress-bar>
 <div class="main-sidenav-container">
     <mat-toolbar class="sidenav-toolbar mat-elevation-z6">
-        <button mat-icon-button (click)="sidebar.toggle()">
+        <button mat-icon-button (click)="sidebar.toggle()" aria-label="Open Sidebar">
             <mat-icon>menu</mat-icon>
         </button>
         <a href="/" aria-label="Current Movie Releases" class="docs-button mat-button" tabindex="0" aria-disabled="false" routerlink="/">
