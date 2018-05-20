@@ -1,4 +1,4 @@
-<mat-progress-bar class="pageload-progressbar" *ngIf="loadPercent != 0" mode="determinate" [value]="loader.progress$|async"></mat-progress-bar>
+<mat-progress-bar class="pageload-progressbar" *ngIf="loadPercent != 0" mode="determinate" [value]="loader.progress$|async" aria-label="Loading"></mat-progress-bar>
 <div class="main-sidenav-container">
     <mat-toolbar class="sidenav-toolbar mat-elevation-z6">
         <button mat-icon-button (click)="sidebar.toggle()">
