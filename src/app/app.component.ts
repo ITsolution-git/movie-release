@@ -41,7 +41,6 @@ export class AppComponent implements OnDestroy {
     });
 
     loader.progress$.subscribe(val => {
-      console.log("loadval", val);
       this.loadPercent = val;
     })
 
