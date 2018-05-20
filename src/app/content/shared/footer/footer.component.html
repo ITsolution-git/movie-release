@@ -1,5 +1,5 @@
 <footer id="colophon" fxLayout="column">
-    <button mat-button class="scrolltotop scrolltotop1" (click)="toggleSearch()" show="showSearch" tabindex="0">
+    <button mat-button class="scrolltotop scrolltotop1" (click)="toggleSearch()" show="showSearch" tabindex="0" aria-label="Toggle Search Bar">
         <mat-icon class="mat-icon material-icons">search</mat-icon>
     </button>
     <!-- <a mat-button class="scrolltotop scrolltotop2" href="#now-playing">
@@ -8,7 +8,7 @@
     <a mat-button class="scrolltotop scrolltotop1" href="#upcoming">
         <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">schedule</mat-icon>
     </a> -->
-    <button mat-button class="scrolltotop" (click)="this.as.scrollToTop()">
+    <button mat-button class="scrolltotop" (click)="this.as.scrollToTop()" aria-label="Scroll to Top">
         <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_up</mat-icon>
     </button>
     <div class="footer-inner" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-evenly start">
