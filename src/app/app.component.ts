@@ -16,6 +16,7 @@ export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
+  public loadPercent:number = 0;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -38,6 +39,11 @@ export class AppComponent implements OnDestroy {
         (<any>window).gtag('event', 'page_view', { 'send_to': 'UA-9011937-10' });
       }
     });
+
+    loader.progress$.subscribe(val => {
+      console.log("loadval", val);
+      this.loadPercent = val;
+    })
 
     this.toastr.setRootViewContainerRef(vRef);
     document.body.className = 'home';
