@@ -2,7 +2,9 @@ import { Component, ViewContainerRef, ChangeDetectorRef, OnDestroy } from '@angu
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, NavigationEnd } from '@angular/router';
+import {MatProgressBar} from '@angular/material/progress-bar';
 // Third Party
+import { LoadingBarService } from '@ngx-loading-bar/core';
 // import { FacebookService, InitParams } from 'ngx-facebook';
 @Component({
   selector: 'app-root',
@@ -21,6 +23,7 @@ export class AppComponent implements OnDestroy {
     public toastr: ToastsManager,
     vRef: ViewContainerRef,
     private router: Router,
+    public loader: LoadingBarService
     // private fb: FacebookService
   ) {
     // const initParams: InitParams = {

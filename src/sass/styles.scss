@@ -43,6 +43,9 @@ h1, h2, h3, h4, h5, h6{
 app-home .page-title.entry-title{
     font-size: 200%;
 }
+.pageload-progressbar {
+    z-index: 999;
+}
 .page-description {
     font-size: 100%;
     text-shadow: 1px 1px 1px #000;
