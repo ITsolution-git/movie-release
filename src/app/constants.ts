@@ -58,20 +58,3 @@ export const YT_THUMB_BASE_URL = 'https://i3.ytimg.com/vi/';
 export const YT_THUMB_SIZES = {
     MAX_RES: '/maxresdefault.jpg'
 };
-
-// CK Editor
-export const ckEditorConfig: {} = {
-    'uiColor': '#dddddd',
-    'toolbarGroups': [
-        { name: 'document', 'groups': ['mode'] },
-        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
-        { name: 'links' },
-        { name: 'insert' },
-        { name: 'styles' },
-        { name: 'colors' },
-        { name: 'tools' },
-        { name: 'others' }
-    ],
-    'removeButtons': 'Print,NewPage,Preview,Save,Language,Flash,Smiley,Iframe'
-};
