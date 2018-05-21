@@ -5,10 +5,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
-import { HttpModule } from '@angular/http';
 import { LayoutModule } from '@angular/cdk/layout';
 // Third Party
-// import { FacebookModule } from 'ngx-facebook';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // Environments
 import { environment } from '../environments/environment';

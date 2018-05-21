@@ -2,7 +2,6 @@ import { Component, ViewContainerRef, ChangeDetectorRef, OnDestroy } from '@angu
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router, NavigationEnd } from '@angular/router';
-import {MatProgressBar} from '@angular/material/progress-bar';
 // Third Party
 import { LoadingBarService } from '@ngx-loading-bar/core';
 // import { FacebookService, InitParams } from 'ngx-facebook';
@@ -16,7 +15,7 @@ export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
-  public loadPercent:number = 0;
+  public loadPercent = 0;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -25,14 +24,7 @@ export class AppComponent implements OnDestroy {
     vRef: ViewContainerRef,
     private router: Router,
     public loader: LoadingBarService
-    // private fb: FacebookService
   ) {
-    // const initParams: InitParams = {
-    //   appId: '243016965727111',
-    //   xfbml: true,
-    //   version: 'v2.12'
-    // };
-    // fb.init(initParams);
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         (<any>window).gtag('config', 'UA-9011937-10', {'page_path': event.urlAfterRedirects});
@@ -42,7 +34,7 @@ export class AppComponent implements OnDestroy {
 
     loader.progress$.subscribe(val => {
       this.loadPercent = val;
-    })
+    });
 
     this.toastr.setRootViewContainerRef(vRef);
     document.body.className = 'home';

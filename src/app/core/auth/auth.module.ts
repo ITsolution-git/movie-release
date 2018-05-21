@@ -10,8 +10,6 @@ import {
 import { AuthRoutingModule } from './auth-routing.module';
 // Components
 import { UserAuthComponent } from './user-auth/user-auth.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { AdminLoginComponent } from './admin-login/admin-login.component'; // Service for Guarding Admin and Account Routes
 
 @NgModule({
   imports: [
@@ -22,9 +20,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component'; // Se
     MatButtonModule
   ],
   declarations: [
-    UserAuthComponent,
-    ForgotPasswordComponent,
-    AdminLoginComponent
+    UserAuthComponent
   ],
   exports: [
     UserAuthComponent

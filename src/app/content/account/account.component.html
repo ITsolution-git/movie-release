@@ -3,29 +3,22 @@
     <ul id="account-nav">
       <li>
         <button mat-button routerLink="/my-account/details" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
-          <mat-icon>account_box</mat-icon><span fxHide.sm="true" fxHide.xs="true">Account</span></button>
+          <mat-icon>account_box</mat-icon>
+          <span fxHide.sm="true" fxHide.xs="true">Account</span>
+        </button>
       </li>
       <li>
         <button mat-button routerLink="/my-account/favorites" routerLinkActive="active">
-          <mat-icon>favorite</mat-icon><span fxHide.sm="true" fxHide.xs="true">Favorites</span></button>
+          <mat-icon>favorite</mat-icon>
+          <span fxHide.sm="true" fxHide.xs="true">Favorites</span>
+        </button>
       </li>
       <li>
         <button mat-button routerLink="/my-account/ratings" routerLinkActive="active">
-          <mat-icon>start</mat-icon><span fxHide.sm="true" fxHide.xs="true">Ratings</span></button>
+          <mat-icon>start</mat-icon>
+          <span fxHide.sm="true" fxHide.xs="true">Ratings</span>
+        </button>
       </li>
-      <li>
-        <!-- Admin Area-->
-        <button mat-button color="primary" class="admin" routerLink="/admin" *ngIf="userRole === 'admin'">
-          <mat-icon>vpn_key</mat-icon><span fxHide.sm="true" fxHide.xs="true">Admin Area</span></button>
-      </li>
-      <li>
-        <!-- Articles -->
-        <button mat-button color="primary" class="articles" routerLink="/admin/articles" *ngIf="userRole === 'editor'">
-          <mat-icon>description</mat-icon><span fxHide.sm="true" fxHide.xs="true">Articles</span></button>
-      </li>
-      <!-- <li>
-        <button mat-button routerLink="/my-account/settings"><span fxHide.sm="true" fxHide.xs="true">Settings</span></button>
-      </li> -->
     </ul>
   </mat-drawer>
   <mat-drawer-content>

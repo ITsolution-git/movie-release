@@ -19,16 +19,10 @@ const appRoutes = [
         loadChildren: './content/content.module#ContentModule'
       },
       {
-        path: 'auth',
+        path: 'login',
         loadChildren: './core/auth/auth.module#AuthModule'
       },
     ]
-  },
-  {
-    path: 'admin',
-    canActivate: [AuthGuard, RolesGuardService],
-    loadChildren: './admin/admin.module#AdminModule',
-    data: { roles: ['admin'] }
   },
   {
     path: '**', component:

@@ -8,8 +8,6 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 // RxJS
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
-// Models
-import { AppRoles } from '../../../models';
 // Constants
 import { DEFAULT_USER_ROLE, DEFAULT_USER_IMG } from '../../../constants';
 
@@ -32,7 +30,7 @@ export class AuthService {
 
   authState: firebase.User;
   authorChanged = new EventEmitter<boolean>();
-  roleChanged = new EventEmitter<AppRoles>();
+  // roleChanged = new EventEmitter<AppRoles>();
   user: Observable<User>;
   returnUrl: string;
   authError: string;
@@ -54,13 +52,11 @@ export class AuthService {
         if (this.returnUrl) {
           this.router.navigateByUrl(this.returnUrl);
         }
-        this.roleChanged.emit(AppRoles.Admin);
         this.authorChanged.emit(true);
       } else {
         console.log('NOT Logged In');
         this.authState = null;
         this.isLoggedIn = false;
-        this.roleChanged.emit(AppRoles.Anonymous);
         this.authorChanged.emit(false);
       }
     });
@@ -70,25 +66,13 @@ export class AuthService {
     this.user = this.afAuth.authState
       .switchMap(user => {
         if (user) {
-          console.log('User UID: ', user.uid)
+          console.log('User UID: ', user.uid);
           return this.afDb.object('users/' + user.uid).valueChanges();
         } else {
           return Observable.of(null);
         }
       });
     // console.log(this.user)
-  }
-
-  emailLogin(email: string, password: string): any {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(userData => {
-        this.updateUserData(userData);
-        this.router.navigate(['/my-account/details']);
-      })
-      .catch((err) => {
-        this.resetMessages();
-        this.authError = err.message;
-      });
   }
 
   googleLogin(): void {
@@ -116,7 +100,6 @@ export class AuthService {
   }
 
   registerUserData(userData: User, gUserData: User, fUserData: any): void {
-
     // if userData is initialized
     if (userData) {
       this.afDb.object('users/' + userData.uid)
@@ -159,18 +142,6 @@ export class AuthService {
     ).catch((err) => {
       console.log('DB not Updated:', err);
     });
-  }
-
-  resetPassword(email: string): any {
-    return firebase.auth().sendPasswordResetEmail(email)
-      .then(() => {
-        this.resetMessages();
-        this.authMessage = 'Reset Password Email Sent!';
-      })
-      .catch((err) => {
-        this.resetMessages();
-        this.authError = err.message;
-      });
   }
 
   resetMessages(): void {
