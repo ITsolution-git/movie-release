@@ -7,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkTableModule } from '@angular/cdk/table';
 import { LayoutModule } from '@angular/cdk/layout';
 // Third Party
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 // Environments
 import { environment } from '../environments/environment';
 // Service Worker
@@ -101,7 +101,7 @@ import { AuthDialogComponent } from './content/shared/auth-dialog/auth-dialog.co
     CoreModule,
     AuthModule,
     ContentModule,
-    LoadingBarRouterModule
+    LoadingBarHttpClientModule
   ],
   providers: [
     AppService,
