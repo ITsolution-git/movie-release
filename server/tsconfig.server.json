@@ -9,6 +9,6 @@
     "types": []
   },
   "files": [
-    "server.ts"
+    "admin.ts"
   ]
 }
