@@ -1,1 +1,1 @@
-{ "watch": ["server/admin.ts"], "exec": "npm run build-server" }
+{ "watch": ["server/server.ts"], "exec": "npm run build-server" }
