@@ -1,28 +1,24 @@
 /* Nav */
 
-mat-drawer {
-  box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
-  -webkit-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
-  background-color: #2A2A2A;
-}
-
-mat-drawer-content {
-  padding: 1rem 0 1rem 1rem;
-}
-
 mat-drawer mat-list {
   width: 100%;
 }
-
+app-account{
+  display: block;
+}
+section.account-sidebar-container{
+  margin-bottom: 10%;
+}
 #account-nav {
   padding: 0;
+  margin: 0;
 }
 
 #account-nav li,
 #account-nav li button {
   list-style: none;
-  width: 100%;
   text-align: left;
+  display: inline-block;
 }
 
 #account-nav li button {
