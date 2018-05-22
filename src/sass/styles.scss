@@ -42,6 +42,7 @@ h1, h2, h3, h4, h5, h6{
 }
 app-home .page-title.entry-title{
     font-size: 200%;
+    text-transform: uppercase;
 }
 .pageload-progressbar {
     z-index: 999;
@@ -71,6 +72,7 @@ mat-list-item span{
     display: inline-block;
     font-size: 80%;
     width: 110px;
+    text-transform: uppercase;
 }
 /*App Wrapper*/
 app-main-movies-directory, app-movies, app-genres, app-search, app-privacy, app-terms, app-buying, app-sitemap, app-about, app-celebs{
