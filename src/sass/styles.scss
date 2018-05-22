@@ -64,6 +64,9 @@ div#results-counter, div#breadcrumbs {
     color: #CCC;
     margin-top: 10px;
 }
+div#breadcrumbs a {
+    text-transform: uppercase
+}
 .mat-list-item.active{
     background: rgba(255, 255, 255, 0.04);
 }
