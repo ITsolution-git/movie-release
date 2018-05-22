@@ -385,6 +385,9 @@ app-privacy #jumbotron, app-terms #jumbotron{
     width: 50%;
     margin: auto;
 }
+.page-taxonomy-list a{
+    text-transform: uppercase;
+}
 /*Search Form*/
 app-search-form  input#searchinput {
     width: 80%;
