@@ -27,18 +27,23 @@ const getMoviesList = (setup: (r: FBAdmin.database.Reference) => FBAdmin.databas
             })
             .catch(error => {
                 console.log('There was an error returnning movie results from firebase! ', error);
+                reject(error);
             });
     });
 };
 export const tryGenerateMoviesSitemap = (req, res) => {
-    getMoviesList()
-        .then((resp) => {
-            console.log('All URLs are grabbed... generating Sitemap.');
-            generateSitemap(resp, 'movies');
-        })
-        .catch(error => {
-            console.log('There was an error returnning movie results from firebase! ', error);
-        });
+    return new Promise<number>((resolve, reject) => {
+        getMoviesList()
+            .then((resp) => {
+                console.log('All URLs are grabbed... generating Sitemap.');
+                generateSitemap(resp, 'movies');
+                resolve(resp.length);
+            })
+            .catch(error => {
+                console.log('There was an error returnning movie results from firebase! ', error);
+                reject(error);
+            });
+    });
 };
 
 const getMovieGenresList = (setup: (r: FBAdmin.database.Reference) => FBAdmin.database.Query = null): Promise<any[]> => {
@@ -118,12 +123,17 @@ export const tryGenerateCelebsSitemap = (req, res) => {
 };
 
 const generateSitemap = (data: Array<any>, type: string) => {
+    const maxI = 10000;
     const urls = data;
     const root_path = APP_ROOT_URL;
     // Generate XML sitemap
     const priority = 0.5;
     const freq = 'weekly';
-    let xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+    const xmlStart = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+    const xmlEnd = '</urlset>';
+    let xml = xmlStart;
+    let i = 0;
+    let part = 0;
     for (let index in urls) {
         if (urls) {
             xml += '<url>';
@@ -132,16 +142,28 @@ const generateSitemap = (data: Array<any>, type: string) => {
             xml += '<priority>' + priority + '</priority>';
             xml += '</url>';
             index += index;
+            i++;
+            if (i >= maxI) {
+                xml += xmlEnd;
+                part++;
+                saveXMLFile(xml, type, part);
+                i = 0;
+                xml = xmlStart;
+            }
         }
     }
-    xml += '</urlset>';
-    saveXMLFile(xml, type);
+    xml += xmlEnd;
+    if (part > 0) {
+        part++;
+    }
+    saveXMLFile(xml, type, part);
     // return xml;
 };
 
-const saveXMLFile = (xml: any, type: string) => {
+const saveXMLFile = (xml: any, type: string, part: number = 0) => {
     const date = Date.now();
-    fs.appendFile(type + '-sitemap-' + date + '.xml', xml, function (err) {
+    const partStr = part > 0 ? '-part-' + part : '';
+    fs.appendFile(type + '-sitemap-' + date + partStr + '.xml', xml, function (err) {
         if (err) {
             throw err;
         }

@@ -82,9 +82,14 @@ app.get('/celebs-sitemap.xml', (req, res) => {
 
 // Sitemap Endpoints
 app.get('/sitemap-movies', (req, res) => {
-    const sitemap = tryGenerateMoviesSitemap(req, res);
-    res.header('Content-Type', 'text/xml');
-    res.send(sitemap);
+    tryGenerateMoviesSitemap(req, res)
+        .then(result => {
+            // res.header('Content-Type', 'text/xml');
+            res.send(result);
+        })
+        .catch(error => {
+            res.send(error);
+        });
 });
 app.get('/sitemap-movie-genres', (req, res) => {
     const sitemap = tryGenerateMovieGenresSitemap(req, res);
