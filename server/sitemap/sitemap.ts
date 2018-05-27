@@ -161,13 +161,22 @@ const generateSitemap = (data: Array<any>, type: string) => {
 };
 
 const saveXMLFile = (xml: any, type: string, part: number = 0) => {
-    const date = Date.now();
-    const partStr = part > 0 ? '-part-' + part : '';
-    fs.appendFile(type + '-sitemap-' + date + partStr + '.xml', xml, function (err) {
+    // const date = Date.now();
+    const partStr = part > 0 ? '-' + part : '';    
+    const fname = type + '-sitemap' + partStr + '.xml';
+
+    // Delete previously generated file
+    try {
+        fs.unlinkSync(fname);
+      } catch (err) {
+        // handle the error
+    }
+
+    fs.appendFile(fname, xml, function (err) {
         if (err) {
             throw err;
         }
-        console.log(type + '-sitemap-' + date + '.xml Sitemap Saved!');
+        console.log(fname + ' Sitemap Saved!');
     });
 };
 
