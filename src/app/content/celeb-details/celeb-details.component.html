@@ -27,7 +27,7 @@
       <h2>Biography</h2>
       <div class="biography-content">
         <!-- Biography -->
-        <p title="{{ actorDetails.name }} + ' Biography'">{{ actorDetails.biography }}</p>
+        <p title="{{ actorDetails.name }} Bio - Details about personal life">{{ actorDetails.biography }}</p>
         <!-- Actor Details -->
         <p *ngIf="actorDetails.also_known_as">Also known as:
           <span *ngFor="let altName of actorDetails?.also_known_as; let i = index">{{ altName }}
