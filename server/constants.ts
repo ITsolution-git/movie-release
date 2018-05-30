@@ -13,3 +13,4 @@ export const TMDB_API_KEY = '?api_key=a3dbd5ed599caf75f52b2c5e84bd4af3';
 export const TMDB_API_LANG = '&language=en-EN';
 
 export const MAX_AGE = 2592000; // JSON response HTTP header
+export const XML_PATH = 'sitemaps/';
