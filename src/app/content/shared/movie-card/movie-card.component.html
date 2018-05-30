@@ -1,22 +1,19 @@
 <mat-card-header>
   <mat-card-title>
-    <h2>
-      <a (click)="this.as.goToMovieDetails(movie.id)">{{ movie.title }}</a>
-    </h2>
+    <h2><a (click)="this.as.goToMovieDetails(movie.id)">{{ movie.title }}</a></h2>
   </mat-card-title>
   <mat-card-subtitle>
-    <h4>
-      <span fxHide.xs="true">Movie Release</span> Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</h4>
+    <h4><span fxHide.xs="true">Movie Release</span> Date: {{ movie.release_date | date: 'yyyy-MM-dd' }}</h4>
   </mat-card-subtitle>
 </mat-card-header>
+<a (click)="this.as.goToMovieDetails(movie.id)">
+  <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]"
+    [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'" />
+  <ng-template #defaultMovieImage>
+    <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="mat-card-image">
+  </ng-template>
+</a>
 <mat-card-content flex>
-  <a (click)="this.as.goToMovieDetails(movie.id)">
-    <img mat-card-image class="mat-card-image" *ngIf="movie.poster_path; else defaultMovieImage" [src]="[TMDB_IMAGES_BASE_URL + IMG_300 + movie.poster_path]"
-      [alt]="movie.title + ' Official Movie Poster'" [title]="movie.title + ' Official Movie Poster'" />
-    <ng-template #defaultMovieImage>
-      <img src="assets/img/default-movie-poster.png" [alt]="movie.title" class="mat-card-image">
-    </ng-template>
-  </a>
   <h5 class="short-story">Short Plot: </h5>
   <p>{{ movie.overview | slice:0:100 }} […] </p>
 </mat-card-content>

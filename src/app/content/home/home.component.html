@@ -8,12 +8,12 @@
         <mat-icon class="mat-icon material-icons">theaters</mat-icon> Now playing movies in theaters</h2>
       <p>Top 10 now playing movies in theaters near you. Browse the list of the current releases and the new movies playing
         with release dates and rating.</p>
-    </div>
-    <div class="section-details" fxLayout="column">
-      <div class="results-counter" fxFlex="row">
-        <span>Results: </span>
-        <span *ngIf="nowPlayingMoviesCurrentIndex === nowPlayingMoviesTotalPages">{{ nowPlayingMoviesTotalResults }}</span>
-        <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 10 }}</span> / {{ nowPlayingMoviesTotalResults }}
+      <div class="section-details" fxLayout="column">
+        <div class="results-counter" fxFlex="row">
+          <span>Results: </span>
+          <span *ngIf="nowPlayingMoviesCurrentIndex === nowPlayingMoviesTotalPages">{{ nowPlayingMoviesTotalResults }}</span>
+          <span *ngIf="nowPlayingMoviesCurrentIndex !== nowPlayingMoviesTotalPages">{{ nowPlayingMoviesCurrentIndex * 10 }}</span> / {{ nowPlayingMoviesTotalResults }}
+        </div>
       </div>
     </div>
   </div>
@@ -33,12 +33,12 @@
         <mat-icon class="mat-icon material-icons">schedule</mat-icon> Upcoming Movies - Comming Soon</h2>
       <p>Top 10 upcoming movies coming soon to theaters. Find the freshest list of new releases with releases dates, watch movie
         trailers, vote your favorites, see cast and crew list and more.</p>
-    </div>
-    <div class="section-details" fxLayout="column">
-      <div class="results-counter" fxFlex="row">
-        <span>Results:</span>
-        <span *ngIf="upcomingMoviesCurrentIndex === upcomingMoviesTotalPages">{{ upcomingMoviesTotalResults }}</span>
-        <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 10 }}</span> / {{ upcomingMoviesTotalResults }}
+      <div class="section-details" fxLayout="column">
+        <div class="results-counter" fxFlex="row">
+          <span>Results:</span>
+          <span *ngIf="upcomingMoviesCurrentIndex === upcomingMoviesTotalPages">{{ upcomingMoviesTotalResults }}</span>
+          <span *ngIf="upcomingMoviesCurrentIndex !== upcomingMoviesTotalPages">{{ upcomingMoviesCurrentIndex * 10 }}</span> / {{ upcomingMoviesTotalResults }}
+        </div>
       </div>
     </div>
   </div>
