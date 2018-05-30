@@ -98,11 +98,10 @@ export class CelebDetailsComponent implements OnInit {
               this.getActorDetails()
                 .then(() => {
                   // Set SEO Meta Tags
-                  this.pageSeoTitle = this.actorDetails.name + ' -  Biography, Filmography and Latest Movies';
+                  this.pageSeoTitle = this.actorDetails.name + ' - Biography, Filmography and Latest Movies';
                   // tslint:disable-next-line:max-line-length
-                  this.pageSeoDescr = this.actorDetails.name + ' Biography, Filmography and Latest Movie Releases: ' + this.actorDetails.biography ? this.actorDetails.biography : this.actorDetails.name + ' biography, filmography and latest movie releases. Find relevant information on the celebrity profile page and get notified when updates are submitted.';
-                  // tslint:disable-next-line:max-line-length
-                  this.pageSeoKeywords = this.actorDetails.name + ', biography, filmography, latest movies, film, movie, art, entertaintment, birthday, born, celebrity, actor, actress, person, popular ';
+                  this.pageSeoDescr = this.actorDetails.biography ? this.actorDetails.biography : this.actorDetails.name + 'biography, filmography and latest movie releases. Find relevant information on the celebrity profile page and get notified when updates are submitted.';
+                  this.pageSeoKeywords = this.actorDetails.name + ', celebrity, actor, actress, person, popular';
                   seoS.setSeoMetaTags(this.pageSeoTitle, this.pageSeoDescr, this.pageSeoKeywords);
                   // tslint:disable-next-line:max-line-length
                   seoS.setFacebookMetaTags(this.pageSeoTitle, APP_BASE_URL + '/celebrity/' + params['name'], this.pageSeoDescr, TMDB_IMAGES_BASE_URL + IMG_500 + this.actorDetails.profile_path, 'profile');
