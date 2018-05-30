@@ -2,8 +2,8 @@
 <app-jumbotron></app-jumbotron>
 <!-- Now Playng Movies -->
 <section *ngIf="!loading" id="now-playing" class="now-playing-movies-container section padding" label="Now Playing Movies">
-  <div class="section-header wrapper" fxLayout="column">
-    <div class="section-description" fxLayout="column">
+  <div class="section-header" fxLayout="column">
+    <div class="section-description wrapper" fxLayout="column">
       <h2 class="section-title">
         <mat-icon class="mat-icon material-icons">theaters</mat-icon> Now playing movies in theaters</h2>
       <p>Top 10 now playing movies in theaters near you. Browse the list of the current releases and the new movies playing
@@ -27,8 +27,8 @@
   </div>
 </section>
 <section *ngIf="!loading" id="upcoming" class="upcoming-movies-container section padding" label="Upcoming Movies">
-  <div class="section-header wrapper" fxLayout="column">
-    <div class="section-description" fxLayout="column">
+  <div class="section-header" fxLayout="column">
+    <div class="section-description wrapper" fxLayout="column">
       <h2 class="section-title">
         <mat-icon class="mat-icon material-icons">schedule</mat-icon> Upcoming Movies - Comming Soon</h2>
       <p>Top 10 upcoming movies coming soon to theaters. Find the freshest list of new releases with releases dates, watch movie
