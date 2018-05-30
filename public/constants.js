@@ -13,3 +13,4 @@ exports.TMDB_API_VER = '3/';
 exports.TMDB_API_KEY = '?api_key=a3dbd5ed599caf75f52b2c5e84bd4af3';
 exports.TMDB_API_LANG = '&language=en-EN';
 exports.MAX_AGE = 2592000; // JSON response HTTP header
+exports.XML_PATH = 'sitemaps/';

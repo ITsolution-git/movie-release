@@ -1,3 +1,5 @@
+<mat-progress-bar class="pageload-progressbar" *ngIf="loadPercent != 0" mode="determinate" [value]="loader.progress$|async"
+            aria-label="Loading the content of the page"></mat-progress-bar>
 <div class="main-sidenav-container">
     <mat-toolbar class="sidenav-toolbar mat-elevation-z6">
         <button mat-icon-button (click)="sidebar.toggle()" aria-label="Open Sidebar - See Now Playing Movies, Upcoming Movies, Most Popular Movies, Top Rated Movies, and Discover other Currently Released Movies on the CMR web app">
@@ -14,8 +16,6 @@
         </a>
         <app-primary-menu class="header-actions" fxLayoutAlign="end end" fxFlex="100"></app-primary-menu>
     </mat-toolbar>
-    <mat-progress-bar class="pageload-progressbar" *ngIf="loadPercent != 0" mode="determinate" [value]="loader.progress$|async"
-            aria-label="Loading the content of the page"></mat-progress-bar>
     <mat-sidenav-container class="view-sidenav-container">
         <mat-sidenav #sidebar mode="over" opened="false" [fixedInViewport]="true">
             <mat-nav-list role="list">
