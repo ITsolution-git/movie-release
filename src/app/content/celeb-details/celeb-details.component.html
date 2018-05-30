@@ -8,8 +8,8 @@
     <div id="page-header" fxLayout="row">
       <div id="header-left" fxFlex>
         <div id="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">Jump To:
-          <a [href]="currentBiographyRoute" fragment="biography" class="mat-raised-button" tabindex="0" *ngIf="currentBiographyRoute">Biography</a>
-          <a [href]="currentFilmographyRoute" fragment="movies" class="mat-raised-button" tabindex="0" *ngIf="currentFilmographyRoute">Filmography</a>
+          <a [href]="currentBiographyRoute" name="Biography" title="Biography" fragment="biography" class="mat-raised-button" tabindex="0" *ngIf="currentBiographyRoute">Biography</a>
+          <a [href]="currentFilmographyRoute" name="Filmography" title="Filmography" fragment="movies" class="mat-raised-button" tabindex="0" *ngIf="currentFilmographyRoute">Filmography</a>
         </div>
       </div>
     </div>
