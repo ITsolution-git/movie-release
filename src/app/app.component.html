@@ -1,10 +1,10 @@
 <mat-progress-bar class="pageload-progressbar" *ngIf="loadPercent != 0" mode="determinate" [value]="loader.progress$|async" aria-label="Loading"></mat-progress-bar>
 <div class="main-sidenav-container">
     <mat-toolbar class="sidenav-toolbar mat-elevation-z6">
-        <button mat-icon-button (click)="sidebar.toggle()" aria-label="Open Sidebar">
+        <button mat-icon-button (click)="sidebar.toggle()" aria-label="Open Sidebar - See Now Playing Movies, Upcoming Movies, Most Popular Movies, Top Rated Movies, and Discover other Currently Released Movies on the CMR web app">
             <mat-icon>menu</mat-icon>
         </button>
-        <a href="/" aria-label="Current Movie Releases" class="docs-button mat-button" tabindex="0" aria-disabled="false" routerlink="/">
+        <a href="/" aria-label="Current Movie Releases - Get to the homepage of the CRM web app" title="Current Movie Releases - Get to the homepage of the CRM web app" class="docs-button mat-button" tabindex="0" aria-disabled="false" routerlink="/">
             <span class="mat-button-wrapper">
                 <img alt="Looking for your next favorite movie? - Current Movie Releases" class="docs-cmr-logo" src="../assets/img/currentmoviereleases_logo_v2.svg">
                 <span class="sidenav-app-name" fxHide.xs="true">Current Movie Releases</span>
