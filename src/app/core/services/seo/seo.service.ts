@@ -80,7 +80,7 @@ export class SeoService {
       this.checkIfCanonicalLinkTagExists()
         .then(() => {
           // Add New Canonical Link Tag
-          console.log('XXX: ADDING NEW CANONICAL: ', linkTag);
+          // console.log('XXX: ADDING NEW CANONICAL: ', linkTag);
           renderer.appendChild(headTag, linkTag);
         })
 
@@ -93,19 +93,19 @@ export class SeoService {
     return new Promise<any>((resolve, reject) => {
 
       const linkTags = this.document.querySelectorAll('link[rel]');
-      console.log('XXX: LINK TAGS', linkTags);
+      // console.log('XXX: LINK TAGS', linkTags);
 
       for (let i = 0; i < linkTags.length; i++) {
         const element = linkTags[i];
         if (element.attributes.rel.nodeValue === 'canonical') {
-          console.log('XXX CANONICAL FOUND! RES:', element, ' | ', i);
+          // console.log('XXX CANONICAL FOUND! RES:', element, ' | ', i);
           this.removeTag(element)
             .then(() => {
               resolve();
             })
           break;
         } else {
-          console.log('XXX NO CANONICAL FOUND YET ...!');
+          // console.log('XXX NO CANONICAL FOUND YET ...!');
           if (i === linkTags.length - 1) {
             resolve();
           }
@@ -117,7 +117,7 @@ export class SeoService {
   removeTag(element: string): Promise<any> {
     return new Promise<any>((resolve, reject) => {
 
-      console.log('XXX CANONICAL TO REMOVE: ', element);
+      // console.log('XXX CANONICAL TO REMOVE: ', element);
 
       if (element) {
         try {
