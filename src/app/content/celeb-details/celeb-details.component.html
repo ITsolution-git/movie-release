@@ -1,15 +1,15 @@
 <div id="jumbotron" class="mat-elevation-z6" role="banner" itemprop="actor" itemscope itemtype="http://schema.org/Person">
   <div class="container">
     <h1 class="page-title entry-title" *ngIf="actorDetails">
-      <span itemprop="name">{{ actorDetails.name }}</span> Filmography, Biography and Latest Movies</h1>
+      <span itemprop="name">{{ actorDetails.name }}</span> Biography, Filmography and Latest Movie Releases</h1>
     <h2 class="page-description"></h2>
     <!-- <div class="advanced_filters"></div> -->
     <!-- <div class="page-taxonomy-list"></div> -->
     <div id="page-header" fxLayout="row">
       <div id="header-left" fxFlex>
         <div id="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">Jump To:
-          <a [href]="currentBiographyRoute" fragment="biography" class="mat-raised-button" tabindex="0" *ngIf="currentBiographyRoute">Biography</a>
-          <a [href]="currentFilmographyRoute" fragment="movies" class="mat-raised-button" tabindex="0" *ngIf="currentFilmographyRoute">Filmography</a>
+          <a [href]="currentBiographyRoute" name="Biography" title="Biography" fragment="biography" class="mat-raised-button" tabindex="0" *ngIf="currentBiographyRoute">Biography</a>
+          <a [href]="currentFilmographyRoute" name="Filmography" title="Filmography" fragment="movies" class="mat-raised-button" tabindex="0" *ngIf="currentFilmographyRoute">Filmography</a>
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
       <h2>Biography</h2>
       <div class="biography-content">
         <!-- Biography -->
-        <p title="{{ actorDetails.name }} + ' Biography'">{{ actorDetails.biography }}</p>
+        <p title="{{ actorDetails.name }} Bio - Details about personal life">{{ actorDetails.biography }}</p>
         <!-- Actor Details -->
         <p *ngIf="actorDetails.also_known_as">Also known as:
           <span *ngFor="let altName of actorDetails?.also_known_as; let i = index">{{ altName }}

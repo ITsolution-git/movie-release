@@ -1,16 +1,16 @@
 <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
 <!-- Main Search -->
-<button mat-button class="search-toggle" (click)="toggleSearch()" show="showSearch" tabindex="0" aria-label="Toggle Search Bar">
+<button mat-button class="search-toggle" (click)="toggleSearch()" show="showSearch" tabindex="0" aria-label="Toggle Search Bar - Search for Movies - CMR web app">
   <mat-icon class="mat-icon material-icons">search</mat-icon>
 </button>
 <!-- Account Menu -->
 <nav id="account-menu">
   <!-- Login -->
-  <button mat-button class="login-btn" (click)="this.as.openLoginDialog()" *ngIf="this.aus.isLoggedIn === false" aria-label="Login to CMR">
+  <button mat-button class="login-btn" (click)="this.as.openLoginDialog()" *ngIf="this.aus.isLoggedIn === false" aria-label="Login to My Account - CMR web app">
     <mat-icon class="mat-icon material-icons">perm_identity</mat-icon>
   </button>
   <!-- My Account -->
-  <button mat-button class="account-button" [matMenuTriggerFor]="account" *ngIf="this.aus.isLoggedIn === true" aria-label="My Account">
+  <button mat-button class="account-button" [matMenuTriggerFor]="account" *ngIf="this.aus.isLoggedIn === true" aria-label="My Account - CMR web app">
     <mat-icon class="mat-icon material-icons">face</mat-icon>
   </button>
   <mat-menu #account="matMenu" [overlapTrigger]="false">

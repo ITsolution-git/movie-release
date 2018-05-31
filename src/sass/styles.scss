@@ -39,8 +39,10 @@ h1, h2, h3, h4, h5, h6{
 .page-title.entry-title {
     font-size: 150%;
     text-shadow: 1px 1px 1px #000;
+    text-transform: uppercase;
+    letter-spacing: -1px;
 }
-app-home .page-title.entry-title{
+app-home #jumbotron .page-title.entry-title{
     font-size: 200%;
     text-transform: uppercase;
 }
@@ -150,9 +152,6 @@ app-movies .section{
 /* .section-header{
     padding: 0rem 0.2rem 1rem;
 } */
-app-home .section-header{
-    padding-top: 0;
-}
 .section-header.wrapper p{
     margin-top: 0;
 }
@@ -226,7 +225,7 @@ mat-card{
     padding: 10px !important;
     background: rgba(0, 0, 0, 0.15) !important;
     border: 1px solid rgba(0, 0, 0, 0.15);
-    filter: grayscale(20%);
+    filter: grayscale(30%);
     box-sizing: content-box;
     position: relative;
 }

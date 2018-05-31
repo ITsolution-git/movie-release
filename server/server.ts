@@ -47,6 +47,7 @@ import {
     tryGenerateCelebsSitemap
 } from './sitemap/sitemap';
 import { processURL } from './ssr/bot-detect';
+import { XML_PATH } from './constants';
 
 const PORT = process.env.PORT || 5001;
 const app = express();
@@ -78,6 +79,9 @@ app.get('/movie-genres-sitemap.xml', (req, res) => {
 });
 app.get('/celebs-sitemap.xml', (req, res) => {
     res.sendFile(path.join(__dirname, './celebs-sitemap.xml'));
+});
+app.get('/sitemaps/:xml', (req, res) => {
+    res.sendFile(path.join(__dirname, XML_PATH, req.params.xml));
 });
 
 // Sitemap Endpoints
