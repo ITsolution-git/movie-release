@@ -32,7 +32,7 @@ npm run build-server
 ## Server run
 node public/server
 ### development
-nodemon -w server --exec "npm run build-server"
+nodemon -w server -e ts,js,css,scss --exec "npm run build-server"
 nodemon -w public --exec node public/server
 
 ## app development
