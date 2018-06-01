@@ -47,7 +47,7 @@ import {
     tryGenerateCelebsSitemap
 } from './sitemap/sitemap';
 import { processURL } from './ssr/bot-detect';
-import { XML_PATH } from './constants';
+import { XML_PATH, MAX_AGE } from './constants';
 
 const PORT = process.env.PORT || 5001;
 const app = express();
@@ -58,6 +58,13 @@ app.use(cors());
 
 // Body Parser Middleware
 app.use(bodyParser.json());
+
+// fix for: https://csabatodor.visualstudio.com/CurrentMovieReleases/_workitems/edit/125
+app.get(/.*(jpg|jpe|jpeg|png|svg|svgz|gif|ico|gzip|otf|odf|pdf|json|js|css)$/, (req, res, next) => {
+    res.set('Cache-Control', 'public, max-age=' + MAX_AGE);
+    res.set('Expires', new Date(Date.now() + MAX_AGE * 1000).toUTCString());
+    next();
+});
 
 // Set Public Folder
 app.use(express.static(path.join(__dirname, 'dist')));
