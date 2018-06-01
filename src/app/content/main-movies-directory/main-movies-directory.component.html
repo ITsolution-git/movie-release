@@ -1,5 +1,5 @@
 <!-- Jumbotron-->
-<div id="jumbotron" class="mat-elevation-z6">
+<div id="jumbotron" class="section-header mat-elevation-z6">
   <div class="container">
     <h1 class="page-title entry-title">{{ pageSeoTitle }}</h1>
     <h2 class="page-description">{{ pageSeoDescr }}</h2>
@@ -26,14 +26,11 @@
         </span>
       </span>
     </div> -->
-    <div id="page-header" fxLayout="row">
-      <div id="header-left" fxFlex>
-        <!-- Upcoming Results Counter -->
-        <div id="results-counter">
-          <span>Showing:</span>
-          <span *ngIf="mainDirectoryCurrentIndex === mainDirectoryTotalPages">{{ mainDirectoryTotalPages }}</span>
-          <span *ngIf="mainDirectoryCurrentIndex !== mainDirectoryTotalPages">{{ mainDirectoryCurrentIndex * 20 }}</span> / {{ mainDirectoryTotalResults }}
-        </div>
+    <div class="section-details" fxLayout="column">
+      <div class="results-counter" fxFlex="row">
+        <span>Showing:</span>
+        <span *ngIf="mainDirectoryCurrentIndex === mainDirectoryTotalPages">{{ mainDirectoryTotalPages }}</span>
+        <span *ngIf="mainDirectoryCurrentIndex !== mainDirectoryTotalPages">{{ mainDirectoryCurrentIndex * 20 }}</span> / {{ mainDirectoryTotalResults }}
       </div>
     </div>
   </div>

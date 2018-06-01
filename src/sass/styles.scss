@@ -49,7 +49,7 @@ app-home #jumbotron .page-title.entry-title{
 .pageload-progressbar {
     z-index: 999;
 }
-.page-description {
+.page-description, .section-description {
     font-size: 100%;
     text-shadow: 1px 1px 1px #000;
 }
@@ -57,9 +57,10 @@ app-home #jumbotron .page-title.entry-title{
 .section-details .view-all{
     text-align: right;
 }
-.result-counter, .section-details{
+.results-counter{
     color: #999;
-    font-size: 0.8em;
+    font-size: 90%;
+    margin-top: 10px;
 }
 div#results-counter, div#breadcrumbs {
     font-size: 80%;
@@ -68,6 +69,13 @@ div#results-counter, div#breadcrumbs {
 }
 div#breadcrumbs a {
     text-transform: uppercase
+}
+div#breadcrumbs a.mat-button {
+    margin: 0.1rem;
+}
+div#breadcrumbs span.jumper {
+    line-height: 2.8em;
+    margin-right: 1rem;
 }
 .mat-list-item.active{
     background: rgba(255, 255, 255, 0.04);
@@ -101,6 +109,7 @@ app-main-movies-directory, app-movies, app-genres, app-search, app-privacy, app-
     overflow-y: auto !important;
 }
 .wrapper{
+    width: 100%;
     max-width: 1220px;
     margin-left: auto;
     margin-right: auto;
@@ -132,22 +141,27 @@ app-main-movies-directory, app-movies, app-genres, app-search, app-privacy, app-
     height: 35px;
     text-align: center;
 }
+/*Advanced Filters*/
+.advanced_filters .mat-form-field-infix {
+    width: 220px;
+}
 /*Section*/
 .section.margin.padding{
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 .section.padding{
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 app-movies .section{
     padding-bottom: 0;
     margin-bottom: 0;
 }
 .section-header, .section-sidebar {
-    margin-bottom: 5px;
-    padding: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem 2rem;
     background: rgba(0, 0, 0, 0.15);
+    min-height: 186px;
 }
 /* .section-header{
     padding: 0rem 0.2rem 1rem;
@@ -276,10 +290,16 @@ mat-card-title h2 a{
     height: 100%;
     content: " ";
 }
+.card-movie-poster{
+    display: block;
+    height: 100%;
+    content: " ";
+    min-height: 300px;
+}
 .mat-card-image {
     width: calc(100% + 20px) !important;
-    margin: 0 -10px 10px -10px !important;
-    max-height: 360px;
+    margin: 0 -10px 0 -10px !important;
+    max-height: 300px;
     min-height: auto;
     display: block;
 }
@@ -354,21 +374,22 @@ mat-card span.rating-number{
 /*Jumbotron*/
 #jumbotron{
     background-image: url("/assets/img/currentmoviereleases_new_releases_2018.jpg");
-    padding: 1rem 2rem;
     margin: 0;
     box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     -moz-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     -webkit-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     position: relative;
     background-size: cover;
-    min-height: 186px;
 }
 app-home #jumbotron{
     padding: 16% 15%;
     text-align: center;
 }
-app-movies #jumbotron, app-celebs #jumbotron{
+app-movies #jumbotron{
     margin: -1rem -1rem 0rem -1rem;
+}
+app-celebs #jumbotron{
+    margin: -1rem -1rem 1rem -1rem;
 }
 app-genres #jumbotron, app-search #jumbotron, app-main-movies-directory #jumbotron, app-privacy #jumbotron, app-terms #jumbotron{
     margin: -1rem -1rem 2rem -1rem;
@@ -406,15 +427,18 @@ mat-toolbar .mat-button.search-btn, mat-toolbar .mat-button.login-btn, .search-t
 /*Jumbotron END*/
 #load-more, .view-all{
     text-align: center;
-    margin: 2rem 0;
+    margin: 1rem 0;
     display: inline-block;
     width: 100%;
     border-top: 1px solid rgba(48,48,48,.5);
     border-bottom: 1px solid rgba(48,48,48,.5);
     padding: 10px 0px;
 }
-.view-all{
-    margin: 1rem 0;
+.view-all mat-icon{
+    vertical-align: middle;
+}
+.view-all a:hover{
+    color: inherit;
 }
 /*Login Overlay*/
 .cdk-global-overlay-wrapper{
@@ -493,7 +517,7 @@ app-footer {
     box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
     -moz-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
     -webkit-box-shadow: rgb(17, 17, 17) 0px 5px 10px inset;
-    color: #939393;
+    color: #999999;
     border: 0;
     font-size: 0.8em;
     display: block;
@@ -679,6 +703,12 @@ app-footer {
     #advert-widget-full .adsbygoogle {
         width: 336px;
         height: 280px;
+    }
+    .card-movie-poster{
+        min-height: auto;
+    }
+    .mat-card-image{
+        max-height: inherit;
     }
 }
 @media (min-width: 544px) {

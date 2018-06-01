@@ -197,12 +197,12 @@
         [selectedIndex]="currentInfoTab" mat-stretch-tabs="true">
         <mat-tab label="Cast ({{ movieCreditsCast?.length }})">
           <ng-template mat-tab-label>
-            <h3 class="tab-heading">Cast ({{ movieCreditsCast?.length }})</h3>
+            <h3 class="tab-heading">Cast ({{ movieCreditsCast?.length }} people)</h3>
           </ng-template>
           <div class="cast-tab-content" *ngIf="movieCreditsCast?.length > 0" fxLayout="column">
             <div class="tab-header" fxLayout="column">
               <mat-form-field class="tab-search">
-                <input matInput (keyup)="applyCastFilter($event.target.value)" placeholder="Search for Cast">
+                <input matInput (keyup)="applyCastFilter($event.target.value)" placeholder="Search for Cast Members">
               </mat-form-field>
             </div>
             <mat-table #castTable [dataSource]="castSource" matSort class="cast-crew-table">
@@ -224,14 +224,14 @@
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="actorName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Actor Name </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Celebrity Name </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   <a (click)="this.as.goToCelebDetails(element?.id)">{{ element?.name }}</a>
                 </mat-cell>
               </ng-container>
               <!-- Character Column -->
               <ng-container matColumnDef="character">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Character </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Character / Role </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{ element?.character }} </mat-cell>
               </ng-container>
 
@@ -251,7 +251,7 @@
           <div class="mat-tab-body-wrapper">
             <!-- More Info loader -->
             <div fxLayout="column" fxLayoutAlign="center center" *ngIf="isLoadingInfo" class="loader">
-              <mat-progress-spinner mode="indeterminate" aria-label="Loading"></mat-progress-spinner>
+              <mat-progress-spinner mode="indeterminate" aria-label="Loading Technical Details"></mat-progress-spinner>
             </div>
             <div class="more-info">
               <!-- More Info Content-->

@@ -12,12 +12,14 @@
 }
 .more-info-btn {
   margin: 1rem 0;
-  border-radius: 2px;
   background: #0b0b0b;
 }
 .more-info-btn mat-icon {
   position: relative;
   top: 7px;
+}
+.biography-content span:first-child{
+  color: #999;
 }
 /* Profile Pic */
 #profile-pic-container {

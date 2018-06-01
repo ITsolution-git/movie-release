@@ -1,11 +1,14 @@
-<div id="jumbotron">
+<div id="jumbotron" class="section-header mat-elevation-z6" role="banner">
   <div class="container">
     <h1 class="page-title entry-title">{{ pageSeoTitle }}</h1>
     <h2 class="page-description">{{ pageSeoDescr }}</h2>
   </div>
-  <div *ngIf="popularActors" id="results-counter">Showing:
-    <span *ngIf="currentPageIndex === totalPages">{{ totalResults }}</span>
-    <span *ngIf="currentPageIndex !== totalPages">{{ currentPageIndex * 20 }}</span> / {{ totalResults }}
+  <div class="section-details" fxLayout="column">
+    <div *ngIf="popularActors" class="results-counter" fxFlex="row">
+      <span>Showing: </span>
+      <span *ngIf="currentPageIndex === totalPages">{{ totalResults }}</span>
+      <span *ngIf="currentPageIndex !== totalPages">{{ currentPageIndex * 20 }}</span> / {{ totalResults }}
+    </div>
   </div>
 </div>
 <!-- Celebrities -->
@@ -14,8 +17,8 @@
     <mat-card *ngFor="let actor of popularActors" class="actor-card">
       <a (click)="this.as.goToCelebDetails(actor.id)">
         <div itemscope="" itemtype="http://schema.org/Person">
-          <img *ngIf="actor.profile_path; else defaulActorImage" itemprop="image" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + actor.profile_path]" [alt]="actor.name"
-            [title]="actor.name" class="actor-img">
+          <img *ngIf="actor.profile_path; else defaulActorImage" itemprop="image" [src]="[TMDB_IMAGES_BASE_URL + IMG_185 + actor.profile_path]"
+            [alt]="actor.name" [title]="actor.name" class="actor-img">
           <ng-template #defaultActorImage>
             <img src="assets/img/default-movie-poster.png" [alt]="actor.name" [title]="actor.name" class="actor-img">
           </ng-template>

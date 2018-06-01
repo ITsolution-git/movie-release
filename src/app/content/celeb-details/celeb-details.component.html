@@ -1,16 +1,17 @@
-<div id="jumbotron" class="mat-elevation-z6" role="banner" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<div id="jumbotron" class="section-header mat-elevation-z6" role="banner" itemprop="actor" itemscope itemtype="http://schema.org/Person">
   <div class="container">
     <h1 class="page-title entry-title" *ngIf="actorDetails">
       <span itemprop="name">{{ actorDetails.name }}</span> Biography, Filmography and Latest Movie Releases</h1>
     <h2 class="page-description"></h2>
     <!-- <div class="advanced_filters"></div> -->
     <!-- <div class="page-taxonomy-list"></div> -->
-    <div id="page-header" fxLayout="row">
-      <div id="header-left" fxFlex>
-        <div id="breadcrumbs" xmlns:v="http://rdf.data-vocabulary.org/#">Jump To:
-          <a [href]="currentBiographyRoute" name="Biography" title="Biography" fragment="biography" class="mat-raised-button" tabindex="0" *ngIf="currentBiographyRoute">Biography</a>
-          <a [href]="currentFilmographyRoute" name="Filmography" title="Filmography" fragment="movies" class="mat-raised-button" tabindex="0" *ngIf="currentFilmographyRoute">Filmography</a>
-        </div>
+    <div class="section-details">
+      <div id="breadcrumbs" class="results-counter" xmlns:v="http://rdf.data-vocabulary.org/#" fxLayout="row" fxLayout.xs="column">
+        <span class="jumper">Jump To:</span>
+        <a mat-button [href]="currentBiographyRoute" name="Biography" title="Biography" fragment="biography" class="mat-raised-button" tabindex="0"
+          *ngIf="currentBiographyRoute">Biography</a>
+        <a mat-button [href]="currentFilmographyRoute" name="Filmography" title="Filmography" fragment="movies" class="mat-raised-button" tabindex="0"
+          *ngIf="currentFilmographyRoute">Filmography</a>
       </div>
     </div>
   </div>
@@ -29,16 +30,22 @@
         <!-- Biography -->
         <p title="{{ actorDetails.name }} Bio - Details about personal life">{{ actorDetails.biography }}</p>
         <!-- Actor Details -->
-        <p *ngIf="actorDetails.also_known_as">Also known as:
+        <p *ngIf="actorDetails.also_known_as">
+          <span>Also known as:</span>
           <span *ngFor="let altName of actorDetails?.also_known_as; let i = index">{{ altName }}
             <span *ngIf="i < (actorDetails?.also_known_as).length - 1">,</span>
           </span>
         </p>
-        <p *ngIf="actorDetails.popularity">Popularity: {{ actorDetails.popularity | number }}</p>
-        <p *ngIf="actorDetails.birthday">Birthday: {{ actorDetails.birthday | date }}</p>
-        <p *ngIf="actorDetails.place_of_birth">Place of birth: {{ actorDetails.place_of_birth }}</p>
-        <p *ngIf="actorDetails.deathday">Deathday: {{ actorDetails.deathday | date }}</p>
-        <p *ngIf="actorDetails.gender">Gender:
+        <p *ngIf="actorDetails.popularity">
+          <span>Popularity:</span> {{ actorDetails.popularity | number }}</p>
+        <p *ngIf="actorDetails.birthday">
+          <span>Birthday:</span> {{ actorDetails.birthday | date }}</p>
+        <p *ngIf="actorDetails.place_of_birth">
+          <span>Place of birth:</span> {{ actorDetails.place_of_birth }}</p>
+        <p *ngIf="actorDetails.deathday">
+          <span>Deathday:</span> {{ actorDetails.deathday | date }}</p>
+        <p *ngIf="actorDetails.gender">
+          <span>Gender:</span>
           <span *ngIf="actorDetails.gender === 1">female</span>
           <span *ngIf="actorDetails.gender === 2">male</span>
           <span *ngIf="actorDetails.gender === 3">other</span>
@@ -46,7 +53,7 @@
         <!-- More Info -->
         <div class="more-info" *ngIf="isMoreInfoOpen">
           <!-- More Info Content-->
-          <p *ngIf="actorDetails.homepage  && !isLoadingInfo">Homepage:
+          <p *ngIf="actorDetails.homepage  && !isLoadingInfo"><span>Homepage:</span>
             <a [href]="actorDetails.homepage" target="_blank">{{ actorDetails.homepage }}</a>
           </p>
           <div class="actor-links" *ngIf="actorLinks && !isLoadingInfo">

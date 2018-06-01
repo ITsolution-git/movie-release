@@ -1,4 +1,4 @@
-<div id="jumbotron" class="mat-elevation-z6">
+<div id="jumbotron" class="section-header mat-elevation-z6" role="banner">
   <div class="container">
     <h1 class="page-title entry-title" *ngIf="genreType === 'movies'">{{ pageSeoTitle }}</h1>
     <h2 class="page-description">{{ pageSeoDescr }}</h2>
@@ -6,12 +6,10 @@
     <!-- <div class="page-taxonomy-list"></div> -->
     <!-- <div id="breadcrumbs"></div> -->
     <!-- Results Counter -->
-    <div id="page-header" fxLayout="row">
-      <div id="header-left" fxFlex>
-        <div *ngIf="moviesList" id="results-counter">Showing:
-          <span *ngIf="currentPageIndex === totalPages">{{ totalResults }}</span>
-          <span *ngIf="currentPageIndex !== totalPages">{{ currentPageIndex * 20 }}</span> / {{ totalResults }}
-        </div>
+    <div class="section-details" fxLayout="row">
+      <div *ngIf="moviesList" class="results-counter"><span>Showing: </span>
+        <span *ngIf="currentPageIndex === totalPages">{{ totalResults }}</span>
+        <span *ngIf="currentPageIndex !== totalPages">{{ currentPageIndex * 20 }}</span> / {{ totalResults }}
       </div>
     </div>
   </div>
