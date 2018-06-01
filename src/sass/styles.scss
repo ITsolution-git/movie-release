@@ -161,11 +161,7 @@ app-movies .section{
     margin-bottom: 1rem;
     padding: 1rem 2rem;
     background: rgba(0, 0, 0, 0.15);
-    min-height: 186px;
 }
-/* .section-header{
-    padding: 0rem 0.2rem 1rem;
-} */
 .section-header.wrapper p{
     margin-top: 0;
 }
@@ -380,6 +376,9 @@ mat-card span.rating-number{
     -webkit-box-shadow: rgba(0, 0, 0, 0.46) 0px -10px 10px -5px inset;
     position: relative;
     background-size: cover;
+}
+#jumbotron .section-header{
+    min-height: 186px;
 }
 app-home #jumbotron{
     padding: 16% 15%;
