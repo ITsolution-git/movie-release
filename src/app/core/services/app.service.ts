@@ -38,6 +38,16 @@ export class AppService {
     });
   }
 
+  urlOptimizeTextSync(text: string): string {
+    const noSpecial = text.replace(/\(|\)|\?|\!|\'|\.|\,|\:|\;|\<|\>|\[|\]|\*|\+/g, '');
+    const noDouble = noSpecial.replace(/\œ/g, 'oe').replace(/\ᴂ/g, 'ae');
+
+    const noAccent = this.removeAccentsSync(noDouble);
+    const replaceAnd = noAccent.replace(/\&/g, 'and');
+    const urlText = replaceAnd.toLowerCase().replace(/[^a-zA-Z0-9-$@]+/gm, '-');
+    return urlText;
+}
+
   removeAccents(p): Promise<string> {
     // console.log('TEXT TO CONVERT: ', p);
     const c = 'áàãâäåéèêëíìîïóòõôöøúùûüçćÁÀÃÂÄÅÉÈÊËÍÌÎÏÓÒÕÖÔÚÙÛÜÇĆ';
@@ -54,6 +64,21 @@ export class AppService {
       // console.log('CONVERTED TEXT: ', n);
       resolve(n);
     });
+  }
+
+  removeAccentsSync(p): string {
+    const c = 'áàãâäåéèêëíìîïóòõôöøúùûüçćÁÀÃÂÄÅÉÈÊËÍÌÎÏÓÒÕÖÔÚÙÛÜÇĆ';
+    const s = 'aaaaaaeeeeiiiioooooouuuuccAAAAAAEEEEIIIIOOOOOUUUUCC';
+    let n = '';
+
+    for (let i = 0; i < p.length; i++) {
+      if (c.search(p.substr(i, 1)) >= 0) {
+        n += s.substr(c.search(p.substr(i, 1)), 1);
+      } else {
+        n += p.substr(i, 1);
+      }
+    }
+    return n;
   }
 
   seoOptimizeText(text: string): string {

@@ -91,20 +91,17 @@ export class FirebaseService {
     // adds 'url' key/value pair to object
     for (let i = 0; i < movieGenres.length; i++) {
       const genreId = movieGenres[i].id;
-      this.as.urlOptimizeText(movieGenres[i].name)
-        .then(slug => {
-          movieGenresObj[genreId] = {
-            id: movieGenres[i].id,
-            name: movieGenres[i].name,
-            url: 'movies/genre/' + slug
-          };
-        });
+        movieGenresObj[genreId] = {
+          id: movieGenres[i].id,
+          name: movieGenres[i].name,
+          url: 'movies/genre/' + this.as.urlOptimizeTextSync(movieGenres[i].name)
+        };
     }
-    // console.log(movieGenresObj);
     this.saveMovieGenresToDB(movieGenresObj);
   }
   saveMovieGenresToDB(movieGenresObj: Object): void {
     this.movieGenresRef.set(movieGenresObj)
+      .then(result => console.log('saveMovieGenresToDB success!', movieGenresObj, this.movieGenresRef))
       .catch(err => console.log(err, 'You do not have access!'));
   }
   // Store Queried Movies List in Database
