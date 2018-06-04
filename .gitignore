@@ -13,6 +13,7 @@
 /node_modules
 /public/node_modules
 /server/node_modules
+.vscode
 
 # IDEs and editors
 /.idea
