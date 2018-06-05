@@ -33,7 +33,7 @@ npm run build-server
 node public/server
 ### development
 nodemon -w server -e ts,js,css,scss --exec "npm run build-server"
-nodemon -w public --exec node public/server
+nodemon -w public --exec "node public/server"
 
 ## app development
 ng build --watch
