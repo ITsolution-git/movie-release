@@ -31,7 +31,8 @@ export const detectBot = (userAgent: string): boolean => {
         'screaming frog seo spider',
         'pingdom.com_bot_version_1.4_(http://www.pingdom.com/)',
         'google-structured-data-testing-tool',
-        'Google (+https://developers.google.com/+/web/snippet/)'
+        'Google (+https://developers.google.com/+/web/snippet/)',
+        'SemrushBot'
     ];
 
     const agent = userAgent.toLowerCase();

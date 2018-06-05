@@ -162,7 +162,7 @@ const generateSitemap = (data: Array<any>, type: string) => {
 
 const saveXMLFile = (xml: any, type: string, part: number = 0) => {
     // const date = Date.now();
-    const partStr = part > 0 ? '-' + part : '';    
+    const partStr = part > 0 ? '-' + part : '';
     const fname = type + '-sitemap' + partStr + '.xml';
 
     // Delete previously generated file
