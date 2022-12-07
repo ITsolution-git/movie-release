@@ -3,9 +3,9 @@
   "description": "Server side app for current Movie Releases",
   "dependencies": {
     "@types/body-parser": "^1.16.8",
-    "body-parser": "1.18.2",
+    "body-parser": "1.20.1",
     "cors": "2.8.4",
-    "express": "^4.16.2",
+    "express": "^4.18.2",
     "firebase": "4.10.0",
     "firebase-admin": "^5.9.0",
     "node-fetch": "^1.7.3",
